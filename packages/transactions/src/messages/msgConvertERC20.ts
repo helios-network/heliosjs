@@ -1,5 +1,5 @@
 import {
-  createMsgSubmitProposal as protoCreateMsgSubmitProposal,
+  createMsgConvertERC20 as protoMsgConvertERC20,
   createTransaction,
 } from '@tharsis/proto'
 
@@ -8,25 +8,26 @@ import {
   generateFee,
   generateMessage,
   generateTypes,
-  createMsgSubmitProposal,
-  MSG_VOTE_TYPES,
+  createMsgConvertERC20,
+  MSG_CONVERT_ERC20_TYPES,
 } from '@tharsis/eip712'
 
-import { Chain, Fee, Sender } from '../common'
+import { Chain, Fee, Sender } from './common'
 
-export interface MessageMsgSubmitProposal {
-  content: any
-  initialDepositDenom: string
-  initialDepositAmount: string
-  proposer: string
+/* eslint-disable camelcase */
+export interface MessageMsgConvertERC20 {
+  contract_address: string
+  amount: string
+  receiverHeliosFormatted: string
+  senderHexFormatted: string
 }
 
-export function createTxMsgSubmitProposal(
+export function createTxMsgConvertERC20(
   chain: Chain,
   sender: Sender,
   fee: Fee,
   memo: string,
-  params: MessageMsgSubmitProposal,
+  params: MessageMsgConvertERC20,
 ) {
   // EIP712
   const feeObject = generateFee(
@@ -35,13 +36,13 @@ export function createTxMsgSubmitProposal(
     fee.gas,
     sender.accountAddress,
   )
-  const types = generateTypes(MSG_VOTE_TYPES)
+  const types = generateTypes(MSG_CONVERT_ERC20_TYPES)
 
-  const msg = createMsgSubmitProposal(
-    params.content,
-    params.initialDepositDenom,
-    params.initialDepositAmount,
-    sender.accountAddress,
+  const msg = createMsgConvertERC20(
+    params.contract_address,
+    params.amount,
+    params.receiverHeliosFormatted,
+    params.senderHexFormatted,
   )
   const messages = generateMessage(
     sender.accountNumber.toString(),
@@ -54,11 +55,11 @@ export function createTxMsgSubmitProposal(
   const eipToSign = createEIP712(types, chain.chainId, messages)
 
   // Cosmos
-  const msgCosmos = protoCreateMsgSubmitProposal(
-    params.content,
-    params.initialDepositDenom,
-    params.initialDepositAmount,
-    sender.accountAddress,
+  const msgCosmos = protoMsgConvertERC20(
+    params.contract_address,
+    params.amount,
+    params.receiverHeliosFormatted,
+    params.senderHexFormatted,
   )
   const tx = createTransaction(
     msgCosmos,

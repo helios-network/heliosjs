@@ -1,5 +1,5 @@
 import {
-  createMsgConvertCoin as protoMsgConvertCoin,
+  createMsgSubmitProposal as protoCreateMsgSubmitProposal,
   createTransaction,
 } from '@tharsis/proto'
 
@@ -8,25 +8,25 @@ import {
   generateFee,
   generateMessage,
   generateTypes,
-  createMsgConvertCoin,
-  MSG_CONVERT_COIN_TYPES,
+  createMsgSubmitProposal,
+  MSG_VOTE_TYPES,
 } from '@tharsis/eip712'
 
-import { Chain, Fee, Sender } from '../common'
+import { Chain, Fee, Sender } from './common'
 
-export interface MessageMsgConvertCoin {
-  denom: string
-  amount: string
-  receiverHexFormatted: string
-  senderHeliosFormatted: string
+export interface MessageMsgSubmitProposal {
+  content: any
+  initialDepositDenom: string
+  initialDepositAmount: string
+  proposer: string
 }
 
-export function createTxMsgConvertCoin(
+export function createTxMsgSubmitProposal(
   chain: Chain,
   sender: Sender,
   fee: Fee,
   memo: string,
-  params: MessageMsgConvertCoin,
+  params: MessageMsgSubmitProposal,
 ) {
   // EIP712
   const feeObject = generateFee(
@@ -35,13 +35,13 @@ export function createTxMsgConvertCoin(
     fee.gas,
     sender.accountAddress,
   )
-  const types = generateTypes(MSG_CONVERT_COIN_TYPES)
+  const types = generateTypes(MSG_VOTE_TYPES)
 
-  const msg = createMsgConvertCoin(
-    params.denom,
-    params.amount,
-    params.receiverHexFormatted,
-    params.senderHeliosFormatted,
+  const msg = createMsgSubmitProposal(
+    params.content,
+    params.initialDepositDenom,
+    params.initialDepositAmount,
+    sender.accountAddress,
   )
   const messages = generateMessage(
     sender.accountNumber.toString(),
@@ -54,11 +54,11 @@ export function createTxMsgConvertCoin(
   const eipToSign = createEIP712(types, chain.chainId, messages)
 
   // Cosmos
-  const msgCosmos = protoMsgConvertCoin(
-    params.denom,
-    params.amount,
-    params.receiverHexFormatted,
-    params.senderHeliosFormatted,
+  const msgCosmos = protoCreateMsgSubmitProposal(
+    params.content,
+    params.initialDepositDenom,
+    params.initialDepositAmount,
+    sender.accountAddress,
   )
   const tx = createTransaction(
     msgCosmos,

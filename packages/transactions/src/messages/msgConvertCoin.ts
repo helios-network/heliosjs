@@ -1,5 +1,5 @@
 import {
-  createMsgConvertERC20 as protoMsgConvertERC20,
+  createMsgConvertCoin as protoMsgConvertCoin,
   createTransaction,
 } from '@tharsis/proto'
 
@@ -8,26 +8,25 @@ import {
   generateFee,
   generateMessage,
   generateTypes,
-  createMsgConvertERC20,
-  MSG_CONVERT_ERC20_TYPES,
+  createMsgConvertCoin,
+  MSG_CONVERT_COIN_TYPES,
 } from '@tharsis/eip712'
 
-import { Chain, Fee, Sender } from '../common'
+import { Chain, Fee, Sender } from './common'
 
-/* eslint-disable camelcase */
-export interface MessageMsgConvertERC20 {
-  contract_address: string
+export interface MessageMsgConvertCoin {
+  denom: string
   amount: string
-  receiverHeliosFormatted: string
-  senderHexFormatted: string
+  receiverHexFormatted: string
+  senderHeliosFormatted: string
 }
 
-export function createTxMsgConvertERC20(
+export function createTxMsgConvertCoin(
   chain: Chain,
   sender: Sender,
   fee: Fee,
   memo: string,
-  params: MessageMsgConvertERC20,
+  params: MessageMsgConvertCoin,
 ) {
   // EIP712
   const feeObject = generateFee(
@@ -36,13 +35,13 @@ export function createTxMsgConvertERC20(
     fee.gas,
     sender.accountAddress,
   )
-  const types = generateTypes(MSG_CONVERT_ERC20_TYPES)
+  const types = generateTypes(MSG_CONVERT_COIN_TYPES)
 
-  const msg = createMsgConvertERC20(
-    params.contract_address,
+  const msg = createMsgConvertCoin(
+    params.denom,
     params.amount,
-    params.receiverHeliosFormatted,
-    params.senderHexFormatted,
+    params.receiverHexFormatted,
+    params.senderHeliosFormatted,
   )
   const messages = generateMessage(
     sender.accountNumber.toString(),
@@ -55,11 +54,11 @@ export function createTxMsgConvertERC20(
   const eipToSign = createEIP712(types, chain.chainId, messages)
 
   // Cosmos
-  const msgCosmos = protoMsgConvertERC20(
-    params.contract_address,
+  const msgCosmos = protoMsgConvertCoin(
+    params.denom,
     params.amount,
-    params.receiverHeliosFormatted,
-    params.senderHexFormatted,
+    params.receiverHexFormatted,
+    params.senderHeliosFormatted,
   )
   const tx = createTransaction(
     msgCosmos,

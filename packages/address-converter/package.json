@@ -1,7 +1,10 @@
 {
-  "name": "@tharsis/address-converter",
+  "name": "@helios-chain-labs/address-converter",
   "description": "Address converter, convert ETH address to Ethermint/helios address.",
-  "version": "0.1.8",
+  "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

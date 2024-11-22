@@ -12,7 +12,7 @@ import {
   MSG_VOTE_TYPES,
 } from '@tharsis/eip712'
 
-import { Chain, Fee, Sender } from '../common'
+import { Chain, Fee, Sender } from './common'
 
 export interface MessageMsgVote {
   proposalId: number
