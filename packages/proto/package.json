@@ -29,7 +29,9 @@
     "test:ci": "jest --coverage --ci --reporters='jest-junit'",
     "coverage": "jest --coverage",
     "dev": "ts-node-dev -r tsconfig-paths/register src/index.ts",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "generate:proto": "protoc --plugin=\"protoc-gen-ts=$(which protoc-gen-ts)\" --js_out=import_style=commonjs,binary:./src/proto --ts_out=./src/proto -I ./proto ./proto/**/*.proto"
+
   },
   "devDependencies": {
     "protoc-gen-ts": "^0.8.2"
