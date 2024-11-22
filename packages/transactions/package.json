@@ -1,6 +1,9 @@
 {
   "name": "@helios-chain-labs/transactions",
   "description": "Transactions generator for Helios - Core side",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",

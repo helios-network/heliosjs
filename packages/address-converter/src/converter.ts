@@ -65,15 +65,15 @@ export const ethermintToEth = (ethermintAddress: string) => {
   return ETH.encoder(data)
 }
 
-export const EVMOS = bech32Chain('EVMOS', 'helios')
+export const Helios = bech32Chain('Helios', 'helios')
 
 export const ethToHelios = (ethAddress: string) => {
   const data = ETH.decoder(ethAddress)
-  return EVMOS.encoder(data)
+  return Helios.encoder(data)
 }
 
 export const heliosToEth = (heliosAddress: string) => {
-  const data = EVMOS.decoder(heliosAddress)
+  const data = Helios.decoder(heliosAddress)
   return ETH.encoder(data)
 }
 

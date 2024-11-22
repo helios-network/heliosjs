@@ -1,8 +1,11 @@
 {
-  "name": "@tharsis/proto",
-  "description": "Protobuf files for EVMOS.",
+  "name": "@helios-chain-labs/proto",
+  "description": "Protobuf files for Helios.",
   "version": "0.1.18",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "eslintIgnore": [
     "src/proto/**/*.ts"
   ],

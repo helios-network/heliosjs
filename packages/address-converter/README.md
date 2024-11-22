@@ -44,7 +44,7 @@ address = ETHERMINT.encoder(Buffer.from("e2d61e49ff8a9d724cc54d338d8076f878ac6b7
 // address === "ethm1uttpuj0l32whynx9f5ecmqrklpu2c6m3973048"
 ```
 
-### EVMOS support
+### Helios support
 
 ```ts
 import {ethToHelios, heliosToEth} from "@tharsis/address-converter"
