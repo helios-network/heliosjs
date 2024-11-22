@@ -7,7 +7,7 @@
     "dev": "tsc index.ts && node index.js"
   },
   "dependencies": {
-    "@hanchon/evmos-ts-wallet": "^0.1.1",
+    "@hanchon/helios-ts-wallet": "^0.1.1",
     "@tharsis/address-converter": "^0.1.8",
     "@tharsis/eip712": "^0.2.2",
     "@tharsis/proto": "^0.1.17",

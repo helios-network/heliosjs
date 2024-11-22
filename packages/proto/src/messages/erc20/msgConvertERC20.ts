@@ -1,4 +1,4 @@
-import * as erc20 from '../../proto/evmos/erc20/v1/tx'
+import * as erc20 from '../../proto/helios/erc20/v1/tx'
 
 export function createMsgConvertERC20(
   contractAddress: string,
@@ -6,7 +6,7 @@ export function createMsgConvertERC20(
   receiver: string,
   sender: string,
 ) {
-  const msg = new erc20.evmos.erc20.v1.MsgConvertERC20({
+  const msg = new erc20.helios.erc20.v1.MsgConvertERC20({
     contract_address: contractAddress,
     amount,
     receiver,
@@ -14,6 +14,6 @@ export function createMsgConvertERC20(
   })
   return {
     message: msg,
-    path: 'evmos.erc20.v1.MsgConvertERC20',
+    path: 'helios.erc20.v1.MsgConvertERC20',
   }
 }

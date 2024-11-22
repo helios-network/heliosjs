@@ -265,9 +265,9 @@
     "@ethersproject/properties" "^5.6.0"
     "@ethersproject/strings" "^5.6.1"
 
-"@hanchon/evmos-ts-wallet@^0.1.1":
+"@hanchon/helios-ts-wallet@^0.1.1":
   version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@hanchon/evmos-ts-wallet/-/evmos-ts-wallet-0.1.1.tgz#44ad2370189299bc2f9d2f39e96a7d99edf9903c"
+  resolved "https://registry.yarnpkg.com/@hanchon/helios-ts-wallet/-/helios-ts-wallet-0.1.1.tgz#44ad2370189299bc2f9d2f39e96a7d99edf9903c"
   integrity sha512-1inUeMXxPHGTtYaUDHwaVNev9JiZ2So/4tVyD4AwWaCLQr8JCjjSH1LtrNQPG64D4uqnRGBtJeaiLZF1+QoD0Q==
   dependencies:
     "@ethersproject/bytes" "^5.6.1"

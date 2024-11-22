@@ -13,7 +13,7 @@ interface Sender {
 }
 ```
 
-An example on how to implement it can be found in the [README.md](https://github.com/tharsis/evmosjs/blob/main/README.md) example.
+An example on how to implement it can be found in the [README.md](https://github.com/tharsis/heliosjs/blob/main/README.md) example.
 
 All the message will also required the chain information and the fee to pay:
 
@@ -38,10 +38,10 @@ The examples are using `signTransaction` or `singTransactionUsingEIP712` to sign
 
 ### Metamask
 
-NOTE: msg is the result of calling any `createTx...` function using evmosjs
+NOTE: msg is the result of calling any `createTx...` function using heliosjs
 
 ```ts
-import { evmosToEth } from '@tharsis/address-converter'
+import { heliosToEth } from '@tharsis/address-converter'
 import { generateEndpointBroadcast, generatePostBodyBroadcast } from '@tharsis/provider'
 import { createTxRawEIP712, signatureToWeb3Extension } from '@tharsis/transactions'
 
@@ -51,7 +51,7 @@ await window.ethereum.enable();
 // Request the signature
 let signature = await window.ethereum.request({
     method: 'eth_signTypedData_v4',
-    params: [evmosToEth(sender.accountAddress), JSON.stringify(msg.eipToSign)],
+    params: [heliosToEth(sender.accountAddress), JSON.stringify(msg.eipToSign)],
 });
 
 // The chain and sender objects are the same as the previous example

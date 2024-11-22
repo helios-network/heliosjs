@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-        "evmosjs":["packages/evmosjs"],
+        "heliosjs":["packages/heliosjs"],
         "@tharsis/address-converter": ["./packages/address-converter/*"],
         "@tharsis/eip712":["packages/eip712"],
         "@tharsis/proto":["packages/proto"],

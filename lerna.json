@@ -1,6 +1,6 @@
 {
   "npmClient": "yarn",
-  "name": "evmosjs",
+  "name": "heliosjs",
   "packages": [
     "packages/*"
   ],

@@ -13,7 +13,7 @@ export function createMsgConvertERC20(
   sender: string,
 ) {
   return {
-    type: 'evmos/MsgConvertERC20',
+    type: 'helios/MsgConvertERC20',
     value: {
       contract_address: contractAddress,
       amount,

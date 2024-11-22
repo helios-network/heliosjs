@@ -1,8 +1,8 @@
-# evmosjs
+# heliosjs
 
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/tharsis/evmosjs.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/tharsis/evmosjs/alerts/) [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/tharsis/evmosjs.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/tharsis/evmosjs/context:javascript)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/tharsis/heliosjs.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/tharsis/heliosjs/alerts/) [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/tharsis/heliosjs.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/tharsis/heliosjs/context:javascript)
 
-JS and TS libs for Evmos
+JS and TS libs for Helios
 
 ## Example
 
@@ -12,14 +12,14 @@ Get the account number, sequence and pubkey from an address.
 NOTE: if the address had not sent any transaction to the blockchain, the pubkey value are going to be empty.
 
 ```ts
-import { ethToEvmos } from '@tharsis/address-converter';
+import { ethToHelios } from '@tharsis/address-converter';
 import { generateEndpointAccount } from '@tharsis/provider';
 
-const sender = 'evmos1...'
+const sender = 'helios1...'
 let destination = '0x....'
 // The address must be bech32 encoded
 if (destination.split('0x').length == 2) {
-    destination = ethToEvmos(destination)
+    destination = ethToHelios(destination)
 }
 
 // Query the node
@@ -63,7 +63,7 @@ import { createMessageSend } from '@tharsis/transactions'
 
 const chain = {
     chainId: 9000,
-    cosmosChainId: 'evmos_9000-1',
+    cosmosChainId: 'helios_9000-1',
 }
 
 const sender = {
@@ -75,16 +75,16 @@ const sender = {
 
 const fee = {
     amount: '20',
-    denom: 'aevmos',
+    denom: 'ahelios',
     gas: '200000',
 }
 
 const memo = ''
 
 const params = {
-    destinationAddress: 'evmos1pmk2r32ssqwps42y3c9d4clqlca403yd9wymgr',
+    destinationAddress: 'helios1pmk2r32ssqwps42y3c9d4clqlca403yd9wymgr',
     amount: '1',
-    denom: 'aevmos',
+    denom: 'ahelios',
 }
 
 const msg = createMessageSend(chain, sender, fee, memo, params)
@@ -97,11 +97,11 @@ const msg = createMessageSend(chain, sender, fee, memo, params)
 
 ### Signing with Metamask
 
-After creating the transaction we need to send the payload to metamask so it can be signed. With that signature we are going to add a Web3Extension to the Cosmos Transactions and broadcast it to the Evmos node.
+After creating the transaction we need to send the payload to metamask so it can be signed. With that signature we are going to add a Web3Extension to the Cosmos Transactions and broadcast it to the Helios node.
 
 ```ts
 // Follow the previous step to generate the msg object
-import { evmosToEth } from '@tharsis/address-converter'
+import { heliosToEth } from '@tharsis/address-converter'
 import { generateEndpointBroadcast, generatePostBodyBroadcast } from '@tharsis/provider'
 import { createTxRawEIP712, signatureToWeb3Extension } from '@tharsis/transactions'
 
@@ -111,7 +111,7 @@ await window.ethereum.enable();
 // Request the signature
 let signature = await window.ethereum.request({
     method: 'eth_signTypedData_v4',
-    params: [evmosToEth(sender.accountAddress), JSON.stringify(msg.eipToSign)],
+    params: [heliosToEth(sender.accountAddress), JSON.stringify(msg.eipToSign)],
 });
 
 // The chain and sender objects are the same as the previous example

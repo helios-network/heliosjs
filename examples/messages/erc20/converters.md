@@ -3,7 +3,7 @@
 ```ts
 /* eslint-disable import/no-extraneous-dependencies */
 // This dependency is local to the utils project
-import { evmosToEth } from '@tharsis/address-converter'
+import { heliosToEth } from '@tharsis/address-converter'
 import { Wallet } from '@ethersproject/wallet'
 import { createTxMsgConvertCoin, createTxMsgConvertERC20 } from '@tharsis/transactions'
 import {
@@ -12,7 +12,7 @@ import {
   signTransaction,
   LOCALNET_CHAIN,
   LOCALNET_FEE,
-} from '@hanchon/evmos-ts-wallet'
+} from '@hanchon/helios-ts-wallet'
 
 async function prepareMessageConvertCoin(wallet: Wallet) {
   const fee = LOCALNET_FEE
@@ -23,8 +23,8 @@ async function prepareMessageConvertCoin(wallet: Wallet) {
   const txSimple = createTxMsgConvertCoin(LOCALNET_CHAIN, sender, fee, '', {
     denom: 'erc20/0xC7f37A81cE8F11955051E176A15954Fc4777A51B',
     amount: '1',
-    receiverHexFormatted: evmosToEth(sender.accountAddress),
-    senderEvmosFormatted: sender.accountAddress,
+    receiverHexFormatted: heliosToEth(sender.accountAddress),
+    senderHeliosFormatted: sender.accountAddress,
   })
   return { sender, txSimple }
 }
@@ -38,8 +38,8 @@ async function prepareMessageConvertERC20(wallet: Wallet) {
   const txSimple = createTxMsgConvertERC20(LOCALNET_CHAIN, sender, fee, '', {
     contract_address: '0xC7f37A81cE8F11955051E176A15954Fc4777A51B',
     amount: '1',
-    receiverEvmosFormatted: sender.accountAddress,
-    senderHexFormatted: evmosToEth(sender.accountAddress),
+    receiverHeliosFormatted: sender.accountAddress,
+    senderHexFormatted: heliosToEth(sender.accountAddress),
   })
   return { sender, txSimple }
 }

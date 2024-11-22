@@ -4,7 +4,7 @@ describe('msgSend tests', () => {
   it('valid', async () => {
     const chain = {
       chainId: 9000,
-      cosmosChainId: 'evmos_9000-1',
+      cosmosChainId: 'helios_9000-1',
     }
 
     const sender = {
@@ -16,16 +16,16 @@ describe('msgSend tests', () => {
 
     const fee = {
       amount: '20',
-      denom: 'aevmos',
+      denom: 'ahelios',
       gas: '200000',
     }
 
     const memo = ''
 
     const params = {
-      destinationAddress: 'evmos1pmk2r32ssqwps42y3c9d4clqlca403yd9wymgr',
+      destinationAddress: 'helios1pmk2r32ssqwps42y3c9d4clqlca403yd9wymgr',
       amount: '1',
-      denom: 'aevmos',
+      denom: 'ahelios',
     }
 
     const msg = createMessageSend(chain, sender, fee, memo, params)
@@ -69,9 +69,9 @@ describe('msgSend tests', () => {
       },
       message: {
         account_number: '9',
-        chain_id: 'evmos_9000-1',
+        chain_id: 'helios_9000-1',
         fee: {
-          amount: [{ amount: '20', denom: 'aevmos' }],
+          amount: [{ amount: '20', denom: 'ahelios' }],
           feePayer: 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
           gas: '200000',
         },
@@ -80,9 +80,9 @@ describe('msgSend tests', () => {
           {
             type: 'cosmos-sdk/MsgSend',
             value: {
-              amount: [{ amount: '1', denom: 'aevmos' }],
+              amount: [{ amount: '1', denom: 'ahelios' }],
               from_address: 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
-              to_address: 'evmos1pmk2r32ssqwps42y3c9d4clqlca403yd9wymgr',
+              to_address: 'helios1pmk2r32ssqwps42y3c9d4clqlca403yd9wymgr',
             },
           },
         ],

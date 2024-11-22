@@ -16,7 +16,7 @@ export function createMsgConvertCoin(
   sender: string,
 ) {
   return {
-    type: 'evmos/MsgConvertCoin',
+    type: 'helios/MsgConvertCoin',
     value: {
       coin: {
         denom,

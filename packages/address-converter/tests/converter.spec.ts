@@ -3,8 +3,8 @@ import {
   ETHERMINT,
   ethToEthermint,
   ethermintToEth,
-  evmosToEth,
-  ethToEvmos,
+  heliosToEth,
+  ethToHelios,
 } from '../src/index'
 
 describe('converter tests', () => {
@@ -40,10 +40,10 @@ describe('converter tests', () => {
     expect(address).toBe('0xe2D61e49ff8a9d724CC54d338D8076F878aC6b71')
 
     // EVMOS
-    address = evmosToEth('evmos1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw')
+    address = heliosToEth('helios1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw')
     expect(address).toBe('0x14574a6DFF2Ddf9e07828b4345d3040919AF5652')
     // ETH to EVMOS
-    address = ethToEvmos('0x14574a6DFF2Ddf9e07828b4345d3040919AF5652')
-    expect(address).toBe('evmos1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw')
+    address = ethToHelios('0x14574a6DFF2Ddf9e07828b4345d3040919AF5652')
+    expect(address).toBe('helios1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw')
   })
 })

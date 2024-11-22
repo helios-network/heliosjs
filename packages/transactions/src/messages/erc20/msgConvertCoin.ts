@@ -18,7 +18,7 @@ export interface MessageMsgConvertCoin {
   denom: string
   amount: string
   receiverHexFormatted: string
-  senderEvmosFormatted: string
+  senderHeliosFormatted: string
 }
 
 export function createTxMsgConvertCoin(
@@ -41,7 +41,7 @@ export function createTxMsgConvertCoin(
     params.denom,
     params.amount,
     params.receiverHexFormatted,
-    params.senderEvmosFormatted,
+    params.senderHeliosFormatted,
   )
   const messages = generateMessage(
     sender.accountNumber.toString(),
@@ -58,7 +58,7 @@ export function createTxMsgConvertCoin(
     params.denom,
     params.amount,
     params.receiverHexFormatted,
-    params.senderEvmosFormatted,
+    params.senderHeliosFormatted,
   )
   const tx = createTransaction(
     msgCosmos,

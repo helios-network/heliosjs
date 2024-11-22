@@ -1,5 +1,5 @@
 export function generateEndpointClaimsRecord(address: string) {
-  return `/evmos/claims/v1/claims_records/${address}`
+  return `/helios/claims/v1/claims_records/${address}`
 }
 
 /* eslint-disable camelcase */

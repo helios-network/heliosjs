@@ -1,6 +1,6 @@
 {
-  "name": "evmosjs",
-  "description": "JS and TS libs for Evmos",
+  "name": "heliosjs",
+  "description": "JS and TS libs for Helios",
   "version": "0.2.7",
   "license": "MIT",
   "main": "dist/index.js",
@@ -9,7 +9,7 @@
     "dist"
   ],
   "_moduleAliases": {
-    "~evmosjs": "dist"
+    "~heliosjs": "dist"
   },
   "scripts": {
     "postinstall": "shx mkdir -p dist && link-module-alias",

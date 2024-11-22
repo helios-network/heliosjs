@@ -10,14 +10,14 @@ import {
   LOCALNET_FEE,
   signTransaction,
   singTransactionUsingEIP712,
-} from '@hanchon/evmos-ts-wallet'
+} from '@hanchon/helios-ts-wallet'
 
 async function prepareMessage(wallet: Wallet) {
   const sender = await getSender(wallet)
   const txSimple = createMessageSend(LOCALNET_CHAIN, sender, LOCALNET_FEE, '', {
-    destinationAddress: 'evmos1pmk2r32ssqwps42y3c9d4clqlca403yd9wymgr',
+    destinationAddress: 'helios1pmk2r32ssqwps42y3c9d4clqlca403yd9wymgr',
     amount: '1',
-    denom: 'aevmos',
+    denom: 'ahelios',
   })
   return { sender, txSimple }
 }

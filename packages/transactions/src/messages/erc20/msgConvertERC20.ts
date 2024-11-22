@@ -18,7 +18,7 @@ import { Chain, Fee, Sender } from '../common'
 export interface MessageMsgConvertERC20 {
   contract_address: string
   amount: string
-  receiverEvmosFormatted: string
+  receiverHeliosFormatted: string
   senderHexFormatted: string
 }
 
@@ -41,7 +41,7 @@ export function createTxMsgConvertERC20(
   const msg = createMsgConvertERC20(
     params.contract_address,
     params.amount,
-    params.receiverEvmosFormatted,
+    params.receiverHeliosFormatted,
     params.senderHexFormatted,
   )
   const messages = generateMessage(
@@ -58,7 +58,7 @@ export function createTxMsgConvertERC20(
   const msgCosmos = protoMsgConvertERC20(
     params.contract_address,
     params.amount,
-    params.receiverEvmosFormatted,
+    params.receiverHeliosFormatted,
     params.senderHexFormatted,
   )
   const tx = createTransaction(

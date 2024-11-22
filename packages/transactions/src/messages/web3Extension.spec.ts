@@ -4,7 +4,7 @@ describe('web3Extension tests', () => {
   it('valid', async () => {
     const chain = {
       chainId: 9000,
-      cosmosChainId: 'evmos_9000-1',
+      cosmosChainId: 'helios_9000-1',
     }
 
     const sender = {

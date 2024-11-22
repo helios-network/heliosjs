@@ -1,10 +1,10 @@
 syntax = "proto3";
-package evmos.incentives.v1;
-import "evmos/incentives/v1/incentives.proto";
+package helios.incentives.v1;
+import "helios/incentives/v1/incentives.proto";
 
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/tharsis/evmos/v3/x/incentives/types";
+option go_package = "github.com/tharsis/helios/v3/x/incentives/types";
 
 // GenesisState defines the module's genesis state.
 message GenesisState {

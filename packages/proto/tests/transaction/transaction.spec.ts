@@ -13,8 +13,8 @@ import {
 describe('transaction tests', () => {
   it('createBody test', () => {
     const msgSend = createMsgSend(
-      'evmos18lw704zeyg5zs098lq7x6ypfkfjqlzzln5qh89',
-      'evmos1ndfagggdkgv9vc7wha5gj2zzrnyqd3r704lr4q',
+      'helios18lw704zeyg5zs098lq7x6ypfkfjqlzzln5qh89',
+      'helios1ndfagggdkgv9vc7wha5gj2zzrnyqd3r704lr4q',
       '69420',
       'aphoton',
     )
@@ -124,8 +124,8 @@ describe('transaction tests', () => {
 
   it('createSigDoc test', () => {
     const msgSend = createMsgSend(
-      'evmos18lw704zeyg5zs098lq7x6ypfkfjqlzzln5qh89',
-      'evmos1ndfagggdkgv9vc7wha5gj2zzrnyqd3r704lr4q',
+      'helios18lw704zeyg5zs098lq7x6ypfkfjqlzzln5qh89',
+      'helios1ndfagggdkgv9vc7wha5gj2zzrnyqd3r704lr4q',
       '69420',
       'aphoton',
     )
@@ -145,7 +145,7 @@ describe('transaction tests', () => {
 
     const authInfo = createAuthInfo(info, fee)
 
-    const chainId = 'evmos-9000_1'
+    const chainId = 'helios-9000_1'
 
     const accountNumber = 0
 

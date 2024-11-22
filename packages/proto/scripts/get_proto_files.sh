@@ -11,11 +11,11 @@ cp -r ./third_party/proto/* $MYFOLDER/proto
 cd /tmp
 rm -rf ethermint
 
-# Evmos
+# Helios
 cd /tmp
-git clone https://github.com/tharsis/evmos/
-cd evmos/
+git clone https://github.com/tharsis/helios/
+cd helios/
 cp -r ./proto/* $MYFOLDER/proto
 cp -r ./third_party/proto/* $MYFOLDER/proto
 cd /tmp
-rm -rf evmos
+rm -rf helios
