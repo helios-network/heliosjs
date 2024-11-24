@@ -6,6 +6,7 @@
 import * as dependency_1 from "./../../../gogoproto/gogo";
 import * as dependency_2 from "./../../../google/api/annotations";
 import * as dependency_3 from "./params";
+import * as dependency_4 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.params.v1beta1 {
@@ -169,6 +170,203 @@ export namespace cosmos.params.v1beta1 {
             return QueryParamsResponse.deserialize(bytes);
         }
     }
+    export class QuerySubspacesRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {}) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") { }
+        }
+        static fromObject(data: {}): QuerySubspacesRequest {
+            const message = new QuerySubspacesRequest({});
+            return message;
+        }
+        toObject() {
+            const data: {} = {};
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QuerySubspacesRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QuerySubspacesRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QuerySubspacesRequest {
+            return QuerySubspacesRequest.deserialize(bytes);
+        }
+    }
+    export class QuerySubspacesResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            subspaces?: Subspace[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("subspaces" in data && data.subspaces != undefined) {
+                    this.subspaces = data.subspaces;
+                }
+            }
+        }
+        get subspaces() {
+            return pb_1.Message.getRepeatedWrapperField(this, Subspace, 1) as Subspace[];
+        }
+        set subspaces(value: Subspace[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        static fromObject(data: {
+            subspaces?: ReturnType<typeof Subspace.prototype.toObject>[];
+        }): QuerySubspacesResponse {
+            const message = new QuerySubspacesResponse({});
+            if (data.subspaces != null) {
+                message.subspaces = data.subspaces.map(item => Subspace.fromObject(item));
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                subspaces?: ReturnType<typeof Subspace.prototype.toObject>[];
+            } = {};
+            if (this.subspaces != null) {
+                data.subspaces = this.subspaces.map((item: Subspace) => item.toObject());
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.subspaces.length)
+                writer.writeRepeatedMessage(1, this.subspaces, (item: Subspace) => item.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QuerySubspacesResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QuerySubspacesResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.subspaces, () => pb_1.Message.addToRepeatedWrapperField(message, 1, Subspace.deserialize(reader), Subspace));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QuerySubspacesResponse {
+            return QuerySubspacesResponse.deserialize(bytes);
+        }
+    }
+    export class Subspace extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            subspace?: string;
+            keys?: string[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [2], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("subspace" in data && data.subspace != undefined) {
+                    this.subspace = data.subspace;
+                }
+                if ("keys" in data && data.keys != undefined) {
+                    this.keys = data.keys;
+                }
+            }
+        }
+        get subspace() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set subspace(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get keys() {
+            return pb_1.Message.getFieldWithDefault(this, 2, []) as string[];
+        }
+        set keys(value: string[]) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        static fromObject(data: {
+            subspace?: string;
+            keys?: string[];
+        }): Subspace {
+            const message = new Subspace({});
+            if (data.subspace != null) {
+                message.subspace = data.subspace;
+            }
+            if (data.keys != null) {
+                message.keys = data.keys;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                subspace?: string;
+                keys?: string[];
+            } = {};
+            if (this.subspace != null) {
+                data.subspace = this.subspace;
+            }
+            if (this.keys != null) {
+                data.keys = this.keys;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.subspace.length)
+                writer.writeString(1, this.subspace);
+            if (this.keys.length)
+                writer.writeRepeatedString(2, this.keys);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Subspace {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Subspace();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.subspace = reader.readString();
+                        break;
+                    case 2:
+                        pb_1.Message.addToRepeatedField(message, 2, reader.readString());
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): Subspace {
+            return Subspace.deserialize(bytes);
+        }
+    }
     interface GrpcUnaryServiceInterface<P, R> {
         (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
         (message: P, metadata: grpc_1.Metadata, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
@@ -203,10 +401,20 @@ export namespace cosmos.params.v1beta1 {
                 requestDeserialize: (bytes: Buffer) => QueryParamsRequest.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: QueryParamsResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => QueryParamsResponse.deserialize(new Uint8Array(bytes))
+            },
+            Subspaces: {
+                path: "/cosmos.params.v1beta1.Query/Subspaces",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: QuerySubspacesRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => QuerySubspacesRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: QuerySubspacesResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => QuerySubspacesResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
         abstract Params(call: grpc_1.ServerUnaryCall<QueryParamsRequest, QueryParamsResponse>, callback: grpc_1.sendUnaryData<QueryParamsResponse>): void;
+        abstract Subspaces(call: grpc_1.ServerUnaryCall<QuerySubspacesRequest, QuerySubspacesResponse>, callback: grpc_1.sendUnaryData<QuerySubspacesResponse>): void;
     }
     export class QueryClient extends grpc_1.makeGenericClientConstructor(UnimplementedQueryService.definition, "Query", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -214,6 +422,9 @@ export namespace cosmos.params.v1beta1 {
         }
         Params: GrpcUnaryServiceInterface<QueryParamsRequest, QueryParamsResponse> = (message: QueryParamsRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryParamsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryParamsResponse>, callback?: grpc_1.requestCallback<QueryParamsResponse>): grpc_1.ClientUnaryCall => {
             return super.Params(message, metadata, options, callback);
+        };
+        Subspaces: GrpcUnaryServiceInterface<QuerySubspacesRequest, QuerySubspacesResponse> = (message: QuerySubspacesRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QuerySubspacesResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QuerySubspacesResponse>, callback?: grpc_1.requestCallback<QuerySubspacesResponse>): grpc_1.ClientUnaryCall => {
+            return super.Subspaces(message, metadata, options, callback);
         };
     }
 }

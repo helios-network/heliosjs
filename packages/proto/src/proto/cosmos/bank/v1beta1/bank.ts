@@ -6,11 +6,14 @@
 import * as dependency_1 from "./../../../gogoproto/gogo";
 import * as dependency_2 from "./../../../cosmos_proto/cosmos";
 import * as dependency_3 from "./../../base/v1beta1/coin";
+import * as dependency_4 from "./../../msg/v1/msg";
+import * as dependency_5 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.bank.v1beta1 {
     export class Params extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
+            /** @deprecated*/
             send_enabled?: SendEnabled[];
             default_send_enabled?: boolean;
         }) {
@@ -25,9 +28,11 @@ export namespace cosmos.bank.v1beta1 {
                 }
             }
         }
+        /** @deprecated*/
         get send_enabled() {
             return pb_1.Message.getRepeatedWrapperField(this, SendEnabled, 1) as SendEnabled[];
         }
+        /** @deprecated*/
         set send_enabled(value: SendEnabled[]) {
             pb_1.Message.setRepeatedWrapperField(this, 1, value);
         }
@@ -558,6 +563,9 @@ export namespace cosmos.bank.v1beta1 {
             display?: string;
             name?: string;
             symbol?: string;
+            uri?: string;
+            uri_hash?: string;
+            decimals?: number;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [2], this.#one_of_decls);
@@ -579,6 +587,15 @@ export namespace cosmos.bank.v1beta1 {
                 }
                 if ("symbol" in data && data.symbol != undefined) {
                     this.symbol = data.symbol;
+                }
+                if ("uri" in data && data.uri != undefined) {
+                    this.uri = data.uri;
+                }
+                if ("uri_hash" in data && data.uri_hash != undefined) {
+                    this.uri_hash = data.uri_hash;
+                }
+                if ("decimals" in data && data.decimals != undefined) {
+                    this.decimals = data.decimals;
                 }
             }
         }
@@ -618,6 +635,24 @@ export namespace cosmos.bank.v1beta1 {
         set symbol(value: string) {
             pb_1.Message.setField(this, 6, value);
         }
+        get uri() {
+            return pb_1.Message.getFieldWithDefault(this, 7, "") as string;
+        }
+        set uri(value: string) {
+            pb_1.Message.setField(this, 7, value);
+        }
+        get uri_hash() {
+            return pb_1.Message.getFieldWithDefault(this, 8, "") as string;
+        }
+        set uri_hash(value: string) {
+            pb_1.Message.setField(this, 8, value);
+        }
+        get decimals() {
+            return pb_1.Message.getFieldWithDefault(this, 9, 0) as number;
+        }
+        set decimals(value: number) {
+            pb_1.Message.setField(this, 9, value);
+        }
         static fromObject(data: {
             description?: string;
             denom_units?: ReturnType<typeof DenomUnit.prototype.toObject>[];
@@ -625,6 +660,9 @@ export namespace cosmos.bank.v1beta1 {
             display?: string;
             name?: string;
             symbol?: string;
+            uri?: string;
+            uri_hash?: string;
+            decimals?: number;
         }): Metadata {
             const message = new Metadata({});
             if (data.description != null) {
@@ -645,6 +683,15 @@ export namespace cosmos.bank.v1beta1 {
             if (data.symbol != null) {
                 message.symbol = data.symbol;
             }
+            if (data.uri != null) {
+                message.uri = data.uri;
+            }
+            if (data.uri_hash != null) {
+                message.uri_hash = data.uri_hash;
+            }
+            if (data.decimals != null) {
+                message.decimals = data.decimals;
+            }
             return message;
         }
         toObject() {
@@ -655,6 +702,9 @@ export namespace cosmos.bank.v1beta1 {
                 display?: string;
                 name?: string;
                 symbol?: string;
+                uri?: string;
+                uri_hash?: string;
+                decimals?: number;
             } = {};
             if (this.description != null) {
                 data.description = this.description;
@@ -674,6 +724,15 @@ export namespace cosmos.bank.v1beta1 {
             if (this.symbol != null) {
                 data.symbol = this.symbol;
             }
+            if (this.uri != null) {
+                data.uri = this.uri;
+            }
+            if (this.uri_hash != null) {
+                data.uri_hash = this.uri_hash;
+            }
+            if (this.decimals != null) {
+                data.decimals = this.decimals;
+            }
             return data;
         }
         serialize(): Uint8Array;
@@ -692,6 +751,12 @@ export namespace cosmos.bank.v1beta1 {
                 writer.writeString(5, this.name);
             if (this.symbol.length)
                 writer.writeString(6, this.symbol);
+            if (this.uri.length)
+                writer.writeString(7, this.uri);
+            if (this.uri_hash.length)
+                writer.writeString(8, this.uri_hash);
+            if (this.decimals != 0)
+                writer.writeUint32(9, this.decimals);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -718,6 +783,15 @@ export namespace cosmos.bank.v1beta1 {
                         break;
                     case 6:
                         message.symbol = reader.readString();
+                        break;
+                    case 7:
+                        message.uri = reader.readString();
+                        break;
+                    case 8:
+                        message.uri_hash = reader.readString();
+                        break;
+                    case 9:
+                        message.decimals = reader.readUint32();
                         break;
                     default: reader.skipField();
                 }

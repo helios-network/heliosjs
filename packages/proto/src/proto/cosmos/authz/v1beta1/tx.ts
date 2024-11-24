@@ -5,10 +5,10 @@
  * git: https://github.com/thesayyn/protoc-gen-ts */
 import * as dependency_1 from "./../../../cosmos_proto/cosmos";
 import * as dependency_2 from "./../../../gogoproto/gogo";
-import * as dependency_3 from "./../../../google/protobuf/timestamp";
-import * as dependency_4 from "./../../../google/protobuf/any";
-import * as dependency_5 from "./../../base/abci/v1beta1/abci";
-import * as dependency_6 from "./authz";
+import * as dependency_3 from "./../../../google/protobuf/any";
+import * as dependency_4 from "./authz";
+import * as dependency_5 from "./../../msg/v1/msg";
+import * as dependency_6 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.authz.v1beta1 {
@@ -17,7 +17,7 @@ export namespace cosmos.authz.v1beta1 {
         constructor(data?: any[] | {
             granter?: string;
             grantee?: string;
-            grant?: dependency_6.cosmos.authz.v1beta1.Grant;
+            grant?: dependency_4.cosmos.authz.v1beta1.Grant;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -46,9 +46,9 @@ export namespace cosmos.authz.v1beta1 {
             pb_1.Message.setField(this, 2, value);
         }
         get grant() {
-            return pb_1.Message.getWrapperField(this, dependency_6.cosmos.authz.v1beta1.Grant, 3) as dependency_6.cosmos.authz.v1beta1.Grant;
+            return pb_1.Message.getWrapperField(this, dependency_4.cosmos.authz.v1beta1.Grant, 3) as dependency_4.cosmos.authz.v1beta1.Grant;
         }
-        set grant(value: dependency_6.cosmos.authz.v1beta1.Grant) {
+        set grant(value: dependency_4.cosmos.authz.v1beta1.Grant) {
             pb_1.Message.setWrapperField(this, 3, value);
         }
         get has_grant() {
@@ -57,7 +57,7 @@ export namespace cosmos.authz.v1beta1 {
         static fromObject(data: {
             granter?: string;
             grantee?: string;
-            grant?: ReturnType<typeof dependency_6.cosmos.authz.v1beta1.Grant.prototype.toObject>;
+            grant?: ReturnType<typeof dependency_4.cosmos.authz.v1beta1.Grant.prototype.toObject>;
         }): MsgGrant {
             const message = new MsgGrant({});
             if (data.granter != null) {
@@ -67,7 +67,7 @@ export namespace cosmos.authz.v1beta1 {
                 message.grantee = data.grantee;
             }
             if (data.grant != null) {
-                message.grant = dependency_6.cosmos.authz.v1beta1.Grant.fromObject(data.grant);
+                message.grant = dependency_4.cosmos.authz.v1beta1.Grant.fromObject(data.grant);
             }
             return message;
         }
@@ -75,7 +75,7 @@ export namespace cosmos.authz.v1beta1 {
             const data: {
                 granter?: string;
                 grantee?: string;
-                grant?: ReturnType<typeof dependency_6.cosmos.authz.v1beta1.Grant.prototype.toObject>;
+                grant?: ReturnType<typeof dependency_4.cosmos.authz.v1beta1.Grant.prototype.toObject>;
             } = {};
             if (this.granter != null) {
                 data.granter = this.granter;
@@ -114,7 +114,7 @@ export namespace cosmos.authz.v1beta1 {
                         message.grantee = reader.readString();
                         break;
                     case 3:
-                        reader.readMessage(message.grant, () => message.grant = dependency_6.cosmos.authz.v1beta1.Grant.deserialize(reader));
+                        reader.readMessage(message.grant, () => message.grant = dependency_4.cosmos.authz.v1beta1.Grant.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -126,6 +126,136 @@ export namespace cosmos.authz.v1beta1 {
         }
         static deserializeBinary(bytes: Uint8Array): MsgGrant {
             return MsgGrant.deserialize(bytes);
+        }
+    }
+    export class MsgGrantResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {}) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") { }
+        }
+        static fromObject(data: {}): MsgGrantResponse {
+            const message = new MsgGrantResponse({});
+            return message;
+        }
+        toObject() {
+            const data: {} = {};
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgGrantResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgGrantResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgGrantResponse {
+            return MsgGrantResponse.deserialize(bytes);
+        }
+    }
+    export class MsgExec extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            grantee?: string;
+            msgs?: dependency_3.google.protobuf.Any[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [2], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("grantee" in data && data.grantee != undefined) {
+                    this.grantee = data.grantee;
+                }
+                if ("msgs" in data && data.msgs != undefined) {
+                    this.msgs = data.msgs;
+                }
+            }
+        }
+        get grantee() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set grantee(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get msgs() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_3.google.protobuf.Any, 2) as dependency_3.google.protobuf.Any[];
+        }
+        set msgs(value: dependency_3.google.protobuf.Any[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 2, value);
+        }
+        static fromObject(data: {
+            grantee?: string;
+            msgs?: ReturnType<typeof dependency_3.google.protobuf.Any.prototype.toObject>[];
+        }): MsgExec {
+            const message = new MsgExec({});
+            if (data.grantee != null) {
+                message.grantee = data.grantee;
+            }
+            if (data.msgs != null) {
+                message.msgs = data.msgs.map(item => dependency_3.google.protobuf.Any.fromObject(item));
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                grantee?: string;
+                msgs?: ReturnType<typeof dependency_3.google.protobuf.Any.prototype.toObject>[];
+            } = {};
+            if (this.grantee != null) {
+                data.grantee = this.grantee;
+            }
+            if (this.msgs != null) {
+                data.msgs = this.msgs.map((item: dependency_3.google.protobuf.Any) => item.toObject());
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.grantee.length)
+                writer.writeString(1, this.grantee);
+            if (this.msgs.length)
+                writer.writeRepeatedMessage(2, this.msgs, (item: dependency_3.google.protobuf.Any) => item.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgExec {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgExec();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.grantee = reader.readString();
+                        break;
+                    case 2:
+                        reader.readMessage(message.msgs, () => pb_1.Message.addToRepeatedWrapperField(message, 2, dependency_3.google.protobuf.Any.deserialize(reader), dependency_3.google.protobuf.Any));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgExec {
+            return MsgExec.deserialize(bytes);
         }
     }
     export class MsgExecResponse extends pb_1.Message {
@@ -193,136 +323,6 @@ export namespace cosmos.authz.v1beta1 {
         }
         static deserializeBinary(bytes: Uint8Array): MsgExecResponse {
             return MsgExecResponse.deserialize(bytes);
-        }
-    }
-    export class MsgExec extends pb_1.Message {
-        #one_of_decls: number[][] = [];
-        constructor(data?: any[] | {
-            grantee?: string;
-            msgs?: dependency_4.google.protobuf.Any[];
-        }) {
-            super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [2], this.#one_of_decls);
-            if (!Array.isArray(data) && typeof data == "object") {
-                if ("grantee" in data && data.grantee != undefined) {
-                    this.grantee = data.grantee;
-                }
-                if ("msgs" in data && data.msgs != undefined) {
-                    this.msgs = data.msgs;
-                }
-            }
-        }
-        get grantee() {
-            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
-        }
-        set grantee(value: string) {
-            pb_1.Message.setField(this, 1, value);
-        }
-        get msgs() {
-            return pb_1.Message.getRepeatedWrapperField(this, dependency_4.google.protobuf.Any, 2) as dependency_4.google.protobuf.Any[];
-        }
-        set msgs(value: dependency_4.google.protobuf.Any[]) {
-            pb_1.Message.setRepeatedWrapperField(this, 2, value);
-        }
-        static fromObject(data: {
-            grantee?: string;
-            msgs?: ReturnType<typeof dependency_4.google.protobuf.Any.prototype.toObject>[];
-        }): MsgExec {
-            const message = new MsgExec({});
-            if (data.grantee != null) {
-                message.grantee = data.grantee;
-            }
-            if (data.msgs != null) {
-                message.msgs = data.msgs.map(item => dependency_4.google.protobuf.Any.fromObject(item));
-            }
-            return message;
-        }
-        toObject() {
-            const data: {
-                grantee?: string;
-                msgs?: ReturnType<typeof dependency_4.google.protobuf.Any.prototype.toObject>[];
-            } = {};
-            if (this.grantee != null) {
-                data.grantee = this.grantee;
-            }
-            if (this.msgs != null) {
-                data.msgs = this.msgs.map((item: dependency_4.google.protobuf.Any) => item.toObject());
-            }
-            return data;
-        }
-        serialize(): Uint8Array;
-        serialize(w: pb_1.BinaryWriter): void;
-        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
-            const writer = w || new pb_1.BinaryWriter();
-            if (this.grantee.length)
-                writer.writeString(1, this.grantee);
-            if (this.msgs.length)
-                writer.writeRepeatedMessage(2, this.msgs, (item: dependency_4.google.protobuf.Any) => item.serialize(writer));
-            if (!w)
-                return writer.getResultBuffer();
-        }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgExec {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgExec();
-            while (reader.nextField()) {
-                if (reader.isEndGroup())
-                    break;
-                switch (reader.getFieldNumber()) {
-                    case 1:
-                        message.grantee = reader.readString();
-                        break;
-                    case 2:
-                        reader.readMessage(message.msgs, () => pb_1.Message.addToRepeatedWrapperField(message, 2, dependency_4.google.protobuf.Any.deserialize(reader), dependency_4.google.protobuf.Any));
-                        break;
-                    default: reader.skipField();
-                }
-            }
-            return message;
-        }
-        serializeBinary(): Uint8Array {
-            return this.serialize();
-        }
-        static deserializeBinary(bytes: Uint8Array): MsgExec {
-            return MsgExec.deserialize(bytes);
-        }
-    }
-    export class MsgGrantResponse extends pb_1.Message {
-        #one_of_decls: number[][] = [];
-        constructor(data?: any[] | {}) {
-            super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
-            if (!Array.isArray(data) && typeof data == "object") { }
-        }
-        static fromObject(data: {}): MsgGrantResponse {
-            const message = new MsgGrantResponse({});
-            return message;
-        }
-        toObject() {
-            const data: {} = {};
-            return data;
-        }
-        serialize(): Uint8Array;
-        serialize(w: pb_1.BinaryWriter): void;
-        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
-            const writer = w || new pb_1.BinaryWriter();
-            if (!w)
-                return writer.getResultBuffer();
-        }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgGrantResponse {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgGrantResponse();
-            while (reader.nextField()) {
-                if (reader.isEndGroup())
-                    break;
-                switch (reader.getFieldNumber()) {
-                    default: reader.skipField();
-                }
-            }
-            return message;
-        }
-        serializeBinary(): Uint8Array {
-            return this.serialize();
-        }
-        static deserializeBinary(bytes: Uint8Array): MsgGrantResponse {
-            return MsgGrantResponse.deserialize(bytes);
         }
     }
     export class MsgRevoke extends pb_1.Message {
@@ -478,6 +478,163 @@ export namespace cosmos.authz.v1beta1 {
             return MsgRevokeResponse.deserialize(bytes);
         }
     }
+    export class MsgExecCompatResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            results?: Uint8Array[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("results" in data && data.results != undefined) {
+                    this.results = data.results;
+                }
+            }
+        }
+        get results() {
+            return pb_1.Message.getFieldWithDefault(this, 1, []) as Uint8Array[];
+        }
+        set results(value: Uint8Array[]) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            results?: Uint8Array[];
+        }): MsgExecCompatResponse {
+            const message = new MsgExecCompatResponse({});
+            if (data.results != null) {
+                message.results = data.results;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                results?: Uint8Array[];
+            } = {};
+            if (this.results != null) {
+                data.results = this.results;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.results.length)
+                writer.writeRepeatedBytes(1, this.results);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgExecCompatResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgExecCompatResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        pb_1.Message.addToRepeatedField(message, 1, reader.readBytes());
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgExecCompatResponse {
+            return MsgExecCompatResponse.deserialize(bytes);
+        }
+    }
+    export class MsgExecCompat extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            grantee?: string;
+            msgs?: string[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [2], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("grantee" in data && data.grantee != undefined) {
+                    this.grantee = data.grantee;
+                }
+                if ("msgs" in data && data.msgs != undefined) {
+                    this.msgs = data.msgs;
+                }
+            }
+        }
+        get grantee() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set grantee(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get msgs() {
+            return pb_1.Message.getFieldWithDefault(this, 2, []) as string[];
+        }
+        set msgs(value: string[]) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        static fromObject(data: {
+            grantee?: string;
+            msgs?: string[];
+        }): MsgExecCompat {
+            const message = new MsgExecCompat({});
+            if (data.grantee != null) {
+                message.grantee = data.grantee;
+            }
+            if (data.msgs != null) {
+                message.msgs = data.msgs;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                grantee?: string;
+                msgs?: string[];
+            } = {};
+            if (this.grantee != null) {
+                data.grantee = this.grantee;
+            }
+            if (this.msgs != null) {
+                data.msgs = this.msgs;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.grantee.length)
+                writer.writeString(1, this.grantee);
+            if (this.msgs.length)
+                writer.writeRepeatedString(2, this.msgs);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgExecCompat {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgExecCompat();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.grantee = reader.readString();
+                        break;
+                    case 2:
+                        pb_1.Message.addToRepeatedField(message, 2, reader.readString());
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgExecCompat {
+            return MsgExecCompat.deserialize(bytes);
+        }
+    }
     interface GrpcUnaryServiceInterface<P, R> {
         (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
         (message: P, metadata: grpc_1.Metadata, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
@@ -530,12 +687,22 @@ export namespace cosmos.authz.v1beta1 {
                 requestDeserialize: (bytes: Buffer) => MsgRevoke.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: MsgRevokeResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => MsgRevokeResponse.deserialize(new Uint8Array(bytes))
+            },
+            ExecCompat: {
+                path: "/cosmos.authz.v1beta1.Msg/ExecCompat",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: MsgExecCompat) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => MsgExecCompat.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: MsgExecCompatResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => MsgExecCompatResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
         abstract Grant(call: grpc_1.ServerUnaryCall<MsgGrant, MsgGrantResponse>, callback: grpc_1.sendUnaryData<MsgGrantResponse>): void;
         abstract Exec(call: grpc_1.ServerUnaryCall<MsgExec, MsgExecResponse>, callback: grpc_1.sendUnaryData<MsgExecResponse>): void;
         abstract Revoke(call: grpc_1.ServerUnaryCall<MsgRevoke, MsgRevokeResponse>, callback: grpc_1.sendUnaryData<MsgRevokeResponse>): void;
+        abstract ExecCompat(call: grpc_1.ServerUnaryCall<MsgExecCompat, MsgExecCompatResponse>, callback: grpc_1.sendUnaryData<MsgExecCompatResponse>): void;
     }
     export class MsgClient extends grpc_1.makeGenericClientConstructor(UnimplementedMsgService.definition, "Msg", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -549,6 +716,9 @@ export namespace cosmos.authz.v1beta1 {
         };
         Revoke: GrpcUnaryServiceInterface<MsgRevoke, MsgRevokeResponse> = (message: MsgRevoke, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgRevokeResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgRevokeResponse>, callback?: grpc_1.requestCallback<MsgRevokeResponse>): grpc_1.ClientUnaryCall => {
             return super.Revoke(message, metadata, options, callback);
+        };
+        ExecCompat: GrpcUnaryServiceInterface<MsgExecCompat, MsgExecCompatResponse> = (message: MsgExecCompat, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgExecCompatResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgExecCompatResponse>, callback?: grpc_1.requestCallback<MsgExecCompatResponse>): grpc_1.ClientUnaryCall => {
+            return super.ExecCompat(message, metadata, options, callback);
         };
     }
 }

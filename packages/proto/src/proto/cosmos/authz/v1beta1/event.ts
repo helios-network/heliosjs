@@ -3,6 +3,7 @@
  * compiler version: 5.28.3
  * source: cosmos/authz/v1beta1/event.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
+import * as dependency_1 from "./../../../cosmos_proto/cosmos";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.authz.v1beta1 {
     export class EventGrant extends pb_1.Message {

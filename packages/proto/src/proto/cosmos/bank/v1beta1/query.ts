@@ -8,6 +8,9 @@ import * as dependency_2 from "./../../../gogoproto/gogo";
 import * as dependency_3 from "./../../../google/api/annotations";
 import * as dependency_4 from "./../../base/v1beta1/coin";
 import * as dependency_5 from "./bank";
+import * as dependency_6 from "./../../../cosmos_proto/cosmos";
+import * as dependency_7 from "./../../query/v1/query";
+import * as dependency_8 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.bank.v1beta1 {
@@ -176,6 +179,7 @@ export namespace cosmos.bank.v1beta1 {
         constructor(data?: any[] | {
             address?: string;
             pagination?: dependency_1.cosmos.base.query.v1beta1.PageRequest;
+            resolve_denom?: boolean;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -185,6 +189,9 @@ export namespace cosmos.bank.v1beta1 {
                 }
                 if ("pagination" in data && data.pagination != undefined) {
                     this.pagination = data.pagination;
+                }
+                if ("resolve_denom" in data && data.resolve_denom != undefined) {
+                    this.resolve_denom = data.resolve_denom;
                 }
             }
         }
@@ -203,9 +210,16 @@ export namespace cosmos.bank.v1beta1 {
         get has_pagination() {
             return pb_1.Message.getField(this, 2) != null;
         }
+        get resolve_denom() {
+            return pb_1.Message.getFieldWithDefault(this, 3, false) as boolean;
+        }
+        set resolve_denom(value: boolean) {
+            pb_1.Message.setField(this, 3, value);
+        }
         static fromObject(data: {
             address?: string;
             pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+            resolve_denom?: boolean;
         }): QueryAllBalancesRequest {
             const message = new QueryAllBalancesRequest({});
             if (data.address != null) {
@@ -214,18 +228,25 @@ export namespace cosmos.bank.v1beta1 {
             if (data.pagination != null) {
                 message.pagination = dependency_1.cosmos.base.query.v1beta1.PageRequest.fromObject(data.pagination);
             }
+            if (data.resolve_denom != null) {
+                message.resolve_denom = data.resolve_denom;
+            }
             return message;
         }
         toObject() {
             const data: {
                 address?: string;
                 pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+                resolve_denom?: boolean;
             } = {};
             if (this.address != null) {
                 data.address = this.address;
             }
             if (this.pagination != null) {
                 data.pagination = this.pagination.toObject();
+            }
+            if (this.resolve_denom != null) {
+                data.resolve_denom = this.resolve_denom;
             }
             return data;
         }
@@ -237,6 +258,8 @@ export namespace cosmos.bank.v1beta1 {
                 writer.writeString(1, this.address);
             if (this.has_pagination)
                 writer.writeMessage(2, this.pagination, () => this.pagination.serialize(writer));
+            if (this.resolve_denom != false)
+                writer.writeBool(3, this.resolve_denom);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -251,6 +274,9 @@ export namespace cosmos.bank.v1beta1 {
                         break;
                     case 2:
                         reader.readMessage(message.pagination, () => message.pagination = dependency_1.cosmos.base.query.v1beta1.PageRequest.deserialize(reader));
+                        break;
+                    case 3:
+                        message.resolve_denom = reader.readBool();
                         break;
                     default: reader.skipField();
                 }
@@ -355,6 +381,352 @@ export namespace cosmos.bank.v1beta1 {
         }
         static deserializeBinary(bytes: Uint8Array): QueryAllBalancesResponse {
             return QueryAllBalancesResponse.deserialize(bytes);
+        }
+    }
+    export class QuerySpendableBalancesRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            address?: string;
+            pagination?: dependency_1.cosmos.base.query.v1beta1.PageRequest;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("address" in data && data.address != undefined) {
+                    this.address = data.address;
+                }
+                if ("pagination" in data && data.pagination != undefined) {
+                    this.pagination = data.pagination;
+                }
+            }
+        }
+        get address() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set address(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get pagination() {
+            return pb_1.Message.getWrapperField(this, dependency_1.cosmos.base.query.v1beta1.PageRequest, 2) as dependency_1.cosmos.base.query.v1beta1.PageRequest;
+        }
+        set pagination(value: dependency_1.cosmos.base.query.v1beta1.PageRequest) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_pagination() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            address?: string;
+            pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+        }): QuerySpendableBalancesRequest {
+            const message = new QuerySpendableBalancesRequest({});
+            if (data.address != null) {
+                message.address = data.address;
+            }
+            if (data.pagination != null) {
+                message.pagination = dependency_1.cosmos.base.query.v1beta1.PageRequest.fromObject(data.pagination);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                address?: string;
+                pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+            } = {};
+            if (this.address != null) {
+                data.address = this.address;
+            }
+            if (this.pagination != null) {
+                data.pagination = this.pagination.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.address.length)
+                writer.writeString(1, this.address);
+            if (this.has_pagination)
+                writer.writeMessage(2, this.pagination, () => this.pagination.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QuerySpendableBalancesRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QuerySpendableBalancesRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.address = reader.readString();
+                        break;
+                    case 2:
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_1.cosmos.base.query.v1beta1.PageRequest.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QuerySpendableBalancesRequest {
+            return QuerySpendableBalancesRequest.deserialize(bytes);
+        }
+    }
+    export class QuerySpendableBalancesResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            balances?: dependency_4.cosmos.base.v1beta1.Coin[];
+            pagination?: dependency_1.cosmos.base.query.v1beta1.PageResponse;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("balances" in data && data.balances != undefined) {
+                    this.balances = data.balances;
+                }
+                if ("pagination" in data && data.pagination != undefined) {
+                    this.pagination = data.pagination;
+                }
+            }
+        }
+        get balances() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_4.cosmos.base.v1beta1.Coin, 1) as dependency_4.cosmos.base.v1beta1.Coin[];
+        }
+        set balances(value: dependency_4.cosmos.base.v1beta1.Coin[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        get pagination() {
+            return pb_1.Message.getWrapperField(this, dependency_1.cosmos.base.query.v1beta1.PageResponse, 2) as dependency_1.cosmos.base.query.v1beta1.PageResponse;
+        }
+        set pagination(value: dependency_1.cosmos.base.query.v1beta1.PageResponse) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_pagination() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            balances?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+            pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+        }): QuerySpendableBalancesResponse {
+            const message = new QuerySpendableBalancesResponse({});
+            if (data.balances != null) {
+                message.balances = data.balances.map(item => dependency_4.cosmos.base.v1beta1.Coin.fromObject(item));
+            }
+            if (data.pagination != null) {
+                message.pagination = dependency_1.cosmos.base.query.v1beta1.PageResponse.fromObject(data.pagination);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                balances?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+                pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+            } = {};
+            if (this.balances != null) {
+                data.balances = this.balances.map((item: dependency_4.cosmos.base.v1beta1.Coin) => item.toObject());
+            }
+            if (this.pagination != null) {
+                data.pagination = this.pagination.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.balances.length)
+                writer.writeRepeatedMessage(1, this.balances, (item: dependency_4.cosmos.base.v1beta1.Coin) => item.serialize(writer));
+            if (this.has_pagination)
+                writer.writeMessage(2, this.pagination, () => this.pagination.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QuerySpendableBalancesResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QuerySpendableBalancesResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.balances, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_4.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_4.cosmos.base.v1beta1.Coin));
+                        break;
+                    case 2:
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_1.cosmos.base.query.v1beta1.PageResponse.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QuerySpendableBalancesResponse {
+            return QuerySpendableBalancesResponse.deserialize(bytes);
+        }
+    }
+    export class QuerySpendableBalanceByDenomRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            address?: string;
+            denom?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("address" in data && data.address != undefined) {
+                    this.address = data.address;
+                }
+                if ("denom" in data && data.denom != undefined) {
+                    this.denom = data.denom;
+                }
+            }
+        }
+        get address() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set address(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get denom() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set denom(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        static fromObject(data: {
+            address?: string;
+            denom?: string;
+        }): QuerySpendableBalanceByDenomRequest {
+            const message = new QuerySpendableBalanceByDenomRequest({});
+            if (data.address != null) {
+                message.address = data.address;
+            }
+            if (data.denom != null) {
+                message.denom = data.denom;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                address?: string;
+                denom?: string;
+            } = {};
+            if (this.address != null) {
+                data.address = this.address;
+            }
+            if (this.denom != null) {
+                data.denom = this.denom;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.address.length)
+                writer.writeString(1, this.address);
+            if (this.denom.length)
+                writer.writeString(2, this.denom);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QuerySpendableBalanceByDenomRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QuerySpendableBalanceByDenomRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.address = reader.readString();
+                        break;
+                    case 2:
+                        message.denom = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QuerySpendableBalanceByDenomRequest {
+            return QuerySpendableBalanceByDenomRequest.deserialize(bytes);
+        }
+    }
+    export class QuerySpendableBalanceByDenomResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            balance?: dependency_4.cosmos.base.v1beta1.Coin;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("balance" in data && data.balance != undefined) {
+                    this.balance = data.balance;
+                }
+            }
+        }
+        get balance() {
+            return pb_1.Message.getWrapperField(this, dependency_4.cosmos.base.v1beta1.Coin, 1) as dependency_4.cosmos.base.v1beta1.Coin;
+        }
+        set balance(value: dependency_4.cosmos.base.v1beta1.Coin) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_balance() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        static fromObject(data: {
+            balance?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>;
+        }): QuerySpendableBalanceByDenomResponse {
+            const message = new QuerySpendableBalanceByDenomResponse({});
+            if (data.balance != null) {
+                message.balance = dependency_4.cosmos.base.v1beta1.Coin.fromObject(data.balance);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                balance?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>;
+            } = {};
+            if (this.balance != null) {
+                data.balance = this.balance.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_balance)
+                writer.writeMessage(1, this.balance, () => this.balance.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QuerySpendableBalanceByDenomResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QuerySpendableBalanceByDenomResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.balance, () => message.balance = dependency_4.cosmos.base.v1beta1.Coin.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QuerySpendableBalanceByDenomResponse {
+            return QuerySpendableBalanceByDenomResponse.deserialize(bytes);
         }
     }
     export class QueryTotalSupplyRequest extends pb_1.Message {
@@ -1067,6 +1439,794 @@ export namespace cosmos.bank.v1beta1 {
             return QueryDenomMetadataResponse.deserialize(bytes);
         }
     }
+    export class QueryDenomMetadataByQueryStringRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            denom?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("denom" in data && data.denom != undefined) {
+                    this.denom = data.denom;
+                }
+            }
+        }
+        get denom() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set denom(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            denom?: string;
+        }): QueryDenomMetadataByQueryStringRequest {
+            const message = new QueryDenomMetadataByQueryStringRequest({});
+            if (data.denom != null) {
+                message.denom = data.denom;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                denom?: string;
+            } = {};
+            if (this.denom != null) {
+                data.denom = this.denom;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.denom.length)
+                writer.writeString(1, this.denom);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryDenomMetadataByQueryStringRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryDenomMetadataByQueryStringRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.denom = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryDenomMetadataByQueryStringRequest {
+            return QueryDenomMetadataByQueryStringRequest.deserialize(bytes);
+        }
+    }
+    export class QueryDenomMetadataByQueryStringResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            metadata?: dependency_5.cosmos.bank.v1beta1.Metadata;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("metadata" in data && data.metadata != undefined) {
+                    this.metadata = data.metadata;
+                }
+            }
+        }
+        get metadata() {
+            return pb_1.Message.getWrapperField(this, dependency_5.cosmos.bank.v1beta1.Metadata, 1) as dependency_5.cosmos.bank.v1beta1.Metadata;
+        }
+        set metadata(value: dependency_5.cosmos.bank.v1beta1.Metadata) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_metadata() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        static fromObject(data: {
+            metadata?: ReturnType<typeof dependency_5.cosmos.bank.v1beta1.Metadata.prototype.toObject>;
+        }): QueryDenomMetadataByQueryStringResponse {
+            const message = new QueryDenomMetadataByQueryStringResponse({});
+            if (data.metadata != null) {
+                message.metadata = dependency_5.cosmos.bank.v1beta1.Metadata.fromObject(data.metadata);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                metadata?: ReturnType<typeof dependency_5.cosmos.bank.v1beta1.Metadata.prototype.toObject>;
+            } = {};
+            if (this.metadata != null) {
+                data.metadata = this.metadata.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_metadata)
+                writer.writeMessage(1, this.metadata, () => this.metadata.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryDenomMetadataByQueryStringResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryDenomMetadataByQueryStringResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.metadata, () => message.metadata = dependency_5.cosmos.bank.v1beta1.Metadata.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryDenomMetadataByQueryStringResponse {
+            return QueryDenomMetadataByQueryStringResponse.deserialize(bytes);
+        }
+    }
+    export class QueryDenomOwnersRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            denom?: string;
+            pagination?: dependency_1.cosmos.base.query.v1beta1.PageRequest;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("denom" in data && data.denom != undefined) {
+                    this.denom = data.denom;
+                }
+                if ("pagination" in data && data.pagination != undefined) {
+                    this.pagination = data.pagination;
+                }
+            }
+        }
+        get denom() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set denom(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get pagination() {
+            return pb_1.Message.getWrapperField(this, dependency_1.cosmos.base.query.v1beta1.PageRequest, 2) as dependency_1.cosmos.base.query.v1beta1.PageRequest;
+        }
+        set pagination(value: dependency_1.cosmos.base.query.v1beta1.PageRequest) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_pagination() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            denom?: string;
+            pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+        }): QueryDenomOwnersRequest {
+            const message = new QueryDenomOwnersRequest({});
+            if (data.denom != null) {
+                message.denom = data.denom;
+            }
+            if (data.pagination != null) {
+                message.pagination = dependency_1.cosmos.base.query.v1beta1.PageRequest.fromObject(data.pagination);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                denom?: string;
+                pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+            } = {};
+            if (this.denom != null) {
+                data.denom = this.denom;
+            }
+            if (this.pagination != null) {
+                data.pagination = this.pagination.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.denom.length)
+                writer.writeString(1, this.denom);
+            if (this.has_pagination)
+                writer.writeMessage(2, this.pagination, () => this.pagination.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryDenomOwnersRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryDenomOwnersRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.denom = reader.readString();
+                        break;
+                    case 2:
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_1.cosmos.base.query.v1beta1.PageRequest.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryDenomOwnersRequest {
+            return QueryDenomOwnersRequest.deserialize(bytes);
+        }
+    }
+    export class DenomOwner extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            address?: string;
+            balance?: dependency_4.cosmos.base.v1beta1.Coin;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("address" in data && data.address != undefined) {
+                    this.address = data.address;
+                }
+                if ("balance" in data && data.balance != undefined) {
+                    this.balance = data.balance;
+                }
+            }
+        }
+        get address() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set address(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get balance() {
+            return pb_1.Message.getWrapperField(this, dependency_4.cosmos.base.v1beta1.Coin, 2) as dependency_4.cosmos.base.v1beta1.Coin;
+        }
+        set balance(value: dependency_4.cosmos.base.v1beta1.Coin) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_balance() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            address?: string;
+            balance?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>;
+        }): DenomOwner {
+            const message = new DenomOwner({});
+            if (data.address != null) {
+                message.address = data.address;
+            }
+            if (data.balance != null) {
+                message.balance = dependency_4.cosmos.base.v1beta1.Coin.fromObject(data.balance);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                address?: string;
+                balance?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>;
+            } = {};
+            if (this.address != null) {
+                data.address = this.address;
+            }
+            if (this.balance != null) {
+                data.balance = this.balance.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.address.length)
+                writer.writeString(1, this.address);
+            if (this.has_balance)
+                writer.writeMessage(2, this.balance, () => this.balance.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): DenomOwner {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new DenomOwner();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.address = reader.readString();
+                        break;
+                    case 2:
+                        reader.readMessage(message.balance, () => message.balance = dependency_4.cosmos.base.v1beta1.Coin.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): DenomOwner {
+            return DenomOwner.deserialize(bytes);
+        }
+    }
+    export class QueryDenomOwnersResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            denom_owners?: DenomOwner[];
+            pagination?: dependency_1.cosmos.base.query.v1beta1.PageResponse;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("denom_owners" in data && data.denom_owners != undefined) {
+                    this.denom_owners = data.denom_owners;
+                }
+                if ("pagination" in data && data.pagination != undefined) {
+                    this.pagination = data.pagination;
+                }
+            }
+        }
+        get denom_owners() {
+            return pb_1.Message.getRepeatedWrapperField(this, DenomOwner, 1) as DenomOwner[];
+        }
+        set denom_owners(value: DenomOwner[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        get pagination() {
+            return pb_1.Message.getWrapperField(this, dependency_1.cosmos.base.query.v1beta1.PageResponse, 2) as dependency_1.cosmos.base.query.v1beta1.PageResponse;
+        }
+        set pagination(value: dependency_1.cosmos.base.query.v1beta1.PageResponse) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_pagination() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            denom_owners?: ReturnType<typeof DenomOwner.prototype.toObject>[];
+            pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+        }): QueryDenomOwnersResponse {
+            const message = new QueryDenomOwnersResponse({});
+            if (data.denom_owners != null) {
+                message.denom_owners = data.denom_owners.map(item => DenomOwner.fromObject(item));
+            }
+            if (data.pagination != null) {
+                message.pagination = dependency_1.cosmos.base.query.v1beta1.PageResponse.fromObject(data.pagination);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                denom_owners?: ReturnType<typeof DenomOwner.prototype.toObject>[];
+                pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+            } = {};
+            if (this.denom_owners != null) {
+                data.denom_owners = this.denom_owners.map((item: DenomOwner) => item.toObject());
+            }
+            if (this.pagination != null) {
+                data.pagination = this.pagination.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.denom_owners.length)
+                writer.writeRepeatedMessage(1, this.denom_owners, (item: DenomOwner) => item.serialize(writer));
+            if (this.has_pagination)
+                writer.writeMessage(2, this.pagination, () => this.pagination.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryDenomOwnersResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryDenomOwnersResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.denom_owners, () => pb_1.Message.addToRepeatedWrapperField(message, 1, DenomOwner.deserialize(reader), DenomOwner));
+                        break;
+                    case 2:
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_1.cosmos.base.query.v1beta1.PageResponse.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryDenomOwnersResponse {
+            return QueryDenomOwnersResponse.deserialize(bytes);
+        }
+    }
+    export class QueryDenomOwnersByQueryRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            denom?: string;
+            pagination?: dependency_1.cosmos.base.query.v1beta1.PageRequest;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("denom" in data && data.denom != undefined) {
+                    this.denom = data.denom;
+                }
+                if ("pagination" in data && data.pagination != undefined) {
+                    this.pagination = data.pagination;
+                }
+            }
+        }
+        get denom() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set denom(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get pagination() {
+            return pb_1.Message.getWrapperField(this, dependency_1.cosmos.base.query.v1beta1.PageRequest, 2) as dependency_1.cosmos.base.query.v1beta1.PageRequest;
+        }
+        set pagination(value: dependency_1.cosmos.base.query.v1beta1.PageRequest) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_pagination() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            denom?: string;
+            pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+        }): QueryDenomOwnersByQueryRequest {
+            const message = new QueryDenomOwnersByQueryRequest({});
+            if (data.denom != null) {
+                message.denom = data.denom;
+            }
+            if (data.pagination != null) {
+                message.pagination = dependency_1.cosmos.base.query.v1beta1.PageRequest.fromObject(data.pagination);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                denom?: string;
+                pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+            } = {};
+            if (this.denom != null) {
+                data.denom = this.denom;
+            }
+            if (this.pagination != null) {
+                data.pagination = this.pagination.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.denom.length)
+                writer.writeString(1, this.denom);
+            if (this.has_pagination)
+                writer.writeMessage(2, this.pagination, () => this.pagination.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryDenomOwnersByQueryRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryDenomOwnersByQueryRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.denom = reader.readString();
+                        break;
+                    case 2:
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_1.cosmos.base.query.v1beta1.PageRequest.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryDenomOwnersByQueryRequest {
+            return QueryDenomOwnersByQueryRequest.deserialize(bytes);
+        }
+    }
+    export class QueryDenomOwnersByQueryResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            denom_owners?: DenomOwner[];
+            pagination?: dependency_1.cosmos.base.query.v1beta1.PageResponse;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("denom_owners" in data && data.denom_owners != undefined) {
+                    this.denom_owners = data.denom_owners;
+                }
+                if ("pagination" in data && data.pagination != undefined) {
+                    this.pagination = data.pagination;
+                }
+            }
+        }
+        get denom_owners() {
+            return pb_1.Message.getRepeatedWrapperField(this, DenomOwner, 1) as DenomOwner[];
+        }
+        set denom_owners(value: DenomOwner[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        get pagination() {
+            return pb_1.Message.getWrapperField(this, dependency_1.cosmos.base.query.v1beta1.PageResponse, 2) as dependency_1.cosmos.base.query.v1beta1.PageResponse;
+        }
+        set pagination(value: dependency_1.cosmos.base.query.v1beta1.PageResponse) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_pagination() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            denom_owners?: ReturnType<typeof DenomOwner.prototype.toObject>[];
+            pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+        }): QueryDenomOwnersByQueryResponse {
+            const message = new QueryDenomOwnersByQueryResponse({});
+            if (data.denom_owners != null) {
+                message.denom_owners = data.denom_owners.map(item => DenomOwner.fromObject(item));
+            }
+            if (data.pagination != null) {
+                message.pagination = dependency_1.cosmos.base.query.v1beta1.PageResponse.fromObject(data.pagination);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                denom_owners?: ReturnType<typeof DenomOwner.prototype.toObject>[];
+                pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+            } = {};
+            if (this.denom_owners != null) {
+                data.denom_owners = this.denom_owners.map((item: DenomOwner) => item.toObject());
+            }
+            if (this.pagination != null) {
+                data.pagination = this.pagination.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.denom_owners.length)
+                writer.writeRepeatedMessage(1, this.denom_owners, (item: DenomOwner) => item.serialize(writer));
+            if (this.has_pagination)
+                writer.writeMessage(2, this.pagination, () => this.pagination.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryDenomOwnersByQueryResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryDenomOwnersByQueryResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.denom_owners, () => pb_1.Message.addToRepeatedWrapperField(message, 1, DenomOwner.deserialize(reader), DenomOwner));
+                        break;
+                    case 2:
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_1.cosmos.base.query.v1beta1.PageResponse.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryDenomOwnersByQueryResponse {
+            return QueryDenomOwnersByQueryResponse.deserialize(bytes);
+        }
+    }
+    export class QuerySendEnabledRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            denoms?: string[];
+            pagination?: dependency_1.cosmos.base.query.v1beta1.PageRequest;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("denoms" in data && data.denoms != undefined) {
+                    this.denoms = data.denoms;
+                }
+                if ("pagination" in data && data.pagination != undefined) {
+                    this.pagination = data.pagination;
+                }
+            }
+        }
+        get denoms() {
+            return pb_1.Message.getFieldWithDefault(this, 1, []) as string[];
+        }
+        set denoms(value: string[]) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get pagination() {
+            return pb_1.Message.getWrapperField(this, dependency_1.cosmos.base.query.v1beta1.PageRequest, 99) as dependency_1.cosmos.base.query.v1beta1.PageRequest;
+        }
+        set pagination(value: dependency_1.cosmos.base.query.v1beta1.PageRequest) {
+            pb_1.Message.setWrapperField(this, 99, value);
+        }
+        get has_pagination() {
+            return pb_1.Message.getField(this, 99) != null;
+        }
+        static fromObject(data: {
+            denoms?: string[];
+            pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+        }): QuerySendEnabledRequest {
+            const message = new QuerySendEnabledRequest({});
+            if (data.denoms != null) {
+                message.denoms = data.denoms;
+            }
+            if (data.pagination != null) {
+                message.pagination = dependency_1.cosmos.base.query.v1beta1.PageRequest.fromObject(data.pagination);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                denoms?: string[];
+                pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+            } = {};
+            if (this.denoms != null) {
+                data.denoms = this.denoms;
+            }
+            if (this.pagination != null) {
+                data.pagination = this.pagination.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.denoms.length)
+                writer.writeRepeatedString(1, this.denoms);
+            if (this.has_pagination)
+                writer.writeMessage(99, this.pagination, () => this.pagination.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QuerySendEnabledRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QuerySendEnabledRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        pb_1.Message.addToRepeatedField(message, 1, reader.readString());
+                        break;
+                    case 99:
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_1.cosmos.base.query.v1beta1.PageRequest.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QuerySendEnabledRequest {
+            return QuerySendEnabledRequest.deserialize(bytes);
+        }
+    }
+    export class QuerySendEnabledResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            send_enabled?: dependency_5.cosmos.bank.v1beta1.SendEnabled[];
+            pagination?: dependency_1.cosmos.base.query.v1beta1.PageResponse;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("send_enabled" in data && data.send_enabled != undefined) {
+                    this.send_enabled = data.send_enabled;
+                }
+                if ("pagination" in data && data.pagination != undefined) {
+                    this.pagination = data.pagination;
+                }
+            }
+        }
+        get send_enabled() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_5.cosmos.bank.v1beta1.SendEnabled, 1) as dependency_5.cosmos.bank.v1beta1.SendEnabled[];
+        }
+        set send_enabled(value: dependency_5.cosmos.bank.v1beta1.SendEnabled[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        get pagination() {
+            return pb_1.Message.getWrapperField(this, dependency_1.cosmos.base.query.v1beta1.PageResponse, 99) as dependency_1.cosmos.base.query.v1beta1.PageResponse;
+        }
+        set pagination(value: dependency_1.cosmos.base.query.v1beta1.PageResponse) {
+            pb_1.Message.setWrapperField(this, 99, value);
+        }
+        get has_pagination() {
+            return pb_1.Message.getField(this, 99) != null;
+        }
+        static fromObject(data: {
+            send_enabled?: ReturnType<typeof dependency_5.cosmos.bank.v1beta1.SendEnabled.prototype.toObject>[];
+            pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+        }): QuerySendEnabledResponse {
+            const message = new QuerySendEnabledResponse({});
+            if (data.send_enabled != null) {
+                message.send_enabled = data.send_enabled.map(item => dependency_5.cosmos.bank.v1beta1.SendEnabled.fromObject(item));
+            }
+            if (data.pagination != null) {
+                message.pagination = dependency_1.cosmos.base.query.v1beta1.PageResponse.fromObject(data.pagination);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                send_enabled?: ReturnType<typeof dependency_5.cosmos.bank.v1beta1.SendEnabled.prototype.toObject>[];
+                pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+            } = {};
+            if (this.send_enabled != null) {
+                data.send_enabled = this.send_enabled.map((item: dependency_5.cosmos.bank.v1beta1.SendEnabled) => item.toObject());
+            }
+            if (this.pagination != null) {
+                data.pagination = this.pagination.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.send_enabled.length)
+                writer.writeRepeatedMessage(1, this.send_enabled, (item: dependency_5.cosmos.bank.v1beta1.SendEnabled) => item.serialize(writer));
+            if (this.has_pagination)
+                writer.writeMessage(99, this.pagination, () => this.pagination.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QuerySendEnabledResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QuerySendEnabledResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.send_enabled, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_5.cosmos.bank.v1beta1.SendEnabled.deserialize(reader), dependency_5.cosmos.bank.v1beta1.SendEnabled));
+                        break;
+                    case 99:
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_1.cosmos.base.query.v1beta1.PageResponse.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QuerySendEnabledResponse {
+            return QuerySendEnabledResponse.deserialize(bytes);
+        }
+    }
     interface GrpcUnaryServiceInterface<P, R> {
         (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
         (message: P, metadata: grpc_1.Metadata, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
@@ -1111,6 +2271,24 @@ export namespace cosmos.bank.v1beta1 {
                 responseSerialize: (message: QueryAllBalancesResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => QueryAllBalancesResponse.deserialize(new Uint8Array(bytes))
             },
+            SpendableBalances: {
+                path: "/cosmos.bank.v1beta1.Query/SpendableBalances",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: QuerySpendableBalancesRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => QuerySpendableBalancesRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: QuerySpendableBalancesResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => QuerySpendableBalancesResponse.deserialize(new Uint8Array(bytes))
+            },
+            SpendableBalanceByDenom: {
+                path: "/cosmos.bank.v1beta1.Query/SpendableBalanceByDenom",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: QuerySpendableBalanceByDenomRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => QuerySpendableBalanceByDenomRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: QuerySpendableBalanceByDenomResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => QuerySpendableBalanceByDenomResponse.deserialize(new Uint8Array(bytes))
+            },
             TotalSupply: {
                 path: "/cosmos.bank.v1beta1.Query/TotalSupply",
                 requestStream: false,
@@ -1147,6 +2325,15 @@ export namespace cosmos.bank.v1beta1 {
                 responseSerialize: (message: QueryDenomMetadataResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => QueryDenomMetadataResponse.deserialize(new Uint8Array(bytes))
             },
+            DenomMetadataByQueryString: {
+                path: "/cosmos.bank.v1beta1.Query/DenomMetadataByQueryString",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: QueryDenomMetadataByQueryStringRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => QueryDenomMetadataByQueryStringRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: QueryDenomMetadataByQueryStringResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => QueryDenomMetadataByQueryStringResponse.deserialize(new Uint8Array(bytes))
+            },
             DenomsMetadata: {
                 path: "/cosmos.bank.v1beta1.Query/DenomsMetadata",
                 requestStream: false,
@@ -1155,16 +2342,49 @@ export namespace cosmos.bank.v1beta1 {
                 requestDeserialize: (bytes: Buffer) => QueryDenomsMetadataRequest.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: QueryDenomsMetadataResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => QueryDenomsMetadataResponse.deserialize(new Uint8Array(bytes))
+            },
+            DenomOwners: {
+                path: "/cosmos.bank.v1beta1.Query/DenomOwners",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: QueryDenomOwnersRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => QueryDenomOwnersRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: QueryDenomOwnersResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => QueryDenomOwnersResponse.deserialize(new Uint8Array(bytes))
+            },
+            DenomOwnersByQuery: {
+                path: "/cosmos.bank.v1beta1.Query/DenomOwnersByQuery",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: QueryDenomOwnersByQueryRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => QueryDenomOwnersByQueryRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: QueryDenomOwnersByQueryResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => QueryDenomOwnersByQueryResponse.deserialize(new Uint8Array(bytes))
+            },
+            SendEnabled: {
+                path: "/cosmos.bank.v1beta1.Query/SendEnabled",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: QuerySendEnabledRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => QuerySendEnabledRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: QuerySendEnabledResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => QuerySendEnabledResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
         abstract Balance(call: grpc_1.ServerUnaryCall<QueryBalanceRequest, QueryBalanceResponse>, callback: grpc_1.sendUnaryData<QueryBalanceResponse>): void;
         abstract AllBalances(call: grpc_1.ServerUnaryCall<QueryAllBalancesRequest, QueryAllBalancesResponse>, callback: grpc_1.sendUnaryData<QueryAllBalancesResponse>): void;
+        abstract SpendableBalances(call: grpc_1.ServerUnaryCall<QuerySpendableBalancesRequest, QuerySpendableBalancesResponse>, callback: grpc_1.sendUnaryData<QuerySpendableBalancesResponse>): void;
+        abstract SpendableBalanceByDenom(call: grpc_1.ServerUnaryCall<QuerySpendableBalanceByDenomRequest, QuerySpendableBalanceByDenomResponse>, callback: grpc_1.sendUnaryData<QuerySpendableBalanceByDenomResponse>): void;
         abstract TotalSupply(call: grpc_1.ServerUnaryCall<QueryTotalSupplyRequest, QueryTotalSupplyResponse>, callback: grpc_1.sendUnaryData<QueryTotalSupplyResponse>): void;
         abstract SupplyOf(call: grpc_1.ServerUnaryCall<QuerySupplyOfRequest, QuerySupplyOfResponse>, callback: grpc_1.sendUnaryData<QuerySupplyOfResponse>): void;
         abstract Params(call: grpc_1.ServerUnaryCall<QueryParamsRequest, QueryParamsResponse>, callback: grpc_1.sendUnaryData<QueryParamsResponse>): void;
         abstract DenomMetadata(call: grpc_1.ServerUnaryCall<QueryDenomMetadataRequest, QueryDenomMetadataResponse>, callback: grpc_1.sendUnaryData<QueryDenomMetadataResponse>): void;
+        abstract DenomMetadataByQueryString(call: grpc_1.ServerUnaryCall<QueryDenomMetadataByQueryStringRequest, QueryDenomMetadataByQueryStringResponse>, callback: grpc_1.sendUnaryData<QueryDenomMetadataByQueryStringResponse>): void;
         abstract DenomsMetadata(call: grpc_1.ServerUnaryCall<QueryDenomsMetadataRequest, QueryDenomsMetadataResponse>, callback: grpc_1.sendUnaryData<QueryDenomsMetadataResponse>): void;
+        abstract DenomOwners(call: grpc_1.ServerUnaryCall<QueryDenomOwnersRequest, QueryDenomOwnersResponse>, callback: grpc_1.sendUnaryData<QueryDenomOwnersResponse>): void;
+        abstract DenomOwnersByQuery(call: grpc_1.ServerUnaryCall<QueryDenomOwnersByQueryRequest, QueryDenomOwnersByQueryResponse>, callback: grpc_1.sendUnaryData<QueryDenomOwnersByQueryResponse>): void;
+        abstract SendEnabled(call: grpc_1.ServerUnaryCall<QuerySendEnabledRequest, QuerySendEnabledResponse>, callback: grpc_1.sendUnaryData<QuerySendEnabledResponse>): void;
     }
     export class QueryClient extends grpc_1.makeGenericClientConstructor(UnimplementedQueryService.definition, "Query", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -1175,6 +2395,12 @@ export namespace cosmos.bank.v1beta1 {
         };
         AllBalances: GrpcUnaryServiceInterface<QueryAllBalancesRequest, QueryAllBalancesResponse> = (message: QueryAllBalancesRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryAllBalancesResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryAllBalancesResponse>, callback?: grpc_1.requestCallback<QueryAllBalancesResponse>): grpc_1.ClientUnaryCall => {
             return super.AllBalances(message, metadata, options, callback);
+        };
+        SpendableBalances: GrpcUnaryServiceInterface<QuerySpendableBalancesRequest, QuerySpendableBalancesResponse> = (message: QuerySpendableBalancesRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QuerySpendableBalancesResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QuerySpendableBalancesResponse>, callback?: grpc_1.requestCallback<QuerySpendableBalancesResponse>): grpc_1.ClientUnaryCall => {
+            return super.SpendableBalances(message, metadata, options, callback);
+        };
+        SpendableBalanceByDenom: GrpcUnaryServiceInterface<QuerySpendableBalanceByDenomRequest, QuerySpendableBalanceByDenomResponse> = (message: QuerySpendableBalanceByDenomRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QuerySpendableBalanceByDenomResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QuerySpendableBalanceByDenomResponse>, callback?: grpc_1.requestCallback<QuerySpendableBalanceByDenomResponse>): grpc_1.ClientUnaryCall => {
+            return super.SpendableBalanceByDenom(message, metadata, options, callback);
         };
         TotalSupply: GrpcUnaryServiceInterface<QueryTotalSupplyRequest, QueryTotalSupplyResponse> = (message: QueryTotalSupplyRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryTotalSupplyResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryTotalSupplyResponse>, callback?: grpc_1.requestCallback<QueryTotalSupplyResponse>): grpc_1.ClientUnaryCall => {
             return super.TotalSupply(message, metadata, options, callback);
@@ -1188,8 +2414,20 @@ export namespace cosmos.bank.v1beta1 {
         DenomMetadata: GrpcUnaryServiceInterface<QueryDenomMetadataRequest, QueryDenomMetadataResponse> = (message: QueryDenomMetadataRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryDenomMetadataResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryDenomMetadataResponse>, callback?: grpc_1.requestCallback<QueryDenomMetadataResponse>): grpc_1.ClientUnaryCall => {
             return super.DenomMetadata(message, metadata, options, callback);
         };
+        DenomMetadataByQueryString: GrpcUnaryServiceInterface<QueryDenomMetadataByQueryStringRequest, QueryDenomMetadataByQueryStringResponse> = (message: QueryDenomMetadataByQueryStringRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryDenomMetadataByQueryStringResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryDenomMetadataByQueryStringResponse>, callback?: grpc_1.requestCallback<QueryDenomMetadataByQueryStringResponse>): grpc_1.ClientUnaryCall => {
+            return super.DenomMetadataByQueryString(message, metadata, options, callback);
+        };
         DenomsMetadata: GrpcUnaryServiceInterface<QueryDenomsMetadataRequest, QueryDenomsMetadataResponse> = (message: QueryDenomsMetadataRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryDenomsMetadataResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryDenomsMetadataResponse>, callback?: grpc_1.requestCallback<QueryDenomsMetadataResponse>): grpc_1.ClientUnaryCall => {
             return super.DenomsMetadata(message, metadata, options, callback);
+        };
+        DenomOwners: GrpcUnaryServiceInterface<QueryDenomOwnersRequest, QueryDenomOwnersResponse> = (message: QueryDenomOwnersRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryDenomOwnersResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryDenomOwnersResponse>, callback?: grpc_1.requestCallback<QueryDenomOwnersResponse>): grpc_1.ClientUnaryCall => {
+            return super.DenomOwners(message, metadata, options, callback);
+        };
+        DenomOwnersByQuery: GrpcUnaryServiceInterface<QueryDenomOwnersByQueryRequest, QueryDenomOwnersByQueryResponse> = (message: QueryDenomOwnersByQueryRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryDenomOwnersByQueryResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryDenomOwnersByQueryResponse>, callback?: grpc_1.requestCallback<QueryDenomOwnersByQueryResponse>): grpc_1.ClientUnaryCall => {
+            return super.DenomOwnersByQuery(message, metadata, options, callback);
+        };
+        SendEnabled: GrpcUnaryServiceInterface<QuerySendEnabledRequest, QuerySendEnabledResponse> = (message: QuerySendEnabledRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QuerySendEnabledResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QuerySendEnabledResponse>, callback?: grpc_1.requestCallback<QuerySendEnabledResponse>): grpc_1.ClientUnaryCall => {
+            return super.SendEnabled(message, metadata, options, callback);
         };
     }
 }

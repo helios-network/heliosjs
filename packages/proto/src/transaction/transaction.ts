@@ -67,10 +67,10 @@ export function createSignerInfo(
   } else {
     // NOTE: assume ethsecp256k1 by default because after mainnet is the only one that is going to be supported
     pubkey = {
-      message: new eth.ethermint.crypto.v1.ethsecp256k1.PubKey({
+      message: new eth.helios.crypto.v1beta1.ethsecp256k1.PubKey({
         key: publicKey,
       }),
-      path: 'ethermint.crypto.v1.ethsecp256k1.PubKey',
+      path: 'helios.crypto.v1beta1.ethsecp256k1.PubKey',
     }
   }
 

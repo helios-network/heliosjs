@@ -1,7 +1,7 @@
 import {
   createMsgSend as protoMsgSend,
   createTransaction,
-} from '@tharsis/proto'
+} from '@helios-chain-labs/proto'
 
 import {
   createEIP712,

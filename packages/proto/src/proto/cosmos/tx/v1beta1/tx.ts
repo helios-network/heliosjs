@@ -3,11 +3,13 @@
  * compiler version: 5.28.3
  * source: cosmos/tx/v1beta1/tx.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
-import * as dependency_1 from "./../../../gogoproto/gogo";
-import * as dependency_2 from "./../../crypto/multisig/v1beta1/multisig";
-import * as dependency_3 from "./../../base/v1beta1/coin";
-import * as dependency_4 from "./../signing/v1beta1/signing";
-import * as dependency_5 from "./../../../google/protobuf/any";
+import * as dependency_1 from "./../../../amino/amino";
+import * as dependency_2 from "./../../../gogoproto/gogo";
+import * as dependency_3 from "./../../crypto/multisig/v1beta1/multisig";
+import * as dependency_4 from "./../../base/v1beta1/coin";
+import * as dependency_5 from "./../signing/v1beta1/signing";
+import * as dependency_6 from "./../../../google/protobuf/any";
+import * as dependency_7 from "./../../../cosmos_proto/cosmos";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.tx.v1beta1 {
     export class Tx extends pb_1.Message {
@@ -378,14 +380,206 @@ export namespace cosmos.tx.v1beta1 {
             return SignDoc.deserialize(bytes);
         }
     }
+    export class SignDocDirectAux extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            body_bytes?: Uint8Array;
+            public_key?: dependency_6.google.protobuf.Any;
+            chain_id?: string;
+            account_number?: number;
+            sequence?: number;
+            /** @deprecated*/
+            tip?: Tip;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("body_bytes" in data && data.body_bytes != undefined) {
+                    this.body_bytes = data.body_bytes;
+                }
+                if ("public_key" in data && data.public_key != undefined) {
+                    this.public_key = data.public_key;
+                }
+                if ("chain_id" in data && data.chain_id != undefined) {
+                    this.chain_id = data.chain_id;
+                }
+                if ("account_number" in data && data.account_number != undefined) {
+                    this.account_number = data.account_number;
+                }
+                if ("sequence" in data && data.sequence != undefined) {
+                    this.sequence = data.sequence;
+                }
+                if ("tip" in data && data.tip != undefined) {
+                    this.tip = data.tip;
+                }
+            }
+        }
+        get body_bytes() {
+            return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
+        }
+        set body_bytes(value: Uint8Array) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get public_key() {
+            return pb_1.Message.getWrapperField(this, dependency_6.google.protobuf.Any, 2) as dependency_6.google.protobuf.Any;
+        }
+        set public_key(value: dependency_6.google.protobuf.Any) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_public_key() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        get chain_id() {
+            return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
+        }
+        set chain_id(value: string) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        get account_number() {
+            return pb_1.Message.getFieldWithDefault(this, 4, 0) as number;
+        }
+        set account_number(value: number) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        get sequence() {
+            return pb_1.Message.getFieldWithDefault(this, 5, 0) as number;
+        }
+        set sequence(value: number) {
+            pb_1.Message.setField(this, 5, value);
+        }
+        /** @deprecated*/
+        get tip() {
+            return pb_1.Message.getWrapperField(this, Tip, 6) as Tip;
+        }
+        /** @deprecated*/
+        set tip(value: Tip) {
+            pb_1.Message.setWrapperField(this, 6, value);
+        }
+        /** @deprecated*/
+        get has_tip() {
+            return pb_1.Message.getField(this, 6) != null;
+        }
+        static fromObject(data: {
+            body_bytes?: Uint8Array;
+            public_key?: ReturnType<typeof dependency_6.google.protobuf.Any.prototype.toObject>;
+            chain_id?: string;
+            account_number?: number;
+            sequence?: number;
+            tip?: ReturnType<typeof Tip.prototype.toObject>;
+        }): SignDocDirectAux {
+            const message = new SignDocDirectAux({});
+            if (data.body_bytes != null) {
+                message.body_bytes = data.body_bytes;
+            }
+            if (data.public_key != null) {
+                message.public_key = dependency_6.google.protobuf.Any.fromObject(data.public_key);
+            }
+            if (data.chain_id != null) {
+                message.chain_id = data.chain_id;
+            }
+            if (data.account_number != null) {
+                message.account_number = data.account_number;
+            }
+            if (data.sequence != null) {
+                message.sequence = data.sequence;
+            }
+            if (data.tip != null) {
+                message.tip = Tip.fromObject(data.tip);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                body_bytes?: Uint8Array;
+                public_key?: ReturnType<typeof dependency_6.google.protobuf.Any.prototype.toObject>;
+                chain_id?: string;
+                account_number?: number;
+                sequence?: number;
+                tip?: ReturnType<typeof Tip.prototype.toObject>;
+            } = {};
+            if (this.body_bytes != null) {
+                data.body_bytes = this.body_bytes;
+            }
+            if (this.public_key != null) {
+                data.public_key = this.public_key.toObject();
+            }
+            if (this.chain_id != null) {
+                data.chain_id = this.chain_id;
+            }
+            if (this.account_number != null) {
+                data.account_number = this.account_number;
+            }
+            if (this.sequence != null) {
+                data.sequence = this.sequence;
+            }
+            if (this.tip != null) {
+                data.tip = this.tip.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.body_bytes.length)
+                writer.writeBytes(1, this.body_bytes);
+            if (this.has_public_key)
+                writer.writeMessage(2, this.public_key, () => this.public_key.serialize(writer));
+            if (this.chain_id.length)
+                writer.writeString(3, this.chain_id);
+            if (this.account_number != 0)
+                writer.writeUint64(4, this.account_number);
+            if (this.sequence != 0)
+                writer.writeUint64(5, this.sequence);
+            if (this.has_tip)
+                writer.writeMessage(6, this.tip, () => this.tip.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): SignDocDirectAux {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new SignDocDirectAux();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.body_bytes = reader.readBytes();
+                        break;
+                    case 2:
+                        reader.readMessage(message.public_key, () => message.public_key = dependency_6.google.protobuf.Any.deserialize(reader));
+                        break;
+                    case 3:
+                        message.chain_id = reader.readString();
+                        break;
+                    case 4:
+                        message.account_number = reader.readUint64();
+                        break;
+                    case 5:
+                        message.sequence = reader.readUint64();
+                        break;
+                    case 6:
+                        reader.readMessage(message.tip, () => message.tip = Tip.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): SignDocDirectAux {
+            return SignDocDirectAux.deserialize(bytes);
+        }
+    }
     export class TxBody extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            messages?: dependency_5.google.protobuf.Any[];
+            messages?: dependency_6.google.protobuf.Any[];
             memo?: string;
             timeout_height?: number;
-            extension_options?: dependency_5.google.protobuf.Any[];
-            non_critical_extension_options?: dependency_5.google.protobuf.Any[];
+            extension_options?: dependency_6.google.protobuf.Any[];
+            non_critical_extension_options?: dependency_6.google.protobuf.Any[];
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1, 1023, 2047], this.#one_of_decls);
@@ -408,9 +602,9 @@ export namespace cosmos.tx.v1beta1 {
             }
         }
         get messages() {
-            return pb_1.Message.getRepeatedWrapperField(this, dependency_5.google.protobuf.Any, 1) as dependency_5.google.protobuf.Any[];
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_6.google.protobuf.Any, 1) as dependency_6.google.protobuf.Any[];
         }
-        set messages(value: dependency_5.google.protobuf.Any[]) {
+        set messages(value: dependency_6.google.protobuf.Any[]) {
             pb_1.Message.setRepeatedWrapperField(this, 1, value);
         }
         get memo() {
@@ -426,27 +620,27 @@ export namespace cosmos.tx.v1beta1 {
             pb_1.Message.setField(this, 3, value);
         }
         get extension_options() {
-            return pb_1.Message.getRepeatedWrapperField(this, dependency_5.google.protobuf.Any, 1023) as dependency_5.google.protobuf.Any[];
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_6.google.protobuf.Any, 1023) as dependency_6.google.protobuf.Any[];
         }
-        set extension_options(value: dependency_5.google.protobuf.Any[]) {
+        set extension_options(value: dependency_6.google.protobuf.Any[]) {
             pb_1.Message.setRepeatedWrapperField(this, 1023, value);
         }
         get non_critical_extension_options() {
-            return pb_1.Message.getRepeatedWrapperField(this, dependency_5.google.protobuf.Any, 2047) as dependency_5.google.protobuf.Any[];
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_6.google.protobuf.Any, 2047) as dependency_6.google.protobuf.Any[];
         }
-        set non_critical_extension_options(value: dependency_5.google.protobuf.Any[]) {
+        set non_critical_extension_options(value: dependency_6.google.protobuf.Any[]) {
             pb_1.Message.setRepeatedWrapperField(this, 2047, value);
         }
         static fromObject(data: {
-            messages?: ReturnType<typeof dependency_5.google.protobuf.Any.prototype.toObject>[];
+            messages?: ReturnType<typeof dependency_6.google.protobuf.Any.prototype.toObject>[];
             memo?: string;
             timeout_height?: number;
-            extension_options?: ReturnType<typeof dependency_5.google.protobuf.Any.prototype.toObject>[];
-            non_critical_extension_options?: ReturnType<typeof dependency_5.google.protobuf.Any.prototype.toObject>[];
+            extension_options?: ReturnType<typeof dependency_6.google.protobuf.Any.prototype.toObject>[];
+            non_critical_extension_options?: ReturnType<typeof dependency_6.google.protobuf.Any.prototype.toObject>[];
         }): TxBody {
             const message = new TxBody({});
             if (data.messages != null) {
-                message.messages = data.messages.map(item => dependency_5.google.protobuf.Any.fromObject(item));
+                message.messages = data.messages.map(item => dependency_6.google.protobuf.Any.fromObject(item));
             }
             if (data.memo != null) {
                 message.memo = data.memo;
@@ -455,23 +649,23 @@ export namespace cosmos.tx.v1beta1 {
                 message.timeout_height = data.timeout_height;
             }
             if (data.extension_options != null) {
-                message.extension_options = data.extension_options.map(item => dependency_5.google.protobuf.Any.fromObject(item));
+                message.extension_options = data.extension_options.map(item => dependency_6.google.protobuf.Any.fromObject(item));
             }
             if (data.non_critical_extension_options != null) {
-                message.non_critical_extension_options = data.non_critical_extension_options.map(item => dependency_5.google.protobuf.Any.fromObject(item));
+                message.non_critical_extension_options = data.non_critical_extension_options.map(item => dependency_6.google.protobuf.Any.fromObject(item));
             }
             return message;
         }
         toObject() {
             const data: {
-                messages?: ReturnType<typeof dependency_5.google.protobuf.Any.prototype.toObject>[];
+                messages?: ReturnType<typeof dependency_6.google.protobuf.Any.prototype.toObject>[];
                 memo?: string;
                 timeout_height?: number;
-                extension_options?: ReturnType<typeof dependency_5.google.protobuf.Any.prototype.toObject>[];
-                non_critical_extension_options?: ReturnType<typeof dependency_5.google.protobuf.Any.prototype.toObject>[];
+                extension_options?: ReturnType<typeof dependency_6.google.protobuf.Any.prototype.toObject>[];
+                non_critical_extension_options?: ReturnType<typeof dependency_6.google.protobuf.Any.prototype.toObject>[];
             } = {};
             if (this.messages != null) {
-                data.messages = this.messages.map((item: dependency_5.google.protobuf.Any) => item.toObject());
+                data.messages = this.messages.map((item: dependency_6.google.protobuf.Any) => item.toObject());
             }
             if (this.memo != null) {
                 data.memo = this.memo;
@@ -480,10 +674,10 @@ export namespace cosmos.tx.v1beta1 {
                 data.timeout_height = this.timeout_height;
             }
             if (this.extension_options != null) {
-                data.extension_options = this.extension_options.map((item: dependency_5.google.protobuf.Any) => item.toObject());
+                data.extension_options = this.extension_options.map((item: dependency_6.google.protobuf.Any) => item.toObject());
             }
             if (this.non_critical_extension_options != null) {
-                data.non_critical_extension_options = this.non_critical_extension_options.map((item: dependency_5.google.protobuf.Any) => item.toObject());
+                data.non_critical_extension_options = this.non_critical_extension_options.map((item: dependency_6.google.protobuf.Any) => item.toObject());
             }
             return data;
         }
@@ -492,15 +686,15 @@ export namespace cosmos.tx.v1beta1 {
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
             if (this.messages.length)
-                writer.writeRepeatedMessage(1, this.messages, (item: dependency_5.google.protobuf.Any) => item.serialize(writer));
+                writer.writeRepeatedMessage(1, this.messages, (item: dependency_6.google.protobuf.Any) => item.serialize(writer));
             if (this.memo.length)
                 writer.writeString(2, this.memo);
             if (this.timeout_height != 0)
                 writer.writeUint64(3, this.timeout_height);
             if (this.extension_options.length)
-                writer.writeRepeatedMessage(1023, this.extension_options, (item: dependency_5.google.protobuf.Any) => item.serialize(writer));
+                writer.writeRepeatedMessage(1023, this.extension_options, (item: dependency_6.google.protobuf.Any) => item.serialize(writer));
             if (this.non_critical_extension_options.length)
-                writer.writeRepeatedMessage(2047, this.non_critical_extension_options, (item: dependency_5.google.protobuf.Any) => item.serialize(writer));
+                writer.writeRepeatedMessage(2047, this.non_critical_extension_options, (item: dependency_6.google.protobuf.Any) => item.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -511,7 +705,7 @@ export namespace cosmos.tx.v1beta1 {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        reader.readMessage(message.messages, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_5.google.protobuf.Any.deserialize(reader), dependency_5.google.protobuf.Any));
+                        reader.readMessage(message.messages, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_6.google.protobuf.Any.deserialize(reader), dependency_6.google.protobuf.Any));
                         break;
                     case 2:
                         message.memo = reader.readString();
@@ -520,10 +714,10 @@ export namespace cosmos.tx.v1beta1 {
                         message.timeout_height = reader.readUint64();
                         break;
                     case 1023:
-                        reader.readMessage(message.extension_options, () => pb_1.Message.addToRepeatedWrapperField(message, 1023, dependency_5.google.protobuf.Any.deserialize(reader), dependency_5.google.protobuf.Any));
+                        reader.readMessage(message.extension_options, () => pb_1.Message.addToRepeatedWrapperField(message, 1023, dependency_6.google.protobuf.Any.deserialize(reader), dependency_6.google.protobuf.Any));
                         break;
                     case 2047:
-                        reader.readMessage(message.non_critical_extension_options, () => pb_1.Message.addToRepeatedWrapperField(message, 2047, dependency_5.google.protobuf.Any.deserialize(reader), dependency_5.google.protobuf.Any));
+                        reader.readMessage(message.non_critical_extension_options, () => pb_1.Message.addToRepeatedWrapperField(message, 2047, dependency_6.google.protobuf.Any.deserialize(reader), dependency_6.google.protobuf.Any));
                         break;
                     default: reader.skipField();
                 }
@@ -542,6 +736,8 @@ export namespace cosmos.tx.v1beta1 {
         constructor(data?: any[] | {
             signer_infos?: SignerInfo[];
             fee?: Fee;
+            /** @deprecated*/
+            tip?: Tip;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
@@ -551,6 +747,9 @@ export namespace cosmos.tx.v1beta1 {
                 }
                 if ("fee" in data && data.fee != undefined) {
                     this.fee = data.fee;
+                }
+                if ("tip" in data && data.tip != undefined) {
+                    this.tip = data.tip;
                 }
             }
         }
@@ -569,9 +768,22 @@ export namespace cosmos.tx.v1beta1 {
         get has_fee() {
             return pb_1.Message.getField(this, 2) != null;
         }
+        /** @deprecated*/
+        get tip() {
+            return pb_1.Message.getWrapperField(this, Tip, 3) as Tip;
+        }
+        /** @deprecated*/
+        set tip(value: Tip) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        /** @deprecated*/
+        get has_tip() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
         static fromObject(data: {
             signer_infos?: ReturnType<typeof SignerInfo.prototype.toObject>[];
             fee?: ReturnType<typeof Fee.prototype.toObject>;
+            tip?: ReturnType<typeof Tip.prototype.toObject>;
         }): AuthInfo {
             const message = new AuthInfo({});
             if (data.signer_infos != null) {
@@ -580,18 +792,25 @@ export namespace cosmos.tx.v1beta1 {
             if (data.fee != null) {
                 message.fee = Fee.fromObject(data.fee);
             }
+            if (data.tip != null) {
+                message.tip = Tip.fromObject(data.tip);
+            }
             return message;
         }
         toObject() {
             const data: {
                 signer_infos?: ReturnType<typeof SignerInfo.prototype.toObject>[];
                 fee?: ReturnType<typeof Fee.prototype.toObject>;
+                tip?: ReturnType<typeof Tip.prototype.toObject>;
             } = {};
             if (this.signer_infos != null) {
                 data.signer_infos = this.signer_infos.map((item: SignerInfo) => item.toObject());
             }
             if (this.fee != null) {
                 data.fee = this.fee.toObject();
+            }
+            if (this.tip != null) {
+                data.tip = this.tip.toObject();
             }
             return data;
         }
@@ -603,6 +822,8 @@ export namespace cosmos.tx.v1beta1 {
                 writer.writeRepeatedMessage(1, this.signer_infos, (item: SignerInfo) => item.serialize(writer));
             if (this.has_fee)
                 writer.writeMessage(2, this.fee, () => this.fee.serialize(writer));
+            if (this.has_tip)
+                writer.writeMessage(3, this.tip, () => this.tip.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -617,6 +838,9 @@ export namespace cosmos.tx.v1beta1 {
                         break;
                     case 2:
                         reader.readMessage(message.fee, () => message.fee = Fee.deserialize(reader));
+                        break;
+                    case 3:
+                        reader.readMessage(message.tip, () => message.tip = Tip.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -633,7 +857,7 @@ export namespace cosmos.tx.v1beta1 {
     export class SignerInfo extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            public_key?: dependency_5.google.protobuf.Any;
+            public_key?: dependency_6.google.protobuf.Any;
             mode_info?: ModeInfo;
             sequence?: number;
         }) {
@@ -652,9 +876,9 @@ export namespace cosmos.tx.v1beta1 {
             }
         }
         get public_key() {
-            return pb_1.Message.getWrapperField(this, dependency_5.google.protobuf.Any, 1) as dependency_5.google.protobuf.Any;
+            return pb_1.Message.getWrapperField(this, dependency_6.google.protobuf.Any, 1) as dependency_6.google.protobuf.Any;
         }
-        set public_key(value: dependency_5.google.protobuf.Any) {
+        set public_key(value: dependency_6.google.protobuf.Any) {
             pb_1.Message.setWrapperField(this, 1, value);
         }
         get has_public_key() {
@@ -676,13 +900,13 @@ export namespace cosmos.tx.v1beta1 {
             pb_1.Message.setField(this, 3, value);
         }
         static fromObject(data: {
-            public_key?: ReturnType<typeof dependency_5.google.protobuf.Any.prototype.toObject>;
+            public_key?: ReturnType<typeof dependency_6.google.protobuf.Any.prototype.toObject>;
             mode_info?: ReturnType<typeof ModeInfo.prototype.toObject>;
             sequence?: number;
         }): SignerInfo {
             const message = new SignerInfo({});
             if (data.public_key != null) {
-                message.public_key = dependency_5.google.protobuf.Any.fromObject(data.public_key);
+                message.public_key = dependency_6.google.protobuf.Any.fromObject(data.public_key);
             }
             if (data.mode_info != null) {
                 message.mode_info = ModeInfo.fromObject(data.mode_info);
@@ -694,7 +918,7 @@ export namespace cosmos.tx.v1beta1 {
         }
         toObject() {
             const data: {
-                public_key?: ReturnType<typeof dependency_5.google.protobuf.Any.prototype.toObject>;
+                public_key?: ReturnType<typeof dependency_6.google.protobuf.Any.prototype.toObject>;
                 mode_info?: ReturnType<typeof ModeInfo.prototype.toObject>;
                 sequence?: number;
             } = {};
@@ -729,7 +953,7 @@ export namespace cosmos.tx.v1beta1 {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        reader.readMessage(message.public_key, () => message.public_key = dependency_5.google.protobuf.Any.deserialize(reader));
+                        reader.readMessage(message.public_key, () => message.public_key = dependency_6.google.protobuf.Any.deserialize(reader));
                         break;
                     case 2:
                         reader.readMessage(message.mode_info, () => message.mode_info = ModeInfo.deserialize(reader));
@@ -862,7 +1086,7 @@ export namespace cosmos.tx.v1beta1 {
         export class Single extends pb_1.Message {
             #one_of_decls: number[][] = [];
             constructor(data?: any[] | {
-                mode?: dependency_4.cosmos.tx.signing.v1beta1.SignMode;
+                mode?: dependency_5.cosmos.tx.signing.v1beta1.SignMode;
             }) {
                 super();
                 pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -873,13 +1097,13 @@ export namespace cosmos.tx.v1beta1 {
                 }
             }
             get mode() {
-                return pb_1.Message.getFieldWithDefault(this, 1, dependency_4.cosmos.tx.signing.v1beta1.SignMode.SIGN_MODE_UNSPECIFIED) as dependency_4.cosmos.tx.signing.v1beta1.SignMode;
+                return pb_1.Message.getFieldWithDefault(this, 1, dependency_5.cosmos.tx.signing.v1beta1.SignMode.SIGN_MODE_UNSPECIFIED) as dependency_5.cosmos.tx.signing.v1beta1.SignMode;
             }
-            set mode(value: dependency_4.cosmos.tx.signing.v1beta1.SignMode) {
+            set mode(value: dependency_5.cosmos.tx.signing.v1beta1.SignMode) {
                 pb_1.Message.setField(this, 1, value);
             }
             static fromObject(data: {
-                mode?: dependency_4.cosmos.tx.signing.v1beta1.SignMode;
+                mode?: dependency_5.cosmos.tx.signing.v1beta1.SignMode;
             }): Single {
                 const message = new Single({});
                 if (data.mode != null) {
@@ -889,7 +1113,7 @@ export namespace cosmos.tx.v1beta1 {
             }
             toObject() {
                 const data: {
-                    mode?: dependency_4.cosmos.tx.signing.v1beta1.SignMode;
+                    mode?: dependency_5.cosmos.tx.signing.v1beta1.SignMode;
                 } = {};
                 if (this.mode != null) {
                     data.mode = this.mode;
@@ -900,7 +1124,7 @@ export namespace cosmos.tx.v1beta1 {
             serialize(w: pb_1.BinaryWriter): void;
             serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
                 const writer = w || new pb_1.BinaryWriter();
-                if (this.mode != dependency_4.cosmos.tx.signing.v1beta1.SignMode.SIGN_MODE_UNSPECIFIED)
+                if (this.mode != dependency_5.cosmos.tx.signing.v1beta1.SignMode.SIGN_MODE_UNSPECIFIED)
                     writer.writeEnum(1, this.mode);
                 if (!w)
                     return writer.getResultBuffer();
@@ -929,7 +1153,7 @@ export namespace cosmos.tx.v1beta1 {
         export class Multi extends pb_1.Message {
             #one_of_decls: number[][] = [];
             constructor(data?: any[] | {
-                bitarray?: dependency_2.cosmos.crypto.multisig.v1beta1.CompactBitArray;
+                bitarray?: dependency_3.cosmos.crypto.multisig.v1beta1.CompactBitArray;
                 mode_infos?: ModeInfo[];
             }) {
                 super();
@@ -944,9 +1168,9 @@ export namespace cosmos.tx.v1beta1 {
                 }
             }
             get bitarray() {
-                return pb_1.Message.getWrapperField(this, dependency_2.cosmos.crypto.multisig.v1beta1.CompactBitArray, 1) as dependency_2.cosmos.crypto.multisig.v1beta1.CompactBitArray;
+                return pb_1.Message.getWrapperField(this, dependency_3.cosmos.crypto.multisig.v1beta1.CompactBitArray, 1) as dependency_3.cosmos.crypto.multisig.v1beta1.CompactBitArray;
             }
-            set bitarray(value: dependency_2.cosmos.crypto.multisig.v1beta1.CompactBitArray) {
+            set bitarray(value: dependency_3.cosmos.crypto.multisig.v1beta1.CompactBitArray) {
                 pb_1.Message.setWrapperField(this, 1, value);
             }
             get has_bitarray() {
@@ -959,12 +1183,12 @@ export namespace cosmos.tx.v1beta1 {
                 pb_1.Message.setRepeatedWrapperField(this, 2, value);
             }
             static fromObject(data: {
-                bitarray?: ReturnType<typeof dependency_2.cosmos.crypto.multisig.v1beta1.CompactBitArray.prototype.toObject>;
+                bitarray?: ReturnType<typeof dependency_3.cosmos.crypto.multisig.v1beta1.CompactBitArray.prototype.toObject>;
                 mode_infos?: ReturnType<typeof ModeInfo.prototype.toObject>[];
             }): Multi {
                 const message = new Multi({});
                 if (data.bitarray != null) {
-                    message.bitarray = dependency_2.cosmos.crypto.multisig.v1beta1.CompactBitArray.fromObject(data.bitarray);
+                    message.bitarray = dependency_3.cosmos.crypto.multisig.v1beta1.CompactBitArray.fromObject(data.bitarray);
                 }
                 if (data.mode_infos != null) {
                     message.mode_infos = data.mode_infos.map(item => ModeInfo.fromObject(item));
@@ -973,7 +1197,7 @@ export namespace cosmos.tx.v1beta1 {
             }
             toObject() {
                 const data: {
-                    bitarray?: ReturnType<typeof dependency_2.cosmos.crypto.multisig.v1beta1.CompactBitArray.prototype.toObject>;
+                    bitarray?: ReturnType<typeof dependency_3.cosmos.crypto.multisig.v1beta1.CompactBitArray.prototype.toObject>;
                     mode_infos?: ReturnType<typeof ModeInfo.prototype.toObject>[];
                 } = {};
                 if (this.bitarray != null) {
@@ -1002,7 +1226,7 @@ export namespace cosmos.tx.v1beta1 {
                         break;
                     switch (reader.getFieldNumber()) {
                         case 1:
-                            reader.readMessage(message.bitarray, () => message.bitarray = dependency_2.cosmos.crypto.multisig.v1beta1.CompactBitArray.deserialize(reader));
+                            reader.readMessage(message.bitarray, () => message.bitarray = dependency_3.cosmos.crypto.multisig.v1beta1.CompactBitArray.deserialize(reader));
                             break;
                         case 2:
                             reader.readMessage(message.mode_infos, () => pb_1.Message.addToRepeatedWrapperField(message, 2, ModeInfo.deserialize(reader), ModeInfo));
@@ -1023,7 +1247,7 @@ export namespace cosmos.tx.v1beta1 {
     export class Fee extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            amount?: dependency_3.cosmos.base.v1beta1.Coin[];
+            amount?: dependency_4.cosmos.base.v1beta1.Coin[];
             gas_limit?: number;
             payer?: string;
             granter?: string;
@@ -1046,9 +1270,9 @@ export namespace cosmos.tx.v1beta1 {
             }
         }
         get amount() {
-            return pb_1.Message.getRepeatedWrapperField(this, dependency_3.cosmos.base.v1beta1.Coin, 1) as dependency_3.cosmos.base.v1beta1.Coin[];
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_4.cosmos.base.v1beta1.Coin, 1) as dependency_4.cosmos.base.v1beta1.Coin[];
         }
-        set amount(value: dependency_3.cosmos.base.v1beta1.Coin[]) {
+        set amount(value: dependency_4.cosmos.base.v1beta1.Coin[]) {
             pb_1.Message.setRepeatedWrapperField(this, 1, value);
         }
         get gas_limit() {
@@ -1070,14 +1294,14 @@ export namespace cosmos.tx.v1beta1 {
             pb_1.Message.setField(this, 4, value);
         }
         static fromObject(data: {
-            amount?: ReturnType<typeof dependency_3.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+            amount?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>[];
             gas_limit?: number;
             payer?: string;
             granter?: string;
         }): Fee {
             const message = new Fee({});
             if (data.amount != null) {
-                message.amount = data.amount.map(item => dependency_3.cosmos.base.v1beta1.Coin.fromObject(item));
+                message.amount = data.amount.map(item => dependency_4.cosmos.base.v1beta1.Coin.fromObject(item));
             }
             if (data.gas_limit != null) {
                 message.gas_limit = data.gas_limit;
@@ -1092,13 +1316,13 @@ export namespace cosmos.tx.v1beta1 {
         }
         toObject() {
             const data: {
-                amount?: ReturnType<typeof dependency_3.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+                amount?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>[];
                 gas_limit?: number;
                 payer?: string;
                 granter?: string;
             } = {};
             if (this.amount != null) {
-                data.amount = this.amount.map((item: dependency_3.cosmos.base.v1beta1.Coin) => item.toObject());
+                data.amount = this.amount.map((item: dependency_4.cosmos.base.v1beta1.Coin) => item.toObject());
             }
             if (this.gas_limit != null) {
                 data.gas_limit = this.gas_limit;
@@ -1116,7 +1340,7 @@ export namespace cosmos.tx.v1beta1 {
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
             if (this.amount.length)
-                writer.writeRepeatedMessage(1, this.amount, (item: dependency_3.cosmos.base.v1beta1.Coin) => item.serialize(writer));
+                writer.writeRepeatedMessage(1, this.amount, (item: dependency_4.cosmos.base.v1beta1.Coin) => item.serialize(writer));
             if (this.gas_limit != 0)
                 writer.writeUint64(2, this.gas_limit);
             if (this.payer.length)
@@ -1133,7 +1357,7 @@ export namespace cosmos.tx.v1beta1 {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        reader.readMessage(message.amount, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_3.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_3.cosmos.base.v1beta1.Coin));
+                        reader.readMessage(message.amount, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_4.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_4.cosmos.base.v1beta1.Coin));
                         break;
                     case 2:
                         message.gas_limit = reader.readUint64();
@@ -1154,6 +1378,236 @@ export namespace cosmos.tx.v1beta1 {
         }
         static deserializeBinary(bytes: Uint8Array): Fee {
             return Fee.deserialize(bytes);
+        }
+    }
+    /** @deprecated*/
+    export class Tip extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            amount?: dependency_4.cosmos.base.v1beta1.Coin[];
+            tipper?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("amount" in data && data.amount != undefined) {
+                    this.amount = data.amount;
+                }
+                if ("tipper" in data && data.tipper != undefined) {
+                    this.tipper = data.tipper;
+                }
+            }
+        }
+        get amount() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_4.cosmos.base.v1beta1.Coin, 1) as dependency_4.cosmos.base.v1beta1.Coin[];
+        }
+        set amount(value: dependency_4.cosmos.base.v1beta1.Coin[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        get tipper() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set tipper(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        static fromObject(data: {
+            amount?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+            tipper?: string;
+        }): Tip {
+            const message = new Tip({});
+            if (data.amount != null) {
+                message.amount = data.amount.map(item => dependency_4.cosmos.base.v1beta1.Coin.fromObject(item));
+            }
+            if (data.tipper != null) {
+                message.tipper = data.tipper;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                amount?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+                tipper?: string;
+            } = {};
+            if (this.amount != null) {
+                data.amount = this.amount.map((item: dependency_4.cosmos.base.v1beta1.Coin) => item.toObject());
+            }
+            if (this.tipper != null) {
+                data.tipper = this.tipper;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.amount.length)
+                writer.writeRepeatedMessage(1, this.amount, (item: dependency_4.cosmos.base.v1beta1.Coin) => item.serialize(writer));
+            if (this.tipper.length)
+                writer.writeString(2, this.tipper);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Tip {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Tip();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.amount, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_4.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_4.cosmos.base.v1beta1.Coin));
+                        break;
+                    case 2:
+                        message.tipper = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): Tip {
+            return Tip.deserialize(bytes);
+        }
+    }
+    export class AuxSignerData extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            address?: string;
+            sign_doc?: SignDocDirectAux;
+            mode?: dependency_5.cosmos.tx.signing.v1beta1.SignMode;
+            sig?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("address" in data && data.address != undefined) {
+                    this.address = data.address;
+                }
+                if ("sign_doc" in data && data.sign_doc != undefined) {
+                    this.sign_doc = data.sign_doc;
+                }
+                if ("mode" in data && data.mode != undefined) {
+                    this.mode = data.mode;
+                }
+                if ("sig" in data && data.sig != undefined) {
+                    this.sig = data.sig;
+                }
+            }
+        }
+        get address() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set address(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get sign_doc() {
+            return pb_1.Message.getWrapperField(this, SignDocDirectAux, 2) as SignDocDirectAux;
+        }
+        set sign_doc(value: SignDocDirectAux) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_sign_doc() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        get mode() {
+            return pb_1.Message.getFieldWithDefault(this, 3, dependency_5.cosmos.tx.signing.v1beta1.SignMode.SIGN_MODE_UNSPECIFIED) as dependency_5.cosmos.tx.signing.v1beta1.SignMode;
+        }
+        set mode(value: dependency_5.cosmos.tx.signing.v1beta1.SignMode) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        get sig() {
+            return pb_1.Message.getFieldWithDefault(this, 4, new Uint8Array(0)) as Uint8Array;
+        }
+        set sig(value: Uint8Array) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        static fromObject(data: {
+            address?: string;
+            sign_doc?: ReturnType<typeof SignDocDirectAux.prototype.toObject>;
+            mode?: dependency_5.cosmos.tx.signing.v1beta1.SignMode;
+            sig?: Uint8Array;
+        }): AuxSignerData {
+            const message = new AuxSignerData({});
+            if (data.address != null) {
+                message.address = data.address;
+            }
+            if (data.sign_doc != null) {
+                message.sign_doc = SignDocDirectAux.fromObject(data.sign_doc);
+            }
+            if (data.mode != null) {
+                message.mode = data.mode;
+            }
+            if (data.sig != null) {
+                message.sig = data.sig;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                address?: string;
+                sign_doc?: ReturnType<typeof SignDocDirectAux.prototype.toObject>;
+                mode?: dependency_5.cosmos.tx.signing.v1beta1.SignMode;
+                sig?: Uint8Array;
+            } = {};
+            if (this.address != null) {
+                data.address = this.address;
+            }
+            if (this.sign_doc != null) {
+                data.sign_doc = this.sign_doc.toObject();
+            }
+            if (this.mode != null) {
+                data.mode = this.mode;
+            }
+            if (this.sig != null) {
+                data.sig = this.sig;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.address.length)
+                writer.writeString(1, this.address);
+            if (this.has_sign_doc)
+                writer.writeMessage(2, this.sign_doc, () => this.sign_doc.serialize(writer));
+            if (this.mode != dependency_5.cosmos.tx.signing.v1beta1.SignMode.SIGN_MODE_UNSPECIFIED)
+                writer.writeEnum(3, this.mode);
+            if (this.sig.length)
+                writer.writeBytes(4, this.sig);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): AuxSignerData {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new AuxSignerData();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.address = reader.readString();
+                        break;
+                    case 2:
+                        reader.readMessage(message.sign_doc, () => message.sign_doc = SignDocDirectAux.deserialize(reader));
+                        break;
+                    case 3:
+                        message.mode = reader.readEnum();
+                        break;
+                    case 4:
+                        message.sig = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): AuxSignerData {
+            return AuxSignerData.deserialize(bytes);
         }
     }
 }

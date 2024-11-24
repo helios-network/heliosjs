@@ -6,6 +6,7 @@
 import * as dependency_1 from "./../../../google/protobuf/any";
 import * as dependency_2 from "./../../../gogoproto/gogo";
 import * as dependency_3 from "./auth";
+import * as dependency_4 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.auth.v1beta1 {
     export class GenesisState extends pb_1.Message {

@@ -4,16 +4,17 @@
  * source: cosmos/evidence/v1beta1/query.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
 import * as dependency_1 from "./../../base/query/v1beta1/pagination";
-import * as dependency_2 from "./../../../gogoproto/gogo";
-import * as dependency_3 from "./../../../google/protobuf/any";
-import * as dependency_4 from "./../../../google/api/annotations";
+import * as dependency_2 from "./../../../google/protobuf/any";
+import * as dependency_3 from "./../../../google/api/annotations";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.evidence.v1beta1 {
     export class QueryEvidenceRequest extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
+            /** @deprecated*/
             evidence_hash?: Uint8Array;
+            hash?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -21,29 +22,48 @@ export namespace cosmos.evidence.v1beta1 {
                 if ("evidence_hash" in data && data.evidence_hash != undefined) {
                     this.evidence_hash = data.evidence_hash;
                 }
+                if ("hash" in data && data.hash != undefined) {
+                    this.hash = data.hash;
+                }
             }
         }
+        /** @deprecated*/
         get evidence_hash() {
             return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
         }
+        /** @deprecated*/
         set evidence_hash(value: Uint8Array) {
             pb_1.Message.setField(this, 1, value);
         }
+        get hash() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set hash(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
         static fromObject(data: {
             evidence_hash?: Uint8Array;
+            hash?: string;
         }): QueryEvidenceRequest {
             const message = new QueryEvidenceRequest({});
             if (data.evidence_hash != null) {
                 message.evidence_hash = data.evidence_hash;
+            }
+            if (data.hash != null) {
+                message.hash = data.hash;
             }
             return message;
         }
         toObject() {
             const data: {
                 evidence_hash?: Uint8Array;
+                hash?: string;
             } = {};
             if (this.evidence_hash != null) {
                 data.evidence_hash = this.evidence_hash;
+            }
+            if (this.hash != null) {
+                data.hash = this.hash;
             }
             return data;
         }
@@ -53,6 +73,8 @@ export namespace cosmos.evidence.v1beta1 {
             const writer = w || new pb_1.BinaryWriter();
             if (this.evidence_hash.length)
                 writer.writeBytes(1, this.evidence_hash);
+            if (this.hash.length)
+                writer.writeString(2, this.hash);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -64,6 +86,9 @@ export namespace cosmos.evidence.v1beta1 {
                 switch (reader.getFieldNumber()) {
                     case 1:
                         message.evidence_hash = reader.readBytes();
+                        break;
+                    case 2:
+                        message.hash = reader.readString();
                         break;
                     default: reader.skipField();
                 }
@@ -80,7 +105,7 @@ export namespace cosmos.evidence.v1beta1 {
     export class QueryEvidenceResponse extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            evidence?: dependency_3.google.protobuf.Any;
+            evidence?: dependency_2.google.protobuf.Any;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -91,26 +116,26 @@ export namespace cosmos.evidence.v1beta1 {
             }
         }
         get evidence() {
-            return pb_1.Message.getWrapperField(this, dependency_3.google.protobuf.Any, 1) as dependency_3.google.protobuf.Any;
+            return pb_1.Message.getWrapperField(this, dependency_2.google.protobuf.Any, 1) as dependency_2.google.protobuf.Any;
         }
-        set evidence(value: dependency_3.google.protobuf.Any) {
+        set evidence(value: dependency_2.google.protobuf.Any) {
             pb_1.Message.setWrapperField(this, 1, value);
         }
         get has_evidence() {
             return pb_1.Message.getField(this, 1) != null;
         }
         static fromObject(data: {
-            evidence?: ReturnType<typeof dependency_3.google.protobuf.Any.prototype.toObject>;
+            evidence?: ReturnType<typeof dependency_2.google.protobuf.Any.prototype.toObject>;
         }): QueryEvidenceResponse {
             const message = new QueryEvidenceResponse({});
             if (data.evidence != null) {
-                message.evidence = dependency_3.google.protobuf.Any.fromObject(data.evidence);
+                message.evidence = dependency_2.google.protobuf.Any.fromObject(data.evidence);
             }
             return message;
         }
         toObject() {
             const data: {
-                evidence?: ReturnType<typeof dependency_3.google.protobuf.Any.prototype.toObject>;
+                evidence?: ReturnType<typeof dependency_2.google.protobuf.Any.prototype.toObject>;
             } = {};
             if (this.evidence != null) {
                 data.evidence = this.evidence.toObject();
@@ -133,7 +158,7 @@ export namespace cosmos.evidence.v1beta1 {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        reader.readMessage(message.evidence, () => message.evidence = dependency_3.google.protobuf.Any.deserialize(reader));
+                        reader.readMessage(message.evidence, () => message.evidence = dependency_2.google.protobuf.Any.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -220,7 +245,7 @@ export namespace cosmos.evidence.v1beta1 {
     export class QueryAllEvidenceResponse extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            evidence?: dependency_3.google.protobuf.Any[];
+            evidence?: dependency_2.google.protobuf.Any[];
             pagination?: dependency_1.cosmos.base.query.v1beta1.PageResponse;
         }) {
             super();
@@ -235,9 +260,9 @@ export namespace cosmos.evidence.v1beta1 {
             }
         }
         get evidence() {
-            return pb_1.Message.getRepeatedWrapperField(this, dependency_3.google.protobuf.Any, 1) as dependency_3.google.protobuf.Any[];
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_2.google.protobuf.Any, 1) as dependency_2.google.protobuf.Any[];
         }
-        set evidence(value: dependency_3.google.protobuf.Any[]) {
+        set evidence(value: dependency_2.google.protobuf.Any[]) {
             pb_1.Message.setRepeatedWrapperField(this, 1, value);
         }
         get pagination() {
@@ -250,12 +275,12 @@ export namespace cosmos.evidence.v1beta1 {
             return pb_1.Message.getField(this, 2) != null;
         }
         static fromObject(data: {
-            evidence?: ReturnType<typeof dependency_3.google.protobuf.Any.prototype.toObject>[];
+            evidence?: ReturnType<typeof dependency_2.google.protobuf.Any.prototype.toObject>[];
             pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
         }): QueryAllEvidenceResponse {
             const message = new QueryAllEvidenceResponse({});
             if (data.evidence != null) {
-                message.evidence = data.evidence.map(item => dependency_3.google.protobuf.Any.fromObject(item));
+                message.evidence = data.evidence.map(item => dependency_2.google.protobuf.Any.fromObject(item));
             }
             if (data.pagination != null) {
                 message.pagination = dependency_1.cosmos.base.query.v1beta1.PageResponse.fromObject(data.pagination);
@@ -264,11 +289,11 @@ export namespace cosmos.evidence.v1beta1 {
         }
         toObject() {
             const data: {
-                evidence?: ReturnType<typeof dependency_3.google.protobuf.Any.prototype.toObject>[];
+                evidence?: ReturnType<typeof dependency_2.google.protobuf.Any.prototype.toObject>[];
                 pagination?: ReturnType<typeof dependency_1.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
             } = {};
             if (this.evidence != null) {
-                data.evidence = this.evidence.map((item: dependency_3.google.protobuf.Any) => item.toObject());
+                data.evidence = this.evidence.map((item: dependency_2.google.protobuf.Any) => item.toObject());
             }
             if (this.pagination != null) {
                 data.pagination = this.pagination.toObject();
@@ -280,7 +305,7 @@ export namespace cosmos.evidence.v1beta1 {
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
             if (this.evidence.length)
-                writer.writeRepeatedMessage(1, this.evidence, (item: dependency_3.google.protobuf.Any) => item.serialize(writer));
+                writer.writeRepeatedMessage(1, this.evidence, (item: dependency_2.google.protobuf.Any) => item.serialize(writer));
             if (this.has_pagination)
                 writer.writeMessage(2, this.pagination, () => this.pagination.serialize(writer));
             if (!w)
@@ -293,7 +318,7 @@ export namespace cosmos.evidence.v1beta1 {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        reader.readMessage(message.evidence, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_3.google.protobuf.Any.deserialize(reader), dependency_3.google.protobuf.Any));
+                        reader.readMessage(message.evidence, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_2.google.protobuf.Any.deserialize(reader), dependency_2.google.protobuf.Any));
                         break;
                     case 2:
                         reader.readMessage(message.pagination, () => message.pagination = dependency_1.cosmos.base.query.v1beta1.PageResponse.deserialize(reader));

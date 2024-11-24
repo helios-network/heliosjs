@@ -6,6 +6,8 @@
 import * as dependency_1 from "./../../../gogoproto/gogo";
 import * as dependency_2 from "./../../../google/protobuf/any";
 import * as dependency_3 from "./../../../cosmos_proto/cosmos";
+import * as dependency_4 from "./../../msg/v1/msg";
+import * as dependency_5 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.evidence.v1beta1 {

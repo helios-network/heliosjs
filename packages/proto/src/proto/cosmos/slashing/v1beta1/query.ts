@@ -7,6 +7,8 @@ import * as dependency_1 from "./../../base/query/v1beta1/pagination";
 import * as dependency_2 from "./../../../gogoproto/gogo";
 import * as dependency_3 from "./../../../google/api/annotations";
 import * as dependency_4 from "./slashing";
+import * as dependency_5 from "./../../../cosmos_proto/cosmos";
+import * as dependency_6 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.slashing.v1beta1 {

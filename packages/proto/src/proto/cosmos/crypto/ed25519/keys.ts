@@ -3,7 +3,8 @@
  * compiler version: 5.28.3
  * source: cosmos/crypto/ed25519/keys.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
-import * as dependency_1 from "./../../../gogoproto/gogo";
+import * as dependency_1 from "./../../../amino/amino";
+import * as dependency_2 from "./../../../gogoproto/gogo";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.crypto.ed25519 {
     export class PubKey extends pb_1.Message {

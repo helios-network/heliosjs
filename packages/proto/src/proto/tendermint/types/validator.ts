@@ -7,6 +7,12 @@ import * as dependency_1 from "./../../gogoproto/gogo";
 import * as dependency_2 from "./../crypto/keys";
 import * as pb_1 from "google-protobuf";
 export namespace tendermint.types {
+    export enum BlockIDFlag {
+        BLOCK_ID_FLAG_UNKNOWN = 0,
+        BLOCK_ID_FLAG_ABSENT = 1,
+        BLOCK_ID_FLAG_COMMIT = 2,
+        BLOCK_ID_FLAG_NIL = 3
+    }
     export class ValidatorSet extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {

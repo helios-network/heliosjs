@@ -5,7 +5,8 @@
  * git: https://github.com/thesayyn/protoc-gen-ts */
 import * as dependency_1 from "./../../../../gogoproto/gogo";
 import * as dependency_2 from "./../../../../tendermint/abci/types";
-import * as dependency_3 from "./../../../../google/protobuf/any";
+import * as dependency_3 from "./../../../../tendermint/types/block";
+import * as dependency_4 from "./../../../../google/protobuf/any";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.base.abci.v1beta1 {
     export class TxResponse extends pb_1.Message {
@@ -21,7 +22,7 @@ export namespace cosmos.base.abci.v1beta1 {
             info?: string;
             gas_wanted?: number;
             gas_used?: number;
-            tx?: dependency_3.google.protobuf.Any;
+            tx?: dependency_4.google.protobuf.Any;
             timestamp?: string;
             events?: dependency_2.tendermint.abci.Event[];
         }) {
@@ -130,9 +131,9 @@ export namespace cosmos.base.abci.v1beta1 {
             pb_1.Message.setField(this, 10, value);
         }
         get tx() {
-            return pb_1.Message.getWrapperField(this, dependency_3.google.protobuf.Any, 11) as dependency_3.google.protobuf.Any;
+            return pb_1.Message.getWrapperField(this, dependency_4.google.protobuf.Any, 11) as dependency_4.google.protobuf.Any;
         }
-        set tx(value: dependency_3.google.protobuf.Any) {
+        set tx(value: dependency_4.google.protobuf.Any) {
             pb_1.Message.setWrapperField(this, 11, value);
         }
         get has_tx() {
@@ -161,7 +162,7 @@ export namespace cosmos.base.abci.v1beta1 {
             info?: string;
             gas_wanted?: number;
             gas_used?: number;
-            tx?: ReturnType<typeof dependency_3.google.protobuf.Any.prototype.toObject>;
+            tx?: ReturnType<typeof dependency_4.google.protobuf.Any.prototype.toObject>;
             timestamp?: string;
             events?: ReturnType<typeof dependency_2.tendermint.abci.Event.prototype.toObject>[];
         }): TxResponse {
@@ -197,7 +198,7 @@ export namespace cosmos.base.abci.v1beta1 {
                 message.gas_used = data.gas_used;
             }
             if (data.tx != null) {
-                message.tx = dependency_3.google.protobuf.Any.fromObject(data.tx);
+                message.tx = dependency_4.google.protobuf.Any.fromObject(data.tx);
             }
             if (data.timestamp != null) {
                 message.timestamp = data.timestamp;
@@ -219,7 +220,7 @@ export namespace cosmos.base.abci.v1beta1 {
                 info?: string;
                 gas_wanted?: number;
                 gas_used?: number;
-                tx?: ReturnType<typeof dependency_3.google.protobuf.Any.prototype.toObject>;
+                tx?: ReturnType<typeof dependency_4.google.protobuf.Any.prototype.toObject>;
                 timestamp?: string;
                 events?: ReturnType<typeof dependency_2.tendermint.abci.Event.prototype.toObject>[];
             } = {};
@@ -334,7 +335,7 @@ export namespace cosmos.base.abci.v1beta1 {
                         message.gas_used = reader.readInt64();
                         break;
                     case 11:
-                        reader.readMessage(message.tx, () => message.tx = dependency_3.google.protobuf.Any.deserialize(reader));
+                        reader.readMessage(message.tx, () => message.tx = dependency_4.google.protobuf.Any.deserialize(reader));
                         break;
                     case 12:
                         message.timestamp = reader.readString();
@@ -740,12 +741,14 @@ export namespace cosmos.base.abci.v1beta1 {
     export class Result extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
+            /** @deprecated*/
             data?: Uint8Array;
             log?: string;
             events?: dependency_2.tendermint.abci.Event[];
+            msg_responses?: dependency_4.google.protobuf.Any[];
         }) {
             super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [3], this.#one_of_decls);
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [3, 4], this.#one_of_decls);
             if (!Array.isArray(data) && typeof data == "object") {
                 if ("data" in data && data.data != undefined) {
                     this.data = data.data;
@@ -756,11 +759,16 @@ export namespace cosmos.base.abci.v1beta1 {
                 if ("events" in data && data.events != undefined) {
                     this.events = data.events;
                 }
+                if ("msg_responses" in data && data.msg_responses != undefined) {
+                    this.msg_responses = data.msg_responses;
+                }
             }
         }
+        /** @deprecated*/
         get data() {
             return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
         }
+        /** @deprecated*/
         set data(value: Uint8Array) {
             pb_1.Message.setField(this, 1, value);
         }
@@ -776,10 +784,17 @@ export namespace cosmos.base.abci.v1beta1 {
         set events(value: dependency_2.tendermint.abci.Event[]) {
             pb_1.Message.setRepeatedWrapperField(this, 3, value);
         }
+        get msg_responses() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_4.google.protobuf.Any, 4) as dependency_4.google.protobuf.Any[];
+        }
+        set msg_responses(value: dependency_4.google.protobuf.Any[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 4, value);
+        }
         static fromObject(data: {
             data?: Uint8Array;
             log?: string;
             events?: ReturnType<typeof dependency_2.tendermint.abci.Event.prototype.toObject>[];
+            msg_responses?: ReturnType<typeof dependency_4.google.protobuf.Any.prototype.toObject>[];
         }): Result {
             const message = new Result({});
             if (data.data != null) {
@@ -791,6 +806,9 @@ export namespace cosmos.base.abci.v1beta1 {
             if (data.events != null) {
                 message.events = data.events.map(item => dependency_2.tendermint.abci.Event.fromObject(item));
             }
+            if (data.msg_responses != null) {
+                message.msg_responses = data.msg_responses.map(item => dependency_4.google.protobuf.Any.fromObject(item));
+            }
             return message;
         }
         toObject() {
@@ -798,6 +816,7 @@ export namespace cosmos.base.abci.v1beta1 {
                 data?: Uint8Array;
                 log?: string;
                 events?: ReturnType<typeof dependency_2.tendermint.abci.Event.prototype.toObject>[];
+                msg_responses?: ReturnType<typeof dependency_4.google.protobuf.Any.prototype.toObject>[];
             } = {};
             if (this.data != null) {
                 data.data = this.data;
@@ -807,6 +826,9 @@ export namespace cosmos.base.abci.v1beta1 {
             }
             if (this.events != null) {
                 data.events = this.events.map((item: dependency_2.tendermint.abci.Event) => item.toObject());
+            }
+            if (this.msg_responses != null) {
+                data.msg_responses = this.msg_responses.map((item: dependency_4.google.protobuf.Any) => item.toObject());
             }
             return data;
         }
@@ -820,6 +842,8 @@ export namespace cosmos.base.abci.v1beta1 {
                 writer.writeString(2, this.log);
             if (this.events.length)
                 writer.writeRepeatedMessage(3, this.events, (item: dependency_2.tendermint.abci.Event) => item.serialize(writer));
+            if (this.msg_responses.length)
+                writer.writeRepeatedMessage(4, this.msg_responses, (item: dependency_4.google.protobuf.Any) => item.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -837,6 +861,9 @@ export namespace cosmos.base.abci.v1beta1 {
                         break;
                     case 3:
                         reader.readMessage(message.events, () => pb_1.Message.addToRepeatedWrapperField(message, 3, dependency_2.tendermint.abci.Event.deserialize(reader), dependency_2.tendermint.abci.Event));
+                        break;
+                    case 4:
+                        reader.readMessage(message.msg_responses, () => pb_1.Message.addToRepeatedWrapperField(message, 4, dependency_4.google.protobuf.Any.deserialize(reader), dependency_4.google.protobuf.Any));
                         break;
                     default: reader.skipField();
                 }
@@ -946,6 +973,7 @@ export namespace cosmos.base.abci.v1beta1 {
             return SimulationResponse.deserialize(bytes);
         }
     }
+    /** @deprecated*/
     export class MsgData extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
@@ -1039,37 +1067,58 @@ export namespace cosmos.base.abci.v1beta1 {
     export class TxMsgData extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
+            /** @deprecated*/
             data?: MsgData[];
+            msg_responses?: dependency_4.google.protobuf.Any[];
         }) {
             super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1, 2], this.#one_of_decls);
             if (!Array.isArray(data) && typeof data == "object") {
                 if ("data" in data && data.data != undefined) {
                     this.data = data.data;
                 }
+                if ("msg_responses" in data && data.msg_responses != undefined) {
+                    this.msg_responses = data.msg_responses;
+                }
             }
         }
+        /** @deprecated*/
         get data() {
             return pb_1.Message.getRepeatedWrapperField(this, MsgData, 1) as MsgData[];
         }
+        /** @deprecated*/
         set data(value: MsgData[]) {
             pb_1.Message.setRepeatedWrapperField(this, 1, value);
         }
+        get msg_responses() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_4.google.protobuf.Any, 2) as dependency_4.google.protobuf.Any[];
+        }
+        set msg_responses(value: dependency_4.google.protobuf.Any[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 2, value);
+        }
         static fromObject(data: {
             data?: ReturnType<typeof MsgData.prototype.toObject>[];
+            msg_responses?: ReturnType<typeof dependency_4.google.protobuf.Any.prototype.toObject>[];
         }): TxMsgData {
             const message = new TxMsgData({});
             if (data.data != null) {
                 message.data = data.data.map(item => MsgData.fromObject(item));
+            }
+            if (data.msg_responses != null) {
+                message.msg_responses = data.msg_responses.map(item => dependency_4.google.protobuf.Any.fromObject(item));
             }
             return message;
         }
         toObject() {
             const data: {
                 data?: ReturnType<typeof MsgData.prototype.toObject>[];
+                msg_responses?: ReturnType<typeof dependency_4.google.protobuf.Any.prototype.toObject>[];
             } = {};
             if (this.data != null) {
                 data.data = this.data.map((item: MsgData) => item.toObject());
+            }
+            if (this.msg_responses != null) {
+                data.msg_responses = this.msg_responses.map((item: dependency_4.google.protobuf.Any) => item.toObject());
             }
             return data;
         }
@@ -1079,6 +1128,8 @@ export namespace cosmos.base.abci.v1beta1 {
             const writer = w || new pb_1.BinaryWriter();
             if (this.data.length)
                 writer.writeRepeatedMessage(1, this.data, (item: MsgData) => item.serialize(writer));
+            if (this.msg_responses.length)
+                writer.writeRepeatedMessage(2, this.msg_responses, (item: dependency_4.google.protobuf.Any) => item.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -1090,6 +1141,9 @@ export namespace cosmos.base.abci.v1beta1 {
                 switch (reader.getFieldNumber()) {
                     case 1:
                         reader.readMessage(message.data, () => pb_1.Message.addToRepeatedWrapperField(message, 1, MsgData.deserialize(reader), MsgData));
+                        break;
+                    case 2:
+                        reader.readMessage(message.msg_responses, () => pb_1.Message.addToRepeatedWrapperField(message, 2, dependency_4.google.protobuf.Any.deserialize(reader), dependency_4.google.protobuf.Any));
                         break;
                     default: reader.skipField();
                 }
@@ -1283,6 +1337,188 @@ export namespace cosmos.base.abci.v1beta1 {
         }
         static deserializeBinary(bytes: Uint8Array): SearchTxsResult {
             return SearchTxsResult.deserialize(bytes);
+        }
+    }
+    export class SearchBlocksResult extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            total_count?: number;
+            count?: number;
+            page_number?: number;
+            page_total?: number;
+            limit?: number;
+            blocks?: dependency_3.tendermint.types.Block[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [6], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("total_count" in data && data.total_count != undefined) {
+                    this.total_count = data.total_count;
+                }
+                if ("count" in data && data.count != undefined) {
+                    this.count = data.count;
+                }
+                if ("page_number" in data && data.page_number != undefined) {
+                    this.page_number = data.page_number;
+                }
+                if ("page_total" in data && data.page_total != undefined) {
+                    this.page_total = data.page_total;
+                }
+                if ("limit" in data && data.limit != undefined) {
+                    this.limit = data.limit;
+                }
+                if ("blocks" in data && data.blocks != undefined) {
+                    this.blocks = data.blocks;
+                }
+            }
+        }
+        get total_count() {
+            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+        }
+        set total_count(value: number) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get count() {
+            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+        }
+        set count(value: number) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get page_number() {
+            return pb_1.Message.getFieldWithDefault(this, 3, 0) as number;
+        }
+        set page_number(value: number) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        get page_total() {
+            return pb_1.Message.getFieldWithDefault(this, 4, 0) as number;
+        }
+        set page_total(value: number) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        get limit() {
+            return pb_1.Message.getFieldWithDefault(this, 5, 0) as number;
+        }
+        set limit(value: number) {
+            pb_1.Message.setField(this, 5, value);
+        }
+        get blocks() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_3.tendermint.types.Block, 6) as dependency_3.tendermint.types.Block[];
+        }
+        set blocks(value: dependency_3.tendermint.types.Block[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 6, value);
+        }
+        static fromObject(data: {
+            total_count?: number;
+            count?: number;
+            page_number?: number;
+            page_total?: number;
+            limit?: number;
+            blocks?: ReturnType<typeof dependency_3.tendermint.types.Block.prototype.toObject>[];
+        }): SearchBlocksResult {
+            const message = new SearchBlocksResult({});
+            if (data.total_count != null) {
+                message.total_count = data.total_count;
+            }
+            if (data.count != null) {
+                message.count = data.count;
+            }
+            if (data.page_number != null) {
+                message.page_number = data.page_number;
+            }
+            if (data.page_total != null) {
+                message.page_total = data.page_total;
+            }
+            if (data.limit != null) {
+                message.limit = data.limit;
+            }
+            if (data.blocks != null) {
+                message.blocks = data.blocks.map(item => dependency_3.tendermint.types.Block.fromObject(item));
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                total_count?: number;
+                count?: number;
+                page_number?: number;
+                page_total?: number;
+                limit?: number;
+                blocks?: ReturnType<typeof dependency_3.tendermint.types.Block.prototype.toObject>[];
+            } = {};
+            if (this.total_count != null) {
+                data.total_count = this.total_count;
+            }
+            if (this.count != null) {
+                data.count = this.count;
+            }
+            if (this.page_number != null) {
+                data.page_number = this.page_number;
+            }
+            if (this.page_total != null) {
+                data.page_total = this.page_total;
+            }
+            if (this.limit != null) {
+                data.limit = this.limit;
+            }
+            if (this.blocks != null) {
+                data.blocks = this.blocks.map((item: dependency_3.tendermint.types.Block) => item.toObject());
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.total_count != 0)
+                writer.writeInt64(1, this.total_count);
+            if (this.count != 0)
+                writer.writeInt64(2, this.count);
+            if (this.page_number != 0)
+                writer.writeInt64(3, this.page_number);
+            if (this.page_total != 0)
+                writer.writeInt64(4, this.page_total);
+            if (this.limit != 0)
+                writer.writeInt64(5, this.limit);
+            if (this.blocks.length)
+                writer.writeRepeatedMessage(6, this.blocks, (item: dependency_3.tendermint.types.Block) => item.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): SearchBlocksResult {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new SearchBlocksResult();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.total_count = reader.readInt64();
+                        break;
+                    case 2:
+                        message.count = reader.readInt64();
+                        break;
+                    case 3:
+                        message.page_number = reader.readInt64();
+                        break;
+                    case 4:
+                        message.page_total = reader.readInt64();
+                        break;
+                    case 5:
+                        message.limit = reader.readInt64();
+                        break;
+                    case 6:
+                        reader.readMessage(message.blocks, () => pb_1.Message.addToRepeatedWrapperField(message, 6, dependency_3.tendermint.types.Block.deserialize(reader), dependency_3.tendermint.types.Block));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): SearchBlocksResult {
+            return SearchBlocksResult.deserialize(bytes);
         }
     }
 }

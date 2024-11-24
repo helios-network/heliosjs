@@ -4,6 +4,10 @@
  * source: cosmos/crisis/v1beta1/tx.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
 import * as dependency_1 from "./../../../gogoproto/gogo";
+import * as dependency_2 from "./../../../cosmos_proto/cosmos";
+import * as dependency_3 from "./../../msg/v1/msg";
+import * as dependency_4 from "./../../../amino/amino";
+import * as dependency_5 from "./../../base/v1beta1/coin";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.crisis.v1beta1 {
@@ -160,6 +164,139 @@ export namespace cosmos.crisis.v1beta1 {
             return MsgVerifyInvariantResponse.deserialize(bytes);
         }
     }
+    export class MsgUpdateParams extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            authority?: string;
+            constant_fee?: dependency_5.cosmos.base.v1beta1.Coin;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("authority" in data && data.authority != undefined) {
+                    this.authority = data.authority;
+                }
+                if ("constant_fee" in data && data.constant_fee != undefined) {
+                    this.constant_fee = data.constant_fee;
+                }
+            }
+        }
+        get authority() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set authority(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get constant_fee() {
+            return pb_1.Message.getWrapperField(this, dependency_5.cosmos.base.v1beta1.Coin, 2) as dependency_5.cosmos.base.v1beta1.Coin;
+        }
+        set constant_fee(value: dependency_5.cosmos.base.v1beta1.Coin) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_constant_fee() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            authority?: string;
+            constant_fee?: ReturnType<typeof dependency_5.cosmos.base.v1beta1.Coin.prototype.toObject>;
+        }): MsgUpdateParams {
+            const message = new MsgUpdateParams({});
+            if (data.authority != null) {
+                message.authority = data.authority;
+            }
+            if (data.constant_fee != null) {
+                message.constant_fee = dependency_5.cosmos.base.v1beta1.Coin.fromObject(data.constant_fee);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                authority?: string;
+                constant_fee?: ReturnType<typeof dependency_5.cosmos.base.v1beta1.Coin.prototype.toObject>;
+            } = {};
+            if (this.authority != null) {
+                data.authority = this.authority;
+            }
+            if (this.constant_fee != null) {
+                data.constant_fee = this.constant_fee.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.authority.length)
+                writer.writeString(1, this.authority);
+            if (this.has_constant_fee)
+                writer.writeMessage(2, this.constant_fee, () => this.constant_fee.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgUpdateParams {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgUpdateParams();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.authority = reader.readString();
+                        break;
+                    case 2:
+                        reader.readMessage(message.constant_fee, () => message.constant_fee = dependency_5.cosmos.base.v1beta1.Coin.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgUpdateParams {
+            return MsgUpdateParams.deserialize(bytes);
+        }
+    }
+    export class MsgUpdateParamsResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {}) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") { }
+        }
+        static fromObject(data: {}): MsgUpdateParamsResponse {
+            const message = new MsgUpdateParamsResponse({});
+            return message;
+        }
+        toObject() {
+            const data: {} = {};
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgUpdateParamsResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgUpdateParamsResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgUpdateParamsResponse {
+            return MsgUpdateParamsResponse.deserialize(bytes);
+        }
+    }
     interface GrpcUnaryServiceInterface<P, R> {
         (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
         (message: P, metadata: grpc_1.Metadata, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
@@ -194,10 +331,20 @@ export namespace cosmos.crisis.v1beta1 {
                 requestDeserialize: (bytes: Buffer) => MsgVerifyInvariant.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: MsgVerifyInvariantResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => MsgVerifyInvariantResponse.deserialize(new Uint8Array(bytes))
+            },
+            UpdateParams: {
+                path: "/cosmos.crisis.v1beta1.Msg/UpdateParams",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: MsgUpdateParams) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => MsgUpdateParams.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: MsgUpdateParamsResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => MsgUpdateParamsResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
         abstract VerifyInvariant(call: grpc_1.ServerUnaryCall<MsgVerifyInvariant, MsgVerifyInvariantResponse>, callback: grpc_1.sendUnaryData<MsgVerifyInvariantResponse>): void;
+        abstract UpdateParams(call: grpc_1.ServerUnaryCall<MsgUpdateParams, MsgUpdateParamsResponse>, callback: grpc_1.sendUnaryData<MsgUpdateParamsResponse>): void;
     }
     export class MsgClient extends grpc_1.makeGenericClientConstructor(UnimplementedMsgService.definition, "Msg", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -205,6 +352,9 @@ export namespace cosmos.crisis.v1beta1 {
         }
         VerifyInvariant: GrpcUnaryServiceInterface<MsgVerifyInvariant, MsgVerifyInvariantResponse> = (message: MsgVerifyInvariant, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgVerifyInvariantResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgVerifyInvariantResponse>, callback?: grpc_1.requestCallback<MsgVerifyInvariantResponse>): grpc_1.ClientUnaryCall => {
             return super.VerifyInvariant(message, metadata, options, callback);
+        };
+        UpdateParams: GrpcUnaryServiceInterface<MsgUpdateParams, MsgUpdateParamsResponse> = (message: MsgUpdateParams, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgUpdateParamsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgUpdateParamsResponse>, callback?: grpc_1.requestCallback<MsgUpdateParamsResponse>): grpc_1.ClientUnaryCall => {
+            return super.UpdateParams(message, metadata, options, callback);
         };
     }
 }

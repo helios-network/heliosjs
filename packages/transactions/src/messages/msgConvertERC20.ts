@@ -1,7 +1,7 @@
 import {
   createMsgConvertERC20 as protoMsgConvertERC20,
   createTransaction,
-} from '@tharsis/proto'
+} from '@helios-chain-labs/proto'
 
 import {
   createEIP712,

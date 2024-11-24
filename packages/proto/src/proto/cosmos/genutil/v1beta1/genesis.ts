@@ -4,6 +4,7 @@
  * source: cosmos/genutil/v1beta1/genesis.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
 import * as dependency_1 from "./../../../gogoproto/gogo";
+import * as dependency_2 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.genutil.v1beta1 {
     export class GenesisState extends pb_1.Message {

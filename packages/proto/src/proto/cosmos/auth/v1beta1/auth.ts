@@ -3,16 +3,17 @@
  * compiler version: 5.28.3
  * source: cosmos/auth/v1beta1/auth.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
-import * as dependency_1 from "./../../../cosmos_proto/cosmos";
-import * as dependency_2 from "./../../../gogoproto/gogo";
-import * as dependency_3 from "./../../../google/protobuf/any";
+import * as dependency_1 from "./../../../amino/amino";
+import * as dependency_2 from "./../../../cosmos_proto/cosmos";
+import * as dependency_3 from "./../../../gogoproto/gogo";
+import * as dependency_4 from "./../../../google/protobuf/any";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.auth.v1beta1 {
     export class BaseAccount extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             address?: string;
-            pub_key?: dependency_3.google.protobuf.Any;
+            pub_key?: dependency_4.google.protobuf.Any;
             account_number?: number;
             sequence?: number;
         }) {
@@ -40,9 +41,9 @@ export namespace cosmos.auth.v1beta1 {
             pb_1.Message.setField(this, 1, value);
         }
         get pub_key() {
-            return pb_1.Message.getWrapperField(this, dependency_3.google.protobuf.Any, 2) as dependency_3.google.protobuf.Any;
+            return pb_1.Message.getWrapperField(this, dependency_4.google.protobuf.Any, 2) as dependency_4.google.protobuf.Any;
         }
-        set pub_key(value: dependency_3.google.protobuf.Any) {
+        set pub_key(value: dependency_4.google.protobuf.Any) {
             pb_1.Message.setWrapperField(this, 2, value);
         }
         get has_pub_key() {
@@ -62,7 +63,7 @@ export namespace cosmos.auth.v1beta1 {
         }
         static fromObject(data: {
             address?: string;
-            pub_key?: ReturnType<typeof dependency_3.google.protobuf.Any.prototype.toObject>;
+            pub_key?: ReturnType<typeof dependency_4.google.protobuf.Any.prototype.toObject>;
             account_number?: number;
             sequence?: number;
         }): BaseAccount {
@@ -71,7 +72,7 @@ export namespace cosmos.auth.v1beta1 {
                 message.address = data.address;
             }
             if (data.pub_key != null) {
-                message.pub_key = dependency_3.google.protobuf.Any.fromObject(data.pub_key);
+                message.pub_key = dependency_4.google.protobuf.Any.fromObject(data.pub_key);
             }
             if (data.account_number != null) {
                 message.account_number = data.account_number;
@@ -84,7 +85,7 @@ export namespace cosmos.auth.v1beta1 {
         toObject() {
             const data: {
                 address?: string;
-                pub_key?: ReturnType<typeof dependency_3.google.protobuf.Any.prototype.toObject>;
+                pub_key?: ReturnType<typeof dependency_4.google.protobuf.Any.prototype.toObject>;
                 account_number?: number;
                 sequence?: number;
             } = {};
@@ -127,7 +128,7 @@ export namespace cosmos.auth.v1beta1 {
                         message.address = reader.readString();
                         break;
                     case 2:
-                        reader.readMessage(message.pub_key, () => message.pub_key = dependency_3.google.protobuf.Any.deserialize(reader));
+                        reader.readMessage(message.pub_key, () => message.pub_key = dependency_4.google.protobuf.Any.deserialize(reader));
                         break;
                     case 3:
                         message.account_number = reader.readUint64();
@@ -261,6 +262,96 @@ export namespace cosmos.auth.v1beta1 {
         }
         static deserializeBinary(bytes: Uint8Array): ModuleAccount {
             return ModuleAccount.deserialize(bytes);
+        }
+    }
+    export class ModuleCredential extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            module_name?: string;
+            derivation_keys?: Uint8Array[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [2], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("module_name" in data && data.module_name != undefined) {
+                    this.module_name = data.module_name;
+                }
+                if ("derivation_keys" in data && data.derivation_keys != undefined) {
+                    this.derivation_keys = data.derivation_keys;
+                }
+            }
+        }
+        get module_name() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set module_name(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get derivation_keys() {
+            return pb_1.Message.getFieldWithDefault(this, 2, []) as Uint8Array[];
+        }
+        set derivation_keys(value: Uint8Array[]) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        static fromObject(data: {
+            module_name?: string;
+            derivation_keys?: Uint8Array[];
+        }): ModuleCredential {
+            const message = new ModuleCredential({});
+            if (data.module_name != null) {
+                message.module_name = data.module_name;
+            }
+            if (data.derivation_keys != null) {
+                message.derivation_keys = data.derivation_keys;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                module_name?: string;
+                derivation_keys?: Uint8Array[];
+            } = {};
+            if (this.module_name != null) {
+                data.module_name = this.module_name;
+            }
+            if (this.derivation_keys != null) {
+                data.derivation_keys = this.derivation_keys;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.module_name.length)
+                writer.writeString(1, this.module_name);
+            if (this.derivation_keys.length)
+                writer.writeRepeatedBytes(2, this.derivation_keys);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ModuleCredential {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ModuleCredential();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.module_name = reader.readString();
+                        break;
+                    case 2:
+                        pb_1.Message.addToRepeatedField(message, 2, reader.readBytes());
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ModuleCredential {
+            return ModuleCredential.deserialize(bytes);
         }
     }
     export class Params extends pb_1.Message {

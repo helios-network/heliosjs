@@ -522,6 +522,113 @@ export namespace cosmos.upgrade.v1beta1 {
             return QueryModuleVersionsResponse.deserialize(bytes);
         }
     }
+    export class QueryAuthorityRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {}) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") { }
+        }
+        static fromObject(data: {}): QueryAuthorityRequest {
+            const message = new QueryAuthorityRequest({});
+            return message;
+        }
+        toObject() {
+            const data: {} = {};
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryAuthorityRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryAuthorityRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryAuthorityRequest {
+            return QueryAuthorityRequest.deserialize(bytes);
+        }
+    }
+    export class QueryAuthorityResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            address?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("address" in data && data.address != undefined) {
+                    this.address = data.address;
+                }
+            }
+        }
+        get address() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set address(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            address?: string;
+        }): QueryAuthorityResponse {
+            const message = new QueryAuthorityResponse({});
+            if (data.address != null) {
+                message.address = data.address;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                address?: string;
+            } = {};
+            if (this.address != null) {
+                data.address = this.address;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.address.length)
+                writer.writeString(1, this.address);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryAuthorityResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryAuthorityResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.address = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryAuthorityResponse {
+            return QueryAuthorityResponse.deserialize(bytes);
+        }
+    }
     interface GrpcUnaryServiceInterface<P, R> {
         (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
         (message: P, metadata: grpc_1.Metadata, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
@@ -583,6 +690,15 @@ export namespace cosmos.upgrade.v1beta1 {
                 requestDeserialize: (bytes: Buffer) => QueryModuleVersionsRequest.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: QueryModuleVersionsResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => QueryModuleVersionsResponse.deserialize(new Uint8Array(bytes))
+            },
+            Authority: {
+                path: "/cosmos.upgrade.v1beta1.Query/Authority",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: QueryAuthorityRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => QueryAuthorityRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: QueryAuthorityResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => QueryAuthorityResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
@@ -590,6 +706,7 @@ export namespace cosmos.upgrade.v1beta1 {
         abstract AppliedPlan(call: grpc_1.ServerUnaryCall<QueryAppliedPlanRequest, QueryAppliedPlanResponse>, callback: grpc_1.sendUnaryData<QueryAppliedPlanResponse>): void;
         abstract UpgradedConsensusState(call: grpc_1.ServerUnaryCall<QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse>, callback: grpc_1.sendUnaryData<QueryUpgradedConsensusStateResponse>): void;
         abstract ModuleVersions(call: grpc_1.ServerUnaryCall<QueryModuleVersionsRequest, QueryModuleVersionsResponse>, callback: grpc_1.sendUnaryData<QueryModuleVersionsResponse>): void;
+        abstract Authority(call: grpc_1.ServerUnaryCall<QueryAuthorityRequest, QueryAuthorityResponse>, callback: grpc_1.sendUnaryData<QueryAuthorityResponse>): void;
     }
     export class QueryClient extends grpc_1.makeGenericClientConstructor(UnimplementedQueryService.definition, "Query", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -607,6 +724,9 @@ export namespace cosmos.upgrade.v1beta1 {
         };
         ModuleVersions: GrpcUnaryServiceInterface<QueryModuleVersionsRequest, QueryModuleVersionsResponse> = (message: QueryModuleVersionsRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryModuleVersionsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryModuleVersionsResponse>, callback?: grpc_1.requestCallback<QueryModuleVersionsResponse>): grpc_1.ClientUnaryCall => {
             return super.ModuleVersions(message, metadata, options, callback);
+        };
+        Authority: GrpcUnaryServiceInterface<QueryAuthorityRequest, QueryAuthorityResponse> = (message: QueryAuthorityRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryAuthorityResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryAuthorityResponse>, callback?: grpc_1.requestCallback<QueryAuthorityResponse>): grpc_1.ClientUnaryCall => {
+            return super.Authority(message, metadata, options, callback);
         };
     }
 }

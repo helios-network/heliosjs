@@ -4,6 +4,8 @@
  * source: cosmos/params/v1beta1/params.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
 import * as dependency_1 from "./../../../gogoproto/gogo";
+import * as dependency_2 from "./../../../cosmos_proto/cosmos";
+import * as dependency_3 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.params.v1beta1 {
     export class ParameterChangeProposal extends pb_1.Message {

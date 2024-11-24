@@ -4,9 +4,9 @@
  * source: tendermint/abci/types.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
 import * as dependency_1 from "./../crypto/proof";
-import * as dependency_2 from "./../types/types";
-import * as dependency_3 from "./../crypto/keys";
-import * as dependency_4 from "./../types/params";
+import * as dependency_2 from "./../crypto/keys";
+import * as dependency_3 from "./../types/params";
+import * as dependency_4 from "./../types/validator";
 import * as dependency_5 from "./../../google/protobuf/timestamp";
 import * as dependency_6 from "./../../gogoproto/gogo";
 import * as pb_1 from "google-protobuf";
@@ -16,253 +16,285 @@ export namespace tendermint.abci {
         NEW = 0,
         RECHECK = 1
     }
-    export enum EvidenceType {
+    export enum MisbehaviorType {
         UNKNOWN = 0,
         DUPLICATE_VOTE = 1,
         LIGHT_CLIENT_ATTACK = 2
     }
     export class Request extends pb_1.Message {
-        #one_of_decls: number[][] = [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]];
+        #one_of_decls: number[][] = [[1, 2, 3, 5, 6, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]];
         constructor(data?: any[] | ({} & (({
             echo?: RequestEcho;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             echo?: never;
             flush?: RequestFlush;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             echo?: never;
             flush?: never;
             info?: RequestInfo;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: RequestSetOption;
-            init_chain?: never;
-            query?: never;
-            begin_block?: never;
-            check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
-            commit?: never;
-            list_snapshots?: never;
-            offer_snapshot?: never;
-            load_snapshot_chunk?: never;
-            apply_snapshot_chunk?: never;
-        } | {
-            echo?: never;
-            flush?: never;
-            info?: never;
-            set_option?: never;
             init_chain?: RequestInitChain;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: RequestQuery;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: RequestBeginBlock;
-            check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
-            commit?: never;
-            list_snapshots?: never;
-            offer_snapshot?: never;
-            load_snapshot_chunk?: never;
-            apply_snapshot_chunk?: never;
-        } | {
-            echo?: never;
-            flush?: never;
-            info?: never;
-            set_option?: never;
-            init_chain?: never;
-            query?: never;
-            begin_block?: never;
             check_tx?: RequestCheckTx;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: RequestDeliverTx;
-            end_block?: never;
-            commit?: never;
-            list_snapshots?: never;
-            offer_snapshot?: never;
-            load_snapshot_chunk?: never;
-            apply_snapshot_chunk?: never;
-        } | {
-            echo?: never;
-            flush?: never;
-            info?: never;
-            set_option?: never;
-            init_chain?: never;
-            query?: never;
-            begin_block?: never;
-            check_tx?: never;
-            deliver_tx?: never;
-            end_block?: RequestEndBlock;
-            commit?: never;
-            list_snapshots?: never;
-            offer_snapshot?: never;
-            load_snapshot_chunk?: never;
-            apply_snapshot_chunk?: never;
-        } | {
-            echo?: never;
-            flush?: never;
-            info?: never;
-            set_option?: never;
-            init_chain?: never;
-            query?: never;
-            begin_block?: never;
-            check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: RequestCommit;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: RequestListSnapshots;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: RequestOfferSnapshot;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: RequestLoadSnapshotChunk;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: RequestApplySnapshotChunk;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
+        } | {
+            echo?: never;
+            flush?: never;
+            info?: never;
+            init_chain?: never;
+            query?: never;
+            check_tx?: never;
+            commit?: never;
+            list_snapshots?: never;
+            offer_snapshot?: never;
+            load_snapshot_chunk?: never;
+            apply_snapshot_chunk?: never;
+            prepare_proposal?: RequestPrepareProposal;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
+        } | {
+            echo?: never;
+            flush?: never;
+            info?: never;
+            init_chain?: never;
+            query?: never;
+            check_tx?: never;
+            commit?: never;
+            list_snapshots?: never;
+            offer_snapshot?: never;
+            load_snapshot_chunk?: never;
+            apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: RequestProcessProposal;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
+        } | {
+            echo?: never;
+            flush?: never;
+            info?: never;
+            init_chain?: never;
+            query?: never;
+            check_tx?: never;
+            commit?: never;
+            list_snapshots?: never;
+            offer_snapshot?: never;
+            load_snapshot_chunk?: never;
+            apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: RequestExtendVote;
+            verify_vote_extension?: never;
+            finalize_block?: never;
+        } | {
+            echo?: never;
+            flush?: never;
+            info?: never;
+            init_chain?: never;
+            query?: never;
+            check_tx?: never;
+            commit?: never;
+            list_snapshots?: never;
+            offer_snapshot?: never;
+            load_snapshot_chunk?: never;
+            apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: RequestVerifyVoteExtension;
+            finalize_block?: never;
+        } | {
+            echo?: never;
+            flush?: never;
+            info?: never;
+            init_chain?: never;
+            query?: never;
+            check_tx?: never;
+            commit?: never;
+            list_snapshots?: never;
+            offer_snapshot?: never;
+            load_snapshot_chunk?: never;
+            apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: RequestFinalizeBlock;
         })))) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -276,26 +308,14 @@ export namespace tendermint.abci {
                 if ("info" in data && data.info != undefined) {
                     this.info = data.info;
                 }
-                if ("set_option" in data && data.set_option != undefined) {
-                    this.set_option = data.set_option;
-                }
                 if ("init_chain" in data && data.init_chain != undefined) {
                     this.init_chain = data.init_chain;
                 }
                 if ("query" in data && data.query != undefined) {
                     this.query = data.query;
                 }
-                if ("begin_block" in data && data.begin_block != undefined) {
-                    this.begin_block = data.begin_block;
-                }
                 if ("check_tx" in data && data.check_tx != undefined) {
                     this.check_tx = data.check_tx;
-                }
-                if ("deliver_tx" in data && data.deliver_tx != undefined) {
-                    this.deliver_tx = data.deliver_tx;
-                }
-                if ("end_block" in data && data.end_block != undefined) {
-                    this.end_block = data.end_block;
                 }
                 if ("commit" in data && data.commit != undefined) {
                     this.commit = data.commit;
@@ -311,6 +331,21 @@ export namespace tendermint.abci {
                 }
                 if ("apply_snapshot_chunk" in data && data.apply_snapshot_chunk != undefined) {
                     this.apply_snapshot_chunk = data.apply_snapshot_chunk;
+                }
+                if ("prepare_proposal" in data && data.prepare_proposal != undefined) {
+                    this.prepare_proposal = data.prepare_proposal;
+                }
+                if ("process_proposal" in data && data.process_proposal != undefined) {
+                    this.process_proposal = data.process_proposal;
+                }
+                if ("extend_vote" in data && data.extend_vote != undefined) {
+                    this.extend_vote = data.extend_vote;
+                }
+                if ("verify_vote_extension" in data && data.verify_vote_extension != undefined) {
+                    this.verify_vote_extension = data.verify_vote_extension;
+                }
+                if ("finalize_block" in data && data.finalize_block != undefined) {
+                    this.finalize_block = data.finalize_block;
                 }
             }
         }
@@ -341,15 +376,6 @@ export namespace tendermint.abci {
         get has_info() {
             return pb_1.Message.getField(this, 3) != null;
         }
-        get set_option() {
-            return pb_1.Message.getWrapperField(this, RequestSetOption, 4) as RequestSetOption;
-        }
-        set set_option(value: RequestSetOption) {
-            pb_1.Message.setOneofWrapperField(this, 4, this.#one_of_decls[0], value);
-        }
-        get has_set_option() {
-            return pb_1.Message.getField(this, 4) != null;
-        }
         get init_chain() {
             return pb_1.Message.getWrapperField(this, RequestInitChain, 5) as RequestInitChain;
         }
@@ -368,15 +394,6 @@ export namespace tendermint.abci {
         get has_query() {
             return pb_1.Message.getField(this, 6) != null;
         }
-        get begin_block() {
-            return pb_1.Message.getWrapperField(this, RequestBeginBlock, 7) as RequestBeginBlock;
-        }
-        set begin_block(value: RequestBeginBlock) {
-            pb_1.Message.setOneofWrapperField(this, 7, this.#one_of_decls[0], value);
-        }
-        get has_begin_block() {
-            return pb_1.Message.getField(this, 7) != null;
-        }
         get check_tx() {
             return pb_1.Message.getWrapperField(this, RequestCheckTx, 8) as RequestCheckTx;
         }
@@ -385,24 +402,6 @@ export namespace tendermint.abci {
         }
         get has_check_tx() {
             return pb_1.Message.getField(this, 8) != null;
-        }
-        get deliver_tx() {
-            return pb_1.Message.getWrapperField(this, RequestDeliverTx, 9) as RequestDeliverTx;
-        }
-        set deliver_tx(value: RequestDeliverTx) {
-            pb_1.Message.setOneofWrapperField(this, 9, this.#one_of_decls[0], value);
-        }
-        get has_deliver_tx() {
-            return pb_1.Message.getField(this, 9) != null;
-        }
-        get end_block() {
-            return pb_1.Message.getWrapperField(this, RequestEndBlock, 10) as RequestEndBlock;
-        }
-        set end_block(value: RequestEndBlock) {
-            pb_1.Message.setOneofWrapperField(this, 10, this.#one_of_decls[0], value);
-        }
-        get has_end_block() {
-            return pb_1.Message.getField(this, 10) != null;
         }
         get commit() {
             return pb_1.Message.getWrapperField(this, RequestCommit, 11) as RequestCommit;
@@ -449,45 +448,92 @@ export namespace tendermint.abci {
         get has_apply_snapshot_chunk() {
             return pb_1.Message.getField(this, 15) != null;
         }
+        get prepare_proposal() {
+            return pb_1.Message.getWrapperField(this, RequestPrepareProposal, 16) as RequestPrepareProposal;
+        }
+        set prepare_proposal(value: RequestPrepareProposal) {
+            pb_1.Message.setOneofWrapperField(this, 16, this.#one_of_decls[0], value);
+        }
+        get has_prepare_proposal() {
+            return pb_1.Message.getField(this, 16) != null;
+        }
+        get process_proposal() {
+            return pb_1.Message.getWrapperField(this, RequestProcessProposal, 17) as RequestProcessProposal;
+        }
+        set process_proposal(value: RequestProcessProposal) {
+            pb_1.Message.setOneofWrapperField(this, 17, this.#one_of_decls[0], value);
+        }
+        get has_process_proposal() {
+            return pb_1.Message.getField(this, 17) != null;
+        }
+        get extend_vote() {
+            return pb_1.Message.getWrapperField(this, RequestExtendVote, 18) as RequestExtendVote;
+        }
+        set extend_vote(value: RequestExtendVote) {
+            pb_1.Message.setOneofWrapperField(this, 18, this.#one_of_decls[0], value);
+        }
+        get has_extend_vote() {
+            return pb_1.Message.getField(this, 18) != null;
+        }
+        get verify_vote_extension() {
+            return pb_1.Message.getWrapperField(this, RequestVerifyVoteExtension, 19) as RequestVerifyVoteExtension;
+        }
+        set verify_vote_extension(value: RequestVerifyVoteExtension) {
+            pb_1.Message.setOneofWrapperField(this, 19, this.#one_of_decls[0], value);
+        }
+        get has_verify_vote_extension() {
+            return pb_1.Message.getField(this, 19) != null;
+        }
+        get finalize_block() {
+            return pb_1.Message.getWrapperField(this, RequestFinalizeBlock, 20) as RequestFinalizeBlock;
+        }
+        set finalize_block(value: RequestFinalizeBlock) {
+            pb_1.Message.setOneofWrapperField(this, 20, this.#one_of_decls[0], value);
+        }
+        get has_finalize_block() {
+            return pb_1.Message.getField(this, 20) != null;
+        }
         get value() {
             const cases: {
-                [index: number]: "none" | "echo" | "flush" | "info" | "set_option" | "init_chain" | "query" | "begin_block" | "check_tx" | "deliver_tx" | "end_block" | "commit" | "list_snapshots" | "offer_snapshot" | "load_snapshot_chunk" | "apply_snapshot_chunk";
+                [index: number]: "none" | "echo" | "flush" | "info" | "init_chain" | "query" | "check_tx" | "commit" | "list_snapshots" | "offer_snapshot" | "load_snapshot_chunk" | "apply_snapshot_chunk" | "prepare_proposal" | "process_proposal" | "extend_vote" | "verify_vote_extension" | "finalize_block";
             } = {
                 0: "none",
                 1: "echo",
                 2: "flush",
                 3: "info",
-                4: "set_option",
                 5: "init_chain",
                 6: "query",
-                7: "begin_block",
                 8: "check_tx",
-                9: "deliver_tx",
-                10: "end_block",
                 11: "commit",
                 12: "list_snapshots",
                 13: "offer_snapshot",
                 14: "load_snapshot_chunk",
-                15: "apply_snapshot_chunk"
+                15: "apply_snapshot_chunk",
+                16: "prepare_proposal",
+                17: "process_proposal",
+                18: "extend_vote",
+                19: "verify_vote_extension",
+                20: "finalize_block"
             };
-            return cases[pb_1.Message.computeOneofCase(this, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])];
+            return cases[pb_1.Message.computeOneofCase(this, [1, 2, 3, 5, 6, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20])];
         }
         static fromObject(data: {
             echo?: ReturnType<typeof RequestEcho.prototype.toObject>;
             flush?: ReturnType<typeof RequestFlush.prototype.toObject>;
             info?: ReturnType<typeof RequestInfo.prototype.toObject>;
-            set_option?: ReturnType<typeof RequestSetOption.prototype.toObject>;
             init_chain?: ReturnType<typeof RequestInitChain.prototype.toObject>;
             query?: ReturnType<typeof RequestQuery.prototype.toObject>;
-            begin_block?: ReturnType<typeof RequestBeginBlock.prototype.toObject>;
             check_tx?: ReturnType<typeof RequestCheckTx.prototype.toObject>;
-            deliver_tx?: ReturnType<typeof RequestDeliverTx.prototype.toObject>;
-            end_block?: ReturnType<typeof RequestEndBlock.prototype.toObject>;
             commit?: ReturnType<typeof RequestCommit.prototype.toObject>;
             list_snapshots?: ReturnType<typeof RequestListSnapshots.prototype.toObject>;
             offer_snapshot?: ReturnType<typeof RequestOfferSnapshot.prototype.toObject>;
             load_snapshot_chunk?: ReturnType<typeof RequestLoadSnapshotChunk.prototype.toObject>;
             apply_snapshot_chunk?: ReturnType<typeof RequestApplySnapshotChunk.prototype.toObject>;
+            prepare_proposal?: ReturnType<typeof RequestPrepareProposal.prototype.toObject>;
+            process_proposal?: ReturnType<typeof RequestProcessProposal.prototype.toObject>;
+            extend_vote?: ReturnType<typeof RequestExtendVote.prototype.toObject>;
+            verify_vote_extension?: ReturnType<typeof RequestVerifyVoteExtension.prototype.toObject>;
+            finalize_block?: ReturnType<typeof RequestFinalizeBlock.prototype.toObject>;
         }): Request {
             const message = new Request({});
             if (data.echo != null) {
@@ -499,26 +545,14 @@ export namespace tendermint.abci {
             if (data.info != null) {
                 message.info = RequestInfo.fromObject(data.info);
             }
-            if (data.set_option != null) {
-                message.set_option = RequestSetOption.fromObject(data.set_option);
-            }
             if (data.init_chain != null) {
                 message.init_chain = RequestInitChain.fromObject(data.init_chain);
             }
             if (data.query != null) {
                 message.query = RequestQuery.fromObject(data.query);
             }
-            if (data.begin_block != null) {
-                message.begin_block = RequestBeginBlock.fromObject(data.begin_block);
-            }
             if (data.check_tx != null) {
                 message.check_tx = RequestCheckTx.fromObject(data.check_tx);
-            }
-            if (data.deliver_tx != null) {
-                message.deliver_tx = RequestDeliverTx.fromObject(data.deliver_tx);
-            }
-            if (data.end_block != null) {
-                message.end_block = RequestEndBlock.fromObject(data.end_block);
             }
             if (data.commit != null) {
                 message.commit = RequestCommit.fromObject(data.commit);
@@ -535,6 +569,21 @@ export namespace tendermint.abci {
             if (data.apply_snapshot_chunk != null) {
                 message.apply_snapshot_chunk = RequestApplySnapshotChunk.fromObject(data.apply_snapshot_chunk);
             }
+            if (data.prepare_proposal != null) {
+                message.prepare_proposal = RequestPrepareProposal.fromObject(data.prepare_proposal);
+            }
+            if (data.process_proposal != null) {
+                message.process_proposal = RequestProcessProposal.fromObject(data.process_proposal);
+            }
+            if (data.extend_vote != null) {
+                message.extend_vote = RequestExtendVote.fromObject(data.extend_vote);
+            }
+            if (data.verify_vote_extension != null) {
+                message.verify_vote_extension = RequestVerifyVoteExtension.fromObject(data.verify_vote_extension);
+            }
+            if (data.finalize_block != null) {
+                message.finalize_block = RequestFinalizeBlock.fromObject(data.finalize_block);
+            }
             return message;
         }
         toObject() {
@@ -542,18 +591,19 @@ export namespace tendermint.abci {
                 echo?: ReturnType<typeof RequestEcho.prototype.toObject>;
                 flush?: ReturnType<typeof RequestFlush.prototype.toObject>;
                 info?: ReturnType<typeof RequestInfo.prototype.toObject>;
-                set_option?: ReturnType<typeof RequestSetOption.prototype.toObject>;
                 init_chain?: ReturnType<typeof RequestInitChain.prototype.toObject>;
                 query?: ReturnType<typeof RequestQuery.prototype.toObject>;
-                begin_block?: ReturnType<typeof RequestBeginBlock.prototype.toObject>;
                 check_tx?: ReturnType<typeof RequestCheckTx.prototype.toObject>;
-                deliver_tx?: ReturnType<typeof RequestDeliverTx.prototype.toObject>;
-                end_block?: ReturnType<typeof RequestEndBlock.prototype.toObject>;
                 commit?: ReturnType<typeof RequestCommit.prototype.toObject>;
                 list_snapshots?: ReturnType<typeof RequestListSnapshots.prototype.toObject>;
                 offer_snapshot?: ReturnType<typeof RequestOfferSnapshot.prototype.toObject>;
                 load_snapshot_chunk?: ReturnType<typeof RequestLoadSnapshotChunk.prototype.toObject>;
                 apply_snapshot_chunk?: ReturnType<typeof RequestApplySnapshotChunk.prototype.toObject>;
+                prepare_proposal?: ReturnType<typeof RequestPrepareProposal.prototype.toObject>;
+                process_proposal?: ReturnType<typeof RequestProcessProposal.prototype.toObject>;
+                extend_vote?: ReturnType<typeof RequestExtendVote.prototype.toObject>;
+                verify_vote_extension?: ReturnType<typeof RequestVerifyVoteExtension.prototype.toObject>;
+                finalize_block?: ReturnType<typeof RequestFinalizeBlock.prototype.toObject>;
             } = {};
             if (this.echo != null) {
                 data.echo = this.echo.toObject();
@@ -564,26 +614,14 @@ export namespace tendermint.abci {
             if (this.info != null) {
                 data.info = this.info.toObject();
             }
-            if (this.set_option != null) {
-                data.set_option = this.set_option.toObject();
-            }
             if (this.init_chain != null) {
                 data.init_chain = this.init_chain.toObject();
             }
             if (this.query != null) {
                 data.query = this.query.toObject();
             }
-            if (this.begin_block != null) {
-                data.begin_block = this.begin_block.toObject();
-            }
             if (this.check_tx != null) {
                 data.check_tx = this.check_tx.toObject();
-            }
-            if (this.deliver_tx != null) {
-                data.deliver_tx = this.deliver_tx.toObject();
-            }
-            if (this.end_block != null) {
-                data.end_block = this.end_block.toObject();
             }
             if (this.commit != null) {
                 data.commit = this.commit.toObject();
@@ -600,6 +638,21 @@ export namespace tendermint.abci {
             if (this.apply_snapshot_chunk != null) {
                 data.apply_snapshot_chunk = this.apply_snapshot_chunk.toObject();
             }
+            if (this.prepare_proposal != null) {
+                data.prepare_proposal = this.prepare_proposal.toObject();
+            }
+            if (this.process_proposal != null) {
+                data.process_proposal = this.process_proposal.toObject();
+            }
+            if (this.extend_vote != null) {
+                data.extend_vote = this.extend_vote.toObject();
+            }
+            if (this.verify_vote_extension != null) {
+                data.verify_vote_extension = this.verify_vote_extension.toObject();
+            }
+            if (this.finalize_block != null) {
+                data.finalize_block = this.finalize_block.toObject();
+            }
             return data;
         }
         serialize(): Uint8Array;
@@ -612,20 +665,12 @@ export namespace tendermint.abci {
                 writer.writeMessage(2, this.flush, () => this.flush.serialize(writer));
             if (this.has_info)
                 writer.writeMessage(3, this.info, () => this.info.serialize(writer));
-            if (this.has_set_option)
-                writer.writeMessage(4, this.set_option, () => this.set_option.serialize(writer));
             if (this.has_init_chain)
                 writer.writeMessage(5, this.init_chain, () => this.init_chain.serialize(writer));
             if (this.has_query)
                 writer.writeMessage(6, this.query, () => this.query.serialize(writer));
-            if (this.has_begin_block)
-                writer.writeMessage(7, this.begin_block, () => this.begin_block.serialize(writer));
             if (this.has_check_tx)
                 writer.writeMessage(8, this.check_tx, () => this.check_tx.serialize(writer));
-            if (this.has_deliver_tx)
-                writer.writeMessage(9, this.deliver_tx, () => this.deliver_tx.serialize(writer));
-            if (this.has_end_block)
-                writer.writeMessage(10, this.end_block, () => this.end_block.serialize(writer));
             if (this.has_commit)
                 writer.writeMessage(11, this.commit, () => this.commit.serialize(writer));
             if (this.has_list_snapshots)
@@ -636,6 +681,16 @@ export namespace tendermint.abci {
                 writer.writeMessage(14, this.load_snapshot_chunk, () => this.load_snapshot_chunk.serialize(writer));
             if (this.has_apply_snapshot_chunk)
                 writer.writeMessage(15, this.apply_snapshot_chunk, () => this.apply_snapshot_chunk.serialize(writer));
+            if (this.has_prepare_proposal)
+                writer.writeMessage(16, this.prepare_proposal, () => this.prepare_proposal.serialize(writer));
+            if (this.has_process_proposal)
+                writer.writeMessage(17, this.process_proposal, () => this.process_proposal.serialize(writer));
+            if (this.has_extend_vote)
+                writer.writeMessage(18, this.extend_vote, () => this.extend_vote.serialize(writer));
+            if (this.has_verify_vote_extension)
+                writer.writeMessage(19, this.verify_vote_extension, () => this.verify_vote_extension.serialize(writer));
+            if (this.has_finalize_block)
+                writer.writeMessage(20, this.finalize_block, () => this.finalize_block.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -654,26 +709,14 @@ export namespace tendermint.abci {
                     case 3:
                         reader.readMessage(message.info, () => message.info = RequestInfo.deserialize(reader));
                         break;
-                    case 4:
-                        reader.readMessage(message.set_option, () => message.set_option = RequestSetOption.deserialize(reader));
-                        break;
                     case 5:
                         reader.readMessage(message.init_chain, () => message.init_chain = RequestInitChain.deserialize(reader));
                         break;
                     case 6:
                         reader.readMessage(message.query, () => message.query = RequestQuery.deserialize(reader));
                         break;
-                    case 7:
-                        reader.readMessage(message.begin_block, () => message.begin_block = RequestBeginBlock.deserialize(reader));
-                        break;
                     case 8:
                         reader.readMessage(message.check_tx, () => message.check_tx = RequestCheckTx.deserialize(reader));
-                        break;
-                    case 9:
-                        reader.readMessage(message.deliver_tx, () => message.deliver_tx = RequestDeliverTx.deserialize(reader));
-                        break;
-                    case 10:
-                        reader.readMessage(message.end_block, () => message.end_block = RequestEndBlock.deserialize(reader));
                         break;
                     case 11:
                         reader.readMessage(message.commit, () => message.commit = RequestCommit.deserialize(reader));
@@ -689,6 +732,21 @@ export namespace tendermint.abci {
                         break;
                     case 15:
                         reader.readMessage(message.apply_snapshot_chunk, () => message.apply_snapshot_chunk = RequestApplySnapshotChunk.deserialize(reader));
+                        break;
+                    case 16:
+                        reader.readMessage(message.prepare_proposal, () => message.prepare_proposal = RequestPrepareProposal.deserialize(reader));
+                        break;
+                    case 17:
+                        reader.readMessage(message.process_proposal, () => message.process_proposal = RequestProcessProposal.deserialize(reader));
+                        break;
+                    case 18:
+                        reader.readMessage(message.extend_vote, () => message.extend_vote = RequestExtendVote.deserialize(reader));
+                        break;
+                    case 19:
+                        reader.readMessage(message.verify_vote_extension, () => message.verify_vote_extension = RequestVerifyVoteExtension.deserialize(reader));
+                        break;
+                    case 20:
+                        reader.readMessage(message.finalize_block, () => message.finalize_block = RequestFinalizeBlock.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -815,6 +873,7 @@ export namespace tendermint.abci {
             version?: string;
             block_version?: number;
             p2p_version?: number;
+            abci_version?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -827,6 +886,9 @@ export namespace tendermint.abci {
                 }
                 if ("p2p_version" in data && data.p2p_version != undefined) {
                     this.p2p_version = data.p2p_version;
+                }
+                if ("abci_version" in data && data.abci_version != undefined) {
+                    this.abci_version = data.abci_version;
                 }
             }
         }
@@ -848,10 +910,17 @@ export namespace tendermint.abci {
         set p2p_version(value: number) {
             pb_1.Message.setField(this, 3, value);
         }
+        get abci_version() {
+            return pb_1.Message.getFieldWithDefault(this, 4, "") as string;
+        }
+        set abci_version(value: string) {
+            pb_1.Message.setField(this, 4, value);
+        }
         static fromObject(data: {
             version?: string;
             block_version?: number;
             p2p_version?: number;
+            abci_version?: string;
         }): RequestInfo {
             const message = new RequestInfo({});
             if (data.version != null) {
@@ -863,6 +932,9 @@ export namespace tendermint.abci {
             if (data.p2p_version != null) {
                 message.p2p_version = data.p2p_version;
             }
+            if (data.abci_version != null) {
+                message.abci_version = data.abci_version;
+            }
             return message;
         }
         toObject() {
@@ -870,6 +942,7 @@ export namespace tendermint.abci {
                 version?: string;
                 block_version?: number;
                 p2p_version?: number;
+                abci_version?: string;
             } = {};
             if (this.version != null) {
                 data.version = this.version;
@@ -879,6 +952,9 @@ export namespace tendermint.abci {
             }
             if (this.p2p_version != null) {
                 data.p2p_version = this.p2p_version;
+            }
+            if (this.abci_version != null) {
+                data.abci_version = this.abci_version;
             }
             return data;
         }
@@ -892,6 +968,8 @@ export namespace tendermint.abci {
                 writer.writeUint64(2, this.block_version);
             if (this.p2p_version != 0)
                 writer.writeUint64(3, this.p2p_version);
+            if (this.abci_version.length)
+                writer.writeString(4, this.abci_version);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -910,6 +988,9 @@ export namespace tendermint.abci {
                     case 3:
                         message.p2p_version = reader.readUint64();
                         break;
+                    case 4:
+                        message.abci_version = reader.readString();
+                        break;
                     default: reader.skipField();
                 }
             }
@@ -922,102 +1003,12 @@ export namespace tendermint.abci {
             return RequestInfo.deserialize(bytes);
         }
     }
-    export class RequestSetOption extends pb_1.Message {
-        #one_of_decls: number[][] = [];
-        constructor(data?: any[] | {
-            key?: string;
-            value?: string;
-        }) {
-            super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
-            if (!Array.isArray(data) && typeof data == "object") {
-                if ("key" in data && data.key != undefined) {
-                    this.key = data.key;
-                }
-                if ("value" in data && data.value != undefined) {
-                    this.value = data.value;
-                }
-            }
-        }
-        get key() {
-            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
-        }
-        set key(value: string) {
-            pb_1.Message.setField(this, 1, value);
-        }
-        get value() {
-            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
-        }
-        set value(value: string) {
-            pb_1.Message.setField(this, 2, value);
-        }
-        static fromObject(data: {
-            key?: string;
-            value?: string;
-        }): RequestSetOption {
-            const message = new RequestSetOption({});
-            if (data.key != null) {
-                message.key = data.key;
-            }
-            if (data.value != null) {
-                message.value = data.value;
-            }
-            return message;
-        }
-        toObject() {
-            const data: {
-                key?: string;
-                value?: string;
-            } = {};
-            if (this.key != null) {
-                data.key = this.key;
-            }
-            if (this.value != null) {
-                data.value = this.value;
-            }
-            return data;
-        }
-        serialize(): Uint8Array;
-        serialize(w: pb_1.BinaryWriter): void;
-        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
-            const writer = w || new pb_1.BinaryWriter();
-            if (this.key.length)
-                writer.writeString(1, this.key);
-            if (this.value.length)
-                writer.writeString(2, this.value);
-            if (!w)
-                return writer.getResultBuffer();
-        }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RequestSetOption {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RequestSetOption();
-            while (reader.nextField()) {
-                if (reader.isEndGroup())
-                    break;
-                switch (reader.getFieldNumber()) {
-                    case 1:
-                        message.key = reader.readString();
-                        break;
-                    case 2:
-                        message.value = reader.readString();
-                        break;
-                    default: reader.skipField();
-                }
-            }
-            return message;
-        }
-        serializeBinary(): Uint8Array {
-            return this.serialize();
-        }
-        static deserializeBinary(bytes: Uint8Array): RequestSetOption {
-            return RequestSetOption.deserialize(bytes);
-        }
-    }
     export class RequestInitChain extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             time?: dependency_5.google.protobuf.Timestamp;
             chain_id?: string;
-            consensus_params?: ConsensusParams;
+            consensus_params?: dependency_3.tendermint.types.ConsensusParams;
             validators?: ValidatorUpdate[];
             app_state_bytes?: Uint8Array;
             initial_height?: number;
@@ -1061,9 +1052,9 @@ export namespace tendermint.abci {
             pb_1.Message.setField(this, 2, value);
         }
         get consensus_params() {
-            return pb_1.Message.getWrapperField(this, ConsensusParams, 3) as ConsensusParams;
+            return pb_1.Message.getWrapperField(this, dependency_3.tendermint.types.ConsensusParams, 3) as dependency_3.tendermint.types.ConsensusParams;
         }
-        set consensus_params(value: ConsensusParams) {
+        set consensus_params(value: dependency_3.tendermint.types.ConsensusParams) {
             pb_1.Message.setWrapperField(this, 3, value);
         }
         get has_consensus_params() {
@@ -1090,7 +1081,7 @@ export namespace tendermint.abci {
         static fromObject(data: {
             time?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
             chain_id?: string;
-            consensus_params?: ReturnType<typeof ConsensusParams.prototype.toObject>;
+            consensus_params?: ReturnType<typeof dependency_3.tendermint.types.ConsensusParams.prototype.toObject>;
             validators?: ReturnType<typeof ValidatorUpdate.prototype.toObject>[];
             app_state_bytes?: Uint8Array;
             initial_height?: number;
@@ -1103,7 +1094,7 @@ export namespace tendermint.abci {
                 message.chain_id = data.chain_id;
             }
             if (data.consensus_params != null) {
-                message.consensus_params = ConsensusParams.fromObject(data.consensus_params);
+                message.consensus_params = dependency_3.tendermint.types.ConsensusParams.fromObject(data.consensus_params);
             }
             if (data.validators != null) {
                 message.validators = data.validators.map(item => ValidatorUpdate.fromObject(item));
@@ -1120,7 +1111,7 @@ export namespace tendermint.abci {
             const data: {
                 time?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
                 chain_id?: string;
-                consensus_params?: ReturnType<typeof ConsensusParams.prototype.toObject>;
+                consensus_params?: ReturnType<typeof dependency_3.tendermint.types.ConsensusParams.prototype.toObject>;
                 validators?: ReturnType<typeof ValidatorUpdate.prototype.toObject>[];
                 app_state_bytes?: Uint8Array;
                 initial_height?: number;
@@ -1177,7 +1168,7 @@ export namespace tendermint.abci {
                         message.chain_id = reader.readString();
                         break;
                     case 3:
-                        reader.readMessage(message.consensus_params, () => message.consensus_params = ConsensusParams.deserialize(reader));
+                        reader.readMessage(message.consensus_params, () => message.consensus_params = dependency_3.tendermint.types.ConsensusParams.deserialize(reader));
                         break;
                     case 4:
                         reader.readMessage(message.validators, () => pb_1.Message.addToRepeatedWrapperField(message, 4, ValidatorUpdate.deserialize(reader), ValidatorUpdate));
@@ -1336,148 +1327,6 @@ export namespace tendermint.abci {
             return RequestQuery.deserialize(bytes);
         }
     }
-    export class RequestBeginBlock extends pb_1.Message {
-        #one_of_decls: number[][] = [];
-        constructor(data?: any[] | {
-            hash?: Uint8Array;
-            header?: dependency_2.tendermint.types.Header;
-            last_commit_info?: LastCommitInfo;
-            byzantine_validators?: Evidence[];
-        }) {
-            super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [4], this.#one_of_decls);
-            if (!Array.isArray(data) && typeof data == "object") {
-                if ("hash" in data && data.hash != undefined) {
-                    this.hash = data.hash;
-                }
-                if ("header" in data && data.header != undefined) {
-                    this.header = data.header;
-                }
-                if ("last_commit_info" in data && data.last_commit_info != undefined) {
-                    this.last_commit_info = data.last_commit_info;
-                }
-                if ("byzantine_validators" in data && data.byzantine_validators != undefined) {
-                    this.byzantine_validators = data.byzantine_validators;
-                }
-            }
-        }
-        get hash() {
-            return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
-        }
-        set hash(value: Uint8Array) {
-            pb_1.Message.setField(this, 1, value);
-        }
-        get header() {
-            return pb_1.Message.getWrapperField(this, dependency_2.tendermint.types.Header, 2) as dependency_2.tendermint.types.Header;
-        }
-        set header(value: dependency_2.tendermint.types.Header) {
-            pb_1.Message.setWrapperField(this, 2, value);
-        }
-        get has_header() {
-            return pb_1.Message.getField(this, 2) != null;
-        }
-        get last_commit_info() {
-            return pb_1.Message.getWrapperField(this, LastCommitInfo, 3) as LastCommitInfo;
-        }
-        set last_commit_info(value: LastCommitInfo) {
-            pb_1.Message.setWrapperField(this, 3, value);
-        }
-        get has_last_commit_info() {
-            return pb_1.Message.getField(this, 3) != null;
-        }
-        get byzantine_validators() {
-            return pb_1.Message.getRepeatedWrapperField(this, Evidence, 4) as Evidence[];
-        }
-        set byzantine_validators(value: Evidence[]) {
-            pb_1.Message.setRepeatedWrapperField(this, 4, value);
-        }
-        static fromObject(data: {
-            hash?: Uint8Array;
-            header?: ReturnType<typeof dependency_2.tendermint.types.Header.prototype.toObject>;
-            last_commit_info?: ReturnType<typeof LastCommitInfo.prototype.toObject>;
-            byzantine_validators?: ReturnType<typeof Evidence.prototype.toObject>[];
-        }): RequestBeginBlock {
-            const message = new RequestBeginBlock({});
-            if (data.hash != null) {
-                message.hash = data.hash;
-            }
-            if (data.header != null) {
-                message.header = dependency_2.tendermint.types.Header.fromObject(data.header);
-            }
-            if (data.last_commit_info != null) {
-                message.last_commit_info = LastCommitInfo.fromObject(data.last_commit_info);
-            }
-            if (data.byzantine_validators != null) {
-                message.byzantine_validators = data.byzantine_validators.map(item => Evidence.fromObject(item));
-            }
-            return message;
-        }
-        toObject() {
-            const data: {
-                hash?: Uint8Array;
-                header?: ReturnType<typeof dependency_2.tendermint.types.Header.prototype.toObject>;
-                last_commit_info?: ReturnType<typeof LastCommitInfo.prototype.toObject>;
-                byzantine_validators?: ReturnType<typeof Evidence.prototype.toObject>[];
-            } = {};
-            if (this.hash != null) {
-                data.hash = this.hash;
-            }
-            if (this.header != null) {
-                data.header = this.header.toObject();
-            }
-            if (this.last_commit_info != null) {
-                data.last_commit_info = this.last_commit_info.toObject();
-            }
-            if (this.byzantine_validators != null) {
-                data.byzantine_validators = this.byzantine_validators.map((item: Evidence) => item.toObject());
-            }
-            return data;
-        }
-        serialize(): Uint8Array;
-        serialize(w: pb_1.BinaryWriter): void;
-        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
-            const writer = w || new pb_1.BinaryWriter();
-            if (this.hash.length)
-                writer.writeBytes(1, this.hash);
-            if (this.has_header)
-                writer.writeMessage(2, this.header, () => this.header.serialize(writer));
-            if (this.has_last_commit_info)
-                writer.writeMessage(3, this.last_commit_info, () => this.last_commit_info.serialize(writer));
-            if (this.byzantine_validators.length)
-                writer.writeRepeatedMessage(4, this.byzantine_validators, (item: Evidence) => item.serialize(writer));
-            if (!w)
-                return writer.getResultBuffer();
-        }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RequestBeginBlock {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RequestBeginBlock();
-            while (reader.nextField()) {
-                if (reader.isEndGroup())
-                    break;
-                switch (reader.getFieldNumber()) {
-                    case 1:
-                        message.hash = reader.readBytes();
-                        break;
-                    case 2:
-                        reader.readMessage(message.header, () => message.header = dependency_2.tendermint.types.Header.deserialize(reader));
-                        break;
-                    case 3:
-                        reader.readMessage(message.last_commit_info, () => message.last_commit_info = LastCommitInfo.deserialize(reader));
-                        break;
-                    case 4:
-                        reader.readMessage(message.byzantine_validators, () => pb_1.Message.addToRepeatedWrapperField(message, 4, Evidence.deserialize(reader), Evidence));
-                        break;
-                    default: reader.skipField();
-                }
-            }
-            return message;
-        }
-        serializeBinary(): Uint8Array {
-            return this.serialize();
-        }
-        static deserializeBinary(bytes: Uint8Array): RequestBeginBlock {
-            return RequestBeginBlock.deserialize(bytes);
-        }
-    }
     export class RequestCheckTx extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
@@ -1566,140 +1415,6 @@ export namespace tendermint.abci {
         }
         static deserializeBinary(bytes: Uint8Array): RequestCheckTx {
             return RequestCheckTx.deserialize(bytes);
-        }
-    }
-    export class RequestDeliverTx extends pb_1.Message {
-        #one_of_decls: number[][] = [];
-        constructor(data?: any[] | {
-            tx?: Uint8Array;
-        }) {
-            super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
-            if (!Array.isArray(data) && typeof data == "object") {
-                if ("tx" in data && data.tx != undefined) {
-                    this.tx = data.tx;
-                }
-            }
-        }
-        get tx() {
-            return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
-        }
-        set tx(value: Uint8Array) {
-            pb_1.Message.setField(this, 1, value);
-        }
-        static fromObject(data: {
-            tx?: Uint8Array;
-        }): RequestDeliverTx {
-            const message = new RequestDeliverTx({});
-            if (data.tx != null) {
-                message.tx = data.tx;
-            }
-            return message;
-        }
-        toObject() {
-            const data: {
-                tx?: Uint8Array;
-            } = {};
-            if (this.tx != null) {
-                data.tx = this.tx;
-            }
-            return data;
-        }
-        serialize(): Uint8Array;
-        serialize(w: pb_1.BinaryWriter): void;
-        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
-            const writer = w || new pb_1.BinaryWriter();
-            if (this.tx.length)
-                writer.writeBytes(1, this.tx);
-            if (!w)
-                return writer.getResultBuffer();
-        }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RequestDeliverTx {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RequestDeliverTx();
-            while (reader.nextField()) {
-                if (reader.isEndGroup())
-                    break;
-                switch (reader.getFieldNumber()) {
-                    case 1:
-                        message.tx = reader.readBytes();
-                        break;
-                    default: reader.skipField();
-                }
-            }
-            return message;
-        }
-        serializeBinary(): Uint8Array {
-            return this.serialize();
-        }
-        static deserializeBinary(bytes: Uint8Array): RequestDeliverTx {
-            return RequestDeliverTx.deserialize(bytes);
-        }
-    }
-    export class RequestEndBlock extends pb_1.Message {
-        #one_of_decls: number[][] = [];
-        constructor(data?: any[] | {
-            height?: number;
-        }) {
-            super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
-            if (!Array.isArray(data) && typeof data == "object") {
-                if ("height" in data && data.height != undefined) {
-                    this.height = data.height;
-                }
-            }
-        }
-        get height() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
-        }
-        set height(value: number) {
-            pb_1.Message.setField(this, 1, value);
-        }
-        static fromObject(data: {
-            height?: number;
-        }): RequestEndBlock {
-            const message = new RequestEndBlock({});
-            if (data.height != null) {
-                message.height = data.height;
-            }
-            return message;
-        }
-        toObject() {
-            const data: {
-                height?: number;
-            } = {};
-            if (this.height != null) {
-                data.height = this.height;
-            }
-            return data;
-        }
-        serialize(): Uint8Array;
-        serialize(w: pb_1.BinaryWriter): void;
-        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
-            const writer = w || new pb_1.BinaryWriter();
-            if (this.height != 0)
-                writer.writeInt64(1, this.height);
-            if (!w)
-                return writer.getResultBuffer();
-        }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RequestEndBlock {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RequestEndBlock();
-            while (reader.nextField()) {
-                if (reader.isEndGroup())
-                    break;
-                switch (reader.getFieldNumber()) {
-                    case 1:
-                        message.height = reader.readInt64();
-                        break;
-                    default: reader.skipField();
-                }
-            }
-            return message;
-        }
-        serializeBinary(): Uint8Array {
-            return this.serialize();
-        }
-        static deserializeBinary(bytes: Uint8Array): RequestEndBlock {
-            return RequestEndBlock.deserialize(bytes);
         }
     }
     export class RequestCommit extends pb_1.Message {
@@ -2101,280 +1816,1386 @@ export namespace tendermint.abci {
             return RequestApplySnapshotChunk.deserialize(bytes);
         }
     }
+    export class RequestPrepareProposal extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            max_tx_bytes?: number;
+            txs?: Uint8Array[];
+            local_last_commit?: ExtendedCommitInfo;
+            misbehavior?: Misbehavior[];
+            height?: number;
+            time?: dependency_5.google.protobuf.Timestamp;
+            next_validators_hash?: Uint8Array;
+            proposer_address?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [2, 4], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("max_tx_bytes" in data && data.max_tx_bytes != undefined) {
+                    this.max_tx_bytes = data.max_tx_bytes;
+                }
+                if ("txs" in data && data.txs != undefined) {
+                    this.txs = data.txs;
+                }
+                if ("local_last_commit" in data && data.local_last_commit != undefined) {
+                    this.local_last_commit = data.local_last_commit;
+                }
+                if ("misbehavior" in data && data.misbehavior != undefined) {
+                    this.misbehavior = data.misbehavior;
+                }
+                if ("height" in data && data.height != undefined) {
+                    this.height = data.height;
+                }
+                if ("time" in data && data.time != undefined) {
+                    this.time = data.time;
+                }
+                if ("next_validators_hash" in data && data.next_validators_hash != undefined) {
+                    this.next_validators_hash = data.next_validators_hash;
+                }
+                if ("proposer_address" in data && data.proposer_address != undefined) {
+                    this.proposer_address = data.proposer_address;
+                }
+            }
+        }
+        get max_tx_bytes() {
+            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+        }
+        set max_tx_bytes(value: number) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get txs() {
+            return pb_1.Message.getFieldWithDefault(this, 2, []) as Uint8Array[];
+        }
+        set txs(value: Uint8Array[]) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get local_last_commit() {
+            return pb_1.Message.getWrapperField(this, ExtendedCommitInfo, 3) as ExtendedCommitInfo;
+        }
+        set local_last_commit(value: ExtendedCommitInfo) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        get has_local_last_commit() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
+        get misbehavior() {
+            return pb_1.Message.getRepeatedWrapperField(this, Misbehavior, 4) as Misbehavior[];
+        }
+        set misbehavior(value: Misbehavior[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 4, value);
+        }
+        get height() {
+            return pb_1.Message.getFieldWithDefault(this, 5, 0) as number;
+        }
+        set height(value: number) {
+            pb_1.Message.setField(this, 5, value);
+        }
+        get time() {
+            return pb_1.Message.getWrapperField(this, dependency_5.google.protobuf.Timestamp, 6) as dependency_5.google.protobuf.Timestamp;
+        }
+        set time(value: dependency_5.google.protobuf.Timestamp) {
+            pb_1.Message.setWrapperField(this, 6, value);
+        }
+        get has_time() {
+            return pb_1.Message.getField(this, 6) != null;
+        }
+        get next_validators_hash() {
+            return pb_1.Message.getFieldWithDefault(this, 7, new Uint8Array(0)) as Uint8Array;
+        }
+        set next_validators_hash(value: Uint8Array) {
+            pb_1.Message.setField(this, 7, value);
+        }
+        get proposer_address() {
+            return pb_1.Message.getFieldWithDefault(this, 8, new Uint8Array(0)) as Uint8Array;
+        }
+        set proposer_address(value: Uint8Array) {
+            pb_1.Message.setField(this, 8, value);
+        }
+        static fromObject(data: {
+            max_tx_bytes?: number;
+            txs?: Uint8Array[];
+            local_last_commit?: ReturnType<typeof ExtendedCommitInfo.prototype.toObject>;
+            misbehavior?: ReturnType<typeof Misbehavior.prototype.toObject>[];
+            height?: number;
+            time?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
+            next_validators_hash?: Uint8Array;
+            proposer_address?: Uint8Array;
+        }): RequestPrepareProposal {
+            const message = new RequestPrepareProposal({});
+            if (data.max_tx_bytes != null) {
+                message.max_tx_bytes = data.max_tx_bytes;
+            }
+            if (data.txs != null) {
+                message.txs = data.txs;
+            }
+            if (data.local_last_commit != null) {
+                message.local_last_commit = ExtendedCommitInfo.fromObject(data.local_last_commit);
+            }
+            if (data.misbehavior != null) {
+                message.misbehavior = data.misbehavior.map(item => Misbehavior.fromObject(item));
+            }
+            if (data.height != null) {
+                message.height = data.height;
+            }
+            if (data.time != null) {
+                message.time = dependency_5.google.protobuf.Timestamp.fromObject(data.time);
+            }
+            if (data.next_validators_hash != null) {
+                message.next_validators_hash = data.next_validators_hash;
+            }
+            if (data.proposer_address != null) {
+                message.proposer_address = data.proposer_address;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                max_tx_bytes?: number;
+                txs?: Uint8Array[];
+                local_last_commit?: ReturnType<typeof ExtendedCommitInfo.prototype.toObject>;
+                misbehavior?: ReturnType<typeof Misbehavior.prototype.toObject>[];
+                height?: number;
+                time?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
+                next_validators_hash?: Uint8Array;
+                proposer_address?: Uint8Array;
+            } = {};
+            if (this.max_tx_bytes != null) {
+                data.max_tx_bytes = this.max_tx_bytes;
+            }
+            if (this.txs != null) {
+                data.txs = this.txs;
+            }
+            if (this.local_last_commit != null) {
+                data.local_last_commit = this.local_last_commit.toObject();
+            }
+            if (this.misbehavior != null) {
+                data.misbehavior = this.misbehavior.map((item: Misbehavior) => item.toObject());
+            }
+            if (this.height != null) {
+                data.height = this.height;
+            }
+            if (this.time != null) {
+                data.time = this.time.toObject();
+            }
+            if (this.next_validators_hash != null) {
+                data.next_validators_hash = this.next_validators_hash;
+            }
+            if (this.proposer_address != null) {
+                data.proposer_address = this.proposer_address;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.max_tx_bytes != 0)
+                writer.writeInt64(1, this.max_tx_bytes);
+            if (this.txs.length)
+                writer.writeRepeatedBytes(2, this.txs);
+            if (this.has_local_last_commit)
+                writer.writeMessage(3, this.local_last_commit, () => this.local_last_commit.serialize(writer));
+            if (this.misbehavior.length)
+                writer.writeRepeatedMessage(4, this.misbehavior, (item: Misbehavior) => item.serialize(writer));
+            if (this.height != 0)
+                writer.writeInt64(5, this.height);
+            if (this.has_time)
+                writer.writeMessage(6, this.time, () => this.time.serialize(writer));
+            if (this.next_validators_hash.length)
+                writer.writeBytes(7, this.next_validators_hash);
+            if (this.proposer_address.length)
+                writer.writeBytes(8, this.proposer_address);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RequestPrepareProposal {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RequestPrepareProposal();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.max_tx_bytes = reader.readInt64();
+                        break;
+                    case 2:
+                        pb_1.Message.addToRepeatedField(message, 2, reader.readBytes());
+                        break;
+                    case 3:
+                        reader.readMessage(message.local_last_commit, () => message.local_last_commit = ExtendedCommitInfo.deserialize(reader));
+                        break;
+                    case 4:
+                        reader.readMessage(message.misbehavior, () => pb_1.Message.addToRepeatedWrapperField(message, 4, Misbehavior.deserialize(reader), Misbehavior));
+                        break;
+                    case 5:
+                        message.height = reader.readInt64();
+                        break;
+                    case 6:
+                        reader.readMessage(message.time, () => message.time = dependency_5.google.protobuf.Timestamp.deserialize(reader));
+                        break;
+                    case 7:
+                        message.next_validators_hash = reader.readBytes();
+                        break;
+                    case 8:
+                        message.proposer_address = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): RequestPrepareProposal {
+            return RequestPrepareProposal.deserialize(bytes);
+        }
+    }
+    export class RequestProcessProposal extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            txs?: Uint8Array[];
+            proposed_last_commit?: CommitInfo;
+            misbehavior?: Misbehavior[];
+            hash?: Uint8Array;
+            height?: number;
+            time?: dependency_5.google.protobuf.Timestamp;
+            next_validators_hash?: Uint8Array;
+            proposer_address?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1, 3], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("txs" in data && data.txs != undefined) {
+                    this.txs = data.txs;
+                }
+                if ("proposed_last_commit" in data && data.proposed_last_commit != undefined) {
+                    this.proposed_last_commit = data.proposed_last_commit;
+                }
+                if ("misbehavior" in data && data.misbehavior != undefined) {
+                    this.misbehavior = data.misbehavior;
+                }
+                if ("hash" in data && data.hash != undefined) {
+                    this.hash = data.hash;
+                }
+                if ("height" in data && data.height != undefined) {
+                    this.height = data.height;
+                }
+                if ("time" in data && data.time != undefined) {
+                    this.time = data.time;
+                }
+                if ("next_validators_hash" in data && data.next_validators_hash != undefined) {
+                    this.next_validators_hash = data.next_validators_hash;
+                }
+                if ("proposer_address" in data && data.proposer_address != undefined) {
+                    this.proposer_address = data.proposer_address;
+                }
+            }
+        }
+        get txs() {
+            return pb_1.Message.getFieldWithDefault(this, 1, []) as Uint8Array[];
+        }
+        set txs(value: Uint8Array[]) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get proposed_last_commit() {
+            return pb_1.Message.getWrapperField(this, CommitInfo, 2) as CommitInfo;
+        }
+        set proposed_last_commit(value: CommitInfo) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_proposed_last_commit() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        get misbehavior() {
+            return pb_1.Message.getRepeatedWrapperField(this, Misbehavior, 3) as Misbehavior[];
+        }
+        set misbehavior(value: Misbehavior[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 3, value);
+        }
+        get hash() {
+            return pb_1.Message.getFieldWithDefault(this, 4, new Uint8Array(0)) as Uint8Array;
+        }
+        set hash(value: Uint8Array) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        get height() {
+            return pb_1.Message.getFieldWithDefault(this, 5, 0) as number;
+        }
+        set height(value: number) {
+            pb_1.Message.setField(this, 5, value);
+        }
+        get time() {
+            return pb_1.Message.getWrapperField(this, dependency_5.google.protobuf.Timestamp, 6) as dependency_5.google.protobuf.Timestamp;
+        }
+        set time(value: dependency_5.google.protobuf.Timestamp) {
+            pb_1.Message.setWrapperField(this, 6, value);
+        }
+        get has_time() {
+            return pb_1.Message.getField(this, 6) != null;
+        }
+        get next_validators_hash() {
+            return pb_1.Message.getFieldWithDefault(this, 7, new Uint8Array(0)) as Uint8Array;
+        }
+        set next_validators_hash(value: Uint8Array) {
+            pb_1.Message.setField(this, 7, value);
+        }
+        get proposer_address() {
+            return pb_1.Message.getFieldWithDefault(this, 8, new Uint8Array(0)) as Uint8Array;
+        }
+        set proposer_address(value: Uint8Array) {
+            pb_1.Message.setField(this, 8, value);
+        }
+        static fromObject(data: {
+            txs?: Uint8Array[];
+            proposed_last_commit?: ReturnType<typeof CommitInfo.prototype.toObject>;
+            misbehavior?: ReturnType<typeof Misbehavior.prototype.toObject>[];
+            hash?: Uint8Array;
+            height?: number;
+            time?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
+            next_validators_hash?: Uint8Array;
+            proposer_address?: Uint8Array;
+        }): RequestProcessProposal {
+            const message = new RequestProcessProposal({});
+            if (data.txs != null) {
+                message.txs = data.txs;
+            }
+            if (data.proposed_last_commit != null) {
+                message.proposed_last_commit = CommitInfo.fromObject(data.proposed_last_commit);
+            }
+            if (data.misbehavior != null) {
+                message.misbehavior = data.misbehavior.map(item => Misbehavior.fromObject(item));
+            }
+            if (data.hash != null) {
+                message.hash = data.hash;
+            }
+            if (data.height != null) {
+                message.height = data.height;
+            }
+            if (data.time != null) {
+                message.time = dependency_5.google.protobuf.Timestamp.fromObject(data.time);
+            }
+            if (data.next_validators_hash != null) {
+                message.next_validators_hash = data.next_validators_hash;
+            }
+            if (data.proposer_address != null) {
+                message.proposer_address = data.proposer_address;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                txs?: Uint8Array[];
+                proposed_last_commit?: ReturnType<typeof CommitInfo.prototype.toObject>;
+                misbehavior?: ReturnType<typeof Misbehavior.prototype.toObject>[];
+                hash?: Uint8Array;
+                height?: number;
+                time?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
+                next_validators_hash?: Uint8Array;
+                proposer_address?: Uint8Array;
+            } = {};
+            if (this.txs != null) {
+                data.txs = this.txs;
+            }
+            if (this.proposed_last_commit != null) {
+                data.proposed_last_commit = this.proposed_last_commit.toObject();
+            }
+            if (this.misbehavior != null) {
+                data.misbehavior = this.misbehavior.map((item: Misbehavior) => item.toObject());
+            }
+            if (this.hash != null) {
+                data.hash = this.hash;
+            }
+            if (this.height != null) {
+                data.height = this.height;
+            }
+            if (this.time != null) {
+                data.time = this.time.toObject();
+            }
+            if (this.next_validators_hash != null) {
+                data.next_validators_hash = this.next_validators_hash;
+            }
+            if (this.proposer_address != null) {
+                data.proposer_address = this.proposer_address;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.txs.length)
+                writer.writeRepeatedBytes(1, this.txs);
+            if (this.has_proposed_last_commit)
+                writer.writeMessage(2, this.proposed_last_commit, () => this.proposed_last_commit.serialize(writer));
+            if (this.misbehavior.length)
+                writer.writeRepeatedMessage(3, this.misbehavior, (item: Misbehavior) => item.serialize(writer));
+            if (this.hash.length)
+                writer.writeBytes(4, this.hash);
+            if (this.height != 0)
+                writer.writeInt64(5, this.height);
+            if (this.has_time)
+                writer.writeMessage(6, this.time, () => this.time.serialize(writer));
+            if (this.next_validators_hash.length)
+                writer.writeBytes(7, this.next_validators_hash);
+            if (this.proposer_address.length)
+                writer.writeBytes(8, this.proposer_address);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RequestProcessProposal {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RequestProcessProposal();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        pb_1.Message.addToRepeatedField(message, 1, reader.readBytes());
+                        break;
+                    case 2:
+                        reader.readMessage(message.proposed_last_commit, () => message.proposed_last_commit = CommitInfo.deserialize(reader));
+                        break;
+                    case 3:
+                        reader.readMessage(message.misbehavior, () => pb_1.Message.addToRepeatedWrapperField(message, 3, Misbehavior.deserialize(reader), Misbehavior));
+                        break;
+                    case 4:
+                        message.hash = reader.readBytes();
+                        break;
+                    case 5:
+                        message.height = reader.readInt64();
+                        break;
+                    case 6:
+                        reader.readMessage(message.time, () => message.time = dependency_5.google.protobuf.Timestamp.deserialize(reader));
+                        break;
+                    case 7:
+                        message.next_validators_hash = reader.readBytes();
+                        break;
+                    case 8:
+                        message.proposer_address = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): RequestProcessProposal {
+            return RequestProcessProposal.deserialize(bytes);
+        }
+    }
+    export class RequestExtendVote extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            hash?: Uint8Array;
+            height?: number;
+            time?: dependency_5.google.protobuf.Timestamp;
+            txs?: Uint8Array[];
+            proposed_last_commit?: CommitInfo;
+            misbehavior?: Misbehavior[];
+            next_validators_hash?: Uint8Array;
+            proposer_address?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [4, 6], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("hash" in data && data.hash != undefined) {
+                    this.hash = data.hash;
+                }
+                if ("height" in data && data.height != undefined) {
+                    this.height = data.height;
+                }
+                if ("time" in data && data.time != undefined) {
+                    this.time = data.time;
+                }
+                if ("txs" in data && data.txs != undefined) {
+                    this.txs = data.txs;
+                }
+                if ("proposed_last_commit" in data && data.proposed_last_commit != undefined) {
+                    this.proposed_last_commit = data.proposed_last_commit;
+                }
+                if ("misbehavior" in data && data.misbehavior != undefined) {
+                    this.misbehavior = data.misbehavior;
+                }
+                if ("next_validators_hash" in data && data.next_validators_hash != undefined) {
+                    this.next_validators_hash = data.next_validators_hash;
+                }
+                if ("proposer_address" in data && data.proposer_address != undefined) {
+                    this.proposer_address = data.proposer_address;
+                }
+            }
+        }
+        get hash() {
+            return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
+        }
+        set hash(value: Uint8Array) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get height() {
+            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+        }
+        set height(value: number) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get time() {
+            return pb_1.Message.getWrapperField(this, dependency_5.google.protobuf.Timestamp, 3) as dependency_5.google.protobuf.Timestamp;
+        }
+        set time(value: dependency_5.google.protobuf.Timestamp) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        get has_time() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
+        get txs() {
+            return pb_1.Message.getFieldWithDefault(this, 4, []) as Uint8Array[];
+        }
+        set txs(value: Uint8Array[]) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        get proposed_last_commit() {
+            return pb_1.Message.getWrapperField(this, CommitInfo, 5) as CommitInfo;
+        }
+        set proposed_last_commit(value: CommitInfo) {
+            pb_1.Message.setWrapperField(this, 5, value);
+        }
+        get has_proposed_last_commit() {
+            return pb_1.Message.getField(this, 5) != null;
+        }
+        get misbehavior() {
+            return pb_1.Message.getRepeatedWrapperField(this, Misbehavior, 6) as Misbehavior[];
+        }
+        set misbehavior(value: Misbehavior[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 6, value);
+        }
+        get next_validators_hash() {
+            return pb_1.Message.getFieldWithDefault(this, 7, new Uint8Array(0)) as Uint8Array;
+        }
+        set next_validators_hash(value: Uint8Array) {
+            pb_1.Message.setField(this, 7, value);
+        }
+        get proposer_address() {
+            return pb_1.Message.getFieldWithDefault(this, 8, new Uint8Array(0)) as Uint8Array;
+        }
+        set proposer_address(value: Uint8Array) {
+            pb_1.Message.setField(this, 8, value);
+        }
+        static fromObject(data: {
+            hash?: Uint8Array;
+            height?: number;
+            time?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
+            txs?: Uint8Array[];
+            proposed_last_commit?: ReturnType<typeof CommitInfo.prototype.toObject>;
+            misbehavior?: ReturnType<typeof Misbehavior.prototype.toObject>[];
+            next_validators_hash?: Uint8Array;
+            proposer_address?: Uint8Array;
+        }): RequestExtendVote {
+            const message = new RequestExtendVote({});
+            if (data.hash != null) {
+                message.hash = data.hash;
+            }
+            if (data.height != null) {
+                message.height = data.height;
+            }
+            if (data.time != null) {
+                message.time = dependency_5.google.protobuf.Timestamp.fromObject(data.time);
+            }
+            if (data.txs != null) {
+                message.txs = data.txs;
+            }
+            if (data.proposed_last_commit != null) {
+                message.proposed_last_commit = CommitInfo.fromObject(data.proposed_last_commit);
+            }
+            if (data.misbehavior != null) {
+                message.misbehavior = data.misbehavior.map(item => Misbehavior.fromObject(item));
+            }
+            if (data.next_validators_hash != null) {
+                message.next_validators_hash = data.next_validators_hash;
+            }
+            if (data.proposer_address != null) {
+                message.proposer_address = data.proposer_address;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                hash?: Uint8Array;
+                height?: number;
+                time?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
+                txs?: Uint8Array[];
+                proposed_last_commit?: ReturnType<typeof CommitInfo.prototype.toObject>;
+                misbehavior?: ReturnType<typeof Misbehavior.prototype.toObject>[];
+                next_validators_hash?: Uint8Array;
+                proposer_address?: Uint8Array;
+            } = {};
+            if (this.hash != null) {
+                data.hash = this.hash;
+            }
+            if (this.height != null) {
+                data.height = this.height;
+            }
+            if (this.time != null) {
+                data.time = this.time.toObject();
+            }
+            if (this.txs != null) {
+                data.txs = this.txs;
+            }
+            if (this.proposed_last_commit != null) {
+                data.proposed_last_commit = this.proposed_last_commit.toObject();
+            }
+            if (this.misbehavior != null) {
+                data.misbehavior = this.misbehavior.map((item: Misbehavior) => item.toObject());
+            }
+            if (this.next_validators_hash != null) {
+                data.next_validators_hash = this.next_validators_hash;
+            }
+            if (this.proposer_address != null) {
+                data.proposer_address = this.proposer_address;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.hash.length)
+                writer.writeBytes(1, this.hash);
+            if (this.height != 0)
+                writer.writeInt64(2, this.height);
+            if (this.has_time)
+                writer.writeMessage(3, this.time, () => this.time.serialize(writer));
+            if (this.txs.length)
+                writer.writeRepeatedBytes(4, this.txs);
+            if (this.has_proposed_last_commit)
+                writer.writeMessage(5, this.proposed_last_commit, () => this.proposed_last_commit.serialize(writer));
+            if (this.misbehavior.length)
+                writer.writeRepeatedMessage(6, this.misbehavior, (item: Misbehavior) => item.serialize(writer));
+            if (this.next_validators_hash.length)
+                writer.writeBytes(7, this.next_validators_hash);
+            if (this.proposer_address.length)
+                writer.writeBytes(8, this.proposer_address);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RequestExtendVote {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RequestExtendVote();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.hash = reader.readBytes();
+                        break;
+                    case 2:
+                        message.height = reader.readInt64();
+                        break;
+                    case 3:
+                        reader.readMessage(message.time, () => message.time = dependency_5.google.protobuf.Timestamp.deserialize(reader));
+                        break;
+                    case 4:
+                        pb_1.Message.addToRepeatedField(message, 4, reader.readBytes());
+                        break;
+                    case 5:
+                        reader.readMessage(message.proposed_last_commit, () => message.proposed_last_commit = CommitInfo.deserialize(reader));
+                        break;
+                    case 6:
+                        reader.readMessage(message.misbehavior, () => pb_1.Message.addToRepeatedWrapperField(message, 6, Misbehavior.deserialize(reader), Misbehavior));
+                        break;
+                    case 7:
+                        message.next_validators_hash = reader.readBytes();
+                        break;
+                    case 8:
+                        message.proposer_address = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): RequestExtendVote {
+            return RequestExtendVote.deserialize(bytes);
+        }
+    }
+    export class RequestVerifyVoteExtension extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            hash?: Uint8Array;
+            validator_address?: Uint8Array;
+            height?: number;
+            vote_extension?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("hash" in data && data.hash != undefined) {
+                    this.hash = data.hash;
+                }
+                if ("validator_address" in data && data.validator_address != undefined) {
+                    this.validator_address = data.validator_address;
+                }
+                if ("height" in data && data.height != undefined) {
+                    this.height = data.height;
+                }
+                if ("vote_extension" in data && data.vote_extension != undefined) {
+                    this.vote_extension = data.vote_extension;
+                }
+            }
+        }
+        get hash() {
+            return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
+        }
+        set hash(value: Uint8Array) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get validator_address() {
+            return pb_1.Message.getFieldWithDefault(this, 2, new Uint8Array(0)) as Uint8Array;
+        }
+        set validator_address(value: Uint8Array) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get height() {
+            return pb_1.Message.getFieldWithDefault(this, 3, 0) as number;
+        }
+        set height(value: number) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        get vote_extension() {
+            return pb_1.Message.getFieldWithDefault(this, 4, new Uint8Array(0)) as Uint8Array;
+        }
+        set vote_extension(value: Uint8Array) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        static fromObject(data: {
+            hash?: Uint8Array;
+            validator_address?: Uint8Array;
+            height?: number;
+            vote_extension?: Uint8Array;
+        }): RequestVerifyVoteExtension {
+            const message = new RequestVerifyVoteExtension({});
+            if (data.hash != null) {
+                message.hash = data.hash;
+            }
+            if (data.validator_address != null) {
+                message.validator_address = data.validator_address;
+            }
+            if (data.height != null) {
+                message.height = data.height;
+            }
+            if (data.vote_extension != null) {
+                message.vote_extension = data.vote_extension;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                hash?: Uint8Array;
+                validator_address?: Uint8Array;
+                height?: number;
+                vote_extension?: Uint8Array;
+            } = {};
+            if (this.hash != null) {
+                data.hash = this.hash;
+            }
+            if (this.validator_address != null) {
+                data.validator_address = this.validator_address;
+            }
+            if (this.height != null) {
+                data.height = this.height;
+            }
+            if (this.vote_extension != null) {
+                data.vote_extension = this.vote_extension;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.hash.length)
+                writer.writeBytes(1, this.hash);
+            if (this.validator_address.length)
+                writer.writeBytes(2, this.validator_address);
+            if (this.height != 0)
+                writer.writeInt64(3, this.height);
+            if (this.vote_extension.length)
+                writer.writeBytes(4, this.vote_extension);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RequestVerifyVoteExtension {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RequestVerifyVoteExtension();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.hash = reader.readBytes();
+                        break;
+                    case 2:
+                        message.validator_address = reader.readBytes();
+                        break;
+                    case 3:
+                        message.height = reader.readInt64();
+                        break;
+                    case 4:
+                        message.vote_extension = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): RequestVerifyVoteExtension {
+            return RequestVerifyVoteExtension.deserialize(bytes);
+        }
+    }
+    export class RequestFinalizeBlock extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            txs?: Uint8Array[];
+            decided_last_commit?: CommitInfo;
+            misbehavior?: Misbehavior[];
+            hash?: Uint8Array;
+            height?: number;
+            time?: dependency_5.google.protobuf.Timestamp;
+            next_validators_hash?: Uint8Array;
+            proposer_address?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1, 3], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("txs" in data && data.txs != undefined) {
+                    this.txs = data.txs;
+                }
+                if ("decided_last_commit" in data && data.decided_last_commit != undefined) {
+                    this.decided_last_commit = data.decided_last_commit;
+                }
+                if ("misbehavior" in data && data.misbehavior != undefined) {
+                    this.misbehavior = data.misbehavior;
+                }
+                if ("hash" in data && data.hash != undefined) {
+                    this.hash = data.hash;
+                }
+                if ("height" in data && data.height != undefined) {
+                    this.height = data.height;
+                }
+                if ("time" in data && data.time != undefined) {
+                    this.time = data.time;
+                }
+                if ("next_validators_hash" in data && data.next_validators_hash != undefined) {
+                    this.next_validators_hash = data.next_validators_hash;
+                }
+                if ("proposer_address" in data && data.proposer_address != undefined) {
+                    this.proposer_address = data.proposer_address;
+                }
+            }
+        }
+        get txs() {
+            return pb_1.Message.getFieldWithDefault(this, 1, []) as Uint8Array[];
+        }
+        set txs(value: Uint8Array[]) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get decided_last_commit() {
+            return pb_1.Message.getWrapperField(this, CommitInfo, 2) as CommitInfo;
+        }
+        set decided_last_commit(value: CommitInfo) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_decided_last_commit() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        get misbehavior() {
+            return pb_1.Message.getRepeatedWrapperField(this, Misbehavior, 3) as Misbehavior[];
+        }
+        set misbehavior(value: Misbehavior[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 3, value);
+        }
+        get hash() {
+            return pb_1.Message.getFieldWithDefault(this, 4, new Uint8Array(0)) as Uint8Array;
+        }
+        set hash(value: Uint8Array) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        get height() {
+            return pb_1.Message.getFieldWithDefault(this, 5, 0) as number;
+        }
+        set height(value: number) {
+            pb_1.Message.setField(this, 5, value);
+        }
+        get time() {
+            return pb_1.Message.getWrapperField(this, dependency_5.google.protobuf.Timestamp, 6) as dependency_5.google.protobuf.Timestamp;
+        }
+        set time(value: dependency_5.google.protobuf.Timestamp) {
+            pb_1.Message.setWrapperField(this, 6, value);
+        }
+        get has_time() {
+            return pb_1.Message.getField(this, 6) != null;
+        }
+        get next_validators_hash() {
+            return pb_1.Message.getFieldWithDefault(this, 7, new Uint8Array(0)) as Uint8Array;
+        }
+        set next_validators_hash(value: Uint8Array) {
+            pb_1.Message.setField(this, 7, value);
+        }
+        get proposer_address() {
+            return pb_1.Message.getFieldWithDefault(this, 8, new Uint8Array(0)) as Uint8Array;
+        }
+        set proposer_address(value: Uint8Array) {
+            pb_1.Message.setField(this, 8, value);
+        }
+        static fromObject(data: {
+            txs?: Uint8Array[];
+            decided_last_commit?: ReturnType<typeof CommitInfo.prototype.toObject>;
+            misbehavior?: ReturnType<typeof Misbehavior.prototype.toObject>[];
+            hash?: Uint8Array;
+            height?: number;
+            time?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
+            next_validators_hash?: Uint8Array;
+            proposer_address?: Uint8Array;
+        }): RequestFinalizeBlock {
+            const message = new RequestFinalizeBlock({});
+            if (data.txs != null) {
+                message.txs = data.txs;
+            }
+            if (data.decided_last_commit != null) {
+                message.decided_last_commit = CommitInfo.fromObject(data.decided_last_commit);
+            }
+            if (data.misbehavior != null) {
+                message.misbehavior = data.misbehavior.map(item => Misbehavior.fromObject(item));
+            }
+            if (data.hash != null) {
+                message.hash = data.hash;
+            }
+            if (data.height != null) {
+                message.height = data.height;
+            }
+            if (data.time != null) {
+                message.time = dependency_5.google.protobuf.Timestamp.fromObject(data.time);
+            }
+            if (data.next_validators_hash != null) {
+                message.next_validators_hash = data.next_validators_hash;
+            }
+            if (data.proposer_address != null) {
+                message.proposer_address = data.proposer_address;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                txs?: Uint8Array[];
+                decided_last_commit?: ReturnType<typeof CommitInfo.prototype.toObject>;
+                misbehavior?: ReturnType<typeof Misbehavior.prototype.toObject>[];
+                hash?: Uint8Array;
+                height?: number;
+                time?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
+                next_validators_hash?: Uint8Array;
+                proposer_address?: Uint8Array;
+            } = {};
+            if (this.txs != null) {
+                data.txs = this.txs;
+            }
+            if (this.decided_last_commit != null) {
+                data.decided_last_commit = this.decided_last_commit.toObject();
+            }
+            if (this.misbehavior != null) {
+                data.misbehavior = this.misbehavior.map((item: Misbehavior) => item.toObject());
+            }
+            if (this.hash != null) {
+                data.hash = this.hash;
+            }
+            if (this.height != null) {
+                data.height = this.height;
+            }
+            if (this.time != null) {
+                data.time = this.time.toObject();
+            }
+            if (this.next_validators_hash != null) {
+                data.next_validators_hash = this.next_validators_hash;
+            }
+            if (this.proposer_address != null) {
+                data.proposer_address = this.proposer_address;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.txs.length)
+                writer.writeRepeatedBytes(1, this.txs);
+            if (this.has_decided_last_commit)
+                writer.writeMessage(2, this.decided_last_commit, () => this.decided_last_commit.serialize(writer));
+            if (this.misbehavior.length)
+                writer.writeRepeatedMessage(3, this.misbehavior, (item: Misbehavior) => item.serialize(writer));
+            if (this.hash.length)
+                writer.writeBytes(4, this.hash);
+            if (this.height != 0)
+                writer.writeInt64(5, this.height);
+            if (this.has_time)
+                writer.writeMessage(6, this.time, () => this.time.serialize(writer));
+            if (this.next_validators_hash.length)
+                writer.writeBytes(7, this.next_validators_hash);
+            if (this.proposer_address.length)
+                writer.writeBytes(8, this.proposer_address);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RequestFinalizeBlock {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RequestFinalizeBlock();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        pb_1.Message.addToRepeatedField(message, 1, reader.readBytes());
+                        break;
+                    case 2:
+                        reader.readMessage(message.decided_last_commit, () => message.decided_last_commit = CommitInfo.deserialize(reader));
+                        break;
+                    case 3:
+                        reader.readMessage(message.misbehavior, () => pb_1.Message.addToRepeatedWrapperField(message, 3, Misbehavior.deserialize(reader), Misbehavior));
+                        break;
+                    case 4:
+                        message.hash = reader.readBytes();
+                        break;
+                    case 5:
+                        message.height = reader.readInt64();
+                        break;
+                    case 6:
+                        reader.readMessage(message.time, () => message.time = dependency_5.google.protobuf.Timestamp.deserialize(reader));
+                        break;
+                    case 7:
+                        message.next_validators_hash = reader.readBytes();
+                        break;
+                    case 8:
+                        message.proposer_address = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): RequestFinalizeBlock {
+            return RequestFinalizeBlock.deserialize(bytes);
+        }
+    }
     export class Response extends pb_1.Message {
-        #one_of_decls: number[][] = [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]];
+        #one_of_decls: number[][] = [[1, 2, 3, 4, 6, 7, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]];
         constructor(data?: any[] | ({} & (({
             exception?: ResponseException;
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             exception?: never;
             echo?: ResponseEcho;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             exception?: never;
             echo?: never;
             flush?: ResponseFlush;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             exception?: never;
             echo?: never;
             flush?: never;
             info?: ResponseInfo;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             exception?: never;
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: ResponseSetOption;
-            init_chain?: never;
-            query?: never;
-            begin_block?: never;
-            check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
-            commit?: never;
-            list_snapshots?: never;
-            offer_snapshot?: never;
-            load_snapshot_chunk?: never;
-            apply_snapshot_chunk?: never;
-        } | {
-            exception?: never;
-            echo?: never;
-            flush?: never;
-            info?: never;
-            set_option?: never;
             init_chain?: ResponseInitChain;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             exception?: never;
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: ResponseQuery;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             exception?: never;
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: ResponseBeginBlock;
-            check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
-            commit?: never;
-            list_snapshots?: never;
-            offer_snapshot?: never;
-            load_snapshot_chunk?: never;
-            apply_snapshot_chunk?: never;
-        } | {
-            exception?: never;
-            echo?: never;
-            flush?: never;
-            info?: never;
-            set_option?: never;
-            init_chain?: never;
-            query?: never;
-            begin_block?: never;
             check_tx?: ResponseCheckTx;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             exception?: never;
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: ResponseDeliverTx;
-            end_block?: never;
-            commit?: never;
-            list_snapshots?: never;
-            offer_snapshot?: never;
-            load_snapshot_chunk?: never;
-            apply_snapshot_chunk?: never;
-        } | {
-            exception?: never;
-            echo?: never;
-            flush?: never;
-            info?: never;
-            set_option?: never;
-            init_chain?: never;
-            query?: never;
-            begin_block?: never;
-            check_tx?: never;
-            deliver_tx?: never;
-            end_block?: ResponseEndBlock;
-            commit?: never;
-            list_snapshots?: never;
-            offer_snapshot?: never;
-            load_snapshot_chunk?: never;
-            apply_snapshot_chunk?: never;
-        } | {
-            exception?: never;
-            echo?: never;
-            flush?: never;
-            info?: never;
-            set_option?: never;
-            init_chain?: never;
-            query?: never;
-            begin_block?: never;
-            check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: ResponseCommit;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             exception?: never;
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: ResponseListSnapshots;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             exception?: never;
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: ResponseOfferSnapshot;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             exception?: never;
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: ResponseLoadSnapshotChunk;
             apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
         } | {
             exception?: never;
             echo?: never;
             flush?: never;
             info?: never;
-            set_option?: never;
             init_chain?: never;
             query?: never;
-            begin_block?: never;
             check_tx?: never;
-            deliver_tx?: never;
-            end_block?: never;
             commit?: never;
             list_snapshots?: never;
             offer_snapshot?: never;
             load_snapshot_chunk?: never;
             apply_snapshot_chunk?: ResponseApplySnapshotChunk;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
+        } | {
+            exception?: never;
+            echo?: never;
+            flush?: never;
+            info?: never;
+            init_chain?: never;
+            query?: never;
+            check_tx?: never;
+            commit?: never;
+            list_snapshots?: never;
+            offer_snapshot?: never;
+            load_snapshot_chunk?: never;
+            apply_snapshot_chunk?: never;
+            prepare_proposal?: ResponsePrepareProposal;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
+        } | {
+            exception?: never;
+            echo?: never;
+            flush?: never;
+            info?: never;
+            init_chain?: never;
+            query?: never;
+            check_tx?: never;
+            commit?: never;
+            list_snapshots?: never;
+            offer_snapshot?: never;
+            load_snapshot_chunk?: never;
+            apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: ResponseProcessProposal;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: never;
+        } | {
+            exception?: never;
+            echo?: never;
+            flush?: never;
+            info?: never;
+            init_chain?: never;
+            query?: never;
+            check_tx?: never;
+            commit?: never;
+            list_snapshots?: never;
+            offer_snapshot?: never;
+            load_snapshot_chunk?: never;
+            apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: ResponseExtendVote;
+            verify_vote_extension?: never;
+            finalize_block?: never;
+        } | {
+            exception?: never;
+            echo?: never;
+            flush?: never;
+            info?: never;
+            init_chain?: never;
+            query?: never;
+            check_tx?: never;
+            commit?: never;
+            list_snapshots?: never;
+            offer_snapshot?: never;
+            load_snapshot_chunk?: never;
+            apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: ResponseVerifyVoteExtension;
+            finalize_block?: never;
+        } | {
+            exception?: never;
+            echo?: never;
+            flush?: never;
+            info?: never;
+            init_chain?: never;
+            query?: never;
+            check_tx?: never;
+            commit?: never;
+            list_snapshots?: never;
+            offer_snapshot?: never;
+            load_snapshot_chunk?: never;
+            apply_snapshot_chunk?: never;
+            prepare_proposal?: never;
+            process_proposal?: never;
+            extend_vote?: never;
+            verify_vote_extension?: never;
+            finalize_block?: ResponseFinalizeBlock;
         })))) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -2391,26 +3212,14 @@ export namespace tendermint.abci {
                 if ("info" in data && data.info != undefined) {
                     this.info = data.info;
                 }
-                if ("set_option" in data && data.set_option != undefined) {
-                    this.set_option = data.set_option;
-                }
                 if ("init_chain" in data && data.init_chain != undefined) {
                     this.init_chain = data.init_chain;
                 }
                 if ("query" in data && data.query != undefined) {
                     this.query = data.query;
                 }
-                if ("begin_block" in data && data.begin_block != undefined) {
-                    this.begin_block = data.begin_block;
-                }
                 if ("check_tx" in data && data.check_tx != undefined) {
                     this.check_tx = data.check_tx;
-                }
-                if ("deliver_tx" in data && data.deliver_tx != undefined) {
-                    this.deliver_tx = data.deliver_tx;
-                }
-                if ("end_block" in data && data.end_block != undefined) {
-                    this.end_block = data.end_block;
                 }
                 if ("commit" in data && data.commit != undefined) {
                     this.commit = data.commit;
@@ -2426,6 +3235,21 @@ export namespace tendermint.abci {
                 }
                 if ("apply_snapshot_chunk" in data && data.apply_snapshot_chunk != undefined) {
                     this.apply_snapshot_chunk = data.apply_snapshot_chunk;
+                }
+                if ("prepare_proposal" in data && data.prepare_proposal != undefined) {
+                    this.prepare_proposal = data.prepare_proposal;
+                }
+                if ("process_proposal" in data && data.process_proposal != undefined) {
+                    this.process_proposal = data.process_proposal;
+                }
+                if ("extend_vote" in data && data.extend_vote != undefined) {
+                    this.extend_vote = data.extend_vote;
+                }
+                if ("verify_vote_extension" in data && data.verify_vote_extension != undefined) {
+                    this.verify_vote_extension = data.verify_vote_extension;
+                }
+                if ("finalize_block" in data && data.finalize_block != undefined) {
+                    this.finalize_block = data.finalize_block;
                 }
             }
         }
@@ -2465,15 +3289,6 @@ export namespace tendermint.abci {
         get has_info() {
             return pb_1.Message.getField(this, 4) != null;
         }
-        get set_option() {
-            return pb_1.Message.getWrapperField(this, ResponseSetOption, 5) as ResponseSetOption;
-        }
-        set set_option(value: ResponseSetOption) {
-            pb_1.Message.setOneofWrapperField(this, 5, this.#one_of_decls[0], value);
-        }
-        get has_set_option() {
-            return pb_1.Message.getField(this, 5) != null;
-        }
         get init_chain() {
             return pb_1.Message.getWrapperField(this, ResponseInitChain, 6) as ResponseInitChain;
         }
@@ -2492,15 +3307,6 @@ export namespace tendermint.abci {
         get has_query() {
             return pb_1.Message.getField(this, 7) != null;
         }
-        get begin_block() {
-            return pb_1.Message.getWrapperField(this, ResponseBeginBlock, 8) as ResponseBeginBlock;
-        }
-        set begin_block(value: ResponseBeginBlock) {
-            pb_1.Message.setOneofWrapperField(this, 8, this.#one_of_decls[0], value);
-        }
-        get has_begin_block() {
-            return pb_1.Message.getField(this, 8) != null;
-        }
         get check_tx() {
             return pb_1.Message.getWrapperField(this, ResponseCheckTx, 9) as ResponseCheckTx;
         }
@@ -2509,24 +3315,6 @@ export namespace tendermint.abci {
         }
         get has_check_tx() {
             return pb_1.Message.getField(this, 9) != null;
-        }
-        get deliver_tx() {
-            return pb_1.Message.getWrapperField(this, ResponseDeliverTx, 10) as ResponseDeliverTx;
-        }
-        set deliver_tx(value: ResponseDeliverTx) {
-            pb_1.Message.setOneofWrapperField(this, 10, this.#one_of_decls[0], value);
-        }
-        get has_deliver_tx() {
-            return pb_1.Message.getField(this, 10) != null;
-        }
-        get end_block() {
-            return pb_1.Message.getWrapperField(this, ResponseEndBlock, 11) as ResponseEndBlock;
-        }
-        set end_block(value: ResponseEndBlock) {
-            pb_1.Message.setOneofWrapperField(this, 11, this.#one_of_decls[0], value);
-        }
-        get has_end_block() {
-            return pb_1.Message.getField(this, 11) != null;
         }
         get commit() {
             return pb_1.Message.getWrapperField(this, ResponseCommit, 12) as ResponseCommit;
@@ -2573,47 +3361,94 @@ export namespace tendermint.abci {
         get has_apply_snapshot_chunk() {
             return pb_1.Message.getField(this, 16) != null;
         }
+        get prepare_proposal() {
+            return pb_1.Message.getWrapperField(this, ResponsePrepareProposal, 17) as ResponsePrepareProposal;
+        }
+        set prepare_proposal(value: ResponsePrepareProposal) {
+            pb_1.Message.setOneofWrapperField(this, 17, this.#one_of_decls[0], value);
+        }
+        get has_prepare_proposal() {
+            return pb_1.Message.getField(this, 17) != null;
+        }
+        get process_proposal() {
+            return pb_1.Message.getWrapperField(this, ResponseProcessProposal, 18) as ResponseProcessProposal;
+        }
+        set process_proposal(value: ResponseProcessProposal) {
+            pb_1.Message.setOneofWrapperField(this, 18, this.#one_of_decls[0], value);
+        }
+        get has_process_proposal() {
+            return pb_1.Message.getField(this, 18) != null;
+        }
+        get extend_vote() {
+            return pb_1.Message.getWrapperField(this, ResponseExtendVote, 19) as ResponseExtendVote;
+        }
+        set extend_vote(value: ResponseExtendVote) {
+            pb_1.Message.setOneofWrapperField(this, 19, this.#one_of_decls[0], value);
+        }
+        get has_extend_vote() {
+            return pb_1.Message.getField(this, 19) != null;
+        }
+        get verify_vote_extension() {
+            return pb_1.Message.getWrapperField(this, ResponseVerifyVoteExtension, 20) as ResponseVerifyVoteExtension;
+        }
+        set verify_vote_extension(value: ResponseVerifyVoteExtension) {
+            pb_1.Message.setOneofWrapperField(this, 20, this.#one_of_decls[0], value);
+        }
+        get has_verify_vote_extension() {
+            return pb_1.Message.getField(this, 20) != null;
+        }
+        get finalize_block() {
+            return pb_1.Message.getWrapperField(this, ResponseFinalizeBlock, 21) as ResponseFinalizeBlock;
+        }
+        set finalize_block(value: ResponseFinalizeBlock) {
+            pb_1.Message.setOneofWrapperField(this, 21, this.#one_of_decls[0], value);
+        }
+        get has_finalize_block() {
+            return pb_1.Message.getField(this, 21) != null;
+        }
         get value() {
             const cases: {
-                [index: number]: "none" | "exception" | "echo" | "flush" | "info" | "set_option" | "init_chain" | "query" | "begin_block" | "check_tx" | "deliver_tx" | "end_block" | "commit" | "list_snapshots" | "offer_snapshot" | "load_snapshot_chunk" | "apply_snapshot_chunk";
+                [index: number]: "none" | "exception" | "echo" | "flush" | "info" | "init_chain" | "query" | "check_tx" | "commit" | "list_snapshots" | "offer_snapshot" | "load_snapshot_chunk" | "apply_snapshot_chunk" | "prepare_proposal" | "process_proposal" | "extend_vote" | "verify_vote_extension" | "finalize_block";
             } = {
                 0: "none",
                 1: "exception",
                 2: "echo",
                 3: "flush",
                 4: "info",
-                5: "set_option",
                 6: "init_chain",
                 7: "query",
-                8: "begin_block",
                 9: "check_tx",
-                10: "deliver_tx",
-                11: "end_block",
                 12: "commit",
                 13: "list_snapshots",
                 14: "offer_snapshot",
                 15: "load_snapshot_chunk",
-                16: "apply_snapshot_chunk"
+                16: "apply_snapshot_chunk",
+                17: "prepare_proposal",
+                18: "process_proposal",
+                19: "extend_vote",
+                20: "verify_vote_extension",
+                21: "finalize_block"
             };
-            return cases[pb_1.Message.computeOneofCase(this, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])];
+            return cases[pb_1.Message.computeOneofCase(this, [1, 2, 3, 4, 6, 7, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21])];
         }
         static fromObject(data: {
             exception?: ReturnType<typeof ResponseException.prototype.toObject>;
             echo?: ReturnType<typeof ResponseEcho.prototype.toObject>;
             flush?: ReturnType<typeof ResponseFlush.prototype.toObject>;
             info?: ReturnType<typeof ResponseInfo.prototype.toObject>;
-            set_option?: ReturnType<typeof ResponseSetOption.prototype.toObject>;
             init_chain?: ReturnType<typeof ResponseInitChain.prototype.toObject>;
             query?: ReturnType<typeof ResponseQuery.prototype.toObject>;
-            begin_block?: ReturnType<typeof ResponseBeginBlock.prototype.toObject>;
             check_tx?: ReturnType<typeof ResponseCheckTx.prototype.toObject>;
-            deliver_tx?: ReturnType<typeof ResponseDeliverTx.prototype.toObject>;
-            end_block?: ReturnType<typeof ResponseEndBlock.prototype.toObject>;
             commit?: ReturnType<typeof ResponseCommit.prototype.toObject>;
             list_snapshots?: ReturnType<typeof ResponseListSnapshots.prototype.toObject>;
             offer_snapshot?: ReturnType<typeof ResponseOfferSnapshot.prototype.toObject>;
             load_snapshot_chunk?: ReturnType<typeof ResponseLoadSnapshotChunk.prototype.toObject>;
             apply_snapshot_chunk?: ReturnType<typeof ResponseApplySnapshotChunk.prototype.toObject>;
+            prepare_proposal?: ReturnType<typeof ResponsePrepareProposal.prototype.toObject>;
+            process_proposal?: ReturnType<typeof ResponseProcessProposal.prototype.toObject>;
+            extend_vote?: ReturnType<typeof ResponseExtendVote.prototype.toObject>;
+            verify_vote_extension?: ReturnType<typeof ResponseVerifyVoteExtension.prototype.toObject>;
+            finalize_block?: ReturnType<typeof ResponseFinalizeBlock.prototype.toObject>;
         }): Response {
             const message = new Response({});
             if (data.exception != null) {
@@ -2628,26 +3463,14 @@ export namespace tendermint.abci {
             if (data.info != null) {
                 message.info = ResponseInfo.fromObject(data.info);
             }
-            if (data.set_option != null) {
-                message.set_option = ResponseSetOption.fromObject(data.set_option);
-            }
             if (data.init_chain != null) {
                 message.init_chain = ResponseInitChain.fromObject(data.init_chain);
             }
             if (data.query != null) {
                 message.query = ResponseQuery.fromObject(data.query);
             }
-            if (data.begin_block != null) {
-                message.begin_block = ResponseBeginBlock.fromObject(data.begin_block);
-            }
             if (data.check_tx != null) {
                 message.check_tx = ResponseCheckTx.fromObject(data.check_tx);
-            }
-            if (data.deliver_tx != null) {
-                message.deliver_tx = ResponseDeliverTx.fromObject(data.deliver_tx);
-            }
-            if (data.end_block != null) {
-                message.end_block = ResponseEndBlock.fromObject(data.end_block);
             }
             if (data.commit != null) {
                 message.commit = ResponseCommit.fromObject(data.commit);
@@ -2664,6 +3487,21 @@ export namespace tendermint.abci {
             if (data.apply_snapshot_chunk != null) {
                 message.apply_snapshot_chunk = ResponseApplySnapshotChunk.fromObject(data.apply_snapshot_chunk);
             }
+            if (data.prepare_proposal != null) {
+                message.prepare_proposal = ResponsePrepareProposal.fromObject(data.prepare_proposal);
+            }
+            if (data.process_proposal != null) {
+                message.process_proposal = ResponseProcessProposal.fromObject(data.process_proposal);
+            }
+            if (data.extend_vote != null) {
+                message.extend_vote = ResponseExtendVote.fromObject(data.extend_vote);
+            }
+            if (data.verify_vote_extension != null) {
+                message.verify_vote_extension = ResponseVerifyVoteExtension.fromObject(data.verify_vote_extension);
+            }
+            if (data.finalize_block != null) {
+                message.finalize_block = ResponseFinalizeBlock.fromObject(data.finalize_block);
+            }
             return message;
         }
         toObject() {
@@ -2672,18 +3510,19 @@ export namespace tendermint.abci {
                 echo?: ReturnType<typeof ResponseEcho.prototype.toObject>;
                 flush?: ReturnType<typeof ResponseFlush.prototype.toObject>;
                 info?: ReturnType<typeof ResponseInfo.prototype.toObject>;
-                set_option?: ReturnType<typeof ResponseSetOption.prototype.toObject>;
                 init_chain?: ReturnType<typeof ResponseInitChain.prototype.toObject>;
                 query?: ReturnType<typeof ResponseQuery.prototype.toObject>;
-                begin_block?: ReturnType<typeof ResponseBeginBlock.prototype.toObject>;
                 check_tx?: ReturnType<typeof ResponseCheckTx.prototype.toObject>;
-                deliver_tx?: ReturnType<typeof ResponseDeliverTx.prototype.toObject>;
-                end_block?: ReturnType<typeof ResponseEndBlock.prototype.toObject>;
                 commit?: ReturnType<typeof ResponseCommit.prototype.toObject>;
                 list_snapshots?: ReturnType<typeof ResponseListSnapshots.prototype.toObject>;
                 offer_snapshot?: ReturnType<typeof ResponseOfferSnapshot.prototype.toObject>;
                 load_snapshot_chunk?: ReturnType<typeof ResponseLoadSnapshotChunk.prototype.toObject>;
                 apply_snapshot_chunk?: ReturnType<typeof ResponseApplySnapshotChunk.prototype.toObject>;
+                prepare_proposal?: ReturnType<typeof ResponsePrepareProposal.prototype.toObject>;
+                process_proposal?: ReturnType<typeof ResponseProcessProposal.prototype.toObject>;
+                extend_vote?: ReturnType<typeof ResponseExtendVote.prototype.toObject>;
+                verify_vote_extension?: ReturnType<typeof ResponseVerifyVoteExtension.prototype.toObject>;
+                finalize_block?: ReturnType<typeof ResponseFinalizeBlock.prototype.toObject>;
             } = {};
             if (this.exception != null) {
                 data.exception = this.exception.toObject();
@@ -2697,26 +3536,14 @@ export namespace tendermint.abci {
             if (this.info != null) {
                 data.info = this.info.toObject();
             }
-            if (this.set_option != null) {
-                data.set_option = this.set_option.toObject();
-            }
             if (this.init_chain != null) {
                 data.init_chain = this.init_chain.toObject();
             }
             if (this.query != null) {
                 data.query = this.query.toObject();
             }
-            if (this.begin_block != null) {
-                data.begin_block = this.begin_block.toObject();
-            }
             if (this.check_tx != null) {
                 data.check_tx = this.check_tx.toObject();
-            }
-            if (this.deliver_tx != null) {
-                data.deliver_tx = this.deliver_tx.toObject();
-            }
-            if (this.end_block != null) {
-                data.end_block = this.end_block.toObject();
             }
             if (this.commit != null) {
                 data.commit = this.commit.toObject();
@@ -2733,6 +3560,21 @@ export namespace tendermint.abci {
             if (this.apply_snapshot_chunk != null) {
                 data.apply_snapshot_chunk = this.apply_snapshot_chunk.toObject();
             }
+            if (this.prepare_proposal != null) {
+                data.prepare_proposal = this.prepare_proposal.toObject();
+            }
+            if (this.process_proposal != null) {
+                data.process_proposal = this.process_proposal.toObject();
+            }
+            if (this.extend_vote != null) {
+                data.extend_vote = this.extend_vote.toObject();
+            }
+            if (this.verify_vote_extension != null) {
+                data.verify_vote_extension = this.verify_vote_extension.toObject();
+            }
+            if (this.finalize_block != null) {
+                data.finalize_block = this.finalize_block.toObject();
+            }
             return data;
         }
         serialize(): Uint8Array;
@@ -2747,20 +3589,12 @@ export namespace tendermint.abci {
                 writer.writeMessage(3, this.flush, () => this.flush.serialize(writer));
             if (this.has_info)
                 writer.writeMessage(4, this.info, () => this.info.serialize(writer));
-            if (this.has_set_option)
-                writer.writeMessage(5, this.set_option, () => this.set_option.serialize(writer));
             if (this.has_init_chain)
                 writer.writeMessage(6, this.init_chain, () => this.init_chain.serialize(writer));
             if (this.has_query)
                 writer.writeMessage(7, this.query, () => this.query.serialize(writer));
-            if (this.has_begin_block)
-                writer.writeMessage(8, this.begin_block, () => this.begin_block.serialize(writer));
             if (this.has_check_tx)
                 writer.writeMessage(9, this.check_tx, () => this.check_tx.serialize(writer));
-            if (this.has_deliver_tx)
-                writer.writeMessage(10, this.deliver_tx, () => this.deliver_tx.serialize(writer));
-            if (this.has_end_block)
-                writer.writeMessage(11, this.end_block, () => this.end_block.serialize(writer));
             if (this.has_commit)
                 writer.writeMessage(12, this.commit, () => this.commit.serialize(writer));
             if (this.has_list_snapshots)
@@ -2771,6 +3605,16 @@ export namespace tendermint.abci {
                 writer.writeMessage(15, this.load_snapshot_chunk, () => this.load_snapshot_chunk.serialize(writer));
             if (this.has_apply_snapshot_chunk)
                 writer.writeMessage(16, this.apply_snapshot_chunk, () => this.apply_snapshot_chunk.serialize(writer));
+            if (this.has_prepare_proposal)
+                writer.writeMessage(17, this.prepare_proposal, () => this.prepare_proposal.serialize(writer));
+            if (this.has_process_proposal)
+                writer.writeMessage(18, this.process_proposal, () => this.process_proposal.serialize(writer));
+            if (this.has_extend_vote)
+                writer.writeMessage(19, this.extend_vote, () => this.extend_vote.serialize(writer));
+            if (this.has_verify_vote_extension)
+                writer.writeMessage(20, this.verify_vote_extension, () => this.verify_vote_extension.serialize(writer));
+            if (this.has_finalize_block)
+                writer.writeMessage(21, this.finalize_block, () => this.finalize_block.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -2792,26 +3636,14 @@ export namespace tendermint.abci {
                     case 4:
                         reader.readMessage(message.info, () => message.info = ResponseInfo.deserialize(reader));
                         break;
-                    case 5:
-                        reader.readMessage(message.set_option, () => message.set_option = ResponseSetOption.deserialize(reader));
-                        break;
                     case 6:
                         reader.readMessage(message.init_chain, () => message.init_chain = ResponseInitChain.deserialize(reader));
                         break;
                     case 7:
                         reader.readMessage(message.query, () => message.query = ResponseQuery.deserialize(reader));
                         break;
-                    case 8:
-                        reader.readMessage(message.begin_block, () => message.begin_block = ResponseBeginBlock.deserialize(reader));
-                        break;
                     case 9:
                         reader.readMessage(message.check_tx, () => message.check_tx = ResponseCheckTx.deserialize(reader));
-                        break;
-                    case 10:
-                        reader.readMessage(message.deliver_tx, () => message.deliver_tx = ResponseDeliverTx.deserialize(reader));
-                        break;
-                    case 11:
-                        reader.readMessage(message.end_block, () => message.end_block = ResponseEndBlock.deserialize(reader));
                         break;
                     case 12:
                         reader.readMessage(message.commit, () => message.commit = ResponseCommit.deserialize(reader));
@@ -2827,6 +3659,21 @@ export namespace tendermint.abci {
                         break;
                     case 16:
                         reader.readMessage(message.apply_snapshot_chunk, () => message.apply_snapshot_chunk = ResponseApplySnapshotChunk.deserialize(reader));
+                        break;
+                    case 17:
+                        reader.readMessage(message.prepare_proposal, () => message.prepare_proposal = ResponsePrepareProposal.deserialize(reader));
+                        break;
+                    case 18:
+                        reader.readMessage(message.process_proposal, () => message.process_proposal = ResponseProcessProposal.deserialize(reader));
+                        break;
+                    case 19:
+                        reader.readMessage(message.extend_vote, () => message.extend_vote = ResponseExtendVote.deserialize(reader));
+                        break;
+                    case 20:
+                        reader.readMessage(message.verify_vote_extension, () => message.verify_vote_extension = ResponseVerifyVoteExtension.deserialize(reader));
+                        break;
+                    case 21:
+                        reader.readMessage(message.finalize_block, () => message.finalize_block = ResponseFinalizeBlock.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -3173,123 +4020,10 @@ export namespace tendermint.abci {
             return ResponseInfo.deserialize(bytes);
         }
     }
-    export class ResponseSetOption extends pb_1.Message {
-        #one_of_decls: number[][] = [];
-        constructor(data?: any[] | {
-            code?: number;
-            log?: string;
-            info?: string;
-        }) {
-            super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
-            if (!Array.isArray(data) && typeof data == "object") {
-                if ("code" in data && data.code != undefined) {
-                    this.code = data.code;
-                }
-                if ("log" in data && data.log != undefined) {
-                    this.log = data.log;
-                }
-                if ("info" in data && data.info != undefined) {
-                    this.info = data.info;
-                }
-            }
-        }
-        get code() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
-        }
-        set code(value: number) {
-            pb_1.Message.setField(this, 1, value);
-        }
-        get log() {
-            return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
-        }
-        set log(value: string) {
-            pb_1.Message.setField(this, 3, value);
-        }
-        get info() {
-            return pb_1.Message.getFieldWithDefault(this, 4, "") as string;
-        }
-        set info(value: string) {
-            pb_1.Message.setField(this, 4, value);
-        }
-        static fromObject(data: {
-            code?: number;
-            log?: string;
-            info?: string;
-        }): ResponseSetOption {
-            const message = new ResponseSetOption({});
-            if (data.code != null) {
-                message.code = data.code;
-            }
-            if (data.log != null) {
-                message.log = data.log;
-            }
-            if (data.info != null) {
-                message.info = data.info;
-            }
-            return message;
-        }
-        toObject() {
-            const data: {
-                code?: number;
-                log?: string;
-                info?: string;
-            } = {};
-            if (this.code != null) {
-                data.code = this.code;
-            }
-            if (this.log != null) {
-                data.log = this.log;
-            }
-            if (this.info != null) {
-                data.info = this.info;
-            }
-            return data;
-        }
-        serialize(): Uint8Array;
-        serialize(w: pb_1.BinaryWriter): void;
-        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
-            const writer = w || new pb_1.BinaryWriter();
-            if (this.code != 0)
-                writer.writeUint32(1, this.code);
-            if (this.log.length)
-                writer.writeString(3, this.log);
-            if (this.info.length)
-                writer.writeString(4, this.info);
-            if (!w)
-                return writer.getResultBuffer();
-        }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ResponseSetOption {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ResponseSetOption();
-            while (reader.nextField()) {
-                if (reader.isEndGroup())
-                    break;
-                switch (reader.getFieldNumber()) {
-                    case 1:
-                        message.code = reader.readUint32();
-                        break;
-                    case 3:
-                        message.log = reader.readString();
-                        break;
-                    case 4:
-                        message.info = reader.readString();
-                        break;
-                    default: reader.skipField();
-                }
-            }
-            return message;
-        }
-        serializeBinary(): Uint8Array {
-            return this.serialize();
-        }
-        static deserializeBinary(bytes: Uint8Array): ResponseSetOption {
-            return ResponseSetOption.deserialize(bytes);
-        }
-    }
     export class ResponseInitChain extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            consensus_params?: ConsensusParams;
+            consensus_params?: dependency_3.tendermint.types.ConsensusParams;
             validators?: ValidatorUpdate[];
             app_hash?: Uint8Array;
         }) {
@@ -3308,9 +4042,9 @@ export namespace tendermint.abci {
             }
         }
         get consensus_params() {
-            return pb_1.Message.getWrapperField(this, ConsensusParams, 1) as ConsensusParams;
+            return pb_1.Message.getWrapperField(this, dependency_3.tendermint.types.ConsensusParams, 1) as dependency_3.tendermint.types.ConsensusParams;
         }
-        set consensus_params(value: ConsensusParams) {
+        set consensus_params(value: dependency_3.tendermint.types.ConsensusParams) {
             pb_1.Message.setWrapperField(this, 1, value);
         }
         get has_consensus_params() {
@@ -3329,13 +4063,13 @@ export namespace tendermint.abci {
             pb_1.Message.setField(this, 3, value);
         }
         static fromObject(data: {
-            consensus_params?: ReturnType<typeof ConsensusParams.prototype.toObject>;
+            consensus_params?: ReturnType<typeof dependency_3.tendermint.types.ConsensusParams.prototype.toObject>;
             validators?: ReturnType<typeof ValidatorUpdate.prototype.toObject>[];
             app_hash?: Uint8Array;
         }): ResponseInitChain {
             const message = new ResponseInitChain({});
             if (data.consensus_params != null) {
-                message.consensus_params = ConsensusParams.fromObject(data.consensus_params);
+                message.consensus_params = dependency_3.tendermint.types.ConsensusParams.fromObject(data.consensus_params);
             }
             if (data.validators != null) {
                 message.validators = data.validators.map(item => ValidatorUpdate.fromObject(item));
@@ -3347,7 +4081,7 @@ export namespace tendermint.abci {
         }
         toObject() {
             const data: {
-                consensus_params?: ReturnType<typeof ConsensusParams.prototype.toObject>;
+                consensus_params?: ReturnType<typeof dependency_3.tendermint.types.ConsensusParams.prototype.toObject>;
                 validators?: ReturnType<typeof ValidatorUpdate.prototype.toObject>[];
                 app_hash?: Uint8Array;
             } = {};
@@ -3382,7 +4116,7 @@ export namespace tendermint.abci {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        reader.readMessage(message.consensus_params, () => message.consensus_params = ConsensusParams.deserialize(reader));
+                        reader.readMessage(message.consensus_params, () => message.consensus_params = dependency_3.tendermint.types.ConsensusParams.deserialize(reader));
                         break;
                     case 2:
                         reader.readMessage(message.validators, () => pb_1.Message.addToRepeatedWrapperField(message, 2, ValidatorUpdate.deserialize(reader), ValidatorUpdate));
@@ -3656,73 +4390,6 @@ export namespace tendermint.abci {
             return ResponseQuery.deserialize(bytes);
         }
     }
-    export class ResponseBeginBlock extends pb_1.Message {
-        #one_of_decls: number[][] = [];
-        constructor(data?: any[] | {
-            events?: Event[];
-        }) {
-            super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
-            if (!Array.isArray(data) && typeof data == "object") {
-                if ("events" in data && data.events != undefined) {
-                    this.events = data.events;
-                }
-            }
-        }
-        get events() {
-            return pb_1.Message.getRepeatedWrapperField(this, Event, 1) as Event[];
-        }
-        set events(value: Event[]) {
-            pb_1.Message.setRepeatedWrapperField(this, 1, value);
-        }
-        static fromObject(data: {
-            events?: ReturnType<typeof Event.prototype.toObject>[];
-        }): ResponseBeginBlock {
-            const message = new ResponseBeginBlock({});
-            if (data.events != null) {
-                message.events = data.events.map(item => Event.fromObject(item));
-            }
-            return message;
-        }
-        toObject() {
-            const data: {
-                events?: ReturnType<typeof Event.prototype.toObject>[];
-            } = {};
-            if (this.events != null) {
-                data.events = this.events.map((item: Event) => item.toObject());
-            }
-            return data;
-        }
-        serialize(): Uint8Array;
-        serialize(w: pb_1.BinaryWriter): void;
-        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
-            const writer = w || new pb_1.BinaryWriter();
-            if (this.events.length)
-                writer.writeRepeatedMessage(1, this.events, (item: Event) => item.serialize(writer));
-            if (!w)
-                return writer.getResultBuffer();
-        }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ResponseBeginBlock {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ResponseBeginBlock();
-            while (reader.nextField()) {
-                if (reader.isEndGroup())
-                    break;
-                switch (reader.getFieldNumber()) {
-                    case 1:
-                        reader.readMessage(message.events, () => pb_1.Message.addToRepeatedWrapperField(message, 1, Event.deserialize(reader), Event));
-                        break;
-                    default: reader.skipField();
-                }
-            }
-            return message;
-        }
-        serializeBinary(): Uint8Array {
-            return this.serialize();
-        }
-        static deserializeBinary(bytes: Uint8Array): ResponseBeginBlock {
-            return ResponseBeginBlock.deserialize(bytes);
-        }
-    }
     export class ResponseCheckTx extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
@@ -3951,372 +4618,18 @@ export namespace tendermint.abci {
             return ResponseCheckTx.deserialize(bytes);
         }
     }
-    export class ResponseDeliverTx extends pb_1.Message {
-        #one_of_decls: number[][] = [];
-        constructor(data?: any[] | {
-            code?: number;
-            data?: Uint8Array;
-            log?: string;
-            info?: string;
-            gas_wanted?: number;
-            gas_used?: number;
-            events?: Event[];
-            codespace?: string;
-        }) {
-            super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [7], this.#one_of_decls);
-            if (!Array.isArray(data) && typeof data == "object") {
-                if ("code" in data && data.code != undefined) {
-                    this.code = data.code;
-                }
-                if ("data" in data && data.data != undefined) {
-                    this.data = data.data;
-                }
-                if ("log" in data && data.log != undefined) {
-                    this.log = data.log;
-                }
-                if ("info" in data && data.info != undefined) {
-                    this.info = data.info;
-                }
-                if ("gas_wanted" in data && data.gas_wanted != undefined) {
-                    this.gas_wanted = data.gas_wanted;
-                }
-                if ("gas_used" in data && data.gas_used != undefined) {
-                    this.gas_used = data.gas_used;
-                }
-                if ("events" in data && data.events != undefined) {
-                    this.events = data.events;
-                }
-                if ("codespace" in data && data.codespace != undefined) {
-                    this.codespace = data.codespace;
-                }
-            }
-        }
-        get code() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
-        }
-        set code(value: number) {
-            pb_1.Message.setField(this, 1, value);
-        }
-        get data() {
-            return pb_1.Message.getFieldWithDefault(this, 2, new Uint8Array(0)) as Uint8Array;
-        }
-        set data(value: Uint8Array) {
-            pb_1.Message.setField(this, 2, value);
-        }
-        get log() {
-            return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
-        }
-        set log(value: string) {
-            pb_1.Message.setField(this, 3, value);
-        }
-        get info() {
-            return pb_1.Message.getFieldWithDefault(this, 4, "") as string;
-        }
-        set info(value: string) {
-            pb_1.Message.setField(this, 4, value);
-        }
-        get gas_wanted() {
-            return pb_1.Message.getFieldWithDefault(this, 5, 0) as number;
-        }
-        set gas_wanted(value: number) {
-            pb_1.Message.setField(this, 5, value);
-        }
-        get gas_used() {
-            return pb_1.Message.getFieldWithDefault(this, 6, 0) as number;
-        }
-        set gas_used(value: number) {
-            pb_1.Message.setField(this, 6, value);
-        }
-        get events() {
-            return pb_1.Message.getRepeatedWrapperField(this, Event, 7) as Event[];
-        }
-        set events(value: Event[]) {
-            pb_1.Message.setRepeatedWrapperField(this, 7, value);
-        }
-        get codespace() {
-            return pb_1.Message.getFieldWithDefault(this, 8, "") as string;
-        }
-        set codespace(value: string) {
-            pb_1.Message.setField(this, 8, value);
-        }
-        static fromObject(data: {
-            code?: number;
-            data?: Uint8Array;
-            log?: string;
-            info?: string;
-            gas_wanted?: number;
-            gas_used?: number;
-            events?: ReturnType<typeof Event.prototype.toObject>[];
-            codespace?: string;
-        }): ResponseDeliverTx {
-            const message = new ResponseDeliverTx({});
-            if (data.code != null) {
-                message.code = data.code;
-            }
-            if (data.data != null) {
-                message.data = data.data;
-            }
-            if (data.log != null) {
-                message.log = data.log;
-            }
-            if (data.info != null) {
-                message.info = data.info;
-            }
-            if (data.gas_wanted != null) {
-                message.gas_wanted = data.gas_wanted;
-            }
-            if (data.gas_used != null) {
-                message.gas_used = data.gas_used;
-            }
-            if (data.events != null) {
-                message.events = data.events.map(item => Event.fromObject(item));
-            }
-            if (data.codespace != null) {
-                message.codespace = data.codespace;
-            }
-            return message;
-        }
-        toObject() {
-            const data: {
-                code?: number;
-                data?: Uint8Array;
-                log?: string;
-                info?: string;
-                gas_wanted?: number;
-                gas_used?: number;
-                events?: ReturnType<typeof Event.prototype.toObject>[];
-                codespace?: string;
-            } = {};
-            if (this.code != null) {
-                data.code = this.code;
-            }
-            if (this.data != null) {
-                data.data = this.data;
-            }
-            if (this.log != null) {
-                data.log = this.log;
-            }
-            if (this.info != null) {
-                data.info = this.info;
-            }
-            if (this.gas_wanted != null) {
-                data.gas_wanted = this.gas_wanted;
-            }
-            if (this.gas_used != null) {
-                data.gas_used = this.gas_used;
-            }
-            if (this.events != null) {
-                data.events = this.events.map((item: Event) => item.toObject());
-            }
-            if (this.codespace != null) {
-                data.codespace = this.codespace;
-            }
-            return data;
-        }
-        serialize(): Uint8Array;
-        serialize(w: pb_1.BinaryWriter): void;
-        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
-            const writer = w || new pb_1.BinaryWriter();
-            if (this.code != 0)
-                writer.writeUint32(1, this.code);
-            if (this.data.length)
-                writer.writeBytes(2, this.data);
-            if (this.log.length)
-                writer.writeString(3, this.log);
-            if (this.info.length)
-                writer.writeString(4, this.info);
-            if (this.gas_wanted != 0)
-                writer.writeInt64(5, this.gas_wanted);
-            if (this.gas_used != 0)
-                writer.writeInt64(6, this.gas_used);
-            if (this.events.length)
-                writer.writeRepeatedMessage(7, this.events, (item: Event) => item.serialize(writer));
-            if (this.codespace.length)
-                writer.writeString(8, this.codespace);
-            if (!w)
-                return writer.getResultBuffer();
-        }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ResponseDeliverTx {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ResponseDeliverTx();
-            while (reader.nextField()) {
-                if (reader.isEndGroup())
-                    break;
-                switch (reader.getFieldNumber()) {
-                    case 1:
-                        message.code = reader.readUint32();
-                        break;
-                    case 2:
-                        message.data = reader.readBytes();
-                        break;
-                    case 3:
-                        message.log = reader.readString();
-                        break;
-                    case 4:
-                        message.info = reader.readString();
-                        break;
-                    case 5:
-                        message.gas_wanted = reader.readInt64();
-                        break;
-                    case 6:
-                        message.gas_used = reader.readInt64();
-                        break;
-                    case 7:
-                        reader.readMessage(message.events, () => pb_1.Message.addToRepeatedWrapperField(message, 7, Event.deserialize(reader), Event));
-                        break;
-                    case 8:
-                        message.codespace = reader.readString();
-                        break;
-                    default: reader.skipField();
-                }
-            }
-            return message;
-        }
-        serializeBinary(): Uint8Array {
-            return this.serialize();
-        }
-        static deserializeBinary(bytes: Uint8Array): ResponseDeliverTx {
-            return ResponseDeliverTx.deserialize(bytes);
-        }
-    }
-    export class ResponseEndBlock extends pb_1.Message {
-        #one_of_decls: number[][] = [];
-        constructor(data?: any[] | {
-            validator_updates?: ValidatorUpdate[];
-            consensus_param_updates?: ConsensusParams;
-            events?: Event[];
-        }) {
-            super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1, 3], this.#one_of_decls);
-            if (!Array.isArray(data) && typeof data == "object") {
-                if ("validator_updates" in data && data.validator_updates != undefined) {
-                    this.validator_updates = data.validator_updates;
-                }
-                if ("consensus_param_updates" in data && data.consensus_param_updates != undefined) {
-                    this.consensus_param_updates = data.consensus_param_updates;
-                }
-                if ("events" in data && data.events != undefined) {
-                    this.events = data.events;
-                }
-            }
-        }
-        get validator_updates() {
-            return pb_1.Message.getRepeatedWrapperField(this, ValidatorUpdate, 1) as ValidatorUpdate[];
-        }
-        set validator_updates(value: ValidatorUpdate[]) {
-            pb_1.Message.setRepeatedWrapperField(this, 1, value);
-        }
-        get consensus_param_updates() {
-            return pb_1.Message.getWrapperField(this, ConsensusParams, 2) as ConsensusParams;
-        }
-        set consensus_param_updates(value: ConsensusParams) {
-            pb_1.Message.setWrapperField(this, 2, value);
-        }
-        get has_consensus_param_updates() {
-            return pb_1.Message.getField(this, 2) != null;
-        }
-        get events() {
-            return pb_1.Message.getRepeatedWrapperField(this, Event, 3) as Event[];
-        }
-        set events(value: Event[]) {
-            pb_1.Message.setRepeatedWrapperField(this, 3, value);
-        }
-        static fromObject(data: {
-            validator_updates?: ReturnType<typeof ValidatorUpdate.prototype.toObject>[];
-            consensus_param_updates?: ReturnType<typeof ConsensusParams.prototype.toObject>;
-            events?: ReturnType<typeof Event.prototype.toObject>[];
-        }): ResponseEndBlock {
-            const message = new ResponseEndBlock({});
-            if (data.validator_updates != null) {
-                message.validator_updates = data.validator_updates.map(item => ValidatorUpdate.fromObject(item));
-            }
-            if (data.consensus_param_updates != null) {
-                message.consensus_param_updates = ConsensusParams.fromObject(data.consensus_param_updates);
-            }
-            if (data.events != null) {
-                message.events = data.events.map(item => Event.fromObject(item));
-            }
-            return message;
-        }
-        toObject() {
-            const data: {
-                validator_updates?: ReturnType<typeof ValidatorUpdate.prototype.toObject>[];
-                consensus_param_updates?: ReturnType<typeof ConsensusParams.prototype.toObject>;
-                events?: ReturnType<typeof Event.prototype.toObject>[];
-            } = {};
-            if (this.validator_updates != null) {
-                data.validator_updates = this.validator_updates.map((item: ValidatorUpdate) => item.toObject());
-            }
-            if (this.consensus_param_updates != null) {
-                data.consensus_param_updates = this.consensus_param_updates.toObject();
-            }
-            if (this.events != null) {
-                data.events = this.events.map((item: Event) => item.toObject());
-            }
-            return data;
-        }
-        serialize(): Uint8Array;
-        serialize(w: pb_1.BinaryWriter): void;
-        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
-            const writer = w || new pb_1.BinaryWriter();
-            if (this.validator_updates.length)
-                writer.writeRepeatedMessage(1, this.validator_updates, (item: ValidatorUpdate) => item.serialize(writer));
-            if (this.has_consensus_param_updates)
-                writer.writeMessage(2, this.consensus_param_updates, () => this.consensus_param_updates.serialize(writer));
-            if (this.events.length)
-                writer.writeRepeatedMessage(3, this.events, (item: Event) => item.serialize(writer));
-            if (!w)
-                return writer.getResultBuffer();
-        }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ResponseEndBlock {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ResponseEndBlock();
-            while (reader.nextField()) {
-                if (reader.isEndGroup())
-                    break;
-                switch (reader.getFieldNumber()) {
-                    case 1:
-                        reader.readMessage(message.validator_updates, () => pb_1.Message.addToRepeatedWrapperField(message, 1, ValidatorUpdate.deserialize(reader), ValidatorUpdate));
-                        break;
-                    case 2:
-                        reader.readMessage(message.consensus_param_updates, () => message.consensus_param_updates = ConsensusParams.deserialize(reader));
-                        break;
-                    case 3:
-                        reader.readMessage(message.events, () => pb_1.Message.addToRepeatedWrapperField(message, 3, Event.deserialize(reader), Event));
-                        break;
-                    default: reader.skipField();
-                }
-            }
-            return message;
-        }
-        serializeBinary(): Uint8Array {
-            return this.serialize();
-        }
-        static deserializeBinary(bytes: Uint8Array): ResponseEndBlock {
-            return ResponseEndBlock.deserialize(bytes);
-        }
-    }
     export class ResponseCommit extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            data?: Uint8Array;
             retain_height?: number;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
             if (!Array.isArray(data) && typeof data == "object") {
-                if ("data" in data && data.data != undefined) {
-                    this.data = data.data;
-                }
                 if ("retain_height" in data && data.retain_height != undefined) {
                     this.retain_height = data.retain_height;
                 }
             }
-        }
-        get data() {
-            return pb_1.Message.getFieldWithDefault(this, 2, new Uint8Array(0)) as Uint8Array;
-        }
-        set data(value: Uint8Array) {
-            pb_1.Message.setField(this, 2, value);
         }
         get retain_height() {
             return pb_1.Message.getFieldWithDefault(this, 3, 0) as number;
@@ -4325,13 +4638,9 @@ export namespace tendermint.abci {
             pb_1.Message.setField(this, 3, value);
         }
         static fromObject(data: {
-            data?: Uint8Array;
             retain_height?: number;
         }): ResponseCommit {
             const message = new ResponseCommit({});
-            if (data.data != null) {
-                message.data = data.data;
-            }
             if (data.retain_height != null) {
                 message.retain_height = data.retain_height;
             }
@@ -4339,12 +4648,8 @@ export namespace tendermint.abci {
         }
         toObject() {
             const data: {
-                data?: Uint8Array;
                 retain_height?: number;
             } = {};
-            if (this.data != null) {
-                data.data = this.data;
-            }
             if (this.retain_height != null) {
                 data.retain_height = this.retain_height;
             }
@@ -4354,8 +4659,6 @@ export namespace tendermint.abci {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.data.length)
-                writer.writeBytes(2, this.data);
             if (this.retain_height != 0)
                 writer.writeInt64(3, this.retain_height);
             if (!w)
@@ -4367,9 +4670,6 @@ export namespace tendermint.abci {
                 if (reader.isEndGroup())
                     break;
                 switch (reader.getFieldNumber()) {
-                    case 2:
-                        message.data = reader.readBytes();
-                        break;
                     case 3:
                         message.retain_height = reader.readInt64();
                         break;
@@ -4719,206 +5019,40 @@ export namespace tendermint.abci {
             REJECT_SNAPSHOT = 5
         }
     }
-    export class ConsensusParams extends pb_1.Message {
+    export class ResponsePrepareProposal extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            block?: BlockParams;
-            evidence?: dependency_4.tendermint.types.EvidenceParams;
-            validator?: dependency_4.tendermint.types.ValidatorParams;
-            version?: dependency_4.tendermint.types.VersionParams;
+            txs?: Uint8Array[];
         }) {
             super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
             if (!Array.isArray(data) && typeof data == "object") {
-                if ("block" in data && data.block != undefined) {
-                    this.block = data.block;
-                }
-                if ("evidence" in data && data.evidence != undefined) {
-                    this.evidence = data.evidence;
-                }
-                if ("validator" in data && data.validator != undefined) {
-                    this.validator = data.validator;
-                }
-                if ("version" in data && data.version != undefined) {
-                    this.version = data.version;
+                if ("txs" in data && data.txs != undefined) {
+                    this.txs = data.txs;
                 }
             }
         }
-        get block() {
-            return pb_1.Message.getWrapperField(this, BlockParams, 1) as BlockParams;
+        get txs() {
+            return pb_1.Message.getFieldWithDefault(this, 1, []) as Uint8Array[];
         }
-        set block(value: BlockParams) {
-            pb_1.Message.setWrapperField(this, 1, value);
-        }
-        get has_block() {
-            return pb_1.Message.getField(this, 1) != null;
-        }
-        get evidence() {
-            return pb_1.Message.getWrapperField(this, dependency_4.tendermint.types.EvidenceParams, 2) as dependency_4.tendermint.types.EvidenceParams;
-        }
-        set evidence(value: dependency_4.tendermint.types.EvidenceParams) {
-            pb_1.Message.setWrapperField(this, 2, value);
-        }
-        get has_evidence() {
-            return pb_1.Message.getField(this, 2) != null;
-        }
-        get validator() {
-            return pb_1.Message.getWrapperField(this, dependency_4.tendermint.types.ValidatorParams, 3) as dependency_4.tendermint.types.ValidatorParams;
-        }
-        set validator(value: dependency_4.tendermint.types.ValidatorParams) {
-            pb_1.Message.setWrapperField(this, 3, value);
-        }
-        get has_validator() {
-            return pb_1.Message.getField(this, 3) != null;
-        }
-        get version() {
-            return pb_1.Message.getWrapperField(this, dependency_4.tendermint.types.VersionParams, 4) as dependency_4.tendermint.types.VersionParams;
-        }
-        set version(value: dependency_4.tendermint.types.VersionParams) {
-            pb_1.Message.setWrapperField(this, 4, value);
-        }
-        get has_version() {
-            return pb_1.Message.getField(this, 4) != null;
-        }
-        static fromObject(data: {
-            block?: ReturnType<typeof BlockParams.prototype.toObject>;
-            evidence?: ReturnType<typeof dependency_4.tendermint.types.EvidenceParams.prototype.toObject>;
-            validator?: ReturnType<typeof dependency_4.tendermint.types.ValidatorParams.prototype.toObject>;
-            version?: ReturnType<typeof dependency_4.tendermint.types.VersionParams.prototype.toObject>;
-        }): ConsensusParams {
-            const message = new ConsensusParams({});
-            if (data.block != null) {
-                message.block = BlockParams.fromObject(data.block);
-            }
-            if (data.evidence != null) {
-                message.evidence = dependency_4.tendermint.types.EvidenceParams.fromObject(data.evidence);
-            }
-            if (data.validator != null) {
-                message.validator = dependency_4.tendermint.types.ValidatorParams.fromObject(data.validator);
-            }
-            if (data.version != null) {
-                message.version = dependency_4.tendermint.types.VersionParams.fromObject(data.version);
-            }
-            return message;
-        }
-        toObject() {
-            const data: {
-                block?: ReturnType<typeof BlockParams.prototype.toObject>;
-                evidence?: ReturnType<typeof dependency_4.tendermint.types.EvidenceParams.prototype.toObject>;
-                validator?: ReturnType<typeof dependency_4.tendermint.types.ValidatorParams.prototype.toObject>;
-                version?: ReturnType<typeof dependency_4.tendermint.types.VersionParams.prototype.toObject>;
-            } = {};
-            if (this.block != null) {
-                data.block = this.block.toObject();
-            }
-            if (this.evidence != null) {
-                data.evidence = this.evidence.toObject();
-            }
-            if (this.validator != null) {
-                data.validator = this.validator.toObject();
-            }
-            if (this.version != null) {
-                data.version = this.version.toObject();
-            }
-            return data;
-        }
-        serialize(): Uint8Array;
-        serialize(w: pb_1.BinaryWriter): void;
-        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
-            const writer = w || new pb_1.BinaryWriter();
-            if (this.has_block)
-                writer.writeMessage(1, this.block, () => this.block.serialize(writer));
-            if (this.has_evidence)
-                writer.writeMessage(2, this.evidence, () => this.evidence.serialize(writer));
-            if (this.has_validator)
-                writer.writeMessage(3, this.validator, () => this.validator.serialize(writer));
-            if (this.has_version)
-                writer.writeMessage(4, this.version, () => this.version.serialize(writer));
-            if (!w)
-                return writer.getResultBuffer();
-        }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ConsensusParams {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ConsensusParams();
-            while (reader.nextField()) {
-                if (reader.isEndGroup())
-                    break;
-                switch (reader.getFieldNumber()) {
-                    case 1:
-                        reader.readMessage(message.block, () => message.block = BlockParams.deserialize(reader));
-                        break;
-                    case 2:
-                        reader.readMessage(message.evidence, () => message.evidence = dependency_4.tendermint.types.EvidenceParams.deserialize(reader));
-                        break;
-                    case 3:
-                        reader.readMessage(message.validator, () => message.validator = dependency_4.tendermint.types.ValidatorParams.deserialize(reader));
-                        break;
-                    case 4:
-                        reader.readMessage(message.version, () => message.version = dependency_4.tendermint.types.VersionParams.deserialize(reader));
-                        break;
-                    default: reader.skipField();
-                }
-            }
-            return message;
-        }
-        serializeBinary(): Uint8Array {
-            return this.serialize();
-        }
-        static deserializeBinary(bytes: Uint8Array): ConsensusParams {
-            return ConsensusParams.deserialize(bytes);
-        }
-    }
-    export class BlockParams extends pb_1.Message {
-        #one_of_decls: number[][] = [];
-        constructor(data?: any[] | {
-            max_bytes?: number;
-            max_gas?: number;
-        }) {
-            super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
-            if (!Array.isArray(data) && typeof data == "object") {
-                if ("max_bytes" in data && data.max_bytes != undefined) {
-                    this.max_bytes = data.max_bytes;
-                }
-                if ("max_gas" in data && data.max_gas != undefined) {
-                    this.max_gas = data.max_gas;
-                }
-            }
-        }
-        get max_bytes() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
-        }
-        set max_bytes(value: number) {
+        set txs(value: Uint8Array[]) {
             pb_1.Message.setField(this, 1, value);
         }
-        get max_gas() {
-            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
-        }
-        set max_gas(value: number) {
-            pb_1.Message.setField(this, 2, value);
-        }
         static fromObject(data: {
-            max_bytes?: number;
-            max_gas?: number;
-        }): BlockParams {
-            const message = new BlockParams({});
-            if (data.max_bytes != null) {
-                message.max_bytes = data.max_bytes;
-            }
-            if (data.max_gas != null) {
-                message.max_gas = data.max_gas;
+            txs?: Uint8Array[];
+        }): ResponsePrepareProposal {
+            const message = new ResponsePrepareProposal({});
+            if (data.txs != null) {
+                message.txs = data.txs;
             }
             return message;
         }
         toObject() {
             const data: {
-                max_bytes?: number;
-                max_gas?: number;
+                txs?: Uint8Array[];
             } = {};
-            if (this.max_bytes != null) {
-                data.max_bytes = this.max_bytes;
-            }
-            if (this.max_gas != null) {
-                data.max_gas = this.max_gas;
+            if (this.txs != null) {
+                data.txs = this.txs;
             }
             return data;
         }
@@ -4926,24 +5060,19 @@ export namespace tendermint.abci {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.max_bytes != 0)
-                writer.writeInt64(1, this.max_bytes);
-            if (this.max_gas != 0)
-                writer.writeInt64(2, this.max_gas);
+            if (this.txs.length)
+                writer.writeRepeatedBytes(1, this.txs);
             if (!w)
                 return writer.getResultBuffer();
         }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): BlockParams {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new BlockParams();
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ResponsePrepareProposal {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ResponsePrepareProposal();
             while (reader.nextField()) {
                 if (reader.isEndGroup())
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.max_bytes = reader.readInt64();
-                        break;
-                    case 2:
-                        message.max_gas = reader.readInt64();
+                        pb_1.Message.addToRepeatedField(message, 1, reader.readBytes());
                         break;
                     default: reader.skipField();
                 }
@@ -4953,11 +5082,388 @@ export namespace tendermint.abci {
         serializeBinary(): Uint8Array {
             return this.serialize();
         }
-        static deserializeBinary(bytes: Uint8Array): BlockParams {
-            return BlockParams.deserialize(bytes);
+        static deserializeBinary(bytes: Uint8Array): ResponsePrepareProposal {
+            return ResponsePrepareProposal.deserialize(bytes);
         }
     }
-    export class LastCommitInfo extends pb_1.Message {
+    export class ResponseProcessProposal extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            status?: ResponseProcessProposal.ProposalStatus;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("status" in data && data.status != undefined) {
+                    this.status = data.status;
+                }
+            }
+        }
+        get status() {
+            return pb_1.Message.getFieldWithDefault(this, 1, ResponseProcessProposal.ProposalStatus.UNKNOWN) as ResponseProcessProposal.ProposalStatus;
+        }
+        set status(value: ResponseProcessProposal.ProposalStatus) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            status?: ResponseProcessProposal.ProposalStatus;
+        }): ResponseProcessProposal {
+            const message = new ResponseProcessProposal({});
+            if (data.status != null) {
+                message.status = data.status;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                status?: ResponseProcessProposal.ProposalStatus;
+            } = {};
+            if (this.status != null) {
+                data.status = this.status;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.status != ResponseProcessProposal.ProposalStatus.UNKNOWN)
+                writer.writeEnum(1, this.status);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ResponseProcessProposal {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ResponseProcessProposal();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.status = reader.readEnum();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ResponseProcessProposal {
+            return ResponseProcessProposal.deserialize(bytes);
+        }
+    }
+    export namespace ResponseProcessProposal {
+        export enum ProposalStatus {
+            UNKNOWN = 0,
+            ACCEPT = 1,
+            REJECT = 2
+        }
+    }
+    export class ResponseExtendVote extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            vote_extension?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("vote_extension" in data && data.vote_extension != undefined) {
+                    this.vote_extension = data.vote_extension;
+                }
+            }
+        }
+        get vote_extension() {
+            return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
+        }
+        set vote_extension(value: Uint8Array) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            vote_extension?: Uint8Array;
+        }): ResponseExtendVote {
+            const message = new ResponseExtendVote({});
+            if (data.vote_extension != null) {
+                message.vote_extension = data.vote_extension;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                vote_extension?: Uint8Array;
+            } = {};
+            if (this.vote_extension != null) {
+                data.vote_extension = this.vote_extension;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.vote_extension.length)
+                writer.writeBytes(1, this.vote_extension);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ResponseExtendVote {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ResponseExtendVote();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.vote_extension = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ResponseExtendVote {
+            return ResponseExtendVote.deserialize(bytes);
+        }
+    }
+    export class ResponseVerifyVoteExtension extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            status?: ResponseVerifyVoteExtension.VerifyStatus;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("status" in data && data.status != undefined) {
+                    this.status = data.status;
+                }
+            }
+        }
+        get status() {
+            return pb_1.Message.getFieldWithDefault(this, 1, ResponseVerifyVoteExtension.VerifyStatus.UNKNOWN) as ResponseVerifyVoteExtension.VerifyStatus;
+        }
+        set status(value: ResponseVerifyVoteExtension.VerifyStatus) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            status?: ResponseVerifyVoteExtension.VerifyStatus;
+        }): ResponseVerifyVoteExtension {
+            const message = new ResponseVerifyVoteExtension({});
+            if (data.status != null) {
+                message.status = data.status;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                status?: ResponseVerifyVoteExtension.VerifyStatus;
+            } = {};
+            if (this.status != null) {
+                data.status = this.status;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.status != ResponseVerifyVoteExtension.VerifyStatus.UNKNOWN)
+                writer.writeEnum(1, this.status);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ResponseVerifyVoteExtension {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ResponseVerifyVoteExtension();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.status = reader.readEnum();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ResponseVerifyVoteExtension {
+            return ResponseVerifyVoteExtension.deserialize(bytes);
+        }
+    }
+    export namespace ResponseVerifyVoteExtension {
+        export enum VerifyStatus {
+            UNKNOWN = 0,
+            ACCEPT = 1,
+            REJECT = 2
+        }
+    }
+    export class ResponseFinalizeBlock extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            events?: Event[];
+            tx_results?: ExecTxResult[];
+            validator_updates?: ValidatorUpdate[];
+            consensus_param_updates?: dependency_3.tendermint.types.ConsensusParams;
+            app_hash?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1, 2, 3], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("events" in data && data.events != undefined) {
+                    this.events = data.events;
+                }
+                if ("tx_results" in data && data.tx_results != undefined) {
+                    this.tx_results = data.tx_results;
+                }
+                if ("validator_updates" in data && data.validator_updates != undefined) {
+                    this.validator_updates = data.validator_updates;
+                }
+                if ("consensus_param_updates" in data && data.consensus_param_updates != undefined) {
+                    this.consensus_param_updates = data.consensus_param_updates;
+                }
+                if ("app_hash" in data && data.app_hash != undefined) {
+                    this.app_hash = data.app_hash;
+                }
+            }
+        }
+        get events() {
+            return pb_1.Message.getRepeatedWrapperField(this, Event, 1) as Event[];
+        }
+        set events(value: Event[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        get tx_results() {
+            return pb_1.Message.getRepeatedWrapperField(this, ExecTxResult, 2) as ExecTxResult[];
+        }
+        set tx_results(value: ExecTxResult[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 2, value);
+        }
+        get validator_updates() {
+            return pb_1.Message.getRepeatedWrapperField(this, ValidatorUpdate, 3) as ValidatorUpdate[];
+        }
+        set validator_updates(value: ValidatorUpdate[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 3, value);
+        }
+        get consensus_param_updates() {
+            return pb_1.Message.getWrapperField(this, dependency_3.tendermint.types.ConsensusParams, 4) as dependency_3.tendermint.types.ConsensusParams;
+        }
+        set consensus_param_updates(value: dependency_3.tendermint.types.ConsensusParams) {
+            pb_1.Message.setWrapperField(this, 4, value);
+        }
+        get has_consensus_param_updates() {
+            return pb_1.Message.getField(this, 4) != null;
+        }
+        get app_hash() {
+            return pb_1.Message.getFieldWithDefault(this, 5, new Uint8Array(0)) as Uint8Array;
+        }
+        set app_hash(value: Uint8Array) {
+            pb_1.Message.setField(this, 5, value);
+        }
+        static fromObject(data: {
+            events?: ReturnType<typeof Event.prototype.toObject>[];
+            tx_results?: ReturnType<typeof ExecTxResult.prototype.toObject>[];
+            validator_updates?: ReturnType<typeof ValidatorUpdate.prototype.toObject>[];
+            consensus_param_updates?: ReturnType<typeof dependency_3.tendermint.types.ConsensusParams.prototype.toObject>;
+            app_hash?: Uint8Array;
+        }): ResponseFinalizeBlock {
+            const message = new ResponseFinalizeBlock({});
+            if (data.events != null) {
+                message.events = data.events.map(item => Event.fromObject(item));
+            }
+            if (data.tx_results != null) {
+                message.tx_results = data.tx_results.map(item => ExecTxResult.fromObject(item));
+            }
+            if (data.validator_updates != null) {
+                message.validator_updates = data.validator_updates.map(item => ValidatorUpdate.fromObject(item));
+            }
+            if (data.consensus_param_updates != null) {
+                message.consensus_param_updates = dependency_3.tendermint.types.ConsensusParams.fromObject(data.consensus_param_updates);
+            }
+            if (data.app_hash != null) {
+                message.app_hash = data.app_hash;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                events?: ReturnType<typeof Event.prototype.toObject>[];
+                tx_results?: ReturnType<typeof ExecTxResult.prototype.toObject>[];
+                validator_updates?: ReturnType<typeof ValidatorUpdate.prototype.toObject>[];
+                consensus_param_updates?: ReturnType<typeof dependency_3.tendermint.types.ConsensusParams.prototype.toObject>;
+                app_hash?: Uint8Array;
+            } = {};
+            if (this.events != null) {
+                data.events = this.events.map((item: Event) => item.toObject());
+            }
+            if (this.tx_results != null) {
+                data.tx_results = this.tx_results.map((item: ExecTxResult) => item.toObject());
+            }
+            if (this.validator_updates != null) {
+                data.validator_updates = this.validator_updates.map((item: ValidatorUpdate) => item.toObject());
+            }
+            if (this.consensus_param_updates != null) {
+                data.consensus_param_updates = this.consensus_param_updates.toObject();
+            }
+            if (this.app_hash != null) {
+                data.app_hash = this.app_hash;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.events.length)
+                writer.writeRepeatedMessage(1, this.events, (item: Event) => item.serialize(writer));
+            if (this.tx_results.length)
+                writer.writeRepeatedMessage(2, this.tx_results, (item: ExecTxResult) => item.serialize(writer));
+            if (this.validator_updates.length)
+                writer.writeRepeatedMessage(3, this.validator_updates, (item: ValidatorUpdate) => item.serialize(writer));
+            if (this.has_consensus_param_updates)
+                writer.writeMessage(4, this.consensus_param_updates, () => this.consensus_param_updates.serialize(writer));
+            if (this.app_hash.length)
+                writer.writeBytes(5, this.app_hash);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ResponseFinalizeBlock {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ResponseFinalizeBlock();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.events, () => pb_1.Message.addToRepeatedWrapperField(message, 1, Event.deserialize(reader), Event));
+                        break;
+                    case 2:
+                        reader.readMessage(message.tx_results, () => pb_1.Message.addToRepeatedWrapperField(message, 2, ExecTxResult.deserialize(reader), ExecTxResult));
+                        break;
+                    case 3:
+                        reader.readMessage(message.validator_updates, () => pb_1.Message.addToRepeatedWrapperField(message, 3, ValidatorUpdate.deserialize(reader), ValidatorUpdate));
+                        break;
+                    case 4:
+                        reader.readMessage(message.consensus_param_updates, () => message.consensus_param_updates = dependency_3.tendermint.types.ConsensusParams.deserialize(reader));
+                        break;
+                    case 5:
+                        message.app_hash = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ResponseFinalizeBlock {
+            return ResponseFinalizeBlock.deserialize(bytes);
+        }
+    }
+    export class CommitInfo extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             round?: number;
@@ -4989,8 +5495,8 @@ export namespace tendermint.abci {
         static fromObject(data: {
             round?: number;
             votes?: ReturnType<typeof VoteInfo.prototype.toObject>[];
-        }): LastCommitInfo {
-            const message = new LastCommitInfo({});
+        }): CommitInfo {
+            const message = new CommitInfo({});
             if (data.round != null) {
                 message.round = data.round;
             }
@@ -5023,8 +5529,8 @@ export namespace tendermint.abci {
             if (!w)
                 return writer.getResultBuffer();
         }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): LastCommitInfo {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new LastCommitInfo();
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): CommitInfo {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new CommitInfo();
             while (reader.nextField()) {
                 if (reader.isEndGroup())
                     break;
@@ -5043,8 +5549,98 @@ export namespace tendermint.abci {
         serializeBinary(): Uint8Array {
             return this.serialize();
         }
-        static deserializeBinary(bytes: Uint8Array): LastCommitInfo {
-            return LastCommitInfo.deserialize(bytes);
+        static deserializeBinary(bytes: Uint8Array): CommitInfo {
+            return CommitInfo.deserialize(bytes);
+        }
+    }
+    export class ExtendedCommitInfo extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            round?: number;
+            votes?: ExtendedVoteInfo[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [2], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("round" in data && data.round != undefined) {
+                    this.round = data.round;
+                }
+                if ("votes" in data && data.votes != undefined) {
+                    this.votes = data.votes;
+                }
+            }
+        }
+        get round() {
+            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+        }
+        set round(value: number) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get votes() {
+            return pb_1.Message.getRepeatedWrapperField(this, ExtendedVoteInfo, 2) as ExtendedVoteInfo[];
+        }
+        set votes(value: ExtendedVoteInfo[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 2, value);
+        }
+        static fromObject(data: {
+            round?: number;
+            votes?: ReturnType<typeof ExtendedVoteInfo.prototype.toObject>[];
+        }): ExtendedCommitInfo {
+            const message = new ExtendedCommitInfo({});
+            if (data.round != null) {
+                message.round = data.round;
+            }
+            if (data.votes != null) {
+                message.votes = data.votes.map(item => ExtendedVoteInfo.fromObject(item));
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                round?: number;
+                votes?: ReturnType<typeof ExtendedVoteInfo.prototype.toObject>[];
+            } = {};
+            if (this.round != null) {
+                data.round = this.round;
+            }
+            if (this.votes != null) {
+                data.votes = this.votes.map((item: ExtendedVoteInfo) => item.toObject());
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.round != 0)
+                writer.writeInt32(1, this.round);
+            if (this.votes.length)
+                writer.writeRepeatedMessage(2, this.votes, (item: ExtendedVoteInfo) => item.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ExtendedCommitInfo {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ExtendedCommitInfo();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.round = reader.readInt32();
+                        break;
+                    case 2:
+                        reader.readMessage(message.votes, () => pb_1.Message.addToRepeatedWrapperField(message, 2, ExtendedVoteInfo.deserialize(reader), ExtendedVoteInfo));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ExtendedCommitInfo {
+            return ExtendedCommitInfo.deserialize(bytes);
         }
     }
     export class Event extends pb_1.Message {
@@ -5140,8 +5736,8 @@ export namespace tendermint.abci {
     export class EventAttribute extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            key?: Uint8Array;
-            value?: Uint8Array;
+            key?: string;
+            value?: string;
             index?: boolean;
         }) {
             super();
@@ -5159,15 +5755,15 @@ export namespace tendermint.abci {
             }
         }
         get key() {
-            return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
         }
-        set key(value: Uint8Array) {
+        set key(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
         get value() {
-            return pb_1.Message.getFieldWithDefault(this, 2, new Uint8Array(0)) as Uint8Array;
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
         }
-        set value(value: Uint8Array) {
+        set value(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
         get index() {
@@ -5177,8 +5773,8 @@ export namespace tendermint.abci {
             pb_1.Message.setField(this, 3, value);
         }
         static fromObject(data: {
-            key?: Uint8Array;
-            value?: Uint8Array;
+            key?: string;
+            value?: string;
             index?: boolean;
         }): EventAttribute {
             const message = new EventAttribute({});
@@ -5195,8 +5791,8 @@ export namespace tendermint.abci {
         }
         toObject() {
             const data: {
-                key?: Uint8Array;
-                value?: Uint8Array;
+                key?: string;
+                value?: string;
                 index?: boolean;
             } = {};
             if (this.key != null) {
@@ -5215,9 +5811,9 @@ export namespace tendermint.abci {
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
             if (this.key.length)
-                writer.writeBytes(1, this.key);
+                writer.writeString(1, this.key);
             if (this.value.length)
-                writer.writeBytes(2, this.value);
+                writer.writeString(2, this.value);
             if (this.index != false)
                 writer.writeBool(3, this.index);
             if (!w)
@@ -5230,10 +5826,10 @@ export namespace tendermint.abci {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.key = reader.readBytes();
+                        message.key = reader.readString();
                         break;
                     case 2:
-                        message.value = reader.readBytes();
+                        message.value = reader.readString();
                         break;
                     case 3:
                         message.index = reader.readBool();
@@ -5250,13 +5846,241 @@ export namespace tendermint.abci {
             return EventAttribute.deserialize(bytes);
         }
     }
+    export class ExecTxResult extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            code?: number;
+            data?: Uint8Array;
+            log?: string;
+            info?: string;
+            gas_wanted?: number;
+            gas_used?: number;
+            events?: Event[];
+            codespace?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [7], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("code" in data && data.code != undefined) {
+                    this.code = data.code;
+                }
+                if ("data" in data && data.data != undefined) {
+                    this.data = data.data;
+                }
+                if ("log" in data && data.log != undefined) {
+                    this.log = data.log;
+                }
+                if ("info" in data && data.info != undefined) {
+                    this.info = data.info;
+                }
+                if ("gas_wanted" in data && data.gas_wanted != undefined) {
+                    this.gas_wanted = data.gas_wanted;
+                }
+                if ("gas_used" in data && data.gas_used != undefined) {
+                    this.gas_used = data.gas_used;
+                }
+                if ("events" in data && data.events != undefined) {
+                    this.events = data.events;
+                }
+                if ("codespace" in data && data.codespace != undefined) {
+                    this.codespace = data.codespace;
+                }
+            }
+        }
+        get code() {
+            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+        }
+        set code(value: number) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get data() {
+            return pb_1.Message.getFieldWithDefault(this, 2, new Uint8Array(0)) as Uint8Array;
+        }
+        set data(value: Uint8Array) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get log() {
+            return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
+        }
+        set log(value: string) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        get info() {
+            return pb_1.Message.getFieldWithDefault(this, 4, "") as string;
+        }
+        set info(value: string) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        get gas_wanted() {
+            return pb_1.Message.getFieldWithDefault(this, 5, 0) as number;
+        }
+        set gas_wanted(value: number) {
+            pb_1.Message.setField(this, 5, value);
+        }
+        get gas_used() {
+            return pb_1.Message.getFieldWithDefault(this, 6, 0) as number;
+        }
+        set gas_used(value: number) {
+            pb_1.Message.setField(this, 6, value);
+        }
+        get events() {
+            return pb_1.Message.getRepeatedWrapperField(this, Event, 7) as Event[];
+        }
+        set events(value: Event[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 7, value);
+        }
+        get codespace() {
+            return pb_1.Message.getFieldWithDefault(this, 8, "") as string;
+        }
+        set codespace(value: string) {
+            pb_1.Message.setField(this, 8, value);
+        }
+        static fromObject(data: {
+            code?: number;
+            data?: Uint8Array;
+            log?: string;
+            info?: string;
+            gas_wanted?: number;
+            gas_used?: number;
+            events?: ReturnType<typeof Event.prototype.toObject>[];
+            codespace?: string;
+        }): ExecTxResult {
+            const message = new ExecTxResult({});
+            if (data.code != null) {
+                message.code = data.code;
+            }
+            if (data.data != null) {
+                message.data = data.data;
+            }
+            if (data.log != null) {
+                message.log = data.log;
+            }
+            if (data.info != null) {
+                message.info = data.info;
+            }
+            if (data.gas_wanted != null) {
+                message.gas_wanted = data.gas_wanted;
+            }
+            if (data.gas_used != null) {
+                message.gas_used = data.gas_used;
+            }
+            if (data.events != null) {
+                message.events = data.events.map(item => Event.fromObject(item));
+            }
+            if (data.codespace != null) {
+                message.codespace = data.codespace;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                code?: number;
+                data?: Uint8Array;
+                log?: string;
+                info?: string;
+                gas_wanted?: number;
+                gas_used?: number;
+                events?: ReturnType<typeof Event.prototype.toObject>[];
+                codespace?: string;
+            } = {};
+            if (this.code != null) {
+                data.code = this.code;
+            }
+            if (this.data != null) {
+                data.data = this.data;
+            }
+            if (this.log != null) {
+                data.log = this.log;
+            }
+            if (this.info != null) {
+                data.info = this.info;
+            }
+            if (this.gas_wanted != null) {
+                data.gas_wanted = this.gas_wanted;
+            }
+            if (this.gas_used != null) {
+                data.gas_used = this.gas_used;
+            }
+            if (this.events != null) {
+                data.events = this.events.map((item: Event) => item.toObject());
+            }
+            if (this.codespace != null) {
+                data.codespace = this.codespace;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.code != 0)
+                writer.writeUint32(1, this.code);
+            if (this.data.length)
+                writer.writeBytes(2, this.data);
+            if (this.log.length)
+                writer.writeString(3, this.log);
+            if (this.info.length)
+                writer.writeString(4, this.info);
+            if (this.gas_wanted != 0)
+                writer.writeInt64(5, this.gas_wanted);
+            if (this.gas_used != 0)
+                writer.writeInt64(6, this.gas_used);
+            if (this.events.length)
+                writer.writeRepeatedMessage(7, this.events, (item: Event) => item.serialize(writer));
+            if (this.codespace.length)
+                writer.writeString(8, this.codespace);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ExecTxResult {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ExecTxResult();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.code = reader.readUint32();
+                        break;
+                    case 2:
+                        message.data = reader.readBytes();
+                        break;
+                    case 3:
+                        message.log = reader.readString();
+                        break;
+                    case 4:
+                        message.info = reader.readString();
+                        break;
+                    case 5:
+                        message.gas_wanted = reader.readInt64();
+                        break;
+                    case 6:
+                        message.gas_used = reader.readInt64();
+                        break;
+                    case 7:
+                        reader.readMessage(message.events, () => pb_1.Message.addToRepeatedWrapperField(message, 7, Event.deserialize(reader), Event));
+                        break;
+                    case 8:
+                        message.codespace = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ExecTxResult {
+            return ExecTxResult.deserialize(bytes);
+        }
+    }
     export class TxResult extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             height?: number;
             index?: number;
             tx?: Uint8Array;
-            result?: ResponseDeliverTx;
+            result?: ExecTxResult;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -5294,9 +6118,9 @@ export namespace tendermint.abci {
             pb_1.Message.setField(this, 3, value);
         }
         get result() {
-            return pb_1.Message.getWrapperField(this, ResponseDeliverTx, 4) as ResponseDeliverTx;
+            return pb_1.Message.getWrapperField(this, ExecTxResult, 4) as ExecTxResult;
         }
-        set result(value: ResponseDeliverTx) {
+        set result(value: ExecTxResult) {
             pb_1.Message.setWrapperField(this, 4, value);
         }
         get has_result() {
@@ -5306,7 +6130,7 @@ export namespace tendermint.abci {
             height?: number;
             index?: number;
             tx?: Uint8Array;
-            result?: ReturnType<typeof ResponseDeliverTx.prototype.toObject>;
+            result?: ReturnType<typeof ExecTxResult.prototype.toObject>;
         }): TxResult {
             const message = new TxResult({});
             if (data.height != null) {
@@ -5319,7 +6143,7 @@ export namespace tendermint.abci {
                 message.tx = data.tx;
             }
             if (data.result != null) {
-                message.result = ResponseDeliverTx.fromObject(data.result);
+                message.result = ExecTxResult.fromObject(data.result);
             }
             return message;
         }
@@ -5328,7 +6152,7 @@ export namespace tendermint.abci {
                 height?: number;
                 index?: number;
                 tx?: Uint8Array;
-                result?: ReturnType<typeof ResponseDeliverTx.prototype.toObject>;
+                result?: ReturnType<typeof ExecTxResult.prototype.toObject>;
             } = {};
             if (this.height != null) {
                 data.height = this.height;
@@ -5375,7 +6199,7 @@ export namespace tendermint.abci {
                         message.tx = reader.readBytes();
                         break;
                     case 4:
-                        reader.readMessage(message.result, () => message.result = ResponseDeliverTx.deserialize(reader));
+                        reader.readMessage(message.result, () => message.result = ExecTxResult.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -5482,7 +6306,7 @@ export namespace tendermint.abci {
     export class ValidatorUpdate extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            pub_key?: dependency_3.tendermint.crypto.PublicKey;
+            pub_key?: dependency_2.tendermint.crypto.PublicKey;
             power?: number;
         }) {
             super();
@@ -5497,9 +6321,9 @@ export namespace tendermint.abci {
             }
         }
         get pub_key() {
-            return pb_1.Message.getWrapperField(this, dependency_3.tendermint.crypto.PublicKey, 1) as dependency_3.tendermint.crypto.PublicKey;
+            return pb_1.Message.getWrapperField(this, dependency_2.tendermint.crypto.PublicKey, 1) as dependency_2.tendermint.crypto.PublicKey;
         }
-        set pub_key(value: dependency_3.tendermint.crypto.PublicKey) {
+        set pub_key(value: dependency_2.tendermint.crypto.PublicKey) {
             pb_1.Message.setWrapperField(this, 1, value);
         }
         get has_pub_key() {
@@ -5512,12 +6336,12 @@ export namespace tendermint.abci {
             pb_1.Message.setField(this, 2, value);
         }
         static fromObject(data: {
-            pub_key?: ReturnType<typeof dependency_3.tendermint.crypto.PublicKey.prototype.toObject>;
+            pub_key?: ReturnType<typeof dependency_2.tendermint.crypto.PublicKey.prototype.toObject>;
             power?: number;
         }): ValidatorUpdate {
             const message = new ValidatorUpdate({});
             if (data.pub_key != null) {
-                message.pub_key = dependency_3.tendermint.crypto.PublicKey.fromObject(data.pub_key);
+                message.pub_key = dependency_2.tendermint.crypto.PublicKey.fromObject(data.pub_key);
             }
             if (data.power != null) {
                 message.power = data.power;
@@ -5526,7 +6350,7 @@ export namespace tendermint.abci {
         }
         toObject() {
             const data: {
-                pub_key?: ReturnType<typeof dependency_3.tendermint.crypto.PublicKey.prototype.toObject>;
+                pub_key?: ReturnType<typeof dependency_2.tendermint.crypto.PublicKey.prototype.toObject>;
                 power?: number;
             } = {};
             if (this.pub_key != null) {
@@ -5555,7 +6379,7 @@ export namespace tendermint.abci {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        reader.readMessage(message.pub_key, () => message.pub_key = dependency_3.tendermint.crypto.PublicKey.deserialize(reader));
+                        reader.readMessage(message.pub_key, () => message.pub_key = dependency_2.tendermint.crypto.PublicKey.deserialize(reader));
                         break;
                     case 2:
                         message.power = reader.readInt64();
@@ -5576,7 +6400,7 @@ export namespace tendermint.abci {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             validator?: Validator;
-            signed_last_block?: boolean;
+            block_id_flag?: dependency_4.tendermint.types.BlockIDFlag;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -5584,8 +6408,8 @@ export namespace tendermint.abci {
                 if ("validator" in data && data.validator != undefined) {
                     this.validator = data.validator;
                 }
-                if ("signed_last_block" in data && data.signed_last_block != undefined) {
-                    this.signed_last_block = data.signed_last_block;
+                if ("block_id_flag" in data && data.block_id_flag != undefined) {
+                    this.block_id_flag = data.block_id_flag;
                 }
             }
         }
@@ -5598,35 +6422,35 @@ export namespace tendermint.abci {
         get has_validator() {
             return pb_1.Message.getField(this, 1) != null;
         }
-        get signed_last_block() {
-            return pb_1.Message.getFieldWithDefault(this, 2, false) as boolean;
+        get block_id_flag() {
+            return pb_1.Message.getFieldWithDefault(this, 3, dependency_4.tendermint.types.BlockIDFlag.BLOCK_ID_FLAG_UNKNOWN) as dependency_4.tendermint.types.BlockIDFlag;
         }
-        set signed_last_block(value: boolean) {
-            pb_1.Message.setField(this, 2, value);
+        set block_id_flag(value: dependency_4.tendermint.types.BlockIDFlag) {
+            pb_1.Message.setField(this, 3, value);
         }
         static fromObject(data: {
             validator?: ReturnType<typeof Validator.prototype.toObject>;
-            signed_last_block?: boolean;
+            block_id_flag?: dependency_4.tendermint.types.BlockIDFlag;
         }): VoteInfo {
             const message = new VoteInfo({});
             if (data.validator != null) {
                 message.validator = Validator.fromObject(data.validator);
             }
-            if (data.signed_last_block != null) {
-                message.signed_last_block = data.signed_last_block;
+            if (data.block_id_flag != null) {
+                message.block_id_flag = data.block_id_flag;
             }
             return message;
         }
         toObject() {
             const data: {
                 validator?: ReturnType<typeof Validator.prototype.toObject>;
-                signed_last_block?: boolean;
+                block_id_flag?: dependency_4.tendermint.types.BlockIDFlag;
             } = {};
             if (this.validator != null) {
                 data.validator = this.validator.toObject();
             }
-            if (this.signed_last_block != null) {
-                data.signed_last_block = this.signed_last_block;
+            if (this.block_id_flag != null) {
+                data.block_id_flag = this.block_id_flag;
             }
             return data;
         }
@@ -5636,8 +6460,8 @@ export namespace tendermint.abci {
             const writer = w || new pb_1.BinaryWriter();
             if (this.has_validator)
                 writer.writeMessage(1, this.validator, () => this.validator.serialize(writer));
-            if (this.signed_last_block != false)
-                writer.writeBool(2, this.signed_last_block);
+            if (this.block_id_flag != dependency_4.tendermint.types.BlockIDFlag.BLOCK_ID_FLAG_UNKNOWN)
+                writer.writeEnum(3, this.block_id_flag);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -5650,8 +6474,8 @@ export namespace tendermint.abci {
                     case 1:
                         reader.readMessage(message.validator, () => message.validator = Validator.deserialize(reader));
                         break;
-                    case 2:
-                        message.signed_last_block = reader.readBool();
+                    case 3:
+                        message.block_id_flag = reader.readEnum();
                         break;
                     default: reader.skipField();
                 }
@@ -5665,10 +6489,149 @@ export namespace tendermint.abci {
             return VoteInfo.deserialize(bytes);
         }
     }
-    export class Evidence extends pb_1.Message {
+    export class ExtendedVoteInfo extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            type?: EvidenceType;
+            validator?: Validator;
+            vote_extension?: Uint8Array;
+            extension_signature?: Uint8Array;
+            block_id_flag?: dependency_4.tendermint.types.BlockIDFlag;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("validator" in data && data.validator != undefined) {
+                    this.validator = data.validator;
+                }
+                if ("vote_extension" in data && data.vote_extension != undefined) {
+                    this.vote_extension = data.vote_extension;
+                }
+                if ("extension_signature" in data && data.extension_signature != undefined) {
+                    this.extension_signature = data.extension_signature;
+                }
+                if ("block_id_flag" in data && data.block_id_flag != undefined) {
+                    this.block_id_flag = data.block_id_flag;
+                }
+            }
+        }
+        get validator() {
+            return pb_1.Message.getWrapperField(this, Validator, 1) as Validator;
+        }
+        set validator(value: Validator) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_validator() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        get vote_extension() {
+            return pb_1.Message.getFieldWithDefault(this, 3, new Uint8Array(0)) as Uint8Array;
+        }
+        set vote_extension(value: Uint8Array) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        get extension_signature() {
+            return pb_1.Message.getFieldWithDefault(this, 4, new Uint8Array(0)) as Uint8Array;
+        }
+        set extension_signature(value: Uint8Array) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        get block_id_flag() {
+            return pb_1.Message.getFieldWithDefault(this, 5, dependency_4.tendermint.types.BlockIDFlag.BLOCK_ID_FLAG_UNKNOWN) as dependency_4.tendermint.types.BlockIDFlag;
+        }
+        set block_id_flag(value: dependency_4.tendermint.types.BlockIDFlag) {
+            pb_1.Message.setField(this, 5, value);
+        }
+        static fromObject(data: {
+            validator?: ReturnType<typeof Validator.prototype.toObject>;
+            vote_extension?: Uint8Array;
+            extension_signature?: Uint8Array;
+            block_id_flag?: dependency_4.tendermint.types.BlockIDFlag;
+        }): ExtendedVoteInfo {
+            const message = new ExtendedVoteInfo({});
+            if (data.validator != null) {
+                message.validator = Validator.fromObject(data.validator);
+            }
+            if (data.vote_extension != null) {
+                message.vote_extension = data.vote_extension;
+            }
+            if (data.extension_signature != null) {
+                message.extension_signature = data.extension_signature;
+            }
+            if (data.block_id_flag != null) {
+                message.block_id_flag = data.block_id_flag;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                validator?: ReturnType<typeof Validator.prototype.toObject>;
+                vote_extension?: Uint8Array;
+                extension_signature?: Uint8Array;
+                block_id_flag?: dependency_4.tendermint.types.BlockIDFlag;
+            } = {};
+            if (this.validator != null) {
+                data.validator = this.validator.toObject();
+            }
+            if (this.vote_extension != null) {
+                data.vote_extension = this.vote_extension;
+            }
+            if (this.extension_signature != null) {
+                data.extension_signature = this.extension_signature;
+            }
+            if (this.block_id_flag != null) {
+                data.block_id_flag = this.block_id_flag;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_validator)
+                writer.writeMessage(1, this.validator, () => this.validator.serialize(writer));
+            if (this.vote_extension.length)
+                writer.writeBytes(3, this.vote_extension);
+            if (this.extension_signature.length)
+                writer.writeBytes(4, this.extension_signature);
+            if (this.block_id_flag != dependency_4.tendermint.types.BlockIDFlag.BLOCK_ID_FLAG_UNKNOWN)
+                writer.writeEnum(5, this.block_id_flag);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ExtendedVoteInfo {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ExtendedVoteInfo();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.validator, () => message.validator = Validator.deserialize(reader));
+                        break;
+                    case 3:
+                        message.vote_extension = reader.readBytes();
+                        break;
+                    case 4:
+                        message.extension_signature = reader.readBytes();
+                        break;
+                    case 5:
+                        message.block_id_flag = reader.readEnum();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ExtendedVoteInfo {
+            return ExtendedVoteInfo.deserialize(bytes);
+        }
+    }
+    export class Misbehavior extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            type?: MisbehaviorType;
             validator?: Validator;
             height?: number;
             time?: dependency_5.google.protobuf.Timestamp;
@@ -5695,9 +6658,9 @@ export namespace tendermint.abci {
             }
         }
         get type() {
-            return pb_1.Message.getFieldWithDefault(this, 1, EvidenceType.UNKNOWN) as EvidenceType;
+            return pb_1.Message.getFieldWithDefault(this, 1, MisbehaviorType.UNKNOWN) as MisbehaviorType;
         }
-        set type(value: EvidenceType) {
+        set type(value: MisbehaviorType) {
             pb_1.Message.setField(this, 1, value);
         }
         get validator() {
@@ -5731,13 +6694,13 @@ export namespace tendermint.abci {
             pb_1.Message.setField(this, 5, value);
         }
         static fromObject(data: {
-            type?: EvidenceType;
+            type?: MisbehaviorType;
             validator?: ReturnType<typeof Validator.prototype.toObject>;
             height?: number;
             time?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
             total_voting_power?: number;
-        }): Evidence {
-            const message = new Evidence({});
+        }): Misbehavior {
+            const message = new Misbehavior({});
             if (data.type != null) {
                 message.type = data.type;
             }
@@ -5757,7 +6720,7 @@ export namespace tendermint.abci {
         }
         toObject() {
             const data: {
-                type?: EvidenceType;
+                type?: MisbehaviorType;
                 validator?: ReturnType<typeof Validator.prototype.toObject>;
                 height?: number;
                 time?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
@@ -5784,7 +6747,7 @@ export namespace tendermint.abci {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.type != EvidenceType.UNKNOWN)
+            if (this.type != MisbehaviorType.UNKNOWN)
                 writer.writeEnum(1, this.type);
             if (this.has_validator)
                 writer.writeMessage(2, this.validator, () => this.validator.serialize(writer));
@@ -5797,8 +6760,8 @@ export namespace tendermint.abci {
             if (!w)
                 return writer.getResultBuffer();
         }
-        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Evidence {
-            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Evidence();
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Misbehavior {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Misbehavior();
             while (reader.nextField()) {
                 if (reader.isEndGroup())
                     break;
@@ -5826,8 +6789,8 @@ export namespace tendermint.abci {
         serializeBinary(): Uint8Array {
             return this.serialize();
         }
-        static deserializeBinary(bytes: Uint8Array): Evidence {
-            return Evidence.deserialize(bytes);
+        static deserializeBinary(bytes: Uint8Array): Misbehavior {
+            return Misbehavior.deserialize(bytes);
         }
     }
     export class Snapshot extends pb_1.Message {
@@ -6013,10 +6976,10 @@ export namespace tendermint.abci {
         (message: P, metadata: grpc_1.Metadata, options?: grpc_1.CallOptions): Promise<R>;
         (message: P, options?: grpc_1.CallOptions): Promise<R>;
     }
-    export abstract class UnimplementedABCIApplicationService {
+    export abstract class UnimplementedABCIService {
         static definition = {
             Echo: {
-                path: "/tendermint.abci.ABCIApplication/Echo",
+                path: "/tendermint.abci.ABCI/Echo",
                 requestStream: false,
                 responseStream: false,
                 requestSerialize: (message: RequestEcho) => Buffer.from(message.serialize()),
@@ -6025,7 +6988,7 @@ export namespace tendermint.abci {
                 responseDeserialize: (bytes: Buffer) => ResponseEcho.deserialize(new Uint8Array(bytes))
             },
             Flush: {
-                path: "/tendermint.abci.ABCIApplication/Flush",
+                path: "/tendermint.abci.ABCI/Flush",
                 requestStream: false,
                 responseStream: false,
                 requestSerialize: (message: RequestFlush) => Buffer.from(message.serialize()),
@@ -6034,7 +6997,7 @@ export namespace tendermint.abci {
                 responseDeserialize: (bytes: Buffer) => ResponseFlush.deserialize(new Uint8Array(bytes))
             },
             Info: {
-                path: "/tendermint.abci.ABCIApplication/Info",
+                path: "/tendermint.abci.ABCI/Info",
                 requestStream: false,
                 responseStream: false,
                 requestSerialize: (message: RequestInfo) => Buffer.from(message.serialize()),
@@ -6042,26 +7005,8 @@ export namespace tendermint.abci {
                 responseSerialize: (message: ResponseInfo) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => ResponseInfo.deserialize(new Uint8Array(bytes))
             },
-            SetOption: {
-                path: "/tendermint.abci.ABCIApplication/SetOption",
-                requestStream: false,
-                responseStream: false,
-                requestSerialize: (message: RequestSetOption) => Buffer.from(message.serialize()),
-                requestDeserialize: (bytes: Buffer) => RequestSetOption.deserialize(new Uint8Array(bytes)),
-                responseSerialize: (message: ResponseSetOption) => Buffer.from(message.serialize()),
-                responseDeserialize: (bytes: Buffer) => ResponseSetOption.deserialize(new Uint8Array(bytes))
-            },
-            DeliverTx: {
-                path: "/tendermint.abci.ABCIApplication/DeliverTx",
-                requestStream: false,
-                responseStream: false,
-                requestSerialize: (message: RequestDeliverTx) => Buffer.from(message.serialize()),
-                requestDeserialize: (bytes: Buffer) => RequestDeliverTx.deserialize(new Uint8Array(bytes)),
-                responseSerialize: (message: ResponseDeliverTx) => Buffer.from(message.serialize()),
-                responseDeserialize: (bytes: Buffer) => ResponseDeliverTx.deserialize(new Uint8Array(bytes))
-            },
             CheckTx: {
-                path: "/tendermint.abci.ABCIApplication/CheckTx",
+                path: "/tendermint.abci.ABCI/CheckTx",
                 requestStream: false,
                 responseStream: false,
                 requestSerialize: (message: RequestCheckTx) => Buffer.from(message.serialize()),
@@ -6070,7 +7015,7 @@ export namespace tendermint.abci {
                 responseDeserialize: (bytes: Buffer) => ResponseCheckTx.deserialize(new Uint8Array(bytes))
             },
             Query: {
-                path: "/tendermint.abci.ABCIApplication/Query",
+                path: "/tendermint.abci.ABCI/Query",
                 requestStream: false,
                 responseStream: false,
                 requestSerialize: (message: RequestQuery) => Buffer.from(message.serialize()),
@@ -6079,7 +7024,7 @@ export namespace tendermint.abci {
                 responseDeserialize: (bytes: Buffer) => ResponseQuery.deserialize(new Uint8Array(bytes))
             },
             Commit: {
-                path: "/tendermint.abci.ABCIApplication/Commit",
+                path: "/tendermint.abci.ABCI/Commit",
                 requestStream: false,
                 responseStream: false,
                 requestSerialize: (message: RequestCommit) => Buffer.from(message.serialize()),
@@ -6088,7 +7033,7 @@ export namespace tendermint.abci {
                 responseDeserialize: (bytes: Buffer) => ResponseCommit.deserialize(new Uint8Array(bytes))
             },
             InitChain: {
-                path: "/tendermint.abci.ABCIApplication/InitChain",
+                path: "/tendermint.abci.ABCI/InitChain",
                 requestStream: false,
                 responseStream: false,
                 requestSerialize: (message: RequestInitChain) => Buffer.from(message.serialize()),
@@ -6096,26 +7041,8 @@ export namespace tendermint.abci {
                 responseSerialize: (message: ResponseInitChain) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => ResponseInitChain.deserialize(new Uint8Array(bytes))
             },
-            BeginBlock: {
-                path: "/tendermint.abci.ABCIApplication/BeginBlock",
-                requestStream: false,
-                responseStream: false,
-                requestSerialize: (message: RequestBeginBlock) => Buffer.from(message.serialize()),
-                requestDeserialize: (bytes: Buffer) => RequestBeginBlock.deserialize(new Uint8Array(bytes)),
-                responseSerialize: (message: ResponseBeginBlock) => Buffer.from(message.serialize()),
-                responseDeserialize: (bytes: Buffer) => ResponseBeginBlock.deserialize(new Uint8Array(bytes))
-            },
-            EndBlock: {
-                path: "/tendermint.abci.ABCIApplication/EndBlock",
-                requestStream: false,
-                responseStream: false,
-                requestSerialize: (message: RequestEndBlock) => Buffer.from(message.serialize()),
-                requestDeserialize: (bytes: Buffer) => RequestEndBlock.deserialize(new Uint8Array(bytes)),
-                responseSerialize: (message: ResponseEndBlock) => Buffer.from(message.serialize()),
-                responseDeserialize: (bytes: Buffer) => ResponseEndBlock.deserialize(new Uint8Array(bytes))
-            },
             ListSnapshots: {
-                path: "/tendermint.abci.ABCIApplication/ListSnapshots",
+                path: "/tendermint.abci.ABCI/ListSnapshots",
                 requestStream: false,
                 responseStream: false,
                 requestSerialize: (message: RequestListSnapshots) => Buffer.from(message.serialize()),
@@ -6124,7 +7051,7 @@ export namespace tendermint.abci {
                 responseDeserialize: (bytes: Buffer) => ResponseListSnapshots.deserialize(new Uint8Array(bytes))
             },
             OfferSnapshot: {
-                path: "/tendermint.abci.ABCIApplication/OfferSnapshot",
+                path: "/tendermint.abci.ABCI/OfferSnapshot",
                 requestStream: false,
                 responseStream: false,
                 requestSerialize: (message: RequestOfferSnapshot) => Buffer.from(message.serialize()),
@@ -6133,7 +7060,7 @@ export namespace tendermint.abci {
                 responseDeserialize: (bytes: Buffer) => ResponseOfferSnapshot.deserialize(new Uint8Array(bytes))
             },
             LoadSnapshotChunk: {
-                path: "/tendermint.abci.ABCIApplication/LoadSnapshotChunk",
+                path: "/tendermint.abci.ABCI/LoadSnapshotChunk",
                 requestStream: false,
                 responseStream: false,
                 requestSerialize: (message: RequestLoadSnapshotChunk) => Buffer.from(message.serialize()),
@@ -6142,33 +7069,79 @@ export namespace tendermint.abci {
                 responseDeserialize: (bytes: Buffer) => ResponseLoadSnapshotChunk.deserialize(new Uint8Array(bytes))
             },
             ApplySnapshotChunk: {
-                path: "/tendermint.abci.ABCIApplication/ApplySnapshotChunk",
+                path: "/tendermint.abci.ABCI/ApplySnapshotChunk",
                 requestStream: false,
                 responseStream: false,
                 requestSerialize: (message: RequestApplySnapshotChunk) => Buffer.from(message.serialize()),
                 requestDeserialize: (bytes: Buffer) => RequestApplySnapshotChunk.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: ResponseApplySnapshotChunk) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => ResponseApplySnapshotChunk.deserialize(new Uint8Array(bytes))
+            },
+            PrepareProposal: {
+                path: "/tendermint.abci.ABCI/PrepareProposal",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: RequestPrepareProposal) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => RequestPrepareProposal.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: ResponsePrepareProposal) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => ResponsePrepareProposal.deserialize(new Uint8Array(bytes))
+            },
+            ProcessProposal: {
+                path: "/tendermint.abci.ABCI/ProcessProposal",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: RequestProcessProposal) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => RequestProcessProposal.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: ResponseProcessProposal) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => ResponseProcessProposal.deserialize(new Uint8Array(bytes))
+            },
+            ExtendVote: {
+                path: "/tendermint.abci.ABCI/ExtendVote",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: RequestExtendVote) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => RequestExtendVote.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: ResponseExtendVote) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => ResponseExtendVote.deserialize(new Uint8Array(bytes))
+            },
+            VerifyVoteExtension: {
+                path: "/tendermint.abci.ABCI/VerifyVoteExtension",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: RequestVerifyVoteExtension) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => RequestVerifyVoteExtension.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: ResponseVerifyVoteExtension) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => ResponseVerifyVoteExtension.deserialize(new Uint8Array(bytes))
+            },
+            FinalizeBlock: {
+                path: "/tendermint.abci.ABCI/FinalizeBlock",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: RequestFinalizeBlock) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => RequestFinalizeBlock.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: ResponseFinalizeBlock) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => ResponseFinalizeBlock.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
         abstract Echo(call: grpc_1.ServerUnaryCall<RequestEcho, ResponseEcho>, callback: grpc_1.sendUnaryData<ResponseEcho>): void;
         abstract Flush(call: grpc_1.ServerUnaryCall<RequestFlush, ResponseFlush>, callback: grpc_1.sendUnaryData<ResponseFlush>): void;
         abstract Info(call: grpc_1.ServerUnaryCall<RequestInfo, ResponseInfo>, callback: grpc_1.sendUnaryData<ResponseInfo>): void;
-        abstract SetOption(call: grpc_1.ServerUnaryCall<RequestSetOption, ResponseSetOption>, callback: grpc_1.sendUnaryData<ResponseSetOption>): void;
-        abstract DeliverTx(call: grpc_1.ServerUnaryCall<RequestDeliverTx, ResponseDeliverTx>, callback: grpc_1.sendUnaryData<ResponseDeliverTx>): void;
         abstract CheckTx(call: grpc_1.ServerUnaryCall<RequestCheckTx, ResponseCheckTx>, callback: grpc_1.sendUnaryData<ResponseCheckTx>): void;
         abstract Query(call: grpc_1.ServerUnaryCall<RequestQuery, ResponseQuery>, callback: grpc_1.sendUnaryData<ResponseQuery>): void;
         abstract Commit(call: grpc_1.ServerUnaryCall<RequestCommit, ResponseCommit>, callback: grpc_1.sendUnaryData<ResponseCommit>): void;
         abstract InitChain(call: grpc_1.ServerUnaryCall<RequestInitChain, ResponseInitChain>, callback: grpc_1.sendUnaryData<ResponseInitChain>): void;
-        abstract BeginBlock(call: grpc_1.ServerUnaryCall<RequestBeginBlock, ResponseBeginBlock>, callback: grpc_1.sendUnaryData<ResponseBeginBlock>): void;
-        abstract EndBlock(call: grpc_1.ServerUnaryCall<RequestEndBlock, ResponseEndBlock>, callback: grpc_1.sendUnaryData<ResponseEndBlock>): void;
         abstract ListSnapshots(call: grpc_1.ServerUnaryCall<RequestListSnapshots, ResponseListSnapshots>, callback: grpc_1.sendUnaryData<ResponseListSnapshots>): void;
         abstract OfferSnapshot(call: grpc_1.ServerUnaryCall<RequestOfferSnapshot, ResponseOfferSnapshot>, callback: grpc_1.sendUnaryData<ResponseOfferSnapshot>): void;
         abstract LoadSnapshotChunk(call: grpc_1.ServerUnaryCall<RequestLoadSnapshotChunk, ResponseLoadSnapshotChunk>, callback: grpc_1.sendUnaryData<ResponseLoadSnapshotChunk>): void;
         abstract ApplySnapshotChunk(call: grpc_1.ServerUnaryCall<RequestApplySnapshotChunk, ResponseApplySnapshotChunk>, callback: grpc_1.sendUnaryData<ResponseApplySnapshotChunk>): void;
+        abstract PrepareProposal(call: grpc_1.ServerUnaryCall<RequestPrepareProposal, ResponsePrepareProposal>, callback: grpc_1.sendUnaryData<ResponsePrepareProposal>): void;
+        abstract ProcessProposal(call: grpc_1.ServerUnaryCall<RequestProcessProposal, ResponseProcessProposal>, callback: grpc_1.sendUnaryData<ResponseProcessProposal>): void;
+        abstract ExtendVote(call: grpc_1.ServerUnaryCall<RequestExtendVote, ResponseExtendVote>, callback: grpc_1.sendUnaryData<ResponseExtendVote>): void;
+        abstract VerifyVoteExtension(call: grpc_1.ServerUnaryCall<RequestVerifyVoteExtension, ResponseVerifyVoteExtension>, callback: grpc_1.sendUnaryData<ResponseVerifyVoteExtension>): void;
+        abstract FinalizeBlock(call: grpc_1.ServerUnaryCall<RequestFinalizeBlock, ResponseFinalizeBlock>, callback: grpc_1.sendUnaryData<ResponseFinalizeBlock>): void;
     }
-    export class ABCIApplicationClient extends grpc_1.makeGenericClientConstructor(UnimplementedABCIApplicationService.definition, "ABCIApplication", {}) {
+    export class ABCIClient extends grpc_1.makeGenericClientConstructor(UnimplementedABCIService.definition, "ABCI", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
             super(address, credentials, options);
         }
@@ -6180,12 +7153,6 @@ export namespace tendermint.abci {
         };
         Info: GrpcUnaryServiceInterface<RequestInfo, ResponseInfo> = (message: RequestInfo, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponseInfo>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponseInfo>, callback?: grpc_1.requestCallback<ResponseInfo>): grpc_1.ClientUnaryCall => {
             return super.Info(message, metadata, options, callback);
-        };
-        SetOption: GrpcUnaryServiceInterface<RequestSetOption, ResponseSetOption> = (message: RequestSetOption, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponseSetOption>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponseSetOption>, callback?: grpc_1.requestCallback<ResponseSetOption>): grpc_1.ClientUnaryCall => {
-            return super.SetOption(message, metadata, options, callback);
-        };
-        DeliverTx: GrpcUnaryServiceInterface<RequestDeliverTx, ResponseDeliverTx> = (message: RequestDeliverTx, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponseDeliverTx>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponseDeliverTx>, callback?: grpc_1.requestCallback<ResponseDeliverTx>): grpc_1.ClientUnaryCall => {
-            return super.DeliverTx(message, metadata, options, callback);
         };
         CheckTx: GrpcUnaryServiceInterface<RequestCheckTx, ResponseCheckTx> = (message: RequestCheckTx, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponseCheckTx>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponseCheckTx>, callback?: grpc_1.requestCallback<ResponseCheckTx>): grpc_1.ClientUnaryCall => {
             return super.CheckTx(message, metadata, options, callback);
@@ -6199,12 +7166,6 @@ export namespace tendermint.abci {
         InitChain: GrpcUnaryServiceInterface<RequestInitChain, ResponseInitChain> = (message: RequestInitChain, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponseInitChain>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponseInitChain>, callback?: grpc_1.requestCallback<ResponseInitChain>): grpc_1.ClientUnaryCall => {
             return super.InitChain(message, metadata, options, callback);
         };
-        BeginBlock: GrpcUnaryServiceInterface<RequestBeginBlock, ResponseBeginBlock> = (message: RequestBeginBlock, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponseBeginBlock>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponseBeginBlock>, callback?: grpc_1.requestCallback<ResponseBeginBlock>): grpc_1.ClientUnaryCall => {
-            return super.BeginBlock(message, metadata, options, callback);
-        };
-        EndBlock: GrpcUnaryServiceInterface<RequestEndBlock, ResponseEndBlock> = (message: RequestEndBlock, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponseEndBlock>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponseEndBlock>, callback?: grpc_1.requestCallback<ResponseEndBlock>): grpc_1.ClientUnaryCall => {
-            return super.EndBlock(message, metadata, options, callback);
-        };
         ListSnapshots: GrpcUnaryServiceInterface<RequestListSnapshots, ResponseListSnapshots> = (message: RequestListSnapshots, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponseListSnapshots>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponseListSnapshots>, callback?: grpc_1.requestCallback<ResponseListSnapshots>): grpc_1.ClientUnaryCall => {
             return super.ListSnapshots(message, metadata, options, callback);
         };
@@ -6216,6 +7177,21 @@ export namespace tendermint.abci {
         };
         ApplySnapshotChunk: GrpcUnaryServiceInterface<RequestApplySnapshotChunk, ResponseApplySnapshotChunk> = (message: RequestApplySnapshotChunk, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponseApplySnapshotChunk>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponseApplySnapshotChunk>, callback?: grpc_1.requestCallback<ResponseApplySnapshotChunk>): grpc_1.ClientUnaryCall => {
             return super.ApplySnapshotChunk(message, metadata, options, callback);
+        };
+        PrepareProposal: GrpcUnaryServiceInterface<RequestPrepareProposal, ResponsePrepareProposal> = (message: RequestPrepareProposal, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponsePrepareProposal>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponsePrepareProposal>, callback?: grpc_1.requestCallback<ResponsePrepareProposal>): grpc_1.ClientUnaryCall => {
+            return super.PrepareProposal(message, metadata, options, callback);
+        };
+        ProcessProposal: GrpcUnaryServiceInterface<RequestProcessProposal, ResponseProcessProposal> = (message: RequestProcessProposal, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponseProcessProposal>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponseProcessProposal>, callback?: grpc_1.requestCallback<ResponseProcessProposal>): grpc_1.ClientUnaryCall => {
+            return super.ProcessProposal(message, metadata, options, callback);
+        };
+        ExtendVote: GrpcUnaryServiceInterface<RequestExtendVote, ResponseExtendVote> = (message: RequestExtendVote, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponseExtendVote>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponseExtendVote>, callback?: grpc_1.requestCallback<ResponseExtendVote>): grpc_1.ClientUnaryCall => {
+            return super.ExtendVote(message, metadata, options, callback);
+        };
+        VerifyVoteExtension: GrpcUnaryServiceInterface<RequestVerifyVoteExtension, ResponseVerifyVoteExtension> = (message: RequestVerifyVoteExtension, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponseVerifyVoteExtension>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponseVerifyVoteExtension>, callback?: grpc_1.requestCallback<ResponseVerifyVoteExtension>): grpc_1.ClientUnaryCall => {
+            return super.VerifyVoteExtension(message, metadata, options, callback);
+        };
+        FinalizeBlock: GrpcUnaryServiceInterface<RequestFinalizeBlock, ResponseFinalizeBlock> = (message: RequestFinalizeBlock, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ResponseFinalizeBlock>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ResponseFinalizeBlock>, callback?: grpc_1.requestCallback<ResponseFinalizeBlock>): grpc_1.ClientUnaryCall => {
+            return super.FinalizeBlock(message, metadata, options, callback);
         };
     }
 }

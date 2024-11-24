@@ -10,12 +10,6 @@ import * as dependency_4 from "./../version/types";
 import * as dependency_5 from "./validator";
 import * as pb_1 from "google-protobuf";
 export namespace tendermint.types {
-    export enum BlockIDFlag {
-        BLOCK_ID_FLAG_UNKNOWN = 0,
-        BLOCK_ID_FLAG_ABSENT = 1,
-        BLOCK_ID_FLAG_COMMIT = 2,
-        BLOCK_ID_FLAG_NIL = 3
-    }
     export enum SignedMsgType {
         SIGNED_MSG_TYPE_UNKNOWN = 0,
         SIGNED_MSG_TYPE_PREVOTE = 1,
@@ -774,6 +768,8 @@ export namespace tendermint.types {
             validator_address?: Uint8Array;
             validator_index?: number;
             signature?: Uint8Array;
+            extension?: Uint8Array;
+            extension_signature?: Uint8Array;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -801,6 +797,12 @@ export namespace tendermint.types {
                 }
                 if ("signature" in data && data.signature != undefined) {
                     this.signature = data.signature;
+                }
+                if ("extension" in data && data.extension != undefined) {
+                    this.extension = data.extension;
+                }
+                if ("extension_signature" in data && data.extension_signature != undefined) {
+                    this.extension_signature = data.extension_signature;
                 }
             }
         }
@@ -858,6 +860,18 @@ export namespace tendermint.types {
         set signature(value: Uint8Array) {
             pb_1.Message.setField(this, 8, value);
         }
+        get extension() {
+            return pb_1.Message.getFieldWithDefault(this, 9, new Uint8Array(0)) as Uint8Array;
+        }
+        set extension(value: Uint8Array) {
+            pb_1.Message.setField(this, 9, value);
+        }
+        get extension_signature() {
+            return pb_1.Message.getFieldWithDefault(this, 10, new Uint8Array(0)) as Uint8Array;
+        }
+        set extension_signature(value: Uint8Array) {
+            pb_1.Message.setField(this, 10, value);
+        }
         static fromObject(data: {
             type?: SignedMsgType;
             height?: number;
@@ -867,6 +881,8 @@ export namespace tendermint.types {
             validator_address?: Uint8Array;
             validator_index?: number;
             signature?: Uint8Array;
+            extension?: Uint8Array;
+            extension_signature?: Uint8Array;
         }): Vote {
             const message = new Vote({});
             if (data.type != null) {
@@ -893,6 +909,12 @@ export namespace tendermint.types {
             if (data.signature != null) {
                 message.signature = data.signature;
             }
+            if (data.extension != null) {
+                message.extension = data.extension;
+            }
+            if (data.extension_signature != null) {
+                message.extension_signature = data.extension_signature;
+            }
             return message;
         }
         toObject() {
@@ -905,6 +927,8 @@ export namespace tendermint.types {
                 validator_address?: Uint8Array;
                 validator_index?: number;
                 signature?: Uint8Array;
+                extension?: Uint8Array;
+                extension_signature?: Uint8Array;
             } = {};
             if (this.type != null) {
                 data.type = this.type;
@@ -930,6 +954,12 @@ export namespace tendermint.types {
             if (this.signature != null) {
                 data.signature = this.signature;
             }
+            if (this.extension != null) {
+                data.extension = this.extension;
+            }
+            if (this.extension_signature != null) {
+                data.extension_signature = this.extension_signature;
+            }
             return data;
         }
         serialize(): Uint8Array;
@@ -952,6 +982,10 @@ export namespace tendermint.types {
                 writer.writeInt32(7, this.validator_index);
             if (this.signature.length)
                 writer.writeBytes(8, this.signature);
+            if (this.extension.length)
+                writer.writeBytes(9, this.extension);
+            if (this.extension_signature.length)
+                writer.writeBytes(10, this.extension_signature);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -984,6 +1018,12 @@ export namespace tendermint.types {
                         break;
                     case 8:
                         message.signature = reader.readBytes();
+                        break;
+                    case 9:
+                        message.extension = reader.readBytes();
+                        break;
+                    case 10:
+                        message.extension_signature = reader.readBytes();
                         break;
                     default: reader.skipField();
                 }
@@ -1139,7 +1179,7 @@ export namespace tendermint.types {
     export class CommitSig extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            block_id_flag?: BlockIDFlag;
+            block_id_flag?: dependency_5.tendermint.types.BlockIDFlag;
             validator_address?: Uint8Array;
             timestamp?: dependency_2.google.protobuf.Timestamp;
             signature?: Uint8Array;
@@ -1162,9 +1202,9 @@ export namespace tendermint.types {
             }
         }
         get block_id_flag() {
-            return pb_1.Message.getFieldWithDefault(this, 1, BlockIDFlag.BLOCK_ID_FLAG_UNKNOWN) as BlockIDFlag;
+            return pb_1.Message.getFieldWithDefault(this, 1, dependency_5.tendermint.types.BlockIDFlag.BLOCK_ID_FLAG_UNKNOWN) as dependency_5.tendermint.types.BlockIDFlag;
         }
-        set block_id_flag(value: BlockIDFlag) {
+        set block_id_flag(value: dependency_5.tendermint.types.BlockIDFlag) {
             pb_1.Message.setField(this, 1, value);
         }
         get validator_address() {
@@ -1189,7 +1229,7 @@ export namespace tendermint.types {
             pb_1.Message.setField(this, 4, value);
         }
         static fromObject(data: {
-            block_id_flag?: BlockIDFlag;
+            block_id_flag?: dependency_5.tendermint.types.BlockIDFlag;
             validator_address?: Uint8Array;
             timestamp?: ReturnType<typeof dependency_2.google.protobuf.Timestamp.prototype.toObject>;
             signature?: Uint8Array;
@@ -1211,7 +1251,7 @@ export namespace tendermint.types {
         }
         toObject() {
             const data: {
-                block_id_flag?: BlockIDFlag;
+                block_id_flag?: dependency_5.tendermint.types.BlockIDFlag;
                 validator_address?: Uint8Array;
                 timestamp?: ReturnType<typeof dependency_2.google.protobuf.Timestamp.prototype.toObject>;
                 signature?: Uint8Array;
@@ -1234,7 +1274,7 @@ export namespace tendermint.types {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.block_id_flag != BlockIDFlag.BLOCK_ID_FLAG_UNKNOWN)
+            if (this.block_id_flag != dependency_5.tendermint.types.BlockIDFlag.BLOCK_ID_FLAG_UNKNOWN)
                 writer.writeEnum(1, this.block_id_flag);
             if (this.validator_address.length)
                 writer.writeBytes(2, this.validator_address);
@@ -1273,6 +1313,330 @@ export namespace tendermint.types {
         }
         static deserializeBinary(bytes: Uint8Array): CommitSig {
             return CommitSig.deserialize(bytes);
+        }
+    }
+    export class ExtendedCommit extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            height?: number;
+            round?: number;
+            block_id?: BlockID;
+            extended_signatures?: ExtendedCommitSig[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [4], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("height" in data && data.height != undefined) {
+                    this.height = data.height;
+                }
+                if ("round" in data && data.round != undefined) {
+                    this.round = data.round;
+                }
+                if ("block_id" in data && data.block_id != undefined) {
+                    this.block_id = data.block_id;
+                }
+                if ("extended_signatures" in data && data.extended_signatures != undefined) {
+                    this.extended_signatures = data.extended_signatures;
+                }
+            }
+        }
+        get height() {
+            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+        }
+        set height(value: number) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get round() {
+            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+        }
+        set round(value: number) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get block_id() {
+            return pb_1.Message.getWrapperField(this, BlockID, 3) as BlockID;
+        }
+        set block_id(value: BlockID) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        get has_block_id() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
+        get extended_signatures() {
+            return pb_1.Message.getRepeatedWrapperField(this, ExtendedCommitSig, 4) as ExtendedCommitSig[];
+        }
+        set extended_signatures(value: ExtendedCommitSig[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 4, value);
+        }
+        static fromObject(data: {
+            height?: number;
+            round?: number;
+            block_id?: ReturnType<typeof BlockID.prototype.toObject>;
+            extended_signatures?: ReturnType<typeof ExtendedCommitSig.prototype.toObject>[];
+        }): ExtendedCommit {
+            const message = new ExtendedCommit({});
+            if (data.height != null) {
+                message.height = data.height;
+            }
+            if (data.round != null) {
+                message.round = data.round;
+            }
+            if (data.block_id != null) {
+                message.block_id = BlockID.fromObject(data.block_id);
+            }
+            if (data.extended_signatures != null) {
+                message.extended_signatures = data.extended_signatures.map(item => ExtendedCommitSig.fromObject(item));
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                height?: number;
+                round?: number;
+                block_id?: ReturnType<typeof BlockID.prototype.toObject>;
+                extended_signatures?: ReturnType<typeof ExtendedCommitSig.prototype.toObject>[];
+            } = {};
+            if (this.height != null) {
+                data.height = this.height;
+            }
+            if (this.round != null) {
+                data.round = this.round;
+            }
+            if (this.block_id != null) {
+                data.block_id = this.block_id.toObject();
+            }
+            if (this.extended_signatures != null) {
+                data.extended_signatures = this.extended_signatures.map((item: ExtendedCommitSig) => item.toObject());
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.height != 0)
+                writer.writeInt64(1, this.height);
+            if (this.round != 0)
+                writer.writeInt32(2, this.round);
+            if (this.has_block_id)
+                writer.writeMessage(3, this.block_id, () => this.block_id.serialize(writer));
+            if (this.extended_signatures.length)
+                writer.writeRepeatedMessage(4, this.extended_signatures, (item: ExtendedCommitSig) => item.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ExtendedCommit {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ExtendedCommit();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.height = reader.readInt64();
+                        break;
+                    case 2:
+                        message.round = reader.readInt32();
+                        break;
+                    case 3:
+                        reader.readMessage(message.block_id, () => message.block_id = BlockID.deserialize(reader));
+                        break;
+                    case 4:
+                        reader.readMessage(message.extended_signatures, () => pb_1.Message.addToRepeatedWrapperField(message, 4, ExtendedCommitSig.deserialize(reader), ExtendedCommitSig));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ExtendedCommit {
+            return ExtendedCommit.deserialize(bytes);
+        }
+    }
+    export class ExtendedCommitSig extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            block_id_flag?: dependency_5.tendermint.types.BlockIDFlag;
+            validator_address?: Uint8Array;
+            timestamp?: dependency_2.google.protobuf.Timestamp;
+            signature?: Uint8Array;
+            extension?: Uint8Array;
+            extension_signature?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("block_id_flag" in data && data.block_id_flag != undefined) {
+                    this.block_id_flag = data.block_id_flag;
+                }
+                if ("validator_address" in data && data.validator_address != undefined) {
+                    this.validator_address = data.validator_address;
+                }
+                if ("timestamp" in data && data.timestamp != undefined) {
+                    this.timestamp = data.timestamp;
+                }
+                if ("signature" in data && data.signature != undefined) {
+                    this.signature = data.signature;
+                }
+                if ("extension" in data && data.extension != undefined) {
+                    this.extension = data.extension;
+                }
+                if ("extension_signature" in data && data.extension_signature != undefined) {
+                    this.extension_signature = data.extension_signature;
+                }
+            }
+        }
+        get block_id_flag() {
+            return pb_1.Message.getFieldWithDefault(this, 1, dependency_5.tendermint.types.BlockIDFlag.BLOCK_ID_FLAG_UNKNOWN) as dependency_5.tendermint.types.BlockIDFlag;
+        }
+        set block_id_flag(value: dependency_5.tendermint.types.BlockIDFlag) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get validator_address() {
+            return pb_1.Message.getFieldWithDefault(this, 2, new Uint8Array(0)) as Uint8Array;
+        }
+        set validator_address(value: Uint8Array) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get timestamp() {
+            return pb_1.Message.getWrapperField(this, dependency_2.google.protobuf.Timestamp, 3) as dependency_2.google.protobuf.Timestamp;
+        }
+        set timestamp(value: dependency_2.google.protobuf.Timestamp) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        get has_timestamp() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
+        get signature() {
+            return pb_1.Message.getFieldWithDefault(this, 4, new Uint8Array(0)) as Uint8Array;
+        }
+        set signature(value: Uint8Array) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        get extension() {
+            return pb_1.Message.getFieldWithDefault(this, 5, new Uint8Array(0)) as Uint8Array;
+        }
+        set extension(value: Uint8Array) {
+            pb_1.Message.setField(this, 5, value);
+        }
+        get extension_signature() {
+            return pb_1.Message.getFieldWithDefault(this, 6, new Uint8Array(0)) as Uint8Array;
+        }
+        set extension_signature(value: Uint8Array) {
+            pb_1.Message.setField(this, 6, value);
+        }
+        static fromObject(data: {
+            block_id_flag?: dependency_5.tendermint.types.BlockIDFlag;
+            validator_address?: Uint8Array;
+            timestamp?: ReturnType<typeof dependency_2.google.protobuf.Timestamp.prototype.toObject>;
+            signature?: Uint8Array;
+            extension?: Uint8Array;
+            extension_signature?: Uint8Array;
+        }): ExtendedCommitSig {
+            const message = new ExtendedCommitSig({});
+            if (data.block_id_flag != null) {
+                message.block_id_flag = data.block_id_flag;
+            }
+            if (data.validator_address != null) {
+                message.validator_address = data.validator_address;
+            }
+            if (data.timestamp != null) {
+                message.timestamp = dependency_2.google.protobuf.Timestamp.fromObject(data.timestamp);
+            }
+            if (data.signature != null) {
+                message.signature = data.signature;
+            }
+            if (data.extension != null) {
+                message.extension = data.extension;
+            }
+            if (data.extension_signature != null) {
+                message.extension_signature = data.extension_signature;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                block_id_flag?: dependency_5.tendermint.types.BlockIDFlag;
+                validator_address?: Uint8Array;
+                timestamp?: ReturnType<typeof dependency_2.google.protobuf.Timestamp.prototype.toObject>;
+                signature?: Uint8Array;
+                extension?: Uint8Array;
+                extension_signature?: Uint8Array;
+            } = {};
+            if (this.block_id_flag != null) {
+                data.block_id_flag = this.block_id_flag;
+            }
+            if (this.validator_address != null) {
+                data.validator_address = this.validator_address;
+            }
+            if (this.timestamp != null) {
+                data.timestamp = this.timestamp.toObject();
+            }
+            if (this.signature != null) {
+                data.signature = this.signature;
+            }
+            if (this.extension != null) {
+                data.extension = this.extension;
+            }
+            if (this.extension_signature != null) {
+                data.extension_signature = this.extension_signature;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.block_id_flag != dependency_5.tendermint.types.BlockIDFlag.BLOCK_ID_FLAG_UNKNOWN)
+                writer.writeEnum(1, this.block_id_flag);
+            if (this.validator_address.length)
+                writer.writeBytes(2, this.validator_address);
+            if (this.has_timestamp)
+                writer.writeMessage(3, this.timestamp, () => this.timestamp.serialize(writer));
+            if (this.signature.length)
+                writer.writeBytes(4, this.signature);
+            if (this.extension.length)
+                writer.writeBytes(5, this.extension);
+            if (this.extension_signature.length)
+                writer.writeBytes(6, this.extension_signature);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ExtendedCommitSig {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ExtendedCommitSig();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.block_id_flag = reader.readEnum();
+                        break;
+                    case 2:
+                        message.validator_address = reader.readBytes();
+                        break;
+                    case 3:
+                        reader.readMessage(message.timestamp, () => message.timestamp = dependency_2.google.protobuf.Timestamp.deserialize(reader));
+                        break;
+                    case 4:
+                        message.signature = reader.readBytes();
+                        break;
+                    case 5:
+                        message.extension = reader.readBytes();
+                        break;
+                    case 6:
+                        message.extension_signature = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ExtendedCommitSig {
+            return ExtendedCommitSig.deserialize(bytes);
         }
     }
     export class Proposal extends pb_1.Message {

@@ -6,10 +6,9 @@
 import * as dependency_1 from "./../../../google/api/annotations";
 import * as dependency_2 from "./../../base/abci/v1beta1/abci";
 import * as dependency_3 from "./tx";
-import * as dependency_4 from "./../../../gogoproto/gogo";
-import * as dependency_5 from "./../../base/query/v1beta1/pagination";
-import * as dependency_6 from "./../../../tendermint/types/block";
-import * as dependency_7 from "./../../../tendermint/types/types";
+import * as dependency_4 from "./../../base/query/v1beta1/pagination";
+import * as dependency_5 from "./../../../tendermint/types/block";
+import * as dependency_6 from "./../../../tendermint/types/types";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.tx.v1beta1 {
@@ -20,6 +19,7 @@ export namespace cosmos.tx.v1beta1 {
     }
     export enum BroadcastMode {
         BROADCAST_MODE_UNSPECIFIED = 0,
+        /** @deprecated*/
         BROADCAST_MODE_BLOCK = 1,
         BROADCAST_MODE_SYNC = 2,
         BROADCAST_MODE_ASYNC = 3
@@ -27,9 +27,14 @@ export namespace cosmos.tx.v1beta1 {
     export class GetTxsEventRequest extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
+            /** @deprecated*/
             events?: string[];
-            pagination?: dependency_5.cosmos.base.query.v1beta1.PageRequest;
+            /** @deprecated*/
+            pagination?: dependency_4.cosmos.base.query.v1beta1.PageRequest;
             order_by?: OrderBy;
+            page?: number;
+            limit?: number;
+            query?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
@@ -43,20 +48,34 @@ export namespace cosmos.tx.v1beta1 {
                 if ("order_by" in data && data.order_by != undefined) {
                     this.order_by = data.order_by;
                 }
+                if ("page" in data && data.page != undefined) {
+                    this.page = data.page;
+                }
+                if ("limit" in data && data.limit != undefined) {
+                    this.limit = data.limit;
+                }
+                if ("query" in data && data.query != undefined) {
+                    this.query = data.query;
+                }
             }
         }
+        /** @deprecated*/
         get events() {
             return pb_1.Message.getFieldWithDefault(this, 1, []) as string[];
         }
+        /** @deprecated*/
         set events(value: string[]) {
             pb_1.Message.setField(this, 1, value);
         }
+        /** @deprecated*/
         get pagination() {
-            return pb_1.Message.getWrapperField(this, dependency_5.cosmos.base.query.v1beta1.PageRequest, 2) as dependency_5.cosmos.base.query.v1beta1.PageRequest;
+            return pb_1.Message.getWrapperField(this, dependency_4.cosmos.base.query.v1beta1.PageRequest, 2) as dependency_4.cosmos.base.query.v1beta1.PageRequest;
         }
-        set pagination(value: dependency_5.cosmos.base.query.v1beta1.PageRequest) {
+        /** @deprecated*/
+        set pagination(value: dependency_4.cosmos.base.query.v1beta1.PageRequest) {
             pb_1.Message.setWrapperField(this, 2, value);
         }
+        /** @deprecated*/
         get has_pagination() {
             return pb_1.Message.getField(this, 2) != null;
         }
@@ -66,28 +85,61 @@ export namespace cosmos.tx.v1beta1 {
         set order_by(value: OrderBy) {
             pb_1.Message.setField(this, 3, value);
         }
+        get page() {
+            return pb_1.Message.getFieldWithDefault(this, 4, 0) as number;
+        }
+        set page(value: number) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        get limit() {
+            return pb_1.Message.getFieldWithDefault(this, 5, 0) as number;
+        }
+        set limit(value: number) {
+            pb_1.Message.setField(this, 5, value);
+        }
+        get query() {
+            return pb_1.Message.getFieldWithDefault(this, 6, "") as string;
+        }
+        set query(value: string) {
+            pb_1.Message.setField(this, 6, value);
+        }
         static fromObject(data: {
             events?: string[];
-            pagination?: ReturnType<typeof dependency_5.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+            pagination?: ReturnType<typeof dependency_4.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
             order_by?: OrderBy;
+            page?: number;
+            limit?: number;
+            query?: string;
         }): GetTxsEventRequest {
             const message = new GetTxsEventRequest({});
             if (data.events != null) {
                 message.events = data.events;
             }
             if (data.pagination != null) {
-                message.pagination = dependency_5.cosmos.base.query.v1beta1.PageRequest.fromObject(data.pagination);
+                message.pagination = dependency_4.cosmos.base.query.v1beta1.PageRequest.fromObject(data.pagination);
             }
             if (data.order_by != null) {
                 message.order_by = data.order_by;
+            }
+            if (data.page != null) {
+                message.page = data.page;
+            }
+            if (data.limit != null) {
+                message.limit = data.limit;
+            }
+            if (data.query != null) {
+                message.query = data.query;
             }
             return message;
         }
         toObject() {
             const data: {
                 events?: string[];
-                pagination?: ReturnType<typeof dependency_5.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+                pagination?: ReturnType<typeof dependency_4.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
                 order_by?: OrderBy;
+                page?: number;
+                limit?: number;
+                query?: string;
             } = {};
             if (this.events != null) {
                 data.events = this.events;
@@ -97,6 +149,15 @@ export namespace cosmos.tx.v1beta1 {
             }
             if (this.order_by != null) {
                 data.order_by = this.order_by;
+            }
+            if (this.page != null) {
+                data.page = this.page;
+            }
+            if (this.limit != null) {
+                data.limit = this.limit;
+            }
+            if (this.query != null) {
+                data.query = this.query;
             }
             return data;
         }
@@ -110,6 +171,12 @@ export namespace cosmos.tx.v1beta1 {
                 writer.writeMessage(2, this.pagination, () => this.pagination.serialize(writer));
             if (this.order_by != OrderBy.ORDER_BY_UNSPECIFIED)
                 writer.writeEnum(3, this.order_by);
+            if (this.page != 0)
+                writer.writeUint64(4, this.page);
+            if (this.limit != 0)
+                writer.writeUint64(5, this.limit);
+            if (this.query.length)
+                writer.writeString(6, this.query);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -123,10 +190,19 @@ export namespace cosmos.tx.v1beta1 {
                         pb_1.Message.addToRepeatedField(message, 1, reader.readString());
                         break;
                     case 2:
-                        reader.readMessage(message.pagination, () => message.pagination = dependency_5.cosmos.base.query.v1beta1.PageRequest.deserialize(reader));
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_4.cosmos.base.query.v1beta1.PageRequest.deserialize(reader));
                         break;
                     case 3:
                         message.order_by = reader.readEnum();
+                        break;
+                    case 4:
+                        message.page = reader.readUint64();
+                        break;
+                    case 5:
+                        message.limit = reader.readUint64();
+                        break;
+                    case 6:
+                        message.query = reader.readString();
                         break;
                     default: reader.skipField();
                 }
@@ -145,7 +221,9 @@ export namespace cosmos.tx.v1beta1 {
         constructor(data?: any[] | {
             txs?: dependency_3.cosmos.tx.v1beta1.Tx[];
             tx_responses?: dependency_2.cosmos.base.abci.v1beta1.TxResponse[];
-            pagination?: dependency_5.cosmos.base.query.v1beta1.PageResponse;
+            /** @deprecated*/
+            pagination?: dependency_4.cosmos.base.query.v1beta1.PageResponse;
+            total?: number;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1, 2], this.#one_of_decls);
@@ -158,6 +236,9 @@ export namespace cosmos.tx.v1beta1 {
                 }
                 if ("pagination" in data && data.pagination != undefined) {
                     this.pagination = data.pagination;
+                }
+                if ("total" in data && data.total != undefined) {
+                    this.total = data.total;
                 }
             }
         }
@@ -173,19 +254,29 @@ export namespace cosmos.tx.v1beta1 {
         set tx_responses(value: dependency_2.cosmos.base.abci.v1beta1.TxResponse[]) {
             pb_1.Message.setRepeatedWrapperField(this, 2, value);
         }
+        /** @deprecated*/
         get pagination() {
-            return pb_1.Message.getWrapperField(this, dependency_5.cosmos.base.query.v1beta1.PageResponse, 3) as dependency_5.cosmos.base.query.v1beta1.PageResponse;
+            return pb_1.Message.getWrapperField(this, dependency_4.cosmos.base.query.v1beta1.PageResponse, 3) as dependency_4.cosmos.base.query.v1beta1.PageResponse;
         }
-        set pagination(value: dependency_5.cosmos.base.query.v1beta1.PageResponse) {
+        /** @deprecated*/
+        set pagination(value: dependency_4.cosmos.base.query.v1beta1.PageResponse) {
             pb_1.Message.setWrapperField(this, 3, value);
         }
+        /** @deprecated*/
         get has_pagination() {
             return pb_1.Message.getField(this, 3) != null;
+        }
+        get total() {
+            return pb_1.Message.getFieldWithDefault(this, 4, 0) as number;
+        }
+        set total(value: number) {
+            pb_1.Message.setField(this, 4, value);
         }
         static fromObject(data: {
             txs?: ReturnType<typeof dependency_3.cosmos.tx.v1beta1.Tx.prototype.toObject>[];
             tx_responses?: ReturnType<typeof dependency_2.cosmos.base.abci.v1beta1.TxResponse.prototype.toObject>[];
-            pagination?: ReturnType<typeof dependency_5.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+            pagination?: ReturnType<typeof dependency_4.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+            total?: number;
         }): GetTxsEventResponse {
             const message = new GetTxsEventResponse({});
             if (data.txs != null) {
@@ -195,7 +286,10 @@ export namespace cosmos.tx.v1beta1 {
                 message.tx_responses = data.tx_responses.map(item => dependency_2.cosmos.base.abci.v1beta1.TxResponse.fromObject(item));
             }
             if (data.pagination != null) {
-                message.pagination = dependency_5.cosmos.base.query.v1beta1.PageResponse.fromObject(data.pagination);
+                message.pagination = dependency_4.cosmos.base.query.v1beta1.PageResponse.fromObject(data.pagination);
+            }
+            if (data.total != null) {
+                message.total = data.total;
             }
             return message;
         }
@@ -203,7 +297,8 @@ export namespace cosmos.tx.v1beta1 {
             const data: {
                 txs?: ReturnType<typeof dependency_3.cosmos.tx.v1beta1.Tx.prototype.toObject>[];
                 tx_responses?: ReturnType<typeof dependency_2.cosmos.base.abci.v1beta1.TxResponse.prototype.toObject>[];
-                pagination?: ReturnType<typeof dependency_5.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+                pagination?: ReturnType<typeof dependency_4.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+                total?: number;
             } = {};
             if (this.txs != null) {
                 data.txs = this.txs.map((item: dependency_3.cosmos.tx.v1beta1.Tx) => item.toObject());
@@ -213,6 +308,9 @@ export namespace cosmos.tx.v1beta1 {
             }
             if (this.pagination != null) {
                 data.pagination = this.pagination.toObject();
+            }
+            if (this.total != null) {
+                data.total = this.total;
             }
             return data;
         }
@@ -226,6 +324,8 @@ export namespace cosmos.tx.v1beta1 {
                 writer.writeRepeatedMessage(2, this.tx_responses, (item: dependency_2.cosmos.base.abci.v1beta1.TxResponse) => item.serialize(writer));
             if (this.has_pagination)
                 writer.writeMessage(3, this.pagination, () => this.pagination.serialize(writer));
+            if (this.total != 0)
+                writer.writeUint64(4, this.total);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -242,7 +342,10 @@ export namespace cosmos.tx.v1beta1 {
                         reader.readMessage(message.tx_responses, () => pb_1.Message.addToRepeatedWrapperField(message, 2, dependency_2.cosmos.base.abci.v1beta1.TxResponse.deserialize(reader), dependency_2.cosmos.base.abci.v1beta1.TxResponse));
                         break;
                     case 3:
-                        reader.readMessage(message.pagination, () => message.pagination = dependency_5.cosmos.base.query.v1beta1.PageResponse.deserialize(reader));
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_4.cosmos.base.query.v1beta1.PageResponse.deserialize(reader));
+                        break;
+                    case 4:
+                        message.total = reader.readUint64();
                         break;
                     default: reader.skipField();
                 }
@@ -776,7 +879,7 @@ export namespace cosmos.tx.v1beta1 {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             height?: number;
-            pagination?: dependency_5.cosmos.base.query.v1beta1.PageRequest;
+            pagination?: dependency_4.cosmos.base.query.v1beta1.PageRequest;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -796,9 +899,9 @@ export namespace cosmos.tx.v1beta1 {
             pb_1.Message.setField(this, 1, value);
         }
         get pagination() {
-            return pb_1.Message.getWrapperField(this, dependency_5.cosmos.base.query.v1beta1.PageRequest, 2) as dependency_5.cosmos.base.query.v1beta1.PageRequest;
+            return pb_1.Message.getWrapperField(this, dependency_4.cosmos.base.query.v1beta1.PageRequest, 2) as dependency_4.cosmos.base.query.v1beta1.PageRequest;
         }
-        set pagination(value: dependency_5.cosmos.base.query.v1beta1.PageRequest) {
+        set pagination(value: dependency_4.cosmos.base.query.v1beta1.PageRequest) {
             pb_1.Message.setWrapperField(this, 2, value);
         }
         get has_pagination() {
@@ -806,21 +909,21 @@ export namespace cosmos.tx.v1beta1 {
         }
         static fromObject(data: {
             height?: number;
-            pagination?: ReturnType<typeof dependency_5.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+            pagination?: ReturnType<typeof dependency_4.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
         }): GetBlockWithTxsRequest {
             const message = new GetBlockWithTxsRequest({});
             if (data.height != null) {
                 message.height = data.height;
             }
             if (data.pagination != null) {
-                message.pagination = dependency_5.cosmos.base.query.v1beta1.PageRequest.fromObject(data.pagination);
+                message.pagination = dependency_4.cosmos.base.query.v1beta1.PageRequest.fromObject(data.pagination);
             }
             return message;
         }
         toObject() {
             const data: {
                 height?: number;
-                pagination?: ReturnType<typeof dependency_5.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+                pagination?: ReturnType<typeof dependency_4.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
             } = {};
             if (this.height != null) {
                 data.height = this.height;
@@ -851,7 +954,7 @@ export namespace cosmos.tx.v1beta1 {
                         message.height = reader.readInt64();
                         break;
                     case 2:
-                        reader.readMessage(message.pagination, () => message.pagination = dependency_5.cosmos.base.query.v1beta1.PageRequest.deserialize(reader));
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_4.cosmos.base.query.v1beta1.PageRequest.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -869,9 +972,9 @@ export namespace cosmos.tx.v1beta1 {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             txs?: dependency_3.cosmos.tx.v1beta1.Tx[];
-            block_id?: dependency_7.tendermint.types.BlockID;
-            block?: dependency_6.tendermint.types.Block;
-            pagination?: dependency_5.cosmos.base.query.v1beta1.PageResponse;
+            block_id?: dependency_6.tendermint.types.BlockID;
+            block?: dependency_5.tendermint.types.Block;
+            pagination?: dependency_4.cosmos.base.query.v1beta1.PageResponse;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
@@ -897,27 +1000,27 @@ export namespace cosmos.tx.v1beta1 {
             pb_1.Message.setRepeatedWrapperField(this, 1, value);
         }
         get block_id() {
-            return pb_1.Message.getWrapperField(this, dependency_7.tendermint.types.BlockID, 2) as dependency_7.tendermint.types.BlockID;
+            return pb_1.Message.getWrapperField(this, dependency_6.tendermint.types.BlockID, 2) as dependency_6.tendermint.types.BlockID;
         }
-        set block_id(value: dependency_7.tendermint.types.BlockID) {
+        set block_id(value: dependency_6.tendermint.types.BlockID) {
             pb_1.Message.setWrapperField(this, 2, value);
         }
         get has_block_id() {
             return pb_1.Message.getField(this, 2) != null;
         }
         get block() {
-            return pb_1.Message.getWrapperField(this, dependency_6.tendermint.types.Block, 3) as dependency_6.tendermint.types.Block;
+            return pb_1.Message.getWrapperField(this, dependency_5.tendermint.types.Block, 3) as dependency_5.tendermint.types.Block;
         }
-        set block(value: dependency_6.tendermint.types.Block) {
+        set block(value: dependency_5.tendermint.types.Block) {
             pb_1.Message.setWrapperField(this, 3, value);
         }
         get has_block() {
             return pb_1.Message.getField(this, 3) != null;
         }
         get pagination() {
-            return pb_1.Message.getWrapperField(this, dependency_5.cosmos.base.query.v1beta1.PageResponse, 4) as dependency_5.cosmos.base.query.v1beta1.PageResponse;
+            return pb_1.Message.getWrapperField(this, dependency_4.cosmos.base.query.v1beta1.PageResponse, 4) as dependency_4.cosmos.base.query.v1beta1.PageResponse;
         }
-        set pagination(value: dependency_5.cosmos.base.query.v1beta1.PageResponse) {
+        set pagination(value: dependency_4.cosmos.base.query.v1beta1.PageResponse) {
             pb_1.Message.setWrapperField(this, 4, value);
         }
         get has_pagination() {
@@ -925,31 +1028,31 @@ export namespace cosmos.tx.v1beta1 {
         }
         static fromObject(data: {
             txs?: ReturnType<typeof dependency_3.cosmos.tx.v1beta1.Tx.prototype.toObject>[];
-            block_id?: ReturnType<typeof dependency_7.tendermint.types.BlockID.prototype.toObject>;
-            block?: ReturnType<typeof dependency_6.tendermint.types.Block.prototype.toObject>;
-            pagination?: ReturnType<typeof dependency_5.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+            block_id?: ReturnType<typeof dependency_6.tendermint.types.BlockID.prototype.toObject>;
+            block?: ReturnType<typeof dependency_5.tendermint.types.Block.prototype.toObject>;
+            pagination?: ReturnType<typeof dependency_4.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
         }): GetBlockWithTxsResponse {
             const message = new GetBlockWithTxsResponse({});
             if (data.txs != null) {
                 message.txs = data.txs.map(item => dependency_3.cosmos.tx.v1beta1.Tx.fromObject(item));
             }
             if (data.block_id != null) {
-                message.block_id = dependency_7.tendermint.types.BlockID.fromObject(data.block_id);
+                message.block_id = dependency_6.tendermint.types.BlockID.fromObject(data.block_id);
             }
             if (data.block != null) {
-                message.block = dependency_6.tendermint.types.Block.fromObject(data.block);
+                message.block = dependency_5.tendermint.types.Block.fromObject(data.block);
             }
             if (data.pagination != null) {
-                message.pagination = dependency_5.cosmos.base.query.v1beta1.PageResponse.fromObject(data.pagination);
+                message.pagination = dependency_4.cosmos.base.query.v1beta1.PageResponse.fromObject(data.pagination);
             }
             return message;
         }
         toObject() {
             const data: {
                 txs?: ReturnType<typeof dependency_3.cosmos.tx.v1beta1.Tx.prototype.toObject>[];
-                block_id?: ReturnType<typeof dependency_7.tendermint.types.BlockID.prototype.toObject>;
-                block?: ReturnType<typeof dependency_6.tendermint.types.Block.prototype.toObject>;
-                pagination?: ReturnType<typeof dependency_5.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+                block_id?: ReturnType<typeof dependency_6.tendermint.types.BlockID.prototype.toObject>;
+                block?: ReturnType<typeof dependency_5.tendermint.types.Block.prototype.toObject>;
+                pagination?: ReturnType<typeof dependency_4.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
             } = {};
             if (this.txs != null) {
                 data.txs = this.txs.map((item: dependency_3.cosmos.tx.v1beta1.Tx) => item.toObject());
@@ -990,13 +1093,13 @@ export namespace cosmos.tx.v1beta1 {
                         reader.readMessage(message.txs, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_3.cosmos.tx.v1beta1.Tx.deserialize(reader), dependency_3.cosmos.tx.v1beta1.Tx));
                         break;
                     case 2:
-                        reader.readMessage(message.block_id, () => message.block_id = dependency_7.tendermint.types.BlockID.deserialize(reader));
+                        reader.readMessage(message.block_id, () => message.block_id = dependency_6.tendermint.types.BlockID.deserialize(reader));
                         break;
                     case 3:
-                        reader.readMessage(message.block, () => message.block = dependency_6.tendermint.types.Block.deserialize(reader));
+                        reader.readMessage(message.block, () => message.block = dependency_5.tendermint.types.Block.deserialize(reader));
                         break;
                     case 4:
-                        reader.readMessage(message.pagination, () => message.pagination = dependency_5.cosmos.base.query.v1beta1.PageResponse.deserialize(reader));
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_4.cosmos.base.query.v1beta1.PageResponse.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -1008,6 +1111,548 @@ export namespace cosmos.tx.v1beta1 {
         }
         static deserializeBinary(bytes: Uint8Array): GetBlockWithTxsResponse {
             return GetBlockWithTxsResponse.deserialize(bytes);
+        }
+    }
+    export class TxDecodeRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            tx_bytes?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("tx_bytes" in data && data.tx_bytes != undefined) {
+                    this.tx_bytes = data.tx_bytes;
+                }
+            }
+        }
+        get tx_bytes() {
+            return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
+        }
+        set tx_bytes(value: Uint8Array) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            tx_bytes?: Uint8Array;
+        }): TxDecodeRequest {
+            const message = new TxDecodeRequest({});
+            if (data.tx_bytes != null) {
+                message.tx_bytes = data.tx_bytes;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                tx_bytes?: Uint8Array;
+            } = {};
+            if (this.tx_bytes != null) {
+                data.tx_bytes = this.tx_bytes;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.tx_bytes.length)
+                writer.writeBytes(1, this.tx_bytes);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): TxDecodeRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new TxDecodeRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.tx_bytes = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): TxDecodeRequest {
+            return TxDecodeRequest.deserialize(bytes);
+        }
+    }
+    export class TxDecodeResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            tx?: dependency_3.cosmos.tx.v1beta1.Tx;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("tx" in data && data.tx != undefined) {
+                    this.tx = data.tx;
+                }
+            }
+        }
+        get tx() {
+            return pb_1.Message.getWrapperField(this, dependency_3.cosmos.tx.v1beta1.Tx, 1) as dependency_3.cosmos.tx.v1beta1.Tx;
+        }
+        set tx(value: dependency_3.cosmos.tx.v1beta1.Tx) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_tx() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        static fromObject(data: {
+            tx?: ReturnType<typeof dependency_3.cosmos.tx.v1beta1.Tx.prototype.toObject>;
+        }): TxDecodeResponse {
+            const message = new TxDecodeResponse({});
+            if (data.tx != null) {
+                message.tx = dependency_3.cosmos.tx.v1beta1.Tx.fromObject(data.tx);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                tx?: ReturnType<typeof dependency_3.cosmos.tx.v1beta1.Tx.prototype.toObject>;
+            } = {};
+            if (this.tx != null) {
+                data.tx = this.tx.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_tx)
+                writer.writeMessage(1, this.tx, () => this.tx.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): TxDecodeResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new TxDecodeResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.tx, () => message.tx = dependency_3.cosmos.tx.v1beta1.Tx.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): TxDecodeResponse {
+            return TxDecodeResponse.deserialize(bytes);
+        }
+    }
+    export class TxEncodeRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            tx?: dependency_3.cosmos.tx.v1beta1.Tx;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("tx" in data && data.tx != undefined) {
+                    this.tx = data.tx;
+                }
+            }
+        }
+        get tx() {
+            return pb_1.Message.getWrapperField(this, dependency_3.cosmos.tx.v1beta1.Tx, 1) as dependency_3.cosmos.tx.v1beta1.Tx;
+        }
+        set tx(value: dependency_3.cosmos.tx.v1beta1.Tx) {
+            pb_1.Message.setWrapperField(this, 1, value);
+        }
+        get has_tx() {
+            return pb_1.Message.getField(this, 1) != null;
+        }
+        static fromObject(data: {
+            tx?: ReturnType<typeof dependency_3.cosmos.tx.v1beta1.Tx.prototype.toObject>;
+        }): TxEncodeRequest {
+            const message = new TxEncodeRequest({});
+            if (data.tx != null) {
+                message.tx = dependency_3.cosmos.tx.v1beta1.Tx.fromObject(data.tx);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                tx?: ReturnType<typeof dependency_3.cosmos.tx.v1beta1.Tx.prototype.toObject>;
+            } = {};
+            if (this.tx != null) {
+                data.tx = this.tx.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.has_tx)
+                writer.writeMessage(1, this.tx, () => this.tx.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): TxEncodeRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new TxEncodeRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.tx, () => message.tx = dependency_3.cosmos.tx.v1beta1.Tx.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): TxEncodeRequest {
+            return TxEncodeRequest.deserialize(bytes);
+        }
+    }
+    export class TxEncodeResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            tx_bytes?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("tx_bytes" in data && data.tx_bytes != undefined) {
+                    this.tx_bytes = data.tx_bytes;
+                }
+            }
+        }
+        get tx_bytes() {
+            return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
+        }
+        set tx_bytes(value: Uint8Array) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            tx_bytes?: Uint8Array;
+        }): TxEncodeResponse {
+            const message = new TxEncodeResponse({});
+            if (data.tx_bytes != null) {
+                message.tx_bytes = data.tx_bytes;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                tx_bytes?: Uint8Array;
+            } = {};
+            if (this.tx_bytes != null) {
+                data.tx_bytes = this.tx_bytes;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.tx_bytes.length)
+                writer.writeBytes(1, this.tx_bytes);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): TxEncodeResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new TxEncodeResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.tx_bytes = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): TxEncodeResponse {
+            return TxEncodeResponse.deserialize(bytes);
+        }
+    }
+    export class TxEncodeAminoRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            amino_json?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("amino_json" in data && data.amino_json != undefined) {
+                    this.amino_json = data.amino_json;
+                }
+            }
+        }
+        get amino_json() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set amino_json(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            amino_json?: string;
+        }): TxEncodeAminoRequest {
+            const message = new TxEncodeAminoRequest({});
+            if (data.amino_json != null) {
+                message.amino_json = data.amino_json;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                amino_json?: string;
+            } = {};
+            if (this.amino_json != null) {
+                data.amino_json = this.amino_json;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.amino_json.length)
+                writer.writeString(1, this.amino_json);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): TxEncodeAminoRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new TxEncodeAminoRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.amino_json = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): TxEncodeAminoRequest {
+            return TxEncodeAminoRequest.deserialize(bytes);
+        }
+    }
+    export class TxEncodeAminoResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            amino_binary?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("amino_binary" in data && data.amino_binary != undefined) {
+                    this.amino_binary = data.amino_binary;
+                }
+            }
+        }
+        get amino_binary() {
+            return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
+        }
+        set amino_binary(value: Uint8Array) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            amino_binary?: Uint8Array;
+        }): TxEncodeAminoResponse {
+            const message = new TxEncodeAminoResponse({});
+            if (data.amino_binary != null) {
+                message.amino_binary = data.amino_binary;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                amino_binary?: Uint8Array;
+            } = {};
+            if (this.amino_binary != null) {
+                data.amino_binary = this.amino_binary;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.amino_binary.length)
+                writer.writeBytes(1, this.amino_binary);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): TxEncodeAminoResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new TxEncodeAminoResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.amino_binary = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): TxEncodeAminoResponse {
+            return TxEncodeAminoResponse.deserialize(bytes);
+        }
+    }
+    export class TxDecodeAminoRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            amino_binary?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("amino_binary" in data && data.amino_binary != undefined) {
+                    this.amino_binary = data.amino_binary;
+                }
+            }
+        }
+        get amino_binary() {
+            return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
+        }
+        set amino_binary(value: Uint8Array) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            amino_binary?: Uint8Array;
+        }): TxDecodeAminoRequest {
+            const message = new TxDecodeAminoRequest({});
+            if (data.amino_binary != null) {
+                message.amino_binary = data.amino_binary;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                amino_binary?: Uint8Array;
+            } = {};
+            if (this.amino_binary != null) {
+                data.amino_binary = this.amino_binary;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.amino_binary.length)
+                writer.writeBytes(1, this.amino_binary);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): TxDecodeAminoRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new TxDecodeAminoRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.amino_binary = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): TxDecodeAminoRequest {
+            return TxDecodeAminoRequest.deserialize(bytes);
+        }
+    }
+    export class TxDecodeAminoResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            amino_json?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("amino_json" in data && data.amino_json != undefined) {
+                    this.amino_json = data.amino_json;
+                }
+            }
+        }
+        get amino_json() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set amino_json(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            amino_json?: string;
+        }): TxDecodeAminoResponse {
+            const message = new TxDecodeAminoResponse({});
+            if (data.amino_json != null) {
+                message.amino_json = data.amino_json;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                amino_json?: string;
+            } = {};
+            if (this.amino_json != null) {
+                data.amino_json = this.amino_json;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.amino_json.length)
+                writer.writeString(1, this.amino_json);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): TxDecodeAminoResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new TxDecodeAminoResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.amino_json = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): TxDecodeAminoResponse {
+            return TxDecodeAminoResponse.deserialize(bytes);
         }
     }
     interface GrpcUnaryServiceInterface<P, R> {
@@ -1080,6 +1725,42 @@ export namespace cosmos.tx.v1beta1 {
                 requestDeserialize: (bytes: Buffer) => GetBlockWithTxsRequest.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: GetBlockWithTxsResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => GetBlockWithTxsResponse.deserialize(new Uint8Array(bytes))
+            },
+            TxDecode: {
+                path: "/cosmos.tx.v1beta1.Service/TxDecode",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: TxDecodeRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => TxDecodeRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: TxDecodeResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => TxDecodeResponse.deserialize(new Uint8Array(bytes))
+            },
+            TxEncode: {
+                path: "/cosmos.tx.v1beta1.Service/TxEncode",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: TxEncodeRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => TxEncodeRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: TxEncodeResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => TxEncodeResponse.deserialize(new Uint8Array(bytes))
+            },
+            TxEncodeAmino: {
+                path: "/cosmos.tx.v1beta1.Service/TxEncodeAmino",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: TxEncodeAminoRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => TxEncodeAminoRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: TxEncodeAminoResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => TxEncodeAminoResponse.deserialize(new Uint8Array(bytes))
+            },
+            TxDecodeAmino: {
+                path: "/cosmos.tx.v1beta1.Service/TxDecodeAmino",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: TxDecodeAminoRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => TxDecodeAminoRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: TxDecodeAminoResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => TxDecodeAminoResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
@@ -1088,6 +1769,10 @@ export namespace cosmos.tx.v1beta1 {
         abstract BroadcastTx(call: grpc_1.ServerUnaryCall<BroadcastTxRequest, BroadcastTxResponse>, callback: grpc_1.sendUnaryData<BroadcastTxResponse>): void;
         abstract GetTxsEvent(call: grpc_1.ServerUnaryCall<GetTxsEventRequest, GetTxsEventResponse>, callback: grpc_1.sendUnaryData<GetTxsEventResponse>): void;
         abstract GetBlockWithTxs(call: grpc_1.ServerUnaryCall<GetBlockWithTxsRequest, GetBlockWithTxsResponse>, callback: grpc_1.sendUnaryData<GetBlockWithTxsResponse>): void;
+        abstract TxDecode(call: grpc_1.ServerUnaryCall<TxDecodeRequest, TxDecodeResponse>, callback: grpc_1.sendUnaryData<TxDecodeResponse>): void;
+        abstract TxEncode(call: grpc_1.ServerUnaryCall<TxEncodeRequest, TxEncodeResponse>, callback: grpc_1.sendUnaryData<TxEncodeResponse>): void;
+        abstract TxEncodeAmino(call: grpc_1.ServerUnaryCall<TxEncodeAminoRequest, TxEncodeAminoResponse>, callback: grpc_1.sendUnaryData<TxEncodeAminoResponse>): void;
+        abstract TxDecodeAmino(call: grpc_1.ServerUnaryCall<TxDecodeAminoRequest, TxDecodeAminoResponse>, callback: grpc_1.sendUnaryData<TxDecodeAminoResponse>): void;
     }
     export class ServiceClient extends grpc_1.makeGenericClientConstructor(UnimplementedServiceService.definition, "Service", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -1107,6 +1792,18 @@ export namespace cosmos.tx.v1beta1 {
         };
         GetBlockWithTxs: GrpcUnaryServiceInterface<GetBlockWithTxsRequest, GetBlockWithTxsResponse> = (message: GetBlockWithTxsRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<GetBlockWithTxsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<GetBlockWithTxsResponse>, callback?: grpc_1.requestCallback<GetBlockWithTxsResponse>): grpc_1.ClientUnaryCall => {
             return super.GetBlockWithTxs(message, metadata, options, callback);
+        };
+        TxDecode: GrpcUnaryServiceInterface<TxDecodeRequest, TxDecodeResponse> = (message: TxDecodeRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<TxDecodeResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<TxDecodeResponse>, callback?: grpc_1.requestCallback<TxDecodeResponse>): grpc_1.ClientUnaryCall => {
+            return super.TxDecode(message, metadata, options, callback);
+        };
+        TxEncode: GrpcUnaryServiceInterface<TxEncodeRequest, TxEncodeResponse> = (message: TxEncodeRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<TxEncodeResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<TxEncodeResponse>, callback?: grpc_1.requestCallback<TxEncodeResponse>): grpc_1.ClientUnaryCall => {
+            return super.TxEncode(message, metadata, options, callback);
+        };
+        TxEncodeAmino: GrpcUnaryServiceInterface<TxEncodeAminoRequest, TxEncodeAminoResponse> = (message: TxEncodeAminoRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<TxEncodeAminoResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<TxEncodeAminoResponse>, callback?: grpc_1.requestCallback<TxEncodeAminoResponse>): grpc_1.ClientUnaryCall => {
+            return super.TxEncodeAmino(message, metadata, options, callback);
+        };
+        TxDecodeAmino: GrpcUnaryServiceInterface<TxDecodeAminoRequest, TxDecodeAminoResponse> = (message: TxDecodeAminoRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<TxDecodeAminoResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<TxDecodeAminoResponse>, callback?: grpc_1.requestCallback<TxDecodeAminoResponse>): grpc_1.ClientUnaryCall => {
+            return super.TxDecodeAmino(message, metadata, options, callback);
         };
     }
 }

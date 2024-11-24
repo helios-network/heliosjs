@@ -6,6 +6,8 @@
 import * as dependency_1 from "./../../../gogoproto/gogo";
 import * as dependency_2 from "./../../base/v1beta1/coin";
 import * as dependency_3 from "./distribution";
+import * as dependency_4 from "./../../../cosmos_proto/cosmos";
+import * as dependency_5 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.distribution.v1beta1 {
     export class DelegatorWithdrawInfo extends pb_1.Message {

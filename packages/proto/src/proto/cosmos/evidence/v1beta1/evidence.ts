@@ -3,15 +3,17 @@
  * compiler version: 5.28.3
  * source: cosmos/evidence/v1beta1/evidence.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
-import * as dependency_1 from "./../../../gogoproto/gogo";
-import * as dependency_2 from "./../../../google/protobuf/timestamp";
+import * as dependency_1 from "./../../../amino/amino";
+import * as dependency_2 from "./../../../gogoproto/gogo";
+import * as dependency_3 from "./../../../google/protobuf/timestamp";
+import * as dependency_4 from "./../../../cosmos_proto/cosmos";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.evidence.v1beta1 {
     export class Equivocation extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             height?: number;
-            time?: dependency_2.google.protobuf.Timestamp;
+            time?: dependency_3.google.protobuf.Timestamp;
             power?: number;
             consensus_address?: string;
         }) {
@@ -39,9 +41,9 @@ export namespace cosmos.evidence.v1beta1 {
             pb_1.Message.setField(this, 1, value);
         }
         get time() {
-            return pb_1.Message.getWrapperField(this, dependency_2.google.protobuf.Timestamp, 2) as dependency_2.google.protobuf.Timestamp;
+            return pb_1.Message.getWrapperField(this, dependency_3.google.protobuf.Timestamp, 2) as dependency_3.google.protobuf.Timestamp;
         }
-        set time(value: dependency_2.google.protobuf.Timestamp) {
+        set time(value: dependency_3.google.protobuf.Timestamp) {
             pb_1.Message.setWrapperField(this, 2, value);
         }
         get has_time() {
@@ -61,7 +63,7 @@ export namespace cosmos.evidence.v1beta1 {
         }
         static fromObject(data: {
             height?: number;
-            time?: ReturnType<typeof dependency_2.google.protobuf.Timestamp.prototype.toObject>;
+            time?: ReturnType<typeof dependency_3.google.protobuf.Timestamp.prototype.toObject>;
             power?: number;
             consensus_address?: string;
         }): Equivocation {
@@ -70,7 +72,7 @@ export namespace cosmos.evidence.v1beta1 {
                 message.height = data.height;
             }
             if (data.time != null) {
-                message.time = dependency_2.google.protobuf.Timestamp.fromObject(data.time);
+                message.time = dependency_3.google.protobuf.Timestamp.fromObject(data.time);
             }
             if (data.power != null) {
                 message.power = data.power;
@@ -83,7 +85,7 @@ export namespace cosmos.evidence.v1beta1 {
         toObject() {
             const data: {
                 height?: number;
-                time?: ReturnType<typeof dependency_2.google.protobuf.Timestamp.prototype.toObject>;
+                time?: ReturnType<typeof dependency_3.google.protobuf.Timestamp.prototype.toObject>;
                 power?: number;
                 consensus_address?: string;
             } = {};
@@ -126,7 +128,7 @@ export namespace cosmos.evidence.v1beta1 {
                         message.height = reader.readInt64();
                         break;
                     case 2:
-                        reader.readMessage(message.time, () => message.time = dependency_2.google.protobuf.Timestamp.deserialize(reader));
+                        reader.readMessage(message.time, () => message.time = dependency_3.google.protobuf.Timestamp.deserialize(reader));
                         break;
                     case 3:
                         message.power = reader.readInt64();

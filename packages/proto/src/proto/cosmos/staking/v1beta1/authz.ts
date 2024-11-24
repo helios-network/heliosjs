@@ -6,13 +6,15 @@
 import * as dependency_1 from "./../../../gogoproto/gogo";
 import * as dependency_2 from "./../../../cosmos_proto/cosmos";
 import * as dependency_3 from "./../../base/v1beta1/coin";
+import * as dependency_4 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.staking.v1beta1 {
     export enum AuthorizationType {
         AUTHORIZATION_TYPE_UNSPECIFIED = 0,
         AUTHORIZATION_TYPE_DELEGATE = 1,
         AUTHORIZATION_TYPE_UNDELEGATE = 2,
-        AUTHORIZATION_TYPE_REDELEGATE = 3
+        AUTHORIZATION_TYPE_REDELEGATE = 3,
+        AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION = 4
     }
     export class StakeAuthorization extends pb_1.Message {
         #one_of_decls: number[][] = [[2, 3]];

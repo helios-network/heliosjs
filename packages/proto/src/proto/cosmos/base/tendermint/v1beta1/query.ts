@@ -3,12 +3,16 @@
  * compiler version: 5.28.3
  * source: cosmos/base/tendermint/v1beta1/query.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
-import * as dependency_1 from "./../../../../google/protobuf/any";
-import * as dependency_2 from "./../../../../google/api/annotations";
-import * as dependency_3 from "./../../../../tendermint/p2p/types";
-import * as dependency_4 from "./../../../../tendermint/types/block";
+import * as dependency_1 from "./../../../../gogoproto/gogo";
+import * as dependency_2 from "./../../../../google/protobuf/any";
+import * as dependency_3 from "./../../../../google/api/annotations";
+import * as dependency_4 from "./../../../../tendermint/p2p/types";
 import * as dependency_5 from "./../../../../tendermint/types/types";
 import * as dependency_6 from "./../../query/v1beta1/pagination";
+import * as dependency_7 from "./types";
+import * as dependency_8 from "./../../../../cosmos_proto/cosmos";
+import * as dependency_9 from "./../../../../tendermint/types/block";
+import * as dependency_10 from "./../../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.base.tendermint.v1beta1 {
@@ -411,7 +415,7 @@ export namespace cosmos.base.tendermint.v1beta1 {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             address?: string;
-            pub_key?: dependency_1.google.protobuf.Any;
+            pub_key?: dependency_2.google.protobuf.Any;
             voting_power?: number;
             proposer_priority?: number;
         }) {
@@ -439,9 +443,9 @@ export namespace cosmos.base.tendermint.v1beta1 {
             pb_1.Message.setField(this, 1, value);
         }
         get pub_key() {
-            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Any, 2) as dependency_1.google.protobuf.Any;
+            return pb_1.Message.getWrapperField(this, dependency_2.google.protobuf.Any, 2) as dependency_2.google.protobuf.Any;
         }
-        set pub_key(value: dependency_1.google.protobuf.Any) {
+        set pub_key(value: dependency_2.google.protobuf.Any) {
             pb_1.Message.setWrapperField(this, 2, value);
         }
         get has_pub_key() {
@@ -461,7 +465,7 @@ export namespace cosmos.base.tendermint.v1beta1 {
         }
         static fromObject(data: {
             address?: string;
-            pub_key?: ReturnType<typeof dependency_1.google.protobuf.Any.prototype.toObject>;
+            pub_key?: ReturnType<typeof dependency_2.google.protobuf.Any.prototype.toObject>;
             voting_power?: number;
             proposer_priority?: number;
         }): Validator {
@@ -470,7 +474,7 @@ export namespace cosmos.base.tendermint.v1beta1 {
                 message.address = data.address;
             }
             if (data.pub_key != null) {
-                message.pub_key = dependency_1.google.protobuf.Any.fromObject(data.pub_key);
+                message.pub_key = dependency_2.google.protobuf.Any.fromObject(data.pub_key);
             }
             if (data.voting_power != null) {
                 message.voting_power = data.voting_power;
@@ -483,7 +487,7 @@ export namespace cosmos.base.tendermint.v1beta1 {
         toObject() {
             const data: {
                 address?: string;
-                pub_key?: ReturnType<typeof dependency_1.google.protobuf.Any.prototype.toObject>;
+                pub_key?: ReturnType<typeof dependency_2.google.protobuf.Any.prototype.toObject>;
                 voting_power?: number;
                 proposer_priority?: number;
             } = {};
@@ -526,7 +530,7 @@ export namespace cosmos.base.tendermint.v1beta1 {
                         message.address = reader.readString();
                         break;
                     case 2:
-                        reader.readMessage(message.pub_key, () => message.pub_key = dependency_1.google.protobuf.Any.deserialize(reader));
+                        reader.readMessage(message.pub_key, () => message.pub_key = dependency_2.google.protobuf.Any.deserialize(reader));
                         break;
                     case 3:
                         message.voting_power = reader.readInt64();
@@ -617,7 +621,8 @@ export namespace cosmos.base.tendermint.v1beta1 {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             block_id?: dependency_5.tendermint.types.BlockID;
-            block?: dependency_4.tendermint.types.Block;
+            block?: dependency_9.tendermint.types.Block;
+            sdk_block?: dependency_7.cosmos.base.tendermint.v1beta1.Block;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -627,6 +632,9 @@ export namespace cosmos.base.tendermint.v1beta1 {
                 }
                 if ("block" in data && data.block != undefined) {
                     this.block = data.block;
+                }
+                if ("sdk_block" in data && data.sdk_block != undefined) {
+                    this.sdk_block = data.sdk_block;
                 }
             }
         }
@@ -640,37 +648,54 @@ export namespace cosmos.base.tendermint.v1beta1 {
             return pb_1.Message.getField(this, 1) != null;
         }
         get block() {
-            return pb_1.Message.getWrapperField(this, dependency_4.tendermint.types.Block, 2) as dependency_4.tendermint.types.Block;
+            return pb_1.Message.getWrapperField(this, dependency_9.tendermint.types.Block, 2) as dependency_9.tendermint.types.Block;
         }
-        set block(value: dependency_4.tendermint.types.Block) {
+        set block(value: dependency_9.tendermint.types.Block) {
             pb_1.Message.setWrapperField(this, 2, value);
         }
         get has_block() {
             return pb_1.Message.getField(this, 2) != null;
         }
+        get sdk_block() {
+            return pb_1.Message.getWrapperField(this, dependency_7.cosmos.base.tendermint.v1beta1.Block, 3) as dependency_7.cosmos.base.tendermint.v1beta1.Block;
+        }
+        set sdk_block(value: dependency_7.cosmos.base.tendermint.v1beta1.Block) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        get has_sdk_block() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
         static fromObject(data: {
             block_id?: ReturnType<typeof dependency_5.tendermint.types.BlockID.prototype.toObject>;
-            block?: ReturnType<typeof dependency_4.tendermint.types.Block.prototype.toObject>;
+            block?: ReturnType<typeof dependency_9.tendermint.types.Block.prototype.toObject>;
+            sdk_block?: ReturnType<typeof dependency_7.cosmos.base.tendermint.v1beta1.Block.prototype.toObject>;
         }): GetBlockByHeightResponse {
             const message = new GetBlockByHeightResponse({});
             if (data.block_id != null) {
                 message.block_id = dependency_5.tendermint.types.BlockID.fromObject(data.block_id);
             }
             if (data.block != null) {
-                message.block = dependency_4.tendermint.types.Block.fromObject(data.block);
+                message.block = dependency_9.tendermint.types.Block.fromObject(data.block);
+            }
+            if (data.sdk_block != null) {
+                message.sdk_block = dependency_7.cosmos.base.tendermint.v1beta1.Block.fromObject(data.sdk_block);
             }
             return message;
         }
         toObject() {
             const data: {
                 block_id?: ReturnType<typeof dependency_5.tendermint.types.BlockID.prototype.toObject>;
-                block?: ReturnType<typeof dependency_4.tendermint.types.Block.prototype.toObject>;
+                block?: ReturnType<typeof dependency_9.tendermint.types.Block.prototype.toObject>;
+                sdk_block?: ReturnType<typeof dependency_7.cosmos.base.tendermint.v1beta1.Block.prototype.toObject>;
             } = {};
             if (this.block_id != null) {
                 data.block_id = this.block_id.toObject();
             }
             if (this.block != null) {
                 data.block = this.block.toObject();
+            }
+            if (this.sdk_block != null) {
+                data.sdk_block = this.sdk_block.toObject();
             }
             return data;
         }
@@ -682,6 +707,8 @@ export namespace cosmos.base.tendermint.v1beta1 {
                 writer.writeMessage(1, this.block_id, () => this.block_id.serialize(writer));
             if (this.has_block)
                 writer.writeMessage(2, this.block, () => this.block.serialize(writer));
+            if (this.has_sdk_block)
+                writer.writeMessage(3, this.sdk_block, () => this.sdk_block.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -695,7 +722,10 @@ export namespace cosmos.base.tendermint.v1beta1 {
                         reader.readMessage(message.block_id, () => message.block_id = dependency_5.tendermint.types.BlockID.deserialize(reader));
                         break;
                     case 2:
-                        reader.readMessage(message.block, () => message.block = dependency_4.tendermint.types.Block.deserialize(reader));
+                        reader.readMessage(message.block, () => message.block = dependency_9.tendermint.types.Block.deserialize(reader));
+                        break;
+                    case 3:
+                        reader.readMessage(message.sdk_block, () => message.sdk_block = dependency_7.cosmos.base.tendermint.v1beta1.Block.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -753,7 +783,8 @@ export namespace cosmos.base.tendermint.v1beta1 {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             block_id?: dependency_5.tendermint.types.BlockID;
-            block?: dependency_4.tendermint.types.Block;
+            block?: dependency_9.tendermint.types.Block;
+            sdk_block?: dependency_7.cosmos.base.tendermint.v1beta1.Block;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -763,6 +794,9 @@ export namespace cosmos.base.tendermint.v1beta1 {
                 }
                 if ("block" in data && data.block != undefined) {
                     this.block = data.block;
+                }
+                if ("sdk_block" in data && data.sdk_block != undefined) {
+                    this.sdk_block = data.sdk_block;
                 }
             }
         }
@@ -776,37 +810,54 @@ export namespace cosmos.base.tendermint.v1beta1 {
             return pb_1.Message.getField(this, 1) != null;
         }
         get block() {
-            return pb_1.Message.getWrapperField(this, dependency_4.tendermint.types.Block, 2) as dependency_4.tendermint.types.Block;
+            return pb_1.Message.getWrapperField(this, dependency_9.tendermint.types.Block, 2) as dependency_9.tendermint.types.Block;
         }
-        set block(value: dependency_4.tendermint.types.Block) {
+        set block(value: dependency_9.tendermint.types.Block) {
             pb_1.Message.setWrapperField(this, 2, value);
         }
         get has_block() {
             return pb_1.Message.getField(this, 2) != null;
         }
+        get sdk_block() {
+            return pb_1.Message.getWrapperField(this, dependency_7.cosmos.base.tendermint.v1beta1.Block, 3) as dependency_7.cosmos.base.tendermint.v1beta1.Block;
+        }
+        set sdk_block(value: dependency_7.cosmos.base.tendermint.v1beta1.Block) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        get has_sdk_block() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
         static fromObject(data: {
             block_id?: ReturnType<typeof dependency_5.tendermint.types.BlockID.prototype.toObject>;
-            block?: ReturnType<typeof dependency_4.tendermint.types.Block.prototype.toObject>;
+            block?: ReturnType<typeof dependency_9.tendermint.types.Block.prototype.toObject>;
+            sdk_block?: ReturnType<typeof dependency_7.cosmos.base.tendermint.v1beta1.Block.prototype.toObject>;
         }): GetLatestBlockResponse {
             const message = new GetLatestBlockResponse({});
             if (data.block_id != null) {
                 message.block_id = dependency_5.tendermint.types.BlockID.fromObject(data.block_id);
             }
             if (data.block != null) {
-                message.block = dependency_4.tendermint.types.Block.fromObject(data.block);
+                message.block = dependency_9.tendermint.types.Block.fromObject(data.block);
+            }
+            if (data.sdk_block != null) {
+                message.sdk_block = dependency_7.cosmos.base.tendermint.v1beta1.Block.fromObject(data.sdk_block);
             }
             return message;
         }
         toObject() {
             const data: {
                 block_id?: ReturnType<typeof dependency_5.tendermint.types.BlockID.prototype.toObject>;
-                block?: ReturnType<typeof dependency_4.tendermint.types.Block.prototype.toObject>;
+                block?: ReturnType<typeof dependency_9.tendermint.types.Block.prototype.toObject>;
+                sdk_block?: ReturnType<typeof dependency_7.cosmos.base.tendermint.v1beta1.Block.prototype.toObject>;
             } = {};
             if (this.block_id != null) {
                 data.block_id = this.block_id.toObject();
             }
             if (this.block != null) {
                 data.block = this.block.toObject();
+            }
+            if (this.sdk_block != null) {
+                data.sdk_block = this.sdk_block.toObject();
             }
             return data;
         }
@@ -818,6 +869,8 @@ export namespace cosmos.base.tendermint.v1beta1 {
                 writer.writeMessage(1, this.block_id, () => this.block_id.serialize(writer));
             if (this.has_block)
                 writer.writeMessage(2, this.block, () => this.block.serialize(writer));
+            if (this.has_sdk_block)
+                writer.writeMessage(3, this.sdk_block, () => this.sdk_block.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -831,7 +884,10 @@ export namespace cosmos.base.tendermint.v1beta1 {
                         reader.readMessage(message.block_id, () => message.block_id = dependency_5.tendermint.types.BlockID.deserialize(reader));
                         break;
                     case 2:
-                        reader.readMessage(message.block, () => message.block = dependency_4.tendermint.types.Block.deserialize(reader));
+                        reader.readMessage(message.block, () => message.block = dependency_9.tendermint.types.Block.deserialize(reader));
+                        break;
+                    case 3:
+                        reader.readMessage(message.sdk_block, () => message.sdk_block = dependency_7.cosmos.base.tendermint.v1beta1.Block.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -995,7 +1051,7 @@ export namespace cosmos.base.tendermint.v1beta1 {
     export class GetNodeInfoResponse extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            default_node_info?: dependency_3.tendermint.p2p.DefaultNodeInfo;
+            default_node_info?: dependency_4.tendermint.p2p.DefaultNodeInfo;
             application_version?: VersionInfo;
         }) {
             super();
@@ -1010,9 +1066,9 @@ export namespace cosmos.base.tendermint.v1beta1 {
             }
         }
         get default_node_info() {
-            return pb_1.Message.getWrapperField(this, dependency_3.tendermint.p2p.DefaultNodeInfo, 1) as dependency_3.tendermint.p2p.DefaultNodeInfo;
+            return pb_1.Message.getWrapperField(this, dependency_4.tendermint.p2p.DefaultNodeInfo, 1) as dependency_4.tendermint.p2p.DefaultNodeInfo;
         }
-        set default_node_info(value: dependency_3.tendermint.p2p.DefaultNodeInfo) {
+        set default_node_info(value: dependency_4.tendermint.p2p.DefaultNodeInfo) {
             pb_1.Message.setWrapperField(this, 1, value);
         }
         get has_default_node_info() {
@@ -1028,12 +1084,12 @@ export namespace cosmos.base.tendermint.v1beta1 {
             return pb_1.Message.getField(this, 2) != null;
         }
         static fromObject(data: {
-            default_node_info?: ReturnType<typeof dependency_3.tendermint.p2p.DefaultNodeInfo.prototype.toObject>;
+            default_node_info?: ReturnType<typeof dependency_4.tendermint.p2p.DefaultNodeInfo.prototype.toObject>;
             application_version?: ReturnType<typeof VersionInfo.prototype.toObject>;
         }): GetNodeInfoResponse {
             const message = new GetNodeInfoResponse({});
             if (data.default_node_info != null) {
-                message.default_node_info = dependency_3.tendermint.p2p.DefaultNodeInfo.fromObject(data.default_node_info);
+                message.default_node_info = dependency_4.tendermint.p2p.DefaultNodeInfo.fromObject(data.default_node_info);
             }
             if (data.application_version != null) {
                 message.application_version = VersionInfo.fromObject(data.application_version);
@@ -1042,7 +1098,7 @@ export namespace cosmos.base.tendermint.v1beta1 {
         }
         toObject() {
             const data: {
-                default_node_info?: ReturnType<typeof dependency_3.tendermint.p2p.DefaultNodeInfo.prototype.toObject>;
+                default_node_info?: ReturnType<typeof dependency_4.tendermint.p2p.DefaultNodeInfo.prototype.toObject>;
                 application_version?: ReturnType<typeof VersionInfo.prototype.toObject>;
             } = {};
             if (this.default_node_info != null) {
@@ -1071,7 +1127,7 @@ export namespace cosmos.base.tendermint.v1beta1 {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        reader.readMessage(message.default_node_info, () => message.default_node_info = dependency_3.tendermint.p2p.DefaultNodeInfo.deserialize(reader));
+                        reader.readMessage(message.default_node_info, () => message.default_node_info = dependency_4.tendermint.p2p.DefaultNodeInfo.deserialize(reader));
                         break;
                     case 2:
                         reader.readMessage(message.application_version, () => message.application_version = VersionInfo.deserialize(reader));
@@ -1429,6 +1485,576 @@ export namespace cosmos.base.tendermint.v1beta1 {
             return Module.deserialize(bytes);
         }
     }
+    export class ABCIQueryRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            data?: Uint8Array;
+            path?: string;
+            height?: number;
+            prove?: boolean;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("data" in data && data.data != undefined) {
+                    this.data = data.data;
+                }
+                if ("path" in data && data.path != undefined) {
+                    this.path = data.path;
+                }
+                if ("height" in data && data.height != undefined) {
+                    this.height = data.height;
+                }
+                if ("prove" in data && data.prove != undefined) {
+                    this.prove = data.prove;
+                }
+            }
+        }
+        get data() {
+            return pb_1.Message.getFieldWithDefault(this, 1, new Uint8Array(0)) as Uint8Array;
+        }
+        set data(value: Uint8Array) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get path() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set path(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get height() {
+            return pb_1.Message.getFieldWithDefault(this, 3, 0) as number;
+        }
+        set height(value: number) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        get prove() {
+            return pb_1.Message.getFieldWithDefault(this, 4, false) as boolean;
+        }
+        set prove(value: boolean) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        static fromObject(data: {
+            data?: Uint8Array;
+            path?: string;
+            height?: number;
+            prove?: boolean;
+        }): ABCIQueryRequest {
+            const message = new ABCIQueryRequest({});
+            if (data.data != null) {
+                message.data = data.data;
+            }
+            if (data.path != null) {
+                message.path = data.path;
+            }
+            if (data.height != null) {
+                message.height = data.height;
+            }
+            if (data.prove != null) {
+                message.prove = data.prove;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                data?: Uint8Array;
+                path?: string;
+                height?: number;
+                prove?: boolean;
+            } = {};
+            if (this.data != null) {
+                data.data = this.data;
+            }
+            if (this.path != null) {
+                data.path = this.path;
+            }
+            if (this.height != null) {
+                data.height = this.height;
+            }
+            if (this.prove != null) {
+                data.prove = this.prove;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.data.length)
+                writer.writeBytes(1, this.data);
+            if (this.path.length)
+                writer.writeString(2, this.path);
+            if (this.height != 0)
+                writer.writeInt64(3, this.height);
+            if (this.prove != false)
+                writer.writeBool(4, this.prove);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ABCIQueryRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ABCIQueryRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.data = reader.readBytes();
+                        break;
+                    case 2:
+                        message.path = reader.readString();
+                        break;
+                    case 3:
+                        message.height = reader.readInt64();
+                        break;
+                    case 4:
+                        message.prove = reader.readBool();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ABCIQueryRequest {
+            return ABCIQueryRequest.deserialize(bytes);
+        }
+    }
+    export class ABCIQueryResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            code?: number;
+            log?: string;
+            info?: string;
+            index?: number;
+            key?: Uint8Array;
+            value?: Uint8Array;
+            proof_ops?: ProofOps;
+            height?: number;
+            codespace?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("code" in data && data.code != undefined) {
+                    this.code = data.code;
+                }
+                if ("log" in data && data.log != undefined) {
+                    this.log = data.log;
+                }
+                if ("info" in data && data.info != undefined) {
+                    this.info = data.info;
+                }
+                if ("index" in data && data.index != undefined) {
+                    this.index = data.index;
+                }
+                if ("key" in data && data.key != undefined) {
+                    this.key = data.key;
+                }
+                if ("value" in data && data.value != undefined) {
+                    this.value = data.value;
+                }
+                if ("proof_ops" in data && data.proof_ops != undefined) {
+                    this.proof_ops = data.proof_ops;
+                }
+                if ("height" in data && data.height != undefined) {
+                    this.height = data.height;
+                }
+                if ("codespace" in data && data.codespace != undefined) {
+                    this.codespace = data.codespace;
+                }
+            }
+        }
+        get code() {
+            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+        }
+        set code(value: number) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get log() {
+            return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
+        }
+        set log(value: string) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        get info() {
+            return pb_1.Message.getFieldWithDefault(this, 4, "") as string;
+        }
+        set info(value: string) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        get index() {
+            return pb_1.Message.getFieldWithDefault(this, 5, 0) as number;
+        }
+        set index(value: number) {
+            pb_1.Message.setField(this, 5, value);
+        }
+        get key() {
+            return pb_1.Message.getFieldWithDefault(this, 6, new Uint8Array(0)) as Uint8Array;
+        }
+        set key(value: Uint8Array) {
+            pb_1.Message.setField(this, 6, value);
+        }
+        get value() {
+            return pb_1.Message.getFieldWithDefault(this, 7, new Uint8Array(0)) as Uint8Array;
+        }
+        set value(value: Uint8Array) {
+            pb_1.Message.setField(this, 7, value);
+        }
+        get proof_ops() {
+            return pb_1.Message.getWrapperField(this, ProofOps, 8) as ProofOps;
+        }
+        set proof_ops(value: ProofOps) {
+            pb_1.Message.setWrapperField(this, 8, value);
+        }
+        get has_proof_ops() {
+            return pb_1.Message.getField(this, 8) != null;
+        }
+        get height() {
+            return pb_1.Message.getFieldWithDefault(this, 9, 0) as number;
+        }
+        set height(value: number) {
+            pb_1.Message.setField(this, 9, value);
+        }
+        get codespace() {
+            return pb_1.Message.getFieldWithDefault(this, 10, "") as string;
+        }
+        set codespace(value: string) {
+            pb_1.Message.setField(this, 10, value);
+        }
+        static fromObject(data: {
+            code?: number;
+            log?: string;
+            info?: string;
+            index?: number;
+            key?: Uint8Array;
+            value?: Uint8Array;
+            proof_ops?: ReturnType<typeof ProofOps.prototype.toObject>;
+            height?: number;
+            codespace?: string;
+        }): ABCIQueryResponse {
+            const message = new ABCIQueryResponse({});
+            if (data.code != null) {
+                message.code = data.code;
+            }
+            if (data.log != null) {
+                message.log = data.log;
+            }
+            if (data.info != null) {
+                message.info = data.info;
+            }
+            if (data.index != null) {
+                message.index = data.index;
+            }
+            if (data.key != null) {
+                message.key = data.key;
+            }
+            if (data.value != null) {
+                message.value = data.value;
+            }
+            if (data.proof_ops != null) {
+                message.proof_ops = ProofOps.fromObject(data.proof_ops);
+            }
+            if (data.height != null) {
+                message.height = data.height;
+            }
+            if (data.codespace != null) {
+                message.codespace = data.codespace;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                code?: number;
+                log?: string;
+                info?: string;
+                index?: number;
+                key?: Uint8Array;
+                value?: Uint8Array;
+                proof_ops?: ReturnType<typeof ProofOps.prototype.toObject>;
+                height?: number;
+                codespace?: string;
+            } = {};
+            if (this.code != null) {
+                data.code = this.code;
+            }
+            if (this.log != null) {
+                data.log = this.log;
+            }
+            if (this.info != null) {
+                data.info = this.info;
+            }
+            if (this.index != null) {
+                data.index = this.index;
+            }
+            if (this.key != null) {
+                data.key = this.key;
+            }
+            if (this.value != null) {
+                data.value = this.value;
+            }
+            if (this.proof_ops != null) {
+                data.proof_ops = this.proof_ops.toObject();
+            }
+            if (this.height != null) {
+                data.height = this.height;
+            }
+            if (this.codespace != null) {
+                data.codespace = this.codespace;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.code != 0)
+                writer.writeUint32(1, this.code);
+            if (this.log.length)
+                writer.writeString(3, this.log);
+            if (this.info.length)
+                writer.writeString(4, this.info);
+            if (this.index != 0)
+                writer.writeInt64(5, this.index);
+            if (this.key.length)
+                writer.writeBytes(6, this.key);
+            if (this.value.length)
+                writer.writeBytes(7, this.value);
+            if (this.has_proof_ops)
+                writer.writeMessage(8, this.proof_ops, () => this.proof_ops.serialize(writer));
+            if (this.height != 0)
+                writer.writeInt64(9, this.height);
+            if (this.codespace.length)
+                writer.writeString(10, this.codespace);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ABCIQueryResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ABCIQueryResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.code = reader.readUint32();
+                        break;
+                    case 3:
+                        message.log = reader.readString();
+                        break;
+                    case 4:
+                        message.info = reader.readString();
+                        break;
+                    case 5:
+                        message.index = reader.readInt64();
+                        break;
+                    case 6:
+                        message.key = reader.readBytes();
+                        break;
+                    case 7:
+                        message.value = reader.readBytes();
+                        break;
+                    case 8:
+                        reader.readMessage(message.proof_ops, () => message.proof_ops = ProofOps.deserialize(reader));
+                        break;
+                    case 9:
+                        message.height = reader.readInt64();
+                        break;
+                    case 10:
+                        message.codespace = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ABCIQueryResponse {
+            return ABCIQueryResponse.deserialize(bytes);
+        }
+    }
+    export class ProofOp extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            type?: string;
+            key?: Uint8Array;
+            data?: Uint8Array;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("type" in data && data.type != undefined) {
+                    this.type = data.type;
+                }
+                if ("key" in data && data.key != undefined) {
+                    this.key = data.key;
+                }
+                if ("data" in data && data.data != undefined) {
+                    this.data = data.data;
+                }
+            }
+        }
+        get type() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set type(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get key() {
+            return pb_1.Message.getFieldWithDefault(this, 2, new Uint8Array(0)) as Uint8Array;
+        }
+        set key(value: Uint8Array) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get data() {
+            return pb_1.Message.getFieldWithDefault(this, 3, new Uint8Array(0)) as Uint8Array;
+        }
+        set data(value: Uint8Array) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        static fromObject(data: {
+            type?: string;
+            key?: Uint8Array;
+            data?: Uint8Array;
+        }): ProofOp {
+            const message = new ProofOp({});
+            if (data.type != null) {
+                message.type = data.type;
+            }
+            if (data.key != null) {
+                message.key = data.key;
+            }
+            if (data.data != null) {
+                message.data = data.data;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                type?: string;
+                key?: Uint8Array;
+                data?: Uint8Array;
+            } = {};
+            if (this.type != null) {
+                data.type = this.type;
+            }
+            if (this.key != null) {
+                data.key = this.key;
+            }
+            if (this.data != null) {
+                data.data = this.data;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.type.length)
+                writer.writeString(1, this.type);
+            if (this.key.length)
+                writer.writeBytes(2, this.key);
+            if (this.data.length)
+                writer.writeBytes(3, this.data);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ProofOp {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ProofOp();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.type = reader.readString();
+                        break;
+                    case 2:
+                        message.key = reader.readBytes();
+                        break;
+                    case 3:
+                        message.data = reader.readBytes();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ProofOp {
+            return ProofOp.deserialize(bytes);
+        }
+    }
+    export class ProofOps extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            ops?: ProofOp[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("ops" in data && data.ops != undefined) {
+                    this.ops = data.ops;
+                }
+            }
+        }
+        get ops() {
+            return pb_1.Message.getRepeatedWrapperField(this, ProofOp, 1) as ProofOp[];
+        }
+        set ops(value: ProofOp[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        static fromObject(data: {
+            ops?: ReturnType<typeof ProofOp.prototype.toObject>[];
+        }): ProofOps {
+            const message = new ProofOps({});
+            if (data.ops != null) {
+                message.ops = data.ops.map(item => ProofOp.fromObject(item));
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                ops?: ReturnType<typeof ProofOp.prototype.toObject>[];
+            } = {};
+            if (this.ops != null) {
+                data.ops = this.ops.map((item: ProofOp) => item.toObject());
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.ops.length)
+                writer.writeRepeatedMessage(1, this.ops, (item: ProofOp) => item.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ProofOps {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ProofOps();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.ops, () => pb_1.Message.addToRepeatedWrapperField(message, 1, ProofOp.deserialize(reader), ProofOp));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ProofOps {
+            return ProofOps.deserialize(bytes);
+        }
+    }
     interface GrpcUnaryServiceInterface<P, R> {
         (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
         (message: P, metadata: grpc_1.Metadata, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
@@ -1508,6 +2134,15 @@ export namespace cosmos.base.tendermint.v1beta1 {
                 requestDeserialize: (bytes: Buffer) => GetValidatorSetByHeightRequest.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: GetValidatorSetByHeightResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => GetValidatorSetByHeightResponse.deserialize(new Uint8Array(bytes))
+            },
+            ABCIQuery: {
+                path: "/cosmos.base.tendermint.v1beta1.Service/ABCIQuery",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: ABCIQueryRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => ABCIQueryRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: ABCIQueryResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => ABCIQueryResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
@@ -1517,6 +2152,7 @@ export namespace cosmos.base.tendermint.v1beta1 {
         abstract GetBlockByHeight(call: grpc_1.ServerUnaryCall<GetBlockByHeightRequest, GetBlockByHeightResponse>, callback: grpc_1.sendUnaryData<GetBlockByHeightResponse>): void;
         abstract GetLatestValidatorSet(call: grpc_1.ServerUnaryCall<GetLatestValidatorSetRequest, GetLatestValidatorSetResponse>, callback: grpc_1.sendUnaryData<GetLatestValidatorSetResponse>): void;
         abstract GetValidatorSetByHeight(call: grpc_1.ServerUnaryCall<GetValidatorSetByHeightRequest, GetValidatorSetByHeightResponse>, callback: grpc_1.sendUnaryData<GetValidatorSetByHeightResponse>): void;
+        abstract ABCIQuery(call: grpc_1.ServerUnaryCall<ABCIQueryRequest, ABCIQueryResponse>, callback: grpc_1.sendUnaryData<ABCIQueryResponse>): void;
     }
     export class ServiceClient extends grpc_1.makeGenericClientConstructor(UnimplementedServiceService.definition, "Service", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -1539,6 +2175,9 @@ export namespace cosmos.base.tendermint.v1beta1 {
         };
         GetValidatorSetByHeight: GrpcUnaryServiceInterface<GetValidatorSetByHeightRequest, GetValidatorSetByHeightResponse> = (message: GetValidatorSetByHeightRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<GetValidatorSetByHeightResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<GetValidatorSetByHeightResponse>, callback?: grpc_1.requestCallback<GetValidatorSetByHeightResponse>): grpc_1.ClientUnaryCall => {
             return super.GetValidatorSetByHeight(message, metadata, options, callback);
+        };
+        ABCIQuery: GrpcUnaryServiceInterface<ABCIQueryRequest, ABCIQueryResponse> = (message: ABCIQueryRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<ABCIQueryResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<ABCIQueryResponse>, callback?: grpc_1.requestCallback<ABCIQueryResponse>): grpc_1.ClientUnaryCall => {
+            return super.ABCIQuery(message, metadata, options, callback);
         };
     }
 }

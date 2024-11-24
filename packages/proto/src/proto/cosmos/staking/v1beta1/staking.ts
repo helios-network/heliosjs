@@ -9,7 +9,9 @@ import * as dependency_3 from "./../../../google/protobuf/duration";
 import * as dependency_4 from "./../../../google/protobuf/timestamp";
 import * as dependency_5 from "./../../../cosmos_proto/cosmos";
 import * as dependency_6 from "./../../base/v1beta1/coin";
-import * as dependency_7 from "./../../../tendermint/types/types";
+import * as dependency_7 from "./../../../amino/amino";
+import * as dependency_8 from "./../../../tendermint/types/types";
+import * as dependency_9 from "./../../../tendermint/abci/types";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.staking.v1beta1 {
     export enum BondStatus {
@@ -18,10 +20,15 @@ export namespace cosmos.staking.v1beta1 {
         BOND_STATUS_UNBONDING = 2,
         BOND_STATUS_BONDED = 3
     }
+    export enum Infraction {
+        INFRACTION_UNSPECIFIED = 0,
+        INFRACTION_DOUBLE_SIGN = 1,
+        INFRACTION_DOWNTIME = 2
+    }
     export class HistoricalInfo extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            header?: dependency_7.tendermint.types.Header;
+            header?: dependency_8.tendermint.types.Header;
             valset?: Validator[];
         }) {
             super();
@@ -36,9 +43,9 @@ export namespace cosmos.staking.v1beta1 {
             }
         }
         get header() {
-            return pb_1.Message.getWrapperField(this, dependency_7.tendermint.types.Header, 1) as dependency_7.tendermint.types.Header;
+            return pb_1.Message.getWrapperField(this, dependency_8.tendermint.types.Header, 1) as dependency_8.tendermint.types.Header;
         }
-        set header(value: dependency_7.tendermint.types.Header) {
+        set header(value: dependency_8.tendermint.types.Header) {
             pb_1.Message.setWrapperField(this, 1, value);
         }
         get has_header() {
@@ -51,12 +58,12 @@ export namespace cosmos.staking.v1beta1 {
             pb_1.Message.setRepeatedWrapperField(this, 2, value);
         }
         static fromObject(data: {
-            header?: ReturnType<typeof dependency_7.tendermint.types.Header.prototype.toObject>;
+            header?: ReturnType<typeof dependency_8.tendermint.types.Header.prototype.toObject>;
             valset?: ReturnType<typeof Validator.prototype.toObject>[];
         }): HistoricalInfo {
             const message = new HistoricalInfo({});
             if (data.header != null) {
-                message.header = dependency_7.tendermint.types.Header.fromObject(data.header);
+                message.header = dependency_8.tendermint.types.Header.fromObject(data.header);
             }
             if (data.valset != null) {
                 message.valset = data.valset.map(item => Validator.fromObject(item));
@@ -65,7 +72,7 @@ export namespace cosmos.staking.v1beta1 {
         }
         toObject() {
             const data: {
-                header?: ReturnType<typeof dependency_7.tendermint.types.Header.prototype.toObject>;
+                header?: ReturnType<typeof dependency_8.tendermint.types.Header.prototype.toObject>;
                 valset?: ReturnType<typeof Validator.prototype.toObject>[];
             } = {};
             if (this.header != null) {
@@ -94,7 +101,7 @@ export namespace cosmos.staking.v1beta1 {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        reader.readMessage(message.header, () => message.header = dependency_7.tendermint.types.Header.deserialize(reader));
+                        reader.readMessage(message.header, () => message.header = dependency_8.tendermint.types.Header.deserialize(reader));
                         break;
                     case 2:
                         reader.readMessage(message.valset, () => pb_1.Message.addToRepeatedWrapperField(message, 2, Validator.deserialize(reader), Validator));
@@ -493,9 +500,11 @@ export namespace cosmos.staking.v1beta1 {
             unbonding_time?: dependency_4.google.protobuf.Timestamp;
             commission?: Commission;
             min_self_delegation?: string;
+            unbonding_on_hold_ref_count?: number;
+            unbonding_ids?: number[];
         }) {
             super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [13], this.#one_of_decls);
             if (!Array.isArray(data) && typeof data == "object") {
                 if ("operator_address" in data && data.operator_address != undefined) {
                     this.operator_address = data.operator_address;
@@ -529,6 +538,12 @@ export namespace cosmos.staking.v1beta1 {
                 }
                 if ("min_self_delegation" in data && data.min_self_delegation != undefined) {
                     this.min_self_delegation = data.min_self_delegation;
+                }
+                if ("unbonding_on_hold_ref_count" in data && data.unbonding_on_hold_ref_count != undefined) {
+                    this.unbonding_on_hold_ref_count = data.unbonding_on_hold_ref_count;
+                }
+                if ("unbonding_ids" in data && data.unbonding_ids != undefined) {
+                    this.unbonding_ids = data.unbonding_ids;
                 }
             }
         }
@@ -610,6 +625,18 @@ export namespace cosmos.staking.v1beta1 {
         set min_self_delegation(value: string) {
             pb_1.Message.setField(this, 11, value);
         }
+        get unbonding_on_hold_ref_count() {
+            return pb_1.Message.getFieldWithDefault(this, 12, 0) as number;
+        }
+        set unbonding_on_hold_ref_count(value: number) {
+            pb_1.Message.setField(this, 12, value);
+        }
+        get unbonding_ids() {
+            return pb_1.Message.getFieldWithDefault(this, 13, []) as number[];
+        }
+        set unbonding_ids(value: number[]) {
+            pb_1.Message.setField(this, 13, value);
+        }
         static fromObject(data: {
             operator_address?: string;
             consensus_pubkey?: ReturnType<typeof dependency_2.google.protobuf.Any.prototype.toObject>;
@@ -622,6 +649,8 @@ export namespace cosmos.staking.v1beta1 {
             unbonding_time?: ReturnType<typeof dependency_4.google.protobuf.Timestamp.prototype.toObject>;
             commission?: ReturnType<typeof Commission.prototype.toObject>;
             min_self_delegation?: string;
+            unbonding_on_hold_ref_count?: number;
+            unbonding_ids?: number[];
         }): Validator {
             const message = new Validator({});
             if (data.operator_address != null) {
@@ -657,6 +686,12 @@ export namespace cosmos.staking.v1beta1 {
             if (data.min_self_delegation != null) {
                 message.min_self_delegation = data.min_self_delegation;
             }
+            if (data.unbonding_on_hold_ref_count != null) {
+                message.unbonding_on_hold_ref_count = data.unbonding_on_hold_ref_count;
+            }
+            if (data.unbonding_ids != null) {
+                message.unbonding_ids = data.unbonding_ids;
+            }
             return message;
         }
         toObject() {
@@ -672,6 +707,8 @@ export namespace cosmos.staking.v1beta1 {
                 unbonding_time?: ReturnType<typeof dependency_4.google.protobuf.Timestamp.prototype.toObject>;
                 commission?: ReturnType<typeof Commission.prototype.toObject>;
                 min_self_delegation?: string;
+                unbonding_on_hold_ref_count?: number;
+                unbonding_ids?: number[];
             } = {};
             if (this.operator_address != null) {
                 data.operator_address = this.operator_address;
@@ -706,6 +743,12 @@ export namespace cosmos.staking.v1beta1 {
             if (this.min_self_delegation != null) {
                 data.min_self_delegation = this.min_self_delegation;
             }
+            if (this.unbonding_on_hold_ref_count != null) {
+                data.unbonding_on_hold_ref_count = this.unbonding_on_hold_ref_count;
+            }
+            if (this.unbonding_ids != null) {
+                data.unbonding_ids = this.unbonding_ids;
+            }
             return data;
         }
         serialize(): Uint8Array;
@@ -734,6 +777,10 @@ export namespace cosmos.staking.v1beta1 {
                 writer.writeMessage(10, this.commission, () => this.commission.serialize(writer));
             if (this.min_self_delegation.length)
                 writer.writeString(11, this.min_self_delegation);
+            if (this.unbonding_on_hold_ref_count != 0)
+                writer.writeInt64(12, this.unbonding_on_hold_ref_count);
+            if (this.unbonding_ids.length)
+                writer.writePackedUint64(13, this.unbonding_ids);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -775,6 +822,12 @@ export namespace cosmos.staking.v1beta1 {
                         break;
                     case 11:
                         message.min_self_delegation = reader.readString();
+                        break;
+                    case 12:
+                        message.unbonding_on_hold_ref_count = reader.readInt64();
+                        break;
+                    case 13:
+                        message.unbonding_ids = reader.readPackedUint64();
                         break;
                     default: reader.skipField();
                 }
@@ -1425,6 +1478,8 @@ export namespace cosmos.staking.v1beta1 {
             completion_time?: dependency_4.google.protobuf.Timestamp;
             initial_balance?: string;
             balance?: string;
+            unbonding_id?: number;
+            unbonding_on_hold_ref_count?: number;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -1440,6 +1495,12 @@ export namespace cosmos.staking.v1beta1 {
                 }
                 if ("balance" in data && data.balance != undefined) {
                     this.balance = data.balance;
+                }
+                if ("unbonding_id" in data && data.unbonding_id != undefined) {
+                    this.unbonding_id = data.unbonding_id;
+                }
+                if ("unbonding_on_hold_ref_count" in data && data.unbonding_on_hold_ref_count != undefined) {
+                    this.unbonding_on_hold_ref_count = data.unbonding_on_hold_ref_count;
                 }
             }
         }
@@ -1470,11 +1531,25 @@ export namespace cosmos.staking.v1beta1 {
         set balance(value: string) {
             pb_1.Message.setField(this, 4, value);
         }
+        get unbonding_id() {
+            return pb_1.Message.getFieldWithDefault(this, 5, 0) as number;
+        }
+        set unbonding_id(value: number) {
+            pb_1.Message.setField(this, 5, value);
+        }
+        get unbonding_on_hold_ref_count() {
+            return pb_1.Message.getFieldWithDefault(this, 6, 0) as number;
+        }
+        set unbonding_on_hold_ref_count(value: number) {
+            pb_1.Message.setField(this, 6, value);
+        }
         static fromObject(data: {
             creation_height?: number;
             completion_time?: ReturnType<typeof dependency_4.google.protobuf.Timestamp.prototype.toObject>;
             initial_balance?: string;
             balance?: string;
+            unbonding_id?: number;
+            unbonding_on_hold_ref_count?: number;
         }): UnbondingDelegationEntry {
             const message = new UnbondingDelegationEntry({});
             if (data.creation_height != null) {
@@ -1489,6 +1564,12 @@ export namespace cosmos.staking.v1beta1 {
             if (data.balance != null) {
                 message.balance = data.balance;
             }
+            if (data.unbonding_id != null) {
+                message.unbonding_id = data.unbonding_id;
+            }
+            if (data.unbonding_on_hold_ref_count != null) {
+                message.unbonding_on_hold_ref_count = data.unbonding_on_hold_ref_count;
+            }
             return message;
         }
         toObject() {
@@ -1497,6 +1578,8 @@ export namespace cosmos.staking.v1beta1 {
                 completion_time?: ReturnType<typeof dependency_4.google.protobuf.Timestamp.prototype.toObject>;
                 initial_balance?: string;
                 balance?: string;
+                unbonding_id?: number;
+                unbonding_on_hold_ref_count?: number;
             } = {};
             if (this.creation_height != null) {
                 data.creation_height = this.creation_height;
@@ -1509,6 +1592,12 @@ export namespace cosmos.staking.v1beta1 {
             }
             if (this.balance != null) {
                 data.balance = this.balance;
+            }
+            if (this.unbonding_id != null) {
+                data.unbonding_id = this.unbonding_id;
+            }
+            if (this.unbonding_on_hold_ref_count != null) {
+                data.unbonding_on_hold_ref_count = this.unbonding_on_hold_ref_count;
             }
             return data;
         }
@@ -1524,6 +1613,10 @@ export namespace cosmos.staking.v1beta1 {
                 writer.writeString(3, this.initial_balance);
             if (this.balance.length)
                 writer.writeString(4, this.balance);
+            if (this.unbonding_id != 0)
+                writer.writeUint64(5, this.unbonding_id);
+            if (this.unbonding_on_hold_ref_count != 0)
+                writer.writeInt64(6, this.unbonding_on_hold_ref_count);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -1545,6 +1638,12 @@ export namespace cosmos.staking.v1beta1 {
                     case 4:
                         message.balance = reader.readString();
                         break;
+                    case 5:
+                        message.unbonding_id = reader.readUint64();
+                        break;
+                    case 6:
+                        message.unbonding_on_hold_ref_count = reader.readInt64();
+                        break;
                     default: reader.skipField();
                 }
             }
@@ -1564,6 +1663,8 @@ export namespace cosmos.staking.v1beta1 {
             completion_time?: dependency_4.google.protobuf.Timestamp;
             initial_balance?: string;
             shares_dst?: string;
+            unbonding_id?: number;
+            unbonding_on_hold_ref_count?: number;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -1579,6 +1680,12 @@ export namespace cosmos.staking.v1beta1 {
                 }
                 if ("shares_dst" in data && data.shares_dst != undefined) {
                     this.shares_dst = data.shares_dst;
+                }
+                if ("unbonding_id" in data && data.unbonding_id != undefined) {
+                    this.unbonding_id = data.unbonding_id;
+                }
+                if ("unbonding_on_hold_ref_count" in data && data.unbonding_on_hold_ref_count != undefined) {
+                    this.unbonding_on_hold_ref_count = data.unbonding_on_hold_ref_count;
                 }
             }
         }
@@ -1609,11 +1716,25 @@ export namespace cosmos.staking.v1beta1 {
         set shares_dst(value: string) {
             pb_1.Message.setField(this, 4, value);
         }
+        get unbonding_id() {
+            return pb_1.Message.getFieldWithDefault(this, 5, 0) as number;
+        }
+        set unbonding_id(value: number) {
+            pb_1.Message.setField(this, 5, value);
+        }
+        get unbonding_on_hold_ref_count() {
+            return pb_1.Message.getFieldWithDefault(this, 6, 0) as number;
+        }
+        set unbonding_on_hold_ref_count(value: number) {
+            pb_1.Message.setField(this, 6, value);
+        }
         static fromObject(data: {
             creation_height?: number;
             completion_time?: ReturnType<typeof dependency_4.google.protobuf.Timestamp.prototype.toObject>;
             initial_balance?: string;
             shares_dst?: string;
+            unbonding_id?: number;
+            unbonding_on_hold_ref_count?: number;
         }): RedelegationEntry {
             const message = new RedelegationEntry({});
             if (data.creation_height != null) {
@@ -1628,6 +1749,12 @@ export namespace cosmos.staking.v1beta1 {
             if (data.shares_dst != null) {
                 message.shares_dst = data.shares_dst;
             }
+            if (data.unbonding_id != null) {
+                message.unbonding_id = data.unbonding_id;
+            }
+            if (data.unbonding_on_hold_ref_count != null) {
+                message.unbonding_on_hold_ref_count = data.unbonding_on_hold_ref_count;
+            }
             return message;
         }
         toObject() {
@@ -1636,6 +1763,8 @@ export namespace cosmos.staking.v1beta1 {
                 completion_time?: ReturnType<typeof dependency_4.google.protobuf.Timestamp.prototype.toObject>;
                 initial_balance?: string;
                 shares_dst?: string;
+                unbonding_id?: number;
+                unbonding_on_hold_ref_count?: number;
             } = {};
             if (this.creation_height != null) {
                 data.creation_height = this.creation_height;
@@ -1648,6 +1777,12 @@ export namespace cosmos.staking.v1beta1 {
             }
             if (this.shares_dst != null) {
                 data.shares_dst = this.shares_dst;
+            }
+            if (this.unbonding_id != null) {
+                data.unbonding_id = this.unbonding_id;
+            }
+            if (this.unbonding_on_hold_ref_count != null) {
+                data.unbonding_on_hold_ref_count = this.unbonding_on_hold_ref_count;
             }
             return data;
         }
@@ -1663,6 +1798,10 @@ export namespace cosmos.staking.v1beta1 {
                 writer.writeString(3, this.initial_balance);
             if (this.shares_dst.length)
                 writer.writeString(4, this.shares_dst);
+            if (this.unbonding_id != 0)
+                writer.writeUint64(5, this.unbonding_id);
+            if (this.unbonding_on_hold_ref_count != 0)
+                writer.writeInt64(6, this.unbonding_on_hold_ref_count);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -1683,6 +1822,12 @@ export namespace cosmos.staking.v1beta1 {
                         break;
                     case 4:
                         message.shares_dst = reader.readString();
+                        break;
+                    case 5:
+                        message.unbonding_id = reader.readUint64();
+                        break;
+                    case 6:
+                        message.unbonding_on_hold_ref_count = reader.readInt64();
                         break;
                     default: reader.skipField();
                 }
@@ -1840,6 +1985,7 @@ export namespace cosmos.staking.v1beta1 {
             max_entries?: number;
             historical_entries?: number;
             bond_denom?: string;
+            min_commission_rate?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -1858,6 +2004,9 @@ export namespace cosmos.staking.v1beta1 {
                 }
                 if ("bond_denom" in data && data.bond_denom != undefined) {
                     this.bond_denom = data.bond_denom;
+                }
+                if ("min_commission_rate" in data && data.min_commission_rate != undefined) {
+                    this.min_commission_rate = data.min_commission_rate;
                 }
             }
         }
@@ -1894,12 +2043,19 @@ export namespace cosmos.staking.v1beta1 {
         set bond_denom(value: string) {
             pb_1.Message.setField(this, 5, value);
         }
+        get min_commission_rate() {
+            return pb_1.Message.getFieldWithDefault(this, 6, "") as string;
+        }
+        set min_commission_rate(value: string) {
+            pb_1.Message.setField(this, 6, value);
+        }
         static fromObject(data: {
             unbonding_time?: ReturnType<typeof dependency_3.google.protobuf.Duration.prototype.toObject>;
             max_validators?: number;
             max_entries?: number;
             historical_entries?: number;
             bond_denom?: string;
+            min_commission_rate?: string;
         }): Params {
             const message = new Params({});
             if (data.unbonding_time != null) {
@@ -1917,6 +2073,9 @@ export namespace cosmos.staking.v1beta1 {
             if (data.bond_denom != null) {
                 message.bond_denom = data.bond_denom;
             }
+            if (data.min_commission_rate != null) {
+                message.min_commission_rate = data.min_commission_rate;
+            }
             return message;
         }
         toObject() {
@@ -1926,6 +2085,7 @@ export namespace cosmos.staking.v1beta1 {
                 max_entries?: number;
                 historical_entries?: number;
                 bond_denom?: string;
+                min_commission_rate?: string;
             } = {};
             if (this.unbonding_time != null) {
                 data.unbonding_time = this.unbonding_time.toObject();
@@ -1941,6 +2101,9 @@ export namespace cosmos.staking.v1beta1 {
             }
             if (this.bond_denom != null) {
                 data.bond_denom = this.bond_denom;
+            }
+            if (this.min_commission_rate != null) {
+                data.min_commission_rate = this.min_commission_rate;
             }
             return data;
         }
@@ -1958,6 +2121,8 @@ export namespace cosmos.staking.v1beta1 {
                 writer.writeUint32(4, this.historical_entries);
             if (this.bond_denom.length)
                 writer.writeString(5, this.bond_denom);
+            if (this.min_commission_rate.length)
+                writer.writeString(6, this.min_commission_rate);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -1981,6 +2146,9 @@ export namespace cosmos.staking.v1beta1 {
                         break;
                     case 5:
                         message.bond_denom = reader.readString();
+                        break;
+                    case 6:
+                        message.min_commission_rate = reader.readString();
                         break;
                     default: reader.skipField();
                 }
@@ -2364,6 +2532,73 @@ export namespace cosmos.staking.v1beta1 {
         }
         static deserializeBinary(bytes: Uint8Array): Pool {
             return Pool.deserialize(bytes);
+        }
+    }
+    export class ValidatorUpdates extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            updates?: dependency_9.tendermint.abci.ValidatorUpdate[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("updates" in data && data.updates != undefined) {
+                    this.updates = data.updates;
+                }
+            }
+        }
+        get updates() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_9.tendermint.abci.ValidatorUpdate, 1) as dependency_9.tendermint.abci.ValidatorUpdate[];
+        }
+        set updates(value: dependency_9.tendermint.abci.ValidatorUpdate[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        static fromObject(data: {
+            updates?: ReturnType<typeof dependency_9.tendermint.abci.ValidatorUpdate.prototype.toObject>[];
+        }): ValidatorUpdates {
+            const message = new ValidatorUpdates({});
+            if (data.updates != null) {
+                message.updates = data.updates.map(item => dependency_9.tendermint.abci.ValidatorUpdate.fromObject(item));
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                updates?: ReturnType<typeof dependency_9.tendermint.abci.ValidatorUpdate.prototype.toObject>[];
+            } = {};
+            if (this.updates != null) {
+                data.updates = this.updates.map((item: dependency_9.tendermint.abci.ValidatorUpdate) => item.toObject());
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.updates.length)
+                writer.writeRepeatedMessage(1, this.updates, (item: dependency_9.tendermint.abci.ValidatorUpdate) => item.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ValidatorUpdates {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ValidatorUpdates();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.updates, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_9.tendermint.abci.ValidatorUpdate.deserialize(reader), dependency_9.tendermint.abci.ValidatorUpdate));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ValidatorUpdates {
+            return ValidatorUpdates.deserialize(bytes);
         }
     }
 }

@@ -5,6 +5,10 @@
  * git: https://github.com/thesayyn/protoc-gen-ts */
 import * as dependency_1 from "./../../../gogoproto/gogo";
 import * as dependency_2 from "./../../base/v1beta1/coin";
+import * as dependency_3 from "./../../../cosmos_proto/cosmos";
+import * as dependency_4 from "./../../msg/v1/msg";
+import * as dependency_5 from "./../../../amino/amino";
+import * as dependency_6 from "./distribution";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.distribution.v1beta1 {
@@ -230,23 +234,47 @@ export namespace cosmos.distribution.v1beta1 {
     }
     export class MsgWithdrawDelegatorRewardResponse extends pb_1.Message {
         #one_of_decls: number[][] = [];
-        constructor(data?: any[] | {}) {
+        constructor(data?: any[] | {
+            amount?: dependency_2.cosmos.base.v1beta1.Coin[];
+        }) {
             super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
-            if (!Array.isArray(data) && typeof data == "object") { }
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("amount" in data && data.amount != undefined) {
+                    this.amount = data.amount;
+                }
+            }
         }
-        static fromObject(data: {}): MsgWithdrawDelegatorRewardResponse {
+        get amount() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_2.cosmos.base.v1beta1.Coin, 1) as dependency_2.cosmos.base.v1beta1.Coin[];
+        }
+        set amount(value: dependency_2.cosmos.base.v1beta1.Coin[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        static fromObject(data: {
+            amount?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+        }): MsgWithdrawDelegatorRewardResponse {
             const message = new MsgWithdrawDelegatorRewardResponse({});
+            if (data.amount != null) {
+                message.amount = data.amount.map(item => dependency_2.cosmos.base.v1beta1.Coin.fromObject(item));
+            }
             return message;
         }
         toObject() {
-            const data: {} = {};
+            const data: {
+                amount?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+            } = {};
+            if (this.amount != null) {
+                data.amount = this.amount.map((item: dependency_2.cosmos.base.v1beta1.Coin) => item.toObject());
+            }
             return data;
         }
         serialize(): Uint8Array;
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
+            if (this.amount.length)
+                writer.writeRepeatedMessage(1, this.amount, (item: dependency_2.cosmos.base.v1beta1.Coin) => item.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -256,6 +284,9 @@ export namespace cosmos.distribution.v1beta1 {
                 if (reader.isEndGroup())
                     break;
                 switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.amount, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_2.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_2.cosmos.base.v1beta1.Coin));
+                        break;
                     default: reader.skipField();
                 }
             }
@@ -337,23 +368,47 @@ export namespace cosmos.distribution.v1beta1 {
     }
     export class MsgWithdrawValidatorCommissionResponse extends pb_1.Message {
         #one_of_decls: number[][] = [];
-        constructor(data?: any[] | {}) {
+        constructor(data?: any[] | {
+            amount?: dependency_2.cosmos.base.v1beta1.Coin[];
+        }) {
             super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
-            if (!Array.isArray(data) && typeof data == "object") { }
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("amount" in data && data.amount != undefined) {
+                    this.amount = data.amount;
+                }
+            }
         }
-        static fromObject(data: {}): MsgWithdrawValidatorCommissionResponse {
+        get amount() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_2.cosmos.base.v1beta1.Coin, 1) as dependency_2.cosmos.base.v1beta1.Coin[];
+        }
+        set amount(value: dependency_2.cosmos.base.v1beta1.Coin[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        static fromObject(data: {
+            amount?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+        }): MsgWithdrawValidatorCommissionResponse {
             const message = new MsgWithdrawValidatorCommissionResponse({});
+            if (data.amount != null) {
+                message.amount = data.amount.map(item => dependency_2.cosmos.base.v1beta1.Coin.fromObject(item));
+            }
             return message;
         }
         toObject() {
-            const data: {} = {};
+            const data: {
+                amount?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+            } = {};
+            if (this.amount != null) {
+                data.amount = this.amount.map((item: dependency_2.cosmos.base.v1beta1.Coin) => item.toObject());
+            }
             return data;
         }
         serialize(): Uint8Array;
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
+            if (this.amount.length)
+                writer.writeRepeatedMessage(1, this.amount, (item: dependency_2.cosmos.base.v1beta1.Coin) => item.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -363,6 +418,9 @@ export namespace cosmos.distribution.v1beta1 {
                 if (reader.isEndGroup())
                     break;
                 switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.amount, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_2.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_2.cosmos.base.v1beta1.Coin));
+                        break;
                     default: reader.skipField();
                 }
             }
@@ -505,6 +563,445 @@ export namespace cosmos.distribution.v1beta1 {
             return MsgFundCommunityPoolResponse.deserialize(bytes);
         }
     }
+    export class MsgUpdateParams extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            authority?: string;
+            params?: dependency_6.cosmos.distribution.v1beta1.Params;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("authority" in data && data.authority != undefined) {
+                    this.authority = data.authority;
+                }
+                if ("params" in data && data.params != undefined) {
+                    this.params = data.params;
+                }
+            }
+        }
+        get authority() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set authority(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get params() {
+            return pb_1.Message.getWrapperField(this, dependency_6.cosmos.distribution.v1beta1.Params, 2) as dependency_6.cosmos.distribution.v1beta1.Params;
+        }
+        set params(value: dependency_6.cosmos.distribution.v1beta1.Params) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_params() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            authority?: string;
+            params?: ReturnType<typeof dependency_6.cosmos.distribution.v1beta1.Params.prototype.toObject>;
+        }): MsgUpdateParams {
+            const message = new MsgUpdateParams({});
+            if (data.authority != null) {
+                message.authority = data.authority;
+            }
+            if (data.params != null) {
+                message.params = dependency_6.cosmos.distribution.v1beta1.Params.fromObject(data.params);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                authority?: string;
+                params?: ReturnType<typeof dependency_6.cosmos.distribution.v1beta1.Params.prototype.toObject>;
+            } = {};
+            if (this.authority != null) {
+                data.authority = this.authority;
+            }
+            if (this.params != null) {
+                data.params = this.params.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.authority.length)
+                writer.writeString(1, this.authority);
+            if (this.has_params)
+                writer.writeMessage(2, this.params, () => this.params.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgUpdateParams {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgUpdateParams();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.authority = reader.readString();
+                        break;
+                    case 2:
+                        reader.readMessage(message.params, () => message.params = dependency_6.cosmos.distribution.v1beta1.Params.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgUpdateParams {
+            return MsgUpdateParams.deserialize(bytes);
+        }
+    }
+    export class MsgUpdateParamsResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {}) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") { }
+        }
+        static fromObject(data: {}): MsgUpdateParamsResponse {
+            const message = new MsgUpdateParamsResponse({});
+            return message;
+        }
+        toObject() {
+            const data: {} = {};
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgUpdateParamsResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgUpdateParamsResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgUpdateParamsResponse {
+            return MsgUpdateParamsResponse.deserialize(bytes);
+        }
+    }
+    export class MsgCommunityPoolSpend extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            authority?: string;
+            recipient?: string;
+            amount?: dependency_2.cosmos.base.v1beta1.Coin[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [3], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("authority" in data && data.authority != undefined) {
+                    this.authority = data.authority;
+                }
+                if ("recipient" in data && data.recipient != undefined) {
+                    this.recipient = data.recipient;
+                }
+                if ("amount" in data && data.amount != undefined) {
+                    this.amount = data.amount;
+                }
+            }
+        }
+        get authority() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set authority(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get recipient() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set recipient(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get amount() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_2.cosmos.base.v1beta1.Coin, 3) as dependency_2.cosmos.base.v1beta1.Coin[];
+        }
+        set amount(value: dependency_2.cosmos.base.v1beta1.Coin[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 3, value);
+        }
+        static fromObject(data: {
+            authority?: string;
+            recipient?: string;
+            amount?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+        }): MsgCommunityPoolSpend {
+            const message = new MsgCommunityPoolSpend({});
+            if (data.authority != null) {
+                message.authority = data.authority;
+            }
+            if (data.recipient != null) {
+                message.recipient = data.recipient;
+            }
+            if (data.amount != null) {
+                message.amount = data.amount.map(item => dependency_2.cosmos.base.v1beta1.Coin.fromObject(item));
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                authority?: string;
+                recipient?: string;
+                amount?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+            } = {};
+            if (this.authority != null) {
+                data.authority = this.authority;
+            }
+            if (this.recipient != null) {
+                data.recipient = this.recipient;
+            }
+            if (this.amount != null) {
+                data.amount = this.amount.map((item: dependency_2.cosmos.base.v1beta1.Coin) => item.toObject());
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.authority.length)
+                writer.writeString(1, this.authority);
+            if (this.recipient.length)
+                writer.writeString(2, this.recipient);
+            if (this.amount.length)
+                writer.writeRepeatedMessage(3, this.amount, (item: dependency_2.cosmos.base.v1beta1.Coin) => item.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgCommunityPoolSpend {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgCommunityPoolSpend();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.authority = reader.readString();
+                        break;
+                    case 2:
+                        message.recipient = reader.readString();
+                        break;
+                    case 3:
+                        reader.readMessage(message.amount, () => pb_1.Message.addToRepeatedWrapperField(message, 3, dependency_2.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_2.cosmos.base.v1beta1.Coin));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgCommunityPoolSpend {
+            return MsgCommunityPoolSpend.deserialize(bytes);
+        }
+    }
+    export class MsgCommunityPoolSpendResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {}) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") { }
+        }
+        static fromObject(data: {}): MsgCommunityPoolSpendResponse {
+            const message = new MsgCommunityPoolSpendResponse({});
+            return message;
+        }
+        toObject() {
+            const data: {} = {};
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgCommunityPoolSpendResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgCommunityPoolSpendResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgCommunityPoolSpendResponse {
+            return MsgCommunityPoolSpendResponse.deserialize(bytes);
+        }
+    }
+    export class MsgDepositValidatorRewardsPool extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            depositor?: string;
+            validator_address?: string;
+            amount?: dependency_2.cosmos.base.v1beta1.Coin[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [3], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("depositor" in data && data.depositor != undefined) {
+                    this.depositor = data.depositor;
+                }
+                if ("validator_address" in data && data.validator_address != undefined) {
+                    this.validator_address = data.validator_address;
+                }
+                if ("amount" in data && data.amount != undefined) {
+                    this.amount = data.amount;
+                }
+            }
+        }
+        get depositor() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set depositor(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get validator_address() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set validator_address(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get amount() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_2.cosmos.base.v1beta1.Coin, 3) as dependency_2.cosmos.base.v1beta1.Coin[];
+        }
+        set amount(value: dependency_2.cosmos.base.v1beta1.Coin[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 3, value);
+        }
+        static fromObject(data: {
+            depositor?: string;
+            validator_address?: string;
+            amount?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+        }): MsgDepositValidatorRewardsPool {
+            const message = new MsgDepositValidatorRewardsPool({});
+            if (data.depositor != null) {
+                message.depositor = data.depositor;
+            }
+            if (data.validator_address != null) {
+                message.validator_address = data.validator_address;
+            }
+            if (data.amount != null) {
+                message.amount = data.amount.map(item => dependency_2.cosmos.base.v1beta1.Coin.fromObject(item));
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                depositor?: string;
+                validator_address?: string;
+                amount?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+            } = {};
+            if (this.depositor != null) {
+                data.depositor = this.depositor;
+            }
+            if (this.validator_address != null) {
+                data.validator_address = this.validator_address;
+            }
+            if (this.amount != null) {
+                data.amount = this.amount.map((item: dependency_2.cosmos.base.v1beta1.Coin) => item.toObject());
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.depositor.length)
+                writer.writeString(1, this.depositor);
+            if (this.validator_address.length)
+                writer.writeString(2, this.validator_address);
+            if (this.amount.length)
+                writer.writeRepeatedMessage(3, this.amount, (item: dependency_2.cosmos.base.v1beta1.Coin) => item.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgDepositValidatorRewardsPool {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgDepositValidatorRewardsPool();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.depositor = reader.readString();
+                        break;
+                    case 2:
+                        message.validator_address = reader.readString();
+                        break;
+                    case 3:
+                        reader.readMessage(message.amount, () => pb_1.Message.addToRepeatedWrapperField(message, 3, dependency_2.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_2.cosmos.base.v1beta1.Coin));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgDepositValidatorRewardsPool {
+            return MsgDepositValidatorRewardsPool.deserialize(bytes);
+        }
+    }
+    export class MsgDepositValidatorRewardsPoolResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {}) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") { }
+        }
+        static fromObject(data: {}): MsgDepositValidatorRewardsPoolResponse {
+            const message = new MsgDepositValidatorRewardsPoolResponse({});
+            return message;
+        }
+        toObject() {
+            const data: {} = {};
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgDepositValidatorRewardsPoolResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgDepositValidatorRewardsPoolResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgDepositValidatorRewardsPoolResponse {
+            return MsgDepositValidatorRewardsPoolResponse.deserialize(bytes);
+        }
+    }
     interface GrpcUnaryServiceInterface<P, R> {
         (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
         (message: P, metadata: grpc_1.Metadata, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
@@ -566,6 +1063,33 @@ export namespace cosmos.distribution.v1beta1 {
                 requestDeserialize: (bytes: Buffer) => MsgFundCommunityPool.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: MsgFundCommunityPoolResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => MsgFundCommunityPoolResponse.deserialize(new Uint8Array(bytes))
+            },
+            UpdateParams: {
+                path: "/cosmos.distribution.v1beta1.Msg/UpdateParams",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: MsgUpdateParams) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => MsgUpdateParams.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: MsgUpdateParamsResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => MsgUpdateParamsResponse.deserialize(new Uint8Array(bytes))
+            },
+            CommunityPoolSpend: {
+                path: "/cosmos.distribution.v1beta1.Msg/CommunityPoolSpend",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: MsgCommunityPoolSpend) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => MsgCommunityPoolSpend.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: MsgCommunityPoolSpendResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => MsgCommunityPoolSpendResponse.deserialize(new Uint8Array(bytes))
+            },
+            DepositValidatorRewardsPool: {
+                path: "/cosmos.distribution.v1beta1.Msg/DepositValidatorRewardsPool",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: MsgDepositValidatorRewardsPool) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => MsgDepositValidatorRewardsPool.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: MsgDepositValidatorRewardsPoolResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => MsgDepositValidatorRewardsPoolResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
@@ -573,6 +1097,9 @@ export namespace cosmos.distribution.v1beta1 {
         abstract WithdrawDelegatorReward(call: grpc_1.ServerUnaryCall<MsgWithdrawDelegatorReward, MsgWithdrawDelegatorRewardResponse>, callback: grpc_1.sendUnaryData<MsgWithdrawDelegatorRewardResponse>): void;
         abstract WithdrawValidatorCommission(call: grpc_1.ServerUnaryCall<MsgWithdrawValidatorCommission, MsgWithdrawValidatorCommissionResponse>, callback: grpc_1.sendUnaryData<MsgWithdrawValidatorCommissionResponse>): void;
         abstract FundCommunityPool(call: grpc_1.ServerUnaryCall<MsgFundCommunityPool, MsgFundCommunityPoolResponse>, callback: grpc_1.sendUnaryData<MsgFundCommunityPoolResponse>): void;
+        abstract UpdateParams(call: grpc_1.ServerUnaryCall<MsgUpdateParams, MsgUpdateParamsResponse>, callback: grpc_1.sendUnaryData<MsgUpdateParamsResponse>): void;
+        abstract CommunityPoolSpend(call: grpc_1.ServerUnaryCall<MsgCommunityPoolSpend, MsgCommunityPoolSpendResponse>, callback: grpc_1.sendUnaryData<MsgCommunityPoolSpendResponse>): void;
+        abstract DepositValidatorRewardsPool(call: grpc_1.ServerUnaryCall<MsgDepositValidatorRewardsPool, MsgDepositValidatorRewardsPoolResponse>, callback: grpc_1.sendUnaryData<MsgDepositValidatorRewardsPoolResponse>): void;
     }
     export class MsgClient extends grpc_1.makeGenericClientConstructor(UnimplementedMsgService.definition, "Msg", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -589,6 +1116,15 @@ export namespace cosmos.distribution.v1beta1 {
         };
         FundCommunityPool: GrpcUnaryServiceInterface<MsgFundCommunityPool, MsgFundCommunityPoolResponse> = (message: MsgFundCommunityPool, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgFundCommunityPoolResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgFundCommunityPoolResponse>, callback?: grpc_1.requestCallback<MsgFundCommunityPoolResponse>): grpc_1.ClientUnaryCall => {
             return super.FundCommunityPool(message, metadata, options, callback);
+        };
+        UpdateParams: GrpcUnaryServiceInterface<MsgUpdateParams, MsgUpdateParamsResponse> = (message: MsgUpdateParams, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgUpdateParamsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgUpdateParamsResponse>, callback?: grpc_1.requestCallback<MsgUpdateParamsResponse>): grpc_1.ClientUnaryCall => {
+            return super.UpdateParams(message, metadata, options, callback);
+        };
+        CommunityPoolSpend: GrpcUnaryServiceInterface<MsgCommunityPoolSpend, MsgCommunityPoolSpendResponse> = (message: MsgCommunityPoolSpend, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgCommunityPoolSpendResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgCommunityPoolSpendResponse>, callback?: grpc_1.requestCallback<MsgCommunityPoolSpendResponse>): grpc_1.ClientUnaryCall => {
+            return super.CommunityPoolSpend(message, metadata, options, callback);
+        };
+        DepositValidatorRewardsPool: GrpcUnaryServiceInterface<MsgDepositValidatorRewardsPool, MsgDepositValidatorRewardsPoolResponse> = (message: MsgDepositValidatorRewardsPool, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgDepositValidatorRewardsPoolResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgDepositValidatorRewardsPoolResponse>, callback?: grpc_1.requestCallback<MsgDepositValidatorRewardsPoolResponse>): grpc_1.ClientUnaryCall => {
+            return super.DepositValidatorRewardsPool(message, metadata, options, callback);
         };
     }
 }

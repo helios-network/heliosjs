@@ -67,7 +67,7 @@ describe('transaction tests', () => {
     const info = createSignerInfo('ethsecp256k1', pubkey, sequence, SIGN_DIRECT)
     expect(info.toObject()).toStrictEqual({
       public_key: {
-        type_url: '/ethermint.crypto.v1.ethsecp256k1.PubKey',
+        type_url: '/helios.crypto.v1beta1.ethsecp256k1.PubKey',
         // value: 'CiMKIQKIsfUxuHhx28A3KVGHJVyuS6DEvDfKcmEFshQK/Q5pFw=='
         value: new Uint8Array([
           10, 35, 10, 33, 2, 136, 177, 245, 49, 184, 120, 113, 219, 192, 55, 41,
@@ -98,7 +98,7 @@ describe('transaction tests', () => {
       signer_infos: [
         {
           public_key: {
-            type_url: '/ethermint.crypto.v1.ethsecp256k1.PubKey',
+            type_url: '/helios.crypto.v1beta1.ethsecp256k1.PubKey',
             // value: 'CiMKIQKIsfUxuHhx28A3KVGHJVyuS6DEvDfKcmEFshQK/Q5pFw=='
             value: new Uint8Array([
               10, 35, 10, 33, 2, 136, 177, 245, 49, 184, 120, 113, 219, 192, 55,

@@ -1,7 +1,7 @@
 import {
   createMsgConvertCoin as protoMsgConvertCoin,
   createTransaction,
-} from '@tharsis/proto'
+} from '@helios-chain-labs/proto'
 
 import {
   createEIP712,

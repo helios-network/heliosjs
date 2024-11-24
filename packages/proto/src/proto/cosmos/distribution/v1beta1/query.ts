@@ -8,6 +8,8 @@ import * as dependency_2 from "./../../../gogoproto/gogo";
 import * as dependency_3 from "./../../../google/api/annotations";
 import * as dependency_4 from "./../../base/v1beta1/coin";
 import * as dependency_5 from "./distribution";
+import * as dependency_6 from "./../../../cosmos_proto/cosmos";
+import * as dependency_7 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.distribution.v1beta1 {
@@ -119,6 +121,186 @@ export namespace cosmos.distribution.v1beta1 {
         }
         static deserializeBinary(bytes: Uint8Array): QueryParamsResponse {
             return QueryParamsResponse.deserialize(bytes);
+        }
+    }
+    export class QueryValidatorDistributionInfoRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            validator_address?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("validator_address" in data && data.validator_address != undefined) {
+                    this.validator_address = data.validator_address;
+                }
+            }
+        }
+        get validator_address() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set validator_address(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            validator_address?: string;
+        }): QueryValidatorDistributionInfoRequest {
+            const message = new QueryValidatorDistributionInfoRequest({});
+            if (data.validator_address != null) {
+                message.validator_address = data.validator_address;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                validator_address?: string;
+            } = {};
+            if (this.validator_address != null) {
+                data.validator_address = this.validator_address;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.validator_address.length)
+                writer.writeString(1, this.validator_address);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryValidatorDistributionInfoRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryValidatorDistributionInfoRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.validator_address = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryValidatorDistributionInfoRequest {
+            return QueryValidatorDistributionInfoRequest.deserialize(bytes);
+        }
+    }
+    export class QueryValidatorDistributionInfoResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            operator_address?: string;
+            self_bond_rewards?: dependency_4.cosmos.base.v1beta1.DecCoin[];
+            commission?: dependency_4.cosmos.base.v1beta1.DecCoin[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [2, 3], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("operator_address" in data && data.operator_address != undefined) {
+                    this.operator_address = data.operator_address;
+                }
+                if ("self_bond_rewards" in data && data.self_bond_rewards != undefined) {
+                    this.self_bond_rewards = data.self_bond_rewards;
+                }
+                if ("commission" in data && data.commission != undefined) {
+                    this.commission = data.commission;
+                }
+            }
+        }
+        get operator_address() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set operator_address(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get self_bond_rewards() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_4.cosmos.base.v1beta1.DecCoin, 2) as dependency_4.cosmos.base.v1beta1.DecCoin[];
+        }
+        set self_bond_rewards(value: dependency_4.cosmos.base.v1beta1.DecCoin[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 2, value);
+        }
+        get commission() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_4.cosmos.base.v1beta1.DecCoin, 3) as dependency_4.cosmos.base.v1beta1.DecCoin[];
+        }
+        set commission(value: dependency_4.cosmos.base.v1beta1.DecCoin[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 3, value);
+        }
+        static fromObject(data: {
+            operator_address?: string;
+            self_bond_rewards?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.DecCoin.prototype.toObject>[];
+            commission?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.DecCoin.prototype.toObject>[];
+        }): QueryValidatorDistributionInfoResponse {
+            const message = new QueryValidatorDistributionInfoResponse({});
+            if (data.operator_address != null) {
+                message.operator_address = data.operator_address;
+            }
+            if (data.self_bond_rewards != null) {
+                message.self_bond_rewards = data.self_bond_rewards.map(item => dependency_4.cosmos.base.v1beta1.DecCoin.fromObject(item));
+            }
+            if (data.commission != null) {
+                message.commission = data.commission.map(item => dependency_4.cosmos.base.v1beta1.DecCoin.fromObject(item));
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                operator_address?: string;
+                self_bond_rewards?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.DecCoin.prototype.toObject>[];
+                commission?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.DecCoin.prototype.toObject>[];
+            } = {};
+            if (this.operator_address != null) {
+                data.operator_address = this.operator_address;
+            }
+            if (this.self_bond_rewards != null) {
+                data.self_bond_rewards = this.self_bond_rewards.map((item: dependency_4.cosmos.base.v1beta1.DecCoin) => item.toObject());
+            }
+            if (this.commission != null) {
+                data.commission = this.commission.map((item: dependency_4.cosmos.base.v1beta1.DecCoin) => item.toObject());
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.operator_address.length)
+                writer.writeString(1, this.operator_address);
+            if (this.self_bond_rewards.length)
+                writer.writeRepeatedMessage(2, this.self_bond_rewards, (item: dependency_4.cosmos.base.v1beta1.DecCoin) => item.serialize(writer));
+            if (this.commission.length)
+                writer.writeRepeatedMessage(3, this.commission, (item: dependency_4.cosmos.base.v1beta1.DecCoin) => item.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryValidatorDistributionInfoResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryValidatorDistributionInfoResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.operator_address = reader.readString();
+                        break;
+                    case 2:
+                        reader.readMessage(message.self_bond_rewards, () => pb_1.Message.addToRepeatedWrapperField(message, 2, dependency_4.cosmos.base.v1beta1.DecCoin.deserialize(reader), dependency_4.cosmos.base.v1beta1.DecCoin));
+                        break;
+                    case 3:
+                        reader.readMessage(message.commission, () => pb_1.Message.addToRepeatedWrapperField(message, 3, dependency_4.cosmos.base.v1beta1.DecCoin.deserialize(reader), dependency_4.cosmos.base.v1beta1.DecCoin));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryValidatorDistributionInfoResponse {
+            return QueryValidatorDistributionInfoResponse.deserialize(bytes);
         }
     }
     export class QueryValidatorOutstandingRewardsRequest extends pb_1.Message {
@@ -1351,6 +1533,15 @@ export namespace cosmos.distribution.v1beta1 {
                 responseSerialize: (message: QueryParamsResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => QueryParamsResponse.deserialize(new Uint8Array(bytes))
             },
+            ValidatorDistributionInfo: {
+                path: "/cosmos.distribution.v1beta1.Query/ValidatorDistributionInfo",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: QueryValidatorDistributionInfoRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => QueryValidatorDistributionInfoRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: QueryValidatorDistributionInfoResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => QueryValidatorDistributionInfoResponse.deserialize(new Uint8Array(bytes))
+            },
             ValidatorOutstandingRewards: {
                 path: "/cosmos.distribution.v1beta1.Query/ValidatorOutstandingRewards",
                 requestStream: false,
@@ -1426,6 +1617,7 @@ export namespace cosmos.distribution.v1beta1 {
         };
         [method: string]: grpc_1.UntypedHandleCall;
         abstract Params(call: grpc_1.ServerUnaryCall<QueryParamsRequest, QueryParamsResponse>, callback: grpc_1.sendUnaryData<QueryParamsResponse>): void;
+        abstract ValidatorDistributionInfo(call: grpc_1.ServerUnaryCall<QueryValidatorDistributionInfoRequest, QueryValidatorDistributionInfoResponse>, callback: grpc_1.sendUnaryData<QueryValidatorDistributionInfoResponse>): void;
         abstract ValidatorOutstandingRewards(call: grpc_1.ServerUnaryCall<QueryValidatorOutstandingRewardsRequest, QueryValidatorOutstandingRewardsResponse>, callback: grpc_1.sendUnaryData<QueryValidatorOutstandingRewardsResponse>): void;
         abstract ValidatorCommission(call: grpc_1.ServerUnaryCall<QueryValidatorCommissionRequest, QueryValidatorCommissionResponse>, callback: grpc_1.sendUnaryData<QueryValidatorCommissionResponse>): void;
         abstract ValidatorSlashes(call: grpc_1.ServerUnaryCall<QueryValidatorSlashesRequest, QueryValidatorSlashesResponse>, callback: grpc_1.sendUnaryData<QueryValidatorSlashesResponse>): void;
@@ -1441,6 +1633,9 @@ export namespace cosmos.distribution.v1beta1 {
         }
         Params: GrpcUnaryServiceInterface<QueryParamsRequest, QueryParamsResponse> = (message: QueryParamsRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryParamsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryParamsResponse>, callback?: grpc_1.requestCallback<QueryParamsResponse>): grpc_1.ClientUnaryCall => {
             return super.Params(message, metadata, options, callback);
+        };
+        ValidatorDistributionInfo: GrpcUnaryServiceInterface<QueryValidatorDistributionInfoRequest, QueryValidatorDistributionInfoResponse> = (message: QueryValidatorDistributionInfoRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryValidatorDistributionInfoResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryValidatorDistributionInfoResponse>, callback?: grpc_1.requestCallback<QueryValidatorDistributionInfoResponse>): grpc_1.ClientUnaryCall => {
+            return super.ValidatorDistributionInfo(message, metadata, options, callback);
         };
         ValidatorOutstandingRewards: GrpcUnaryServiceInterface<QueryValidatorOutstandingRewardsRequest, QueryValidatorOutstandingRewardsResponse> = (message: QueryValidatorOutstandingRewardsRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryValidatorOutstandingRewardsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryValidatorOutstandingRewardsResponse>, callback?: grpc_1.requestCallback<QueryValidatorOutstandingRewardsResponse>): grpc_1.ClientUnaryCall => {
             return super.ValidatorOutstandingRewards(message, metadata, options, callback);

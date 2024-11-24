@@ -6,6 +6,8 @@
 import * as dependency_1 from "./../../../gogoproto/gogo";
 import * as dependency_2 from "./../../base/v1beta1/coin";
 import * as dependency_3 from "./bank";
+import * as dependency_4 from "./../../../cosmos_proto/cosmos";
+import * as dependency_5 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.bank.v1beta1 {
     export class GenesisState extends pb_1.Message {
@@ -15,9 +17,10 @@ export namespace cosmos.bank.v1beta1 {
             balances?: Balance[];
             supply?: dependency_2.cosmos.base.v1beta1.Coin[];
             denom_metadata?: dependency_3.cosmos.bank.v1beta1.Metadata[];
+            send_enabled?: dependency_3.cosmos.bank.v1beta1.SendEnabled[];
         }) {
             super();
-            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [2, 3, 4], this.#one_of_decls);
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [2, 3, 4, 5], this.#one_of_decls);
             if (!Array.isArray(data) && typeof data == "object") {
                 if ("params" in data && data.params != undefined) {
                     this.params = data.params;
@@ -30,6 +33,9 @@ export namespace cosmos.bank.v1beta1 {
                 }
                 if ("denom_metadata" in data && data.denom_metadata != undefined) {
                     this.denom_metadata = data.denom_metadata;
+                }
+                if ("send_enabled" in data && data.send_enabled != undefined) {
+                    this.send_enabled = data.send_enabled;
                 }
             }
         }
@@ -60,11 +66,18 @@ export namespace cosmos.bank.v1beta1 {
         set denom_metadata(value: dependency_3.cosmos.bank.v1beta1.Metadata[]) {
             pb_1.Message.setRepeatedWrapperField(this, 4, value);
         }
+        get send_enabled() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_3.cosmos.bank.v1beta1.SendEnabled, 5) as dependency_3.cosmos.bank.v1beta1.SendEnabled[];
+        }
+        set send_enabled(value: dependency_3.cosmos.bank.v1beta1.SendEnabled[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 5, value);
+        }
         static fromObject(data: {
             params?: ReturnType<typeof dependency_3.cosmos.bank.v1beta1.Params.prototype.toObject>;
             balances?: ReturnType<typeof Balance.prototype.toObject>[];
             supply?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
             denom_metadata?: ReturnType<typeof dependency_3.cosmos.bank.v1beta1.Metadata.prototype.toObject>[];
+            send_enabled?: ReturnType<typeof dependency_3.cosmos.bank.v1beta1.SendEnabled.prototype.toObject>[];
         }): GenesisState {
             const message = new GenesisState({});
             if (data.params != null) {
@@ -79,6 +92,9 @@ export namespace cosmos.bank.v1beta1 {
             if (data.denom_metadata != null) {
                 message.denom_metadata = data.denom_metadata.map(item => dependency_3.cosmos.bank.v1beta1.Metadata.fromObject(item));
             }
+            if (data.send_enabled != null) {
+                message.send_enabled = data.send_enabled.map(item => dependency_3.cosmos.bank.v1beta1.SendEnabled.fromObject(item));
+            }
             return message;
         }
         toObject() {
@@ -87,6 +103,7 @@ export namespace cosmos.bank.v1beta1 {
                 balances?: ReturnType<typeof Balance.prototype.toObject>[];
                 supply?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
                 denom_metadata?: ReturnType<typeof dependency_3.cosmos.bank.v1beta1.Metadata.prototype.toObject>[];
+                send_enabled?: ReturnType<typeof dependency_3.cosmos.bank.v1beta1.SendEnabled.prototype.toObject>[];
             } = {};
             if (this.params != null) {
                 data.params = this.params.toObject();
@@ -99,6 +116,9 @@ export namespace cosmos.bank.v1beta1 {
             }
             if (this.denom_metadata != null) {
                 data.denom_metadata = this.denom_metadata.map((item: dependency_3.cosmos.bank.v1beta1.Metadata) => item.toObject());
+            }
+            if (this.send_enabled != null) {
+                data.send_enabled = this.send_enabled.map((item: dependency_3.cosmos.bank.v1beta1.SendEnabled) => item.toObject());
             }
             return data;
         }
@@ -114,6 +134,8 @@ export namespace cosmos.bank.v1beta1 {
                 writer.writeRepeatedMessage(3, this.supply, (item: dependency_2.cosmos.base.v1beta1.Coin) => item.serialize(writer));
             if (this.denom_metadata.length)
                 writer.writeRepeatedMessage(4, this.denom_metadata, (item: dependency_3.cosmos.bank.v1beta1.Metadata) => item.serialize(writer));
+            if (this.send_enabled.length)
+                writer.writeRepeatedMessage(5, this.send_enabled, (item: dependency_3.cosmos.bank.v1beta1.SendEnabled) => item.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -134,6 +156,9 @@ export namespace cosmos.bank.v1beta1 {
                         break;
                     case 4:
                         reader.readMessage(message.denom_metadata, () => pb_1.Message.addToRepeatedWrapperField(message, 4, dependency_3.cosmos.bank.v1beta1.Metadata.deserialize(reader), dependency_3.cosmos.bank.v1beta1.Metadata));
+                        break;
+                    case 5:
+                        reader.readMessage(message.send_enabled, () => pb_1.Message.addToRepeatedWrapperField(message, 5, dependency_3.cosmos.bank.v1beta1.SendEnabled.deserialize(reader), dependency_3.cosmos.bank.v1beta1.SendEnabled));
                         break;
                     default: reader.skipField();
                 }

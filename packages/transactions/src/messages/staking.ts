@@ -7,7 +7,7 @@ import {
   MsgWithdrawDelegatorRewardProtoInterface,
   createTransaction,
   createTransactionWithMultipleMessages,
-} from '@tharsis/proto'
+} from '@helios-chain-labs/proto'
 
 import {
   createEIP712,

@@ -14,6 +14,7 @@ export namespace tendermint.types {
             evidence?: EvidenceParams;
             validator?: ValidatorParams;
             version?: VersionParams;
+            abci?: ABCIParams;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -29,6 +30,9 @@ export namespace tendermint.types {
                 }
                 if ("version" in data && data.version != undefined) {
                     this.version = data.version;
+                }
+                if ("abci" in data && data.abci != undefined) {
+                    this.abci = data.abci;
                 }
             }
         }
@@ -68,11 +72,21 @@ export namespace tendermint.types {
         get has_version() {
             return pb_1.Message.getField(this, 4) != null;
         }
+        get abci() {
+            return pb_1.Message.getWrapperField(this, ABCIParams, 5) as ABCIParams;
+        }
+        set abci(value: ABCIParams) {
+            pb_1.Message.setWrapperField(this, 5, value);
+        }
+        get has_abci() {
+            return pb_1.Message.getField(this, 5) != null;
+        }
         static fromObject(data: {
             block?: ReturnType<typeof BlockParams.prototype.toObject>;
             evidence?: ReturnType<typeof EvidenceParams.prototype.toObject>;
             validator?: ReturnType<typeof ValidatorParams.prototype.toObject>;
             version?: ReturnType<typeof VersionParams.prototype.toObject>;
+            abci?: ReturnType<typeof ABCIParams.prototype.toObject>;
         }): ConsensusParams {
             const message = new ConsensusParams({});
             if (data.block != null) {
@@ -87,6 +101,9 @@ export namespace tendermint.types {
             if (data.version != null) {
                 message.version = VersionParams.fromObject(data.version);
             }
+            if (data.abci != null) {
+                message.abci = ABCIParams.fromObject(data.abci);
+            }
             return message;
         }
         toObject() {
@@ -95,6 +112,7 @@ export namespace tendermint.types {
                 evidence?: ReturnType<typeof EvidenceParams.prototype.toObject>;
                 validator?: ReturnType<typeof ValidatorParams.prototype.toObject>;
                 version?: ReturnType<typeof VersionParams.prototype.toObject>;
+                abci?: ReturnType<typeof ABCIParams.prototype.toObject>;
             } = {};
             if (this.block != null) {
                 data.block = this.block.toObject();
@@ -107,6 +125,9 @@ export namespace tendermint.types {
             }
             if (this.version != null) {
                 data.version = this.version.toObject();
+            }
+            if (this.abci != null) {
+                data.abci = this.abci.toObject();
             }
             return data;
         }
@@ -122,6 +143,8 @@ export namespace tendermint.types {
                 writer.writeMessage(3, this.validator, () => this.validator.serialize(writer));
             if (this.has_version)
                 writer.writeMessage(4, this.version, () => this.version.serialize(writer));
+            if (this.has_abci)
+                writer.writeMessage(5, this.abci, () => this.abci.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -143,6 +166,9 @@ export namespace tendermint.types {
                     case 4:
                         reader.readMessage(message.version, () => message.version = VersionParams.deserialize(reader));
                         break;
+                    case 5:
+                        reader.readMessage(message.abci, () => message.abci = ABCIParams.deserialize(reader));
+                        break;
                     default: reader.skipField();
                 }
             }
@@ -160,7 +186,6 @@ export namespace tendermint.types {
         constructor(data?: any[] | {
             max_bytes?: number;
             max_gas?: number;
-            time_iota_ms?: number;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -170,9 +195,6 @@ export namespace tendermint.types {
                 }
                 if ("max_gas" in data && data.max_gas != undefined) {
                     this.max_gas = data.max_gas;
-                }
-                if ("time_iota_ms" in data && data.time_iota_ms != undefined) {
-                    this.time_iota_ms = data.time_iota_ms;
                 }
             }
         }
@@ -188,16 +210,9 @@ export namespace tendermint.types {
         set max_gas(value: number) {
             pb_1.Message.setField(this, 2, value);
         }
-        get time_iota_ms() {
-            return pb_1.Message.getFieldWithDefault(this, 3, 0) as number;
-        }
-        set time_iota_ms(value: number) {
-            pb_1.Message.setField(this, 3, value);
-        }
         static fromObject(data: {
             max_bytes?: number;
             max_gas?: number;
-            time_iota_ms?: number;
         }): BlockParams {
             const message = new BlockParams({});
             if (data.max_bytes != null) {
@@ -206,25 +221,18 @@ export namespace tendermint.types {
             if (data.max_gas != null) {
                 message.max_gas = data.max_gas;
             }
-            if (data.time_iota_ms != null) {
-                message.time_iota_ms = data.time_iota_ms;
-            }
             return message;
         }
         toObject() {
             const data: {
                 max_bytes?: number;
                 max_gas?: number;
-                time_iota_ms?: number;
             } = {};
             if (this.max_bytes != null) {
                 data.max_bytes = this.max_bytes;
             }
             if (this.max_gas != null) {
                 data.max_gas = this.max_gas;
-            }
-            if (this.time_iota_ms != null) {
-                data.time_iota_ms = this.time_iota_ms;
             }
             return data;
         }
@@ -236,8 +244,6 @@ export namespace tendermint.types {
                 writer.writeInt64(1, this.max_bytes);
             if (this.max_gas != 0)
                 writer.writeInt64(2, this.max_gas);
-            if (this.time_iota_ms != 0)
-                writer.writeInt64(3, this.time_iota_ms);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -252,9 +258,6 @@ export namespace tendermint.types {
                         break;
                     case 2:
                         message.max_gas = reader.readInt64();
-                        break;
-                    case 3:
-                        message.time_iota_ms = reader.readInt64();
                         break;
                     default: reader.skipField();
                 }
@@ -454,37 +457,37 @@ export namespace tendermint.types {
     export class VersionParams extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            app_version?: number;
+            app?: number;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
             if (!Array.isArray(data) && typeof data == "object") {
-                if ("app_version" in data && data.app_version != undefined) {
-                    this.app_version = data.app_version;
+                if ("app" in data && data.app != undefined) {
+                    this.app = data.app;
                 }
             }
         }
-        get app_version() {
+        get app() {
             return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
         }
-        set app_version(value: number) {
+        set app(value: number) {
             pb_1.Message.setField(this, 1, value);
         }
         static fromObject(data: {
-            app_version?: number;
+            app?: number;
         }): VersionParams {
             const message = new VersionParams({});
-            if (data.app_version != null) {
-                message.app_version = data.app_version;
+            if (data.app != null) {
+                message.app = data.app;
             }
             return message;
         }
         toObject() {
             const data: {
-                app_version?: number;
+                app?: number;
             } = {};
-            if (this.app_version != null) {
-                data.app_version = this.app_version;
+            if (this.app != null) {
+                data.app = this.app;
             }
             return data;
         }
@@ -492,8 +495,8 @@ export namespace tendermint.types {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.app_version != 0)
-                writer.writeUint64(1, this.app_version);
+            if (this.app != 0)
+                writer.writeUint64(1, this.app);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -504,7 +507,7 @@ export namespace tendermint.types {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.app_version = reader.readUint64();
+                        message.app = reader.readUint64();
                         break;
                     default: reader.skipField();
                 }
@@ -606,6 +609,73 @@ export namespace tendermint.types {
         }
         static deserializeBinary(bytes: Uint8Array): HashedParams {
             return HashedParams.deserialize(bytes);
+        }
+    }
+    export class ABCIParams extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            vote_extensions_enable_height?: number;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("vote_extensions_enable_height" in data && data.vote_extensions_enable_height != undefined) {
+                    this.vote_extensions_enable_height = data.vote_extensions_enable_height;
+                }
+            }
+        }
+        get vote_extensions_enable_height() {
+            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+        }
+        set vote_extensions_enable_height(value: number) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            vote_extensions_enable_height?: number;
+        }): ABCIParams {
+            const message = new ABCIParams({});
+            if (data.vote_extensions_enable_height != null) {
+                message.vote_extensions_enable_height = data.vote_extensions_enable_height;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                vote_extensions_enable_height?: number;
+            } = {};
+            if (this.vote_extensions_enable_height != null) {
+                data.vote_extensions_enable_height = this.vote_extensions_enable_height;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.vote_extensions_enable_height != 0)
+                writer.writeInt64(1, this.vote_extensions_enable_height);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ABCIParams {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ABCIParams();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.vote_extensions_enable_height = reader.readInt64();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): ABCIParams {
+            return ABCIParams.deserialize(bytes);
         }
     }
 }

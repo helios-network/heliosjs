@@ -6,6 +6,8 @@
 import * as dependency_1 from "./../../../google/protobuf/any";
 import * as dependency_2 from "./../../../gogoproto/gogo";
 import * as dependency_3 from "./../../../google/protobuf/timestamp";
+import * as dependency_4 from "./../../../cosmos_proto/cosmos";
+import * as dependency_5 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.upgrade.v1beta1 {
     export class Plan extends pb_1.Message {
@@ -181,6 +183,7 @@ export namespace cosmos.upgrade.v1beta1 {
             return Plan.deserialize(bytes);
         }
     }
+    /** @deprecated*/
     export class SoftwareUpgradeProposal extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
@@ -297,6 +300,7 @@ export namespace cosmos.upgrade.v1beta1 {
             return SoftwareUpgradeProposal.deserialize(bytes);
         }
     }
+    /** @deprecated*/
     export class CancelSoftwareUpgradeProposal extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {

@@ -6,6 +6,7 @@
 import * as dependency_1 from "./../../../google/api/annotations";
 import * as dependency_2 from "./../../base/query/v1beta1/pagination";
 import * as dependency_3 from "./authz";
+import * as dependency_4 from "./../../../cosmos_proto/cosmos";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.authz.v1beta1 {
@@ -241,6 +242,378 @@ export namespace cosmos.authz.v1beta1 {
             return QueryGrantsResponse.deserialize(bytes);
         }
     }
+    export class QueryGranterGrantsRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            granter?: string;
+            pagination?: dependency_2.cosmos.base.query.v1beta1.PageRequest;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("granter" in data && data.granter != undefined) {
+                    this.granter = data.granter;
+                }
+                if ("pagination" in data && data.pagination != undefined) {
+                    this.pagination = data.pagination;
+                }
+            }
+        }
+        get granter() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set granter(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get pagination() {
+            return pb_1.Message.getWrapperField(this, dependency_2.cosmos.base.query.v1beta1.PageRequest, 2) as dependency_2.cosmos.base.query.v1beta1.PageRequest;
+        }
+        set pagination(value: dependency_2.cosmos.base.query.v1beta1.PageRequest) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_pagination() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            granter?: string;
+            pagination?: ReturnType<typeof dependency_2.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+        }): QueryGranterGrantsRequest {
+            const message = new QueryGranterGrantsRequest({});
+            if (data.granter != null) {
+                message.granter = data.granter;
+            }
+            if (data.pagination != null) {
+                message.pagination = dependency_2.cosmos.base.query.v1beta1.PageRequest.fromObject(data.pagination);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                granter?: string;
+                pagination?: ReturnType<typeof dependency_2.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+            } = {};
+            if (this.granter != null) {
+                data.granter = this.granter;
+            }
+            if (this.pagination != null) {
+                data.pagination = this.pagination.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.granter.length)
+                writer.writeString(1, this.granter);
+            if (this.has_pagination)
+                writer.writeMessage(2, this.pagination, () => this.pagination.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryGranterGrantsRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryGranterGrantsRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.granter = reader.readString();
+                        break;
+                    case 2:
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_2.cosmos.base.query.v1beta1.PageRequest.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryGranterGrantsRequest {
+            return QueryGranterGrantsRequest.deserialize(bytes);
+        }
+    }
+    export class QueryGranterGrantsResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            grants?: dependency_3.cosmos.authz.v1beta1.GrantAuthorization[];
+            pagination?: dependency_2.cosmos.base.query.v1beta1.PageResponse;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("grants" in data && data.grants != undefined) {
+                    this.grants = data.grants;
+                }
+                if ("pagination" in data && data.pagination != undefined) {
+                    this.pagination = data.pagination;
+                }
+            }
+        }
+        get grants() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_3.cosmos.authz.v1beta1.GrantAuthorization, 1) as dependency_3.cosmos.authz.v1beta1.GrantAuthorization[];
+        }
+        set grants(value: dependency_3.cosmos.authz.v1beta1.GrantAuthorization[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        get pagination() {
+            return pb_1.Message.getWrapperField(this, dependency_2.cosmos.base.query.v1beta1.PageResponse, 2) as dependency_2.cosmos.base.query.v1beta1.PageResponse;
+        }
+        set pagination(value: dependency_2.cosmos.base.query.v1beta1.PageResponse) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_pagination() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            grants?: ReturnType<typeof dependency_3.cosmos.authz.v1beta1.GrantAuthorization.prototype.toObject>[];
+            pagination?: ReturnType<typeof dependency_2.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+        }): QueryGranterGrantsResponse {
+            const message = new QueryGranterGrantsResponse({});
+            if (data.grants != null) {
+                message.grants = data.grants.map(item => dependency_3.cosmos.authz.v1beta1.GrantAuthorization.fromObject(item));
+            }
+            if (data.pagination != null) {
+                message.pagination = dependency_2.cosmos.base.query.v1beta1.PageResponse.fromObject(data.pagination);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                grants?: ReturnType<typeof dependency_3.cosmos.authz.v1beta1.GrantAuthorization.prototype.toObject>[];
+                pagination?: ReturnType<typeof dependency_2.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+            } = {};
+            if (this.grants != null) {
+                data.grants = this.grants.map((item: dependency_3.cosmos.authz.v1beta1.GrantAuthorization) => item.toObject());
+            }
+            if (this.pagination != null) {
+                data.pagination = this.pagination.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.grants.length)
+                writer.writeRepeatedMessage(1, this.grants, (item: dependency_3.cosmos.authz.v1beta1.GrantAuthorization) => item.serialize(writer));
+            if (this.has_pagination)
+                writer.writeMessage(2, this.pagination, () => this.pagination.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryGranterGrantsResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryGranterGrantsResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.grants, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_3.cosmos.authz.v1beta1.GrantAuthorization.deserialize(reader), dependency_3.cosmos.authz.v1beta1.GrantAuthorization));
+                        break;
+                    case 2:
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_2.cosmos.base.query.v1beta1.PageResponse.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryGranterGrantsResponse {
+            return QueryGranterGrantsResponse.deserialize(bytes);
+        }
+    }
+    export class QueryGranteeGrantsRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            grantee?: string;
+            pagination?: dependency_2.cosmos.base.query.v1beta1.PageRequest;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("grantee" in data && data.grantee != undefined) {
+                    this.grantee = data.grantee;
+                }
+                if ("pagination" in data && data.pagination != undefined) {
+                    this.pagination = data.pagination;
+                }
+            }
+        }
+        get grantee() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set grantee(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get pagination() {
+            return pb_1.Message.getWrapperField(this, dependency_2.cosmos.base.query.v1beta1.PageRequest, 2) as dependency_2.cosmos.base.query.v1beta1.PageRequest;
+        }
+        set pagination(value: dependency_2.cosmos.base.query.v1beta1.PageRequest) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_pagination() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            grantee?: string;
+            pagination?: ReturnType<typeof dependency_2.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+        }): QueryGranteeGrantsRequest {
+            const message = new QueryGranteeGrantsRequest({});
+            if (data.grantee != null) {
+                message.grantee = data.grantee;
+            }
+            if (data.pagination != null) {
+                message.pagination = dependency_2.cosmos.base.query.v1beta1.PageRequest.fromObject(data.pagination);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                grantee?: string;
+                pagination?: ReturnType<typeof dependency_2.cosmos.base.query.v1beta1.PageRequest.prototype.toObject>;
+            } = {};
+            if (this.grantee != null) {
+                data.grantee = this.grantee;
+            }
+            if (this.pagination != null) {
+                data.pagination = this.pagination.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.grantee.length)
+                writer.writeString(1, this.grantee);
+            if (this.has_pagination)
+                writer.writeMessage(2, this.pagination, () => this.pagination.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryGranteeGrantsRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryGranteeGrantsRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.grantee = reader.readString();
+                        break;
+                    case 2:
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_2.cosmos.base.query.v1beta1.PageRequest.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryGranteeGrantsRequest {
+            return QueryGranteeGrantsRequest.deserialize(bytes);
+        }
+    }
+    export class QueryGranteeGrantsResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            grants?: dependency_3.cosmos.authz.v1beta1.GrantAuthorization[];
+            pagination?: dependency_2.cosmos.base.query.v1beta1.PageResponse;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("grants" in data && data.grants != undefined) {
+                    this.grants = data.grants;
+                }
+                if ("pagination" in data && data.pagination != undefined) {
+                    this.pagination = data.pagination;
+                }
+            }
+        }
+        get grants() {
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_3.cosmos.authz.v1beta1.GrantAuthorization, 1) as dependency_3.cosmos.authz.v1beta1.GrantAuthorization[];
+        }
+        set grants(value: dependency_3.cosmos.authz.v1beta1.GrantAuthorization[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        get pagination() {
+            return pb_1.Message.getWrapperField(this, dependency_2.cosmos.base.query.v1beta1.PageResponse, 2) as dependency_2.cosmos.base.query.v1beta1.PageResponse;
+        }
+        set pagination(value: dependency_2.cosmos.base.query.v1beta1.PageResponse) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_pagination() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            grants?: ReturnType<typeof dependency_3.cosmos.authz.v1beta1.GrantAuthorization.prototype.toObject>[];
+            pagination?: ReturnType<typeof dependency_2.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+        }): QueryGranteeGrantsResponse {
+            const message = new QueryGranteeGrantsResponse({});
+            if (data.grants != null) {
+                message.grants = data.grants.map(item => dependency_3.cosmos.authz.v1beta1.GrantAuthorization.fromObject(item));
+            }
+            if (data.pagination != null) {
+                message.pagination = dependency_2.cosmos.base.query.v1beta1.PageResponse.fromObject(data.pagination);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                grants?: ReturnType<typeof dependency_3.cosmos.authz.v1beta1.GrantAuthorization.prototype.toObject>[];
+                pagination?: ReturnType<typeof dependency_2.cosmos.base.query.v1beta1.PageResponse.prototype.toObject>;
+            } = {};
+            if (this.grants != null) {
+                data.grants = this.grants.map((item: dependency_3.cosmos.authz.v1beta1.GrantAuthorization) => item.toObject());
+            }
+            if (this.pagination != null) {
+                data.pagination = this.pagination.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.grants.length)
+                writer.writeRepeatedMessage(1, this.grants, (item: dependency_3.cosmos.authz.v1beta1.GrantAuthorization) => item.serialize(writer));
+            if (this.has_pagination)
+                writer.writeMessage(2, this.pagination, () => this.pagination.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): QueryGranteeGrantsResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new QueryGranteeGrantsResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.grants, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_3.cosmos.authz.v1beta1.GrantAuthorization.deserialize(reader), dependency_3.cosmos.authz.v1beta1.GrantAuthorization));
+                        break;
+                    case 2:
+                        reader.readMessage(message.pagination, () => message.pagination = dependency_2.cosmos.base.query.v1beta1.PageResponse.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): QueryGranteeGrantsResponse {
+            return QueryGranteeGrantsResponse.deserialize(bytes);
+        }
+    }
     interface GrpcUnaryServiceInterface<P, R> {
         (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
         (message: P, metadata: grpc_1.Metadata, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
@@ -275,10 +648,30 @@ export namespace cosmos.authz.v1beta1 {
                 requestDeserialize: (bytes: Buffer) => QueryGrantsRequest.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: QueryGrantsResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => QueryGrantsResponse.deserialize(new Uint8Array(bytes))
+            },
+            GranterGrants: {
+                path: "/cosmos.authz.v1beta1.Query/GranterGrants",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: QueryGranterGrantsRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => QueryGranterGrantsRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: QueryGranterGrantsResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => QueryGranterGrantsResponse.deserialize(new Uint8Array(bytes))
+            },
+            GranteeGrants: {
+                path: "/cosmos.authz.v1beta1.Query/GranteeGrants",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: QueryGranteeGrantsRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => QueryGranteeGrantsRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: QueryGranteeGrantsResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => QueryGranteeGrantsResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
         abstract Grants(call: grpc_1.ServerUnaryCall<QueryGrantsRequest, QueryGrantsResponse>, callback: grpc_1.sendUnaryData<QueryGrantsResponse>): void;
+        abstract GranterGrants(call: grpc_1.ServerUnaryCall<QueryGranterGrantsRequest, QueryGranterGrantsResponse>, callback: grpc_1.sendUnaryData<QueryGranterGrantsResponse>): void;
+        abstract GranteeGrants(call: grpc_1.ServerUnaryCall<QueryGranteeGrantsRequest, QueryGranteeGrantsResponse>, callback: grpc_1.sendUnaryData<QueryGranteeGrantsResponse>): void;
     }
     export class QueryClient extends grpc_1.makeGenericClientConstructor(UnimplementedQueryService.definition, "Query", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -286,6 +679,12 @@ export namespace cosmos.authz.v1beta1 {
         }
         Grants: GrpcUnaryServiceInterface<QueryGrantsRequest, QueryGrantsResponse> = (message: QueryGrantsRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryGrantsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryGrantsResponse>, callback?: grpc_1.requestCallback<QueryGrantsResponse>): grpc_1.ClientUnaryCall => {
             return super.Grants(message, metadata, options, callback);
+        };
+        GranterGrants: GrpcUnaryServiceInterface<QueryGranterGrantsRequest, QueryGranterGrantsResponse> = (message: QueryGranterGrantsRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryGranterGrantsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryGranterGrantsResponse>, callback?: grpc_1.requestCallback<QueryGranterGrantsResponse>): grpc_1.ClientUnaryCall => {
+            return super.GranterGrants(message, metadata, options, callback);
+        };
+        GranteeGrants: GrpcUnaryServiceInterface<QueryGranteeGrantsRequest, QueryGranteeGrantsResponse> = (message: QueryGranteeGrantsRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<QueryGranteeGrantsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<QueryGranteeGrantsResponse>, callback?: grpc_1.requestCallback<QueryGranteeGrantsResponse>): grpc_1.ClientUnaryCall => {
+            return super.GranteeGrants(message, metadata, options, callback);
         };
     }
 }

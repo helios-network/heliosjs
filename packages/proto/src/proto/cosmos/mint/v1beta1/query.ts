@@ -6,6 +6,8 @@
 import * as dependency_1 from "./../../../gogoproto/gogo";
 import * as dependency_2 from "./../../../google/api/annotations";
 import * as dependency_3 from "./mint";
+import * as dependency_4 from "./../../../amino/amino";
+import * as dependency_5 from "./../../../cosmos_proto/cosmos";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.mint.v1beta1 {

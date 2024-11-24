@@ -9,6 +9,8 @@ import * as dependency_3 from "./../../../gogoproto/gogo";
 import * as dependency_4 from "./../../../cosmos_proto/cosmos";
 import * as dependency_5 from "./../../base/v1beta1/coin";
 import * as dependency_6 from "./staking";
+import * as dependency_7 from "./../../msg/v1/msg";
+import * as dependency_8 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.staking.v1beta1 {
@@ -18,6 +20,7 @@ export namespace cosmos.staking.v1beta1 {
             description?: dependency_6.cosmos.staking.v1beta1.Description;
             commission?: dependency_6.cosmos.staking.v1beta1.CommissionRates;
             min_self_delegation?: string;
+            /** @deprecated*/
             delegator_address?: string;
             validator_address?: string;
             pubkey?: dependency_1.google.protobuf.Any;
@@ -73,9 +76,11 @@ export namespace cosmos.staking.v1beta1 {
         set min_self_delegation(value: string) {
             pb_1.Message.setField(this, 3, value);
         }
+        /** @deprecated*/
         get delegator_address() {
             return pb_1.Message.getFieldWithDefault(this, 4, "") as string;
         }
+        /** @deprecated*/
         set delegator_address(value: string) {
             pb_1.Message.setField(this, 4, value);
         }
@@ -933,12 +938,16 @@ export namespace cosmos.staking.v1beta1 {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             completion_time?: dependency_2.google.protobuf.Timestamp;
+            amount?: dependency_5.cosmos.base.v1beta1.Coin;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
             if (!Array.isArray(data) && typeof data == "object") {
                 if ("completion_time" in data && data.completion_time != undefined) {
                     this.completion_time = data.completion_time;
+                }
+                if ("amount" in data && data.amount != undefined) {
+                    this.amount = data.amount;
                 }
             }
         }
@@ -951,21 +960,38 @@ export namespace cosmos.staking.v1beta1 {
         get has_completion_time() {
             return pb_1.Message.getField(this, 1) != null;
         }
+        get amount() {
+            return pb_1.Message.getWrapperField(this, dependency_5.cosmos.base.v1beta1.Coin, 2) as dependency_5.cosmos.base.v1beta1.Coin;
+        }
+        set amount(value: dependency_5.cosmos.base.v1beta1.Coin) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_amount() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
         static fromObject(data: {
             completion_time?: ReturnType<typeof dependency_2.google.protobuf.Timestamp.prototype.toObject>;
+            amount?: ReturnType<typeof dependency_5.cosmos.base.v1beta1.Coin.prototype.toObject>;
         }): MsgUndelegateResponse {
             const message = new MsgUndelegateResponse({});
             if (data.completion_time != null) {
                 message.completion_time = dependency_2.google.protobuf.Timestamp.fromObject(data.completion_time);
+            }
+            if (data.amount != null) {
+                message.amount = dependency_5.cosmos.base.v1beta1.Coin.fromObject(data.amount);
             }
             return message;
         }
         toObject() {
             const data: {
                 completion_time?: ReturnType<typeof dependency_2.google.protobuf.Timestamp.prototype.toObject>;
+                amount?: ReturnType<typeof dependency_5.cosmos.base.v1beta1.Coin.prototype.toObject>;
             } = {};
             if (this.completion_time != null) {
                 data.completion_time = this.completion_time.toObject();
+            }
+            if (this.amount != null) {
+                data.amount = this.amount.toObject();
             }
             return data;
         }
@@ -975,6 +1001,8 @@ export namespace cosmos.staking.v1beta1 {
             const writer = w || new pb_1.BinaryWriter();
             if (this.has_completion_time)
                 writer.writeMessage(1, this.completion_time, () => this.completion_time.serialize(writer));
+            if (this.has_amount)
+                writer.writeMessage(2, this.amount, () => this.amount.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -987,6 +1015,9 @@ export namespace cosmos.staking.v1beta1 {
                     case 1:
                         reader.readMessage(message.completion_time, () => message.completion_time = dependency_2.google.protobuf.Timestamp.deserialize(reader));
                         break;
+                    case 2:
+                        reader.readMessage(message.amount, () => message.amount = dependency_5.cosmos.base.v1beta1.Coin.deserialize(reader));
+                        break;
                     default: reader.skipField();
                 }
             }
@@ -997,6 +1028,318 @@ export namespace cosmos.staking.v1beta1 {
         }
         static deserializeBinary(bytes: Uint8Array): MsgUndelegateResponse {
             return MsgUndelegateResponse.deserialize(bytes);
+        }
+    }
+    export class MsgCancelUnbondingDelegation extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            delegator_address?: string;
+            validator_address?: string;
+            amount?: dependency_5.cosmos.base.v1beta1.Coin;
+            creation_height?: number;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("delegator_address" in data && data.delegator_address != undefined) {
+                    this.delegator_address = data.delegator_address;
+                }
+                if ("validator_address" in data && data.validator_address != undefined) {
+                    this.validator_address = data.validator_address;
+                }
+                if ("amount" in data && data.amount != undefined) {
+                    this.amount = data.amount;
+                }
+                if ("creation_height" in data && data.creation_height != undefined) {
+                    this.creation_height = data.creation_height;
+                }
+            }
+        }
+        get delegator_address() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set delegator_address(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get validator_address() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set validator_address(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get amount() {
+            return pb_1.Message.getWrapperField(this, dependency_5.cosmos.base.v1beta1.Coin, 3) as dependency_5.cosmos.base.v1beta1.Coin;
+        }
+        set amount(value: dependency_5.cosmos.base.v1beta1.Coin) {
+            pb_1.Message.setWrapperField(this, 3, value);
+        }
+        get has_amount() {
+            return pb_1.Message.getField(this, 3) != null;
+        }
+        get creation_height() {
+            return pb_1.Message.getFieldWithDefault(this, 4, 0) as number;
+        }
+        set creation_height(value: number) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        static fromObject(data: {
+            delegator_address?: string;
+            validator_address?: string;
+            amount?: ReturnType<typeof dependency_5.cosmos.base.v1beta1.Coin.prototype.toObject>;
+            creation_height?: number;
+        }): MsgCancelUnbondingDelegation {
+            const message = new MsgCancelUnbondingDelegation({});
+            if (data.delegator_address != null) {
+                message.delegator_address = data.delegator_address;
+            }
+            if (data.validator_address != null) {
+                message.validator_address = data.validator_address;
+            }
+            if (data.amount != null) {
+                message.amount = dependency_5.cosmos.base.v1beta1.Coin.fromObject(data.amount);
+            }
+            if (data.creation_height != null) {
+                message.creation_height = data.creation_height;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                delegator_address?: string;
+                validator_address?: string;
+                amount?: ReturnType<typeof dependency_5.cosmos.base.v1beta1.Coin.prototype.toObject>;
+                creation_height?: number;
+            } = {};
+            if (this.delegator_address != null) {
+                data.delegator_address = this.delegator_address;
+            }
+            if (this.validator_address != null) {
+                data.validator_address = this.validator_address;
+            }
+            if (this.amount != null) {
+                data.amount = this.amount.toObject();
+            }
+            if (this.creation_height != null) {
+                data.creation_height = this.creation_height;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.delegator_address.length)
+                writer.writeString(1, this.delegator_address);
+            if (this.validator_address.length)
+                writer.writeString(2, this.validator_address);
+            if (this.has_amount)
+                writer.writeMessage(3, this.amount, () => this.amount.serialize(writer));
+            if (this.creation_height != 0)
+                writer.writeInt64(4, this.creation_height);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgCancelUnbondingDelegation {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgCancelUnbondingDelegation();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.delegator_address = reader.readString();
+                        break;
+                    case 2:
+                        message.validator_address = reader.readString();
+                        break;
+                    case 3:
+                        reader.readMessage(message.amount, () => message.amount = dependency_5.cosmos.base.v1beta1.Coin.deserialize(reader));
+                        break;
+                    case 4:
+                        message.creation_height = reader.readInt64();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgCancelUnbondingDelegation {
+            return MsgCancelUnbondingDelegation.deserialize(bytes);
+        }
+    }
+    export class MsgCancelUnbondingDelegationResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {}) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") { }
+        }
+        static fromObject(data: {}): MsgCancelUnbondingDelegationResponse {
+            const message = new MsgCancelUnbondingDelegationResponse({});
+            return message;
+        }
+        toObject() {
+            const data: {} = {};
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgCancelUnbondingDelegationResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgCancelUnbondingDelegationResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgCancelUnbondingDelegationResponse {
+            return MsgCancelUnbondingDelegationResponse.deserialize(bytes);
+        }
+    }
+    export class MsgUpdateParams extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            authority?: string;
+            params?: dependency_6.cosmos.staking.v1beta1.Params;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("authority" in data && data.authority != undefined) {
+                    this.authority = data.authority;
+                }
+                if ("params" in data && data.params != undefined) {
+                    this.params = data.params;
+                }
+            }
+        }
+        get authority() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set authority(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get params() {
+            return pb_1.Message.getWrapperField(this, dependency_6.cosmos.staking.v1beta1.Params, 2) as dependency_6.cosmos.staking.v1beta1.Params;
+        }
+        set params(value: dependency_6.cosmos.staking.v1beta1.Params) {
+            pb_1.Message.setWrapperField(this, 2, value);
+        }
+        get has_params() {
+            return pb_1.Message.getField(this, 2) != null;
+        }
+        static fromObject(data: {
+            authority?: string;
+            params?: ReturnType<typeof dependency_6.cosmos.staking.v1beta1.Params.prototype.toObject>;
+        }): MsgUpdateParams {
+            const message = new MsgUpdateParams({});
+            if (data.authority != null) {
+                message.authority = data.authority;
+            }
+            if (data.params != null) {
+                message.params = dependency_6.cosmos.staking.v1beta1.Params.fromObject(data.params);
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                authority?: string;
+                params?: ReturnType<typeof dependency_6.cosmos.staking.v1beta1.Params.prototype.toObject>;
+            } = {};
+            if (this.authority != null) {
+                data.authority = this.authority;
+            }
+            if (this.params != null) {
+                data.params = this.params.toObject();
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.authority.length)
+                writer.writeString(1, this.authority);
+            if (this.has_params)
+                writer.writeMessage(2, this.params, () => this.params.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgUpdateParams {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgUpdateParams();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.authority = reader.readString();
+                        break;
+                    case 2:
+                        reader.readMessage(message.params, () => message.params = dependency_6.cosmos.staking.v1beta1.Params.deserialize(reader));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgUpdateParams {
+            return MsgUpdateParams.deserialize(bytes);
+        }
+    }
+    export class MsgUpdateParamsResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {}) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") { }
+        }
+        static fromObject(data: {}): MsgUpdateParamsResponse {
+            const message = new MsgUpdateParamsResponse({});
+            return message;
+        }
+        toObject() {
+            const data: {} = {};
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgUpdateParamsResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgUpdateParamsResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgUpdateParamsResponse {
+            return MsgUpdateParamsResponse.deserialize(bytes);
         }
     }
     interface GrpcUnaryServiceInterface<P, R> {
@@ -1069,6 +1412,24 @@ export namespace cosmos.staking.v1beta1 {
                 requestDeserialize: (bytes: Buffer) => MsgUndelegate.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: MsgUndelegateResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => MsgUndelegateResponse.deserialize(new Uint8Array(bytes))
+            },
+            CancelUnbondingDelegation: {
+                path: "/cosmos.staking.v1beta1.Msg/CancelUnbondingDelegation",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: MsgCancelUnbondingDelegation) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => MsgCancelUnbondingDelegation.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: MsgCancelUnbondingDelegationResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => MsgCancelUnbondingDelegationResponse.deserialize(new Uint8Array(bytes))
+            },
+            UpdateParams: {
+                path: "/cosmos.staking.v1beta1.Msg/UpdateParams",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: MsgUpdateParams) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => MsgUpdateParams.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: MsgUpdateParamsResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => MsgUpdateParamsResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
@@ -1077,6 +1438,8 @@ export namespace cosmos.staking.v1beta1 {
         abstract Delegate(call: grpc_1.ServerUnaryCall<MsgDelegate, MsgDelegateResponse>, callback: grpc_1.sendUnaryData<MsgDelegateResponse>): void;
         abstract BeginRedelegate(call: grpc_1.ServerUnaryCall<MsgBeginRedelegate, MsgBeginRedelegateResponse>, callback: grpc_1.sendUnaryData<MsgBeginRedelegateResponse>): void;
         abstract Undelegate(call: grpc_1.ServerUnaryCall<MsgUndelegate, MsgUndelegateResponse>, callback: grpc_1.sendUnaryData<MsgUndelegateResponse>): void;
+        abstract CancelUnbondingDelegation(call: grpc_1.ServerUnaryCall<MsgCancelUnbondingDelegation, MsgCancelUnbondingDelegationResponse>, callback: grpc_1.sendUnaryData<MsgCancelUnbondingDelegationResponse>): void;
+        abstract UpdateParams(call: grpc_1.ServerUnaryCall<MsgUpdateParams, MsgUpdateParamsResponse>, callback: grpc_1.sendUnaryData<MsgUpdateParamsResponse>): void;
     }
     export class MsgClient extends grpc_1.makeGenericClientConstructor(UnimplementedMsgService.definition, "Msg", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -1096,6 +1459,12 @@ export namespace cosmos.staking.v1beta1 {
         };
         Undelegate: GrpcUnaryServiceInterface<MsgUndelegate, MsgUndelegateResponse> = (message: MsgUndelegate, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgUndelegateResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgUndelegateResponse>, callback?: grpc_1.requestCallback<MsgUndelegateResponse>): grpc_1.ClientUnaryCall => {
             return super.Undelegate(message, metadata, options, callback);
+        };
+        CancelUnbondingDelegation: GrpcUnaryServiceInterface<MsgCancelUnbondingDelegation, MsgCancelUnbondingDelegationResponse> = (message: MsgCancelUnbondingDelegation, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgCancelUnbondingDelegationResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgCancelUnbondingDelegationResponse>, callback?: grpc_1.requestCallback<MsgCancelUnbondingDelegationResponse>): grpc_1.ClientUnaryCall => {
+            return super.CancelUnbondingDelegation(message, metadata, options, callback);
+        };
+        UpdateParams: GrpcUnaryServiceInterface<MsgUpdateParams, MsgUpdateParamsResponse> = (message: MsgUpdateParams, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgUpdateParamsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgUpdateParamsResponse>, callback?: grpc_1.requestCallback<MsgUpdateParamsResponse>): grpc_1.ClientUnaryCall => {
+            return super.UpdateParams(message, metadata, options, callback);
         };
     }
 }

@@ -7,15 +7,16 @@ import * as dependency_1 from "./../../../gogoproto/gogo";
 import * as dependency_2 from "./../../../google/protobuf/any";
 import * as dependency_3 from "./../../../cosmos_proto/cosmos";
 import * as dependency_4 from "./../../base/v1beta1/coin";
-import * as dependency_5 from "./../../../google/protobuf/timestamp";
-import * as dependency_6 from "./../../../google/protobuf/duration";
+import * as dependency_5 from "./../../../amino/amino";
+import * as dependency_6 from "./../../../google/protobuf/timestamp";
+import * as dependency_7 from "./../../../google/protobuf/duration";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.feegrant.v1beta1 {
     export class BasicAllowance extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             spend_limit?: dependency_4.cosmos.base.v1beta1.Coin[];
-            expiration?: dependency_5.google.protobuf.Timestamp;
+            expiration?: dependency_6.google.protobuf.Timestamp;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
@@ -35,9 +36,9 @@ export namespace cosmos.feegrant.v1beta1 {
             pb_1.Message.setRepeatedWrapperField(this, 1, value);
         }
         get expiration() {
-            return pb_1.Message.getWrapperField(this, dependency_5.google.protobuf.Timestamp, 2) as dependency_5.google.protobuf.Timestamp;
+            return pb_1.Message.getWrapperField(this, dependency_6.google.protobuf.Timestamp, 2) as dependency_6.google.protobuf.Timestamp;
         }
-        set expiration(value: dependency_5.google.protobuf.Timestamp) {
+        set expiration(value: dependency_6.google.protobuf.Timestamp) {
             pb_1.Message.setWrapperField(this, 2, value);
         }
         get has_expiration() {
@@ -45,21 +46,21 @@ export namespace cosmos.feegrant.v1beta1 {
         }
         static fromObject(data: {
             spend_limit?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>[];
-            expiration?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
+            expiration?: ReturnType<typeof dependency_6.google.protobuf.Timestamp.prototype.toObject>;
         }): BasicAllowance {
             const message = new BasicAllowance({});
             if (data.spend_limit != null) {
                 message.spend_limit = data.spend_limit.map(item => dependency_4.cosmos.base.v1beta1.Coin.fromObject(item));
             }
             if (data.expiration != null) {
-                message.expiration = dependency_5.google.protobuf.Timestamp.fromObject(data.expiration);
+                message.expiration = dependency_6.google.protobuf.Timestamp.fromObject(data.expiration);
             }
             return message;
         }
         toObject() {
             const data: {
                 spend_limit?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>[];
-                expiration?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
+                expiration?: ReturnType<typeof dependency_6.google.protobuf.Timestamp.prototype.toObject>;
             } = {};
             if (this.spend_limit != null) {
                 data.spend_limit = this.spend_limit.map((item: dependency_4.cosmos.base.v1beta1.Coin) => item.toObject());
@@ -90,7 +91,7 @@ export namespace cosmos.feegrant.v1beta1 {
                         reader.readMessage(message.spend_limit, () => pb_1.Message.addToRepeatedWrapperField(message, 1, dependency_4.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_4.cosmos.base.v1beta1.Coin));
                         break;
                     case 2:
-                        reader.readMessage(message.expiration, () => message.expiration = dependency_5.google.protobuf.Timestamp.deserialize(reader));
+                        reader.readMessage(message.expiration, () => message.expiration = dependency_6.google.protobuf.Timestamp.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -108,10 +109,10 @@ export namespace cosmos.feegrant.v1beta1 {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             basic?: BasicAllowance;
-            period?: dependency_6.google.protobuf.Duration;
+            period?: dependency_7.google.protobuf.Duration;
             period_spend_limit?: dependency_4.cosmos.base.v1beta1.Coin[];
             period_can_spend?: dependency_4.cosmos.base.v1beta1.Coin[];
-            period_reset?: dependency_5.google.protobuf.Timestamp;
+            period_reset?: dependency_6.google.protobuf.Timestamp;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [3, 4], this.#one_of_decls);
@@ -143,9 +144,9 @@ export namespace cosmos.feegrant.v1beta1 {
             return pb_1.Message.getField(this, 1) != null;
         }
         get period() {
-            return pb_1.Message.getWrapperField(this, dependency_6.google.protobuf.Duration, 2) as dependency_6.google.protobuf.Duration;
+            return pb_1.Message.getWrapperField(this, dependency_7.google.protobuf.Duration, 2) as dependency_7.google.protobuf.Duration;
         }
-        set period(value: dependency_6.google.protobuf.Duration) {
+        set period(value: dependency_7.google.protobuf.Duration) {
             pb_1.Message.setWrapperField(this, 2, value);
         }
         get has_period() {
@@ -164,9 +165,9 @@ export namespace cosmos.feegrant.v1beta1 {
             pb_1.Message.setRepeatedWrapperField(this, 4, value);
         }
         get period_reset() {
-            return pb_1.Message.getWrapperField(this, dependency_5.google.protobuf.Timestamp, 5) as dependency_5.google.protobuf.Timestamp;
+            return pb_1.Message.getWrapperField(this, dependency_6.google.protobuf.Timestamp, 5) as dependency_6.google.protobuf.Timestamp;
         }
-        set period_reset(value: dependency_5.google.protobuf.Timestamp) {
+        set period_reset(value: dependency_6.google.protobuf.Timestamp) {
             pb_1.Message.setWrapperField(this, 5, value);
         }
         get has_period_reset() {
@@ -174,17 +175,17 @@ export namespace cosmos.feegrant.v1beta1 {
         }
         static fromObject(data: {
             basic?: ReturnType<typeof BasicAllowance.prototype.toObject>;
-            period?: ReturnType<typeof dependency_6.google.protobuf.Duration.prototype.toObject>;
+            period?: ReturnType<typeof dependency_7.google.protobuf.Duration.prototype.toObject>;
             period_spend_limit?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>[];
             period_can_spend?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>[];
-            period_reset?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
+            period_reset?: ReturnType<typeof dependency_6.google.protobuf.Timestamp.prototype.toObject>;
         }): PeriodicAllowance {
             const message = new PeriodicAllowance({});
             if (data.basic != null) {
                 message.basic = BasicAllowance.fromObject(data.basic);
             }
             if (data.period != null) {
-                message.period = dependency_6.google.protobuf.Duration.fromObject(data.period);
+                message.period = dependency_7.google.protobuf.Duration.fromObject(data.period);
             }
             if (data.period_spend_limit != null) {
                 message.period_spend_limit = data.period_spend_limit.map(item => dependency_4.cosmos.base.v1beta1.Coin.fromObject(item));
@@ -193,17 +194,17 @@ export namespace cosmos.feegrant.v1beta1 {
                 message.period_can_spend = data.period_can_spend.map(item => dependency_4.cosmos.base.v1beta1.Coin.fromObject(item));
             }
             if (data.period_reset != null) {
-                message.period_reset = dependency_5.google.protobuf.Timestamp.fromObject(data.period_reset);
+                message.period_reset = dependency_6.google.protobuf.Timestamp.fromObject(data.period_reset);
             }
             return message;
         }
         toObject() {
             const data: {
                 basic?: ReturnType<typeof BasicAllowance.prototype.toObject>;
-                period?: ReturnType<typeof dependency_6.google.protobuf.Duration.prototype.toObject>;
+                period?: ReturnType<typeof dependency_7.google.protobuf.Duration.prototype.toObject>;
                 period_spend_limit?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>[];
                 period_can_spend?: ReturnType<typeof dependency_4.cosmos.base.v1beta1.Coin.prototype.toObject>[];
-                period_reset?: ReturnType<typeof dependency_5.google.protobuf.Timestamp.prototype.toObject>;
+                period_reset?: ReturnType<typeof dependency_6.google.protobuf.Timestamp.prototype.toObject>;
             } = {};
             if (this.basic != null) {
                 data.basic = this.basic.toObject();
@@ -249,7 +250,7 @@ export namespace cosmos.feegrant.v1beta1 {
                         reader.readMessage(message.basic, () => message.basic = BasicAllowance.deserialize(reader));
                         break;
                     case 2:
-                        reader.readMessage(message.period, () => message.period = dependency_6.google.protobuf.Duration.deserialize(reader));
+                        reader.readMessage(message.period, () => message.period = dependency_7.google.protobuf.Duration.deserialize(reader));
                         break;
                     case 3:
                         reader.readMessage(message.period_spend_limit, () => pb_1.Message.addToRepeatedWrapperField(message, 3, dependency_4.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_4.cosmos.base.v1beta1.Coin));
@@ -258,7 +259,7 @@ export namespace cosmos.feegrant.v1beta1 {
                         reader.readMessage(message.period_can_spend, () => pb_1.Message.addToRepeatedWrapperField(message, 4, dependency_4.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_4.cosmos.base.v1beta1.Coin));
                         break;
                     case 5:
-                        reader.readMessage(message.period_reset, () => message.period_reset = dependency_5.google.protobuf.Timestamp.deserialize(reader));
+                        reader.readMessage(message.period_reset, () => message.period_reset = dependency_6.google.protobuf.Timestamp.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }

@@ -3,18 +3,19 @@
  * compiler version: 5.28.3
  * source: cosmos/vesting/v1beta1/vesting.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
-import * as dependency_1 from "./../../../gogoproto/gogo";
-import * as dependency_2 from "./../../base/v1beta1/coin";
-import * as dependency_3 from "./../../auth/v1beta1/auth";
+import * as dependency_1 from "./../../../amino/amino";
+import * as dependency_2 from "./../../../gogoproto/gogo";
+import * as dependency_3 from "./../../base/v1beta1/coin";
+import * as dependency_4 from "./../../auth/v1beta1/auth";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.vesting.v1beta1 {
     export class BaseVestingAccount extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            base_account?: dependency_3.cosmos.auth.v1beta1.BaseAccount;
-            original_vesting?: dependency_2.cosmos.base.v1beta1.Coin[];
-            delegated_free?: dependency_2.cosmos.base.v1beta1.Coin[];
-            delegated_vesting?: dependency_2.cosmos.base.v1beta1.Coin[];
+            base_account?: dependency_4.cosmos.auth.v1beta1.BaseAccount;
+            original_vesting?: dependency_3.cosmos.base.v1beta1.Coin[];
+            delegated_free?: dependency_3.cosmos.base.v1beta1.Coin[];
+            delegated_vesting?: dependency_3.cosmos.base.v1beta1.Coin[];
             end_time?: number;
         }) {
             super();
@@ -38,30 +39,30 @@ export namespace cosmos.vesting.v1beta1 {
             }
         }
         get base_account() {
-            return pb_1.Message.getWrapperField(this, dependency_3.cosmos.auth.v1beta1.BaseAccount, 1) as dependency_3.cosmos.auth.v1beta1.BaseAccount;
+            return pb_1.Message.getWrapperField(this, dependency_4.cosmos.auth.v1beta1.BaseAccount, 1) as dependency_4.cosmos.auth.v1beta1.BaseAccount;
         }
-        set base_account(value: dependency_3.cosmos.auth.v1beta1.BaseAccount) {
+        set base_account(value: dependency_4.cosmos.auth.v1beta1.BaseAccount) {
             pb_1.Message.setWrapperField(this, 1, value);
         }
         get has_base_account() {
             return pb_1.Message.getField(this, 1) != null;
         }
         get original_vesting() {
-            return pb_1.Message.getRepeatedWrapperField(this, dependency_2.cosmos.base.v1beta1.Coin, 2) as dependency_2.cosmos.base.v1beta1.Coin[];
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_3.cosmos.base.v1beta1.Coin, 2) as dependency_3.cosmos.base.v1beta1.Coin[];
         }
-        set original_vesting(value: dependency_2.cosmos.base.v1beta1.Coin[]) {
+        set original_vesting(value: dependency_3.cosmos.base.v1beta1.Coin[]) {
             pb_1.Message.setRepeatedWrapperField(this, 2, value);
         }
         get delegated_free() {
-            return pb_1.Message.getRepeatedWrapperField(this, dependency_2.cosmos.base.v1beta1.Coin, 3) as dependency_2.cosmos.base.v1beta1.Coin[];
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_3.cosmos.base.v1beta1.Coin, 3) as dependency_3.cosmos.base.v1beta1.Coin[];
         }
-        set delegated_free(value: dependency_2.cosmos.base.v1beta1.Coin[]) {
+        set delegated_free(value: dependency_3.cosmos.base.v1beta1.Coin[]) {
             pb_1.Message.setRepeatedWrapperField(this, 3, value);
         }
         get delegated_vesting() {
-            return pb_1.Message.getRepeatedWrapperField(this, dependency_2.cosmos.base.v1beta1.Coin, 4) as dependency_2.cosmos.base.v1beta1.Coin[];
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_3.cosmos.base.v1beta1.Coin, 4) as dependency_3.cosmos.base.v1beta1.Coin[];
         }
-        set delegated_vesting(value: dependency_2.cosmos.base.v1beta1.Coin[]) {
+        set delegated_vesting(value: dependency_3.cosmos.base.v1beta1.Coin[]) {
             pb_1.Message.setRepeatedWrapperField(this, 4, value);
         }
         get end_time() {
@@ -71,24 +72,24 @@ export namespace cosmos.vesting.v1beta1 {
             pb_1.Message.setField(this, 5, value);
         }
         static fromObject(data: {
-            base_account?: ReturnType<typeof dependency_3.cosmos.auth.v1beta1.BaseAccount.prototype.toObject>;
-            original_vesting?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
-            delegated_free?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
-            delegated_vesting?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+            base_account?: ReturnType<typeof dependency_4.cosmos.auth.v1beta1.BaseAccount.prototype.toObject>;
+            original_vesting?: ReturnType<typeof dependency_3.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+            delegated_free?: ReturnType<typeof dependency_3.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+            delegated_vesting?: ReturnType<typeof dependency_3.cosmos.base.v1beta1.Coin.prototype.toObject>[];
             end_time?: number;
         }): BaseVestingAccount {
             const message = new BaseVestingAccount({});
             if (data.base_account != null) {
-                message.base_account = dependency_3.cosmos.auth.v1beta1.BaseAccount.fromObject(data.base_account);
+                message.base_account = dependency_4.cosmos.auth.v1beta1.BaseAccount.fromObject(data.base_account);
             }
             if (data.original_vesting != null) {
-                message.original_vesting = data.original_vesting.map(item => dependency_2.cosmos.base.v1beta1.Coin.fromObject(item));
+                message.original_vesting = data.original_vesting.map(item => dependency_3.cosmos.base.v1beta1.Coin.fromObject(item));
             }
             if (data.delegated_free != null) {
-                message.delegated_free = data.delegated_free.map(item => dependency_2.cosmos.base.v1beta1.Coin.fromObject(item));
+                message.delegated_free = data.delegated_free.map(item => dependency_3.cosmos.base.v1beta1.Coin.fromObject(item));
             }
             if (data.delegated_vesting != null) {
-                message.delegated_vesting = data.delegated_vesting.map(item => dependency_2.cosmos.base.v1beta1.Coin.fromObject(item));
+                message.delegated_vesting = data.delegated_vesting.map(item => dependency_3.cosmos.base.v1beta1.Coin.fromObject(item));
             }
             if (data.end_time != null) {
                 message.end_time = data.end_time;
@@ -97,23 +98,23 @@ export namespace cosmos.vesting.v1beta1 {
         }
         toObject() {
             const data: {
-                base_account?: ReturnType<typeof dependency_3.cosmos.auth.v1beta1.BaseAccount.prototype.toObject>;
-                original_vesting?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
-                delegated_free?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
-                delegated_vesting?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+                base_account?: ReturnType<typeof dependency_4.cosmos.auth.v1beta1.BaseAccount.prototype.toObject>;
+                original_vesting?: ReturnType<typeof dependency_3.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+                delegated_free?: ReturnType<typeof dependency_3.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+                delegated_vesting?: ReturnType<typeof dependency_3.cosmos.base.v1beta1.Coin.prototype.toObject>[];
                 end_time?: number;
             } = {};
             if (this.base_account != null) {
                 data.base_account = this.base_account.toObject();
             }
             if (this.original_vesting != null) {
-                data.original_vesting = this.original_vesting.map((item: dependency_2.cosmos.base.v1beta1.Coin) => item.toObject());
+                data.original_vesting = this.original_vesting.map((item: dependency_3.cosmos.base.v1beta1.Coin) => item.toObject());
             }
             if (this.delegated_free != null) {
-                data.delegated_free = this.delegated_free.map((item: dependency_2.cosmos.base.v1beta1.Coin) => item.toObject());
+                data.delegated_free = this.delegated_free.map((item: dependency_3.cosmos.base.v1beta1.Coin) => item.toObject());
             }
             if (this.delegated_vesting != null) {
-                data.delegated_vesting = this.delegated_vesting.map((item: dependency_2.cosmos.base.v1beta1.Coin) => item.toObject());
+                data.delegated_vesting = this.delegated_vesting.map((item: dependency_3.cosmos.base.v1beta1.Coin) => item.toObject());
             }
             if (this.end_time != null) {
                 data.end_time = this.end_time;
@@ -127,11 +128,11 @@ export namespace cosmos.vesting.v1beta1 {
             if (this.has_base_account)
                 writer.writeMessage(1, this.base_account, () => this.base_account.serialize(writer));
             if (this.original_vesting.length)
-                writer.writeRepeatedMessage(2, this.original_vesting, (item: dependency_2.cosmos.base.v1beta1.Coin) => item.serialize(writer));
+                writer.writeRepeatedMessage(2, this.original_vesting, (item: dependency_3.cosmos.base.v1beta1.Coin) => item.serialize(writer));
             if (this.delegated_free.length)
-                writer.writeRepeatedMessage(3, this.delegated_free, (item: dependency_2.cosmos.base.v1beta1.Coin) => item.serialize(writer));
+                writer.writeRepeatedMessage(3, this.delegated_free, (item: dependency_3.cosmos.base.v1beta1.Coin) => item.serialize(writer));
             if (this.delegated_vesting.length)
-                writer.writeRepeatedMessage(4, this.delegated_vesting, (item: dependency_2.cosmos.base.v1beta1.Coin) => item.serialize(writer));
+                writer.writeRepeatedMessage(4, this.delegated_vesting, (item: dependency_3.cosmos.base.v1beta1.Coin) => item.serialize(writer));
             if (this.end_time != 0)
                 writer.writeInt64(5, this.end_time);
             if (!w)
@@ -144,16 +145,16 @@ export namespace cosmos.vesting.v1beta1 {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        reader.readMessage(message.base_account, () => message.base_account = dependency_3.cosmos.auth.v1beta1.BaseAccount.deserialize(reader));
+                        reader.readMessage(message.base_account, () => message.base_account = dependency_4.cosmos.auth.v1beta1.BaseAccount.deserialize(reader));
                         break;
                     case 2:
-                        reader.readMessage(message.original_vesting, () => pb_1.Message.addToRepeatedWrapperField(message, 2, dependency_2.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_2.cosmos.base.v1beta1.Coin));
+                        reader.readMessage(message.original_vesting, () => pb_1.Message.addToRepeatedWrapperField(message, 2, dependency_3.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_3.cosmos.base.v1beta1.Coin));
                         break;
                     case 3:
-                        reader.readMessage(message.delegated_free, () => pb_1.Message.addToRepeatedWrapperField(message, 3, dependency_2.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_2.cosmos.base.v1beta1.Coin));
+                        reader.readMessage(message.delegated_free, () => pb_1.Message.addToRepeatedWrapperField(message, 3, dependency_3.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_3.cosmos.base.v1beta1.Coin));
                         break;
                     case 4:
-                        reader.readMessage(message.delegated_vesting, () => pb_1.Message.addToRepeatedWrapperField(message, 4, dependency_2.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_2.cosmos.base.v1beta1.Coin));
+                        reader.readMessage(message.delegated_vesting, () => pb_1.Message.addToRepeatedWrapperField(message, 4, dependency_3.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_3.cosmos.base.v1beta1.Coin));
                         break;
                     case 5:
                         message.end_time = reader.readInt64();
@@ -337,7 +338,7 @@ export namespace cosmos.vesting.v1beta1 {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             length?: number;
-            amount?: dependency_2.cosmos.base.v1beta1.Coin[];
+            amount?: dependency_3.cosmos.base.v1beta1.Coin[];
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [2], this.#one_of_decls);
@@ -357,34 +358,34 @@ export namespace cosmos.vesting.v1beta1 {
             pb_1.Message.setField(this, 1, value);
         }
         get amount() {
-            return pb_1.Message.getRepeatedWrapperField(this, dependency_2.cosmos.base.v1beta1.Coin, 2) as dependency_2.cosmos.base.v1beta1.Coin[];
+            return pb_1.Message.getRepeatedWrapperField(this, dependency_3.cosmos.base.v1beta1.Coin, 2) as dependency_3.cosmos.base.v1beta1.Coin[];
         }
-        set amount(value: dependency_2.cosmos.base.v1beta1.Coin[]) {
+        set amount(value: dependency_3.cosmos.base.v1beta1.Coin[]) {
             pb_1.Message.setRepeatedWrapperField(this, 2, value);
         }
         static fromObject(data: {
             length?: number;
-            amount?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+            amount?: ReturnType<typeof dependency_3.cosmos.base.v1beta1.Coin.prototype.toObject>[];
         }): Period {
             const message = new Period({});
             if (data.length != null) {
                 message.length = data.length;
             }
             if (data.amount != null) {
-                message.amount = data.amount.map(item => dependency_2.cosmos.base.v1beta1.Coin.fromObject(item));
+                message.amount = data.amount.map(item => dependency_3.cosmos.base.v1beta1.Coin.fromObject(item));
             }
             return message;
         }
         toObject() {
             const data: {
                 length?: number;
-                amount?: ReturnType<typeof dependency_2.cosmos.base.v1beta1.Coin.prototype.toObject>[];
+                amount?: ReturnType<typeof dependency_3.cosmos.base.v1beta1.Coin.prototype.toObject>[];
             } = {};
             if (this.length != null) {
                 data.length = this.length;
             }
             if (this.amount != null) {
-                data.amount = this.amount.map((item: dependency_2.cosmos.base.v1beta1.Coin) => item.toObject());
+                data.amount = this.amount.map((item: dependency_3.cosmos.base.v1beta1.Coin) => item.toObject());
             }
             return data;
         }
@@ -395,7 +396,7 @@ export namespace cosmos.vesting.v1beta1 {
             if (this.length != 0)
                 writer.writeInt64(1, this.length);
             if (this.amount.length)
-                writer.writeRepeatedMessage(2, this.amount, (item: dependency_2.cosmos.base.v1beta1.Coin) => item.serialize(writer));
+                writer.writeRepeatedMessage(2, this.amount, (item: dependency_3.cosmos.base.v1beta1.Coin) => item.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -409,7 +410,7 @@ export namespace cosmos.vesting.v1beta1 {
                         message.length = reader.readInt64();
                         break;
                     case 2:
-                        reader.readMessage(message.amount, () => pb_1.Message.addToRepeatedWrapperField(message, 2, dependency_2.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_2.cosmos.base.v1beta1.Coin));
+                        reader.readMessage(message.amount, () => pb_1.Message.addToRepeatedWrapperField(message, 2, dependency_3.cosmos.base.v1beta1.Coin.deserialize(reader), dependency_3.cosmos.base.v1beta1.Coin));
                         break;
                     default: reader.skipField();
                 }

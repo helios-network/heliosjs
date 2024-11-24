@@ -1,7 +1,7 @@
 import {
   createMsgEditValidator as protoMsgEditValidator,
   createTransaction,
-} from '@tharsis/proto'
+} from '@helios-chain-labs/proto'
 
 import {
   createEIP712,

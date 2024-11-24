@@ -5,13 +5,17 @@
  * git: https://github.com/thesayyn/protoc-gen-ts */
 import * as dependency_1 from "./../../../gogoproto/gogo";
 import * as dependency_2 from "./../../base/v1beta1/coin";
+import * as dependency_3 from "./../../../cosmos_proto/cosmos";
+import * as dependency_4 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.distribution.v1beta1 {
     export class Params extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             community_tax?: string;
+            /** @deprecated*/
             base_proposer_reward?: string;
+            /** @deprecated*/
             bonus_proposer_reward?: string;
             withdraw_addr_enabled?: boolean;
         }) {
@@ -38,15 +42,19 @@ export namespace cosmos.distribution.v1beta1 {
         set community_tax(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
+        /** @deprecated*/
         get base_proposer_reward() {
             return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
         }
+        /** @deprecated*/
         set base_proposer_reward(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
+        /** @deprecated*/
         get bonus_proposer_reward() {
             return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
         }
+        /** @deprecated*/
         set bonus_proposer_reward(value: string) {
             pb_1.Message.setField(this, 3, value);
         }
@@ -681,6 +689,7 @@ export namespace cosmos.distribution.v1beta1 {
             return FeePool.deserialize(bytes);
         }
     }
+    /** @deprecated*/
     export class CommunityPoolSpendProposal extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {

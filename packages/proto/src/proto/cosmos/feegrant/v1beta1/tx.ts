@@ -3,9 +3,10 @@
  * compiler version: 5.28.3
  * source: cosmos/feegrant/v1beta1/tx.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
-import * as dependency_1 from "./../../../gogoproto/gogo";
-import * as dependency_2 from "./../../../google/protobuf/any";
-import * as dependency_3 from "./../../../cosmos_proto/cosmos";
+import * as dependency_1 from "./../../../google/protobuf/any";
+import * as dependency_2 from "./../../../cosmos_proto/cosmos";
+import * as dependency_3 from "./../../msg/v1/msg";
+import * as dependency_4 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.feegrant.v1beta1 {
@@ -14,7 +15,7 @@ export namespace cosmos.feegrant.v1beta1 {
         constructor(data?: any[] | {
             granter?: string;
             grantee?: string;
-            allowance?: dependency_2.google.protobuf.Any;
+            allowance?: dependency_1.google.protobuf.Any;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -43,9 +44,9 @@ export namespace cosmos.feegrant.v1beta1 {
             pb_1.Message.setField(this, 2, value);
         }
         get allowance() {
-            return pb_1.Message.getWrapperField(this, dependency_2.google.protobuf.Any, 3) as dependency_2.google.protobuf.Any;
+            return pb_1.Message.getWrapperField(this, dependency_1.google.protobuf.Any, 3) as dependency_1.google.protobuf.Any;
         }
-        set allowance(value: dependency_2.google.protobuf.Any) {
+        set allowance(value: dependency_1.google.protobuf.Any) {
             pb_1.Message.setWrapperField(this, 3, value);
         }
         get has_allowance() {
@@ -54,7 +55,7 @@ export namespace cosmos.feegrant.v1beta1 {
         static fromObject(data: {
             granter?: string;
             grantee?: string;
-            allowance?: ReturnType<typeof dependency_2.google.protobuf.Any.prototype.toObject>;
+            allowance?: ReturnType<typeof dependency_1.google.protobuf.Any.prototype.toObject>;
         }): MsgGrantAllowance {
             const message = new MsgGrantAllowance({});
             if (data.granter != null) {
@@ -64,7 +65,7 @@ export namespace cosmos.feegrant.v1beta1 {
                 message.grantee = data.grantee;
             }
             if (data.allowance != null) {
-                message.allowance = dependency_2.google.protobuf.Any.fromObject(data.allowance);
+                message.allowance = dependency_1.google.protobuf.Any.fromObject(data.allowance);
             }
             return message;
         }
@@ -72,7 +73,7 @@ export namespace cosmos.feegrant.v1beta1 {
             const data: {
                 granter?: string;
                 grantee?: string;
-                allowance?: ReturnType<typeof dependency_2.google.protobuf.Any.prototype.toObject>;
+                allowance?: ReturnType<typeof dependency_1.google.protobuf.Any.prototype.toObject>;
             } = {};
             if (this.granter != null) {
                 data.granter = this.granter;
@@ -111,7 +112,7 @@ export namespace cosmos.feegrant.v1beta1 {
                         message.grantee = reader.readString();
                         break;
                     case 3:
-                        reader.readMessage(message.allowance, () => message.allowance = dependency_2.google.protobuf.Any.deserialize(reader));
+                        reader.readMessage(message.allowance, () => message.allowance = dependency_1.google.protobuf.Any.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -295,6 +296,113 @@ export namespace cosmos.feegrant.v1beta1 {
             return MsgRevokeAllowanceResponse.deserialize(bytes);
         }
     }
+    export class MsgPruneAllowances extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            pruner?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("pruner" in data && data.pruner != undefined) {
+                    this.pruner = data.pruner;
+                }
+            }
+        }
+        get pruner() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set pruner(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            pruner?: string;
+        }): MsgPruneAllowances {
+            const message = new MsgPruneAllowances({});
+            if (data.pruner != null) {
+                message.pruner = data.pruner;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                pruner?: string;
+            } = {};
+            if (this.pruner != null) {
+                data.pruner = this.pruner;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.pruner.length)
+                writer.writeString(1, this.pruner);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgPruneAllowances {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgPruneAllowances();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.pruner = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgPruneAllowances {
+            return MsgPruneAllowances.deserialize(bytes);
+        }
+    }
+    export class MsgPruneAllowancesResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {}) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") { }
+        }
+        static fromObject(data: {}): MsgPruneAllowancesResponse {
+            const message = new MsgPruneAllowancesResponse({});
+            return message;
+        }
+        toObject() {
+            const data: {} = {};
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgPruneAllowancesResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgPruneAllowancesResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgPruneAllowancesResponse {
+            return MsgPruneAllowancesResponse.deserialize(bytes);
+        }
+    }
     interface GrpcUnaryServiceInterface<P, R> {
         (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
         (message: P, metadata: grpc_1.Metadata, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
@@ -338,11 +446,21 @@ export namespace cosmos.feegrant.v1beta1 {
                 requestDeserialize: (bytes: Buffer) => MsgRevokeAllowance.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: MsgRevokeAllowanceResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => MsgRevokeAllowanceResponse.deserialize(new Uint8Array(bytes))
+            },
+            PruneAllowances: {
+                path: "/cosmos.feegrant.v1beta1.Msg/PruneAllowances",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: MsgPruneAllowances) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => MsgPruneAllowances.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: MsgPruneAllowancesResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => MsgPruneAllowancesResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
         abstract GrantAllowance(call: grpc_1.ServerUnaryCall<MsgGrantAllowance, MsgGrantAllowanceResponse>, callback: grpc_1.sendUnaryData<MsgGrantAllowanceResponse>): void;
         abstract RevokeAllowance(call: grpc_1.ServerUnaryCall<MsgRevokeAllowance, MsgRevokeAllowanceResponse>, callback: grpc_1.sendUnaryData<MsgRevokeAllowanceResponse>): void;
+        abstract PruneAllowances(call: grpc_1.ServerUnaryCall<MsgPruneAllowances, MsgPruneAllowancesResponse>, callback: grpc_1.sendUnaryData<MsgPruneAllowancesResponse>): void;
     }
     export class MsgClient extends grpc_1.makeGenericClientConstructor(UnimplementedMsgService.definition, "Msg", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -353,6 +471,9 @@ export namespace cosmos.feegrant.v1beta1 {
         };
         RevokeAllowance: GrpcUnaryServiceInterface<MsgRevokeAllowance, MsgRevokeAllowanceResponse> = (message: MsgRevokeAllowance, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgRevokeAllowanceResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgRevokeAllowanceResponse>, callback?: grpc_1.requestCallback<MsgRevokeAllowanceResponse>): grpc_1.ClientUnaryCall => {
             return super.RevokeAllowance(message, metadata, options, callback);
+        };
+        PruneAllowances: GrpcUnaryServiceInterface<MsgPruneAllowances, MsgPruneAllowancesResponse> = (message: MsgPruneAllowances, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgPruneAllowancesResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgPruneAllowancesResponse>, callback?: grpc_1.requestCallback<MsgPruneAllowancesResponse>): grpc_1.ClientUnaryCall => {
+            return super.PruneAllowances(message, metadata, options, callback);
         };
     }
 }

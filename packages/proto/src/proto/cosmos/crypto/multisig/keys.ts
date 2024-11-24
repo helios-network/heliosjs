@@ -5,6 +5,7 @@
  * git: https://github.com/thesayyn/protoc-gen-ts */
 import * as dependency_1 from "./../../../gogoproto/gogo";
 import * as dependency_2 from "./../../../google/protobuf/any";
+import * as dependency_3 from "./../../../amino/amino";
 import * as pb_1 from "google-protobuf";
 export namespace cosmos.crypto.multisig {
     export class LegacyAminoPubKey extends pb_1.Message {
