@@ -669,6 +669,119 @@ export namespace helios.erc20.v1 {
             return AddNewAssetConsensusProposal.deserialize(bytes);
         }
     }
+    export class RemoveAssetConsensusProposal extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            title?: string;
+            description?: string;
+            denoms?: string[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [3], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("title" in data && data.title != undefined) {
+                    this.title = data.title;
+                }
+                if ("description" in data && data.description != undefined) {
+                    this.description = data.description;
+                }
+                if ("denoms" in data && data.denoms != undefined) {
+                    this.denoms = data.denoms;
+                }
+            }
+        }
+        get title() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set title(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get description() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set description(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get denoms() {
+            return pb_1.Message.getFieldWithDefault(this, 3, []) as string[];
+        }
+        set denoms(value: string[]) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        static fromObject(data: {
+            title?: string;
+            description?: string;
+            denoms?: string[];
+        }): RemoveAssetConsensusProposal {
+            const message = new RemoveAssetConsensusProposal({});
+            if (data.title != null) {
+                message.title = data.title;
+            }
+            if (data.description != null) {
+                message.description = data.description;
+            }
+            if (data.denoms != null) {
+                message.denoms = data.denoms;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                title?: string;
+                description?: string;
+                denoms?: string[];
+            } = {};
+            if (this.title != null) {
+                data.title = this.title;
+            }
+            if (this.description != null) {
+                data.description = this.description;
+            }
+            if (this.denoms != null) {
+                data.denoms = this.denoms;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.title.length)
+                writer.writeString(1, this.title);
+            if (this.description.length)
+                writer.writeString(2, this.description);
+            if (this.denoms.length)
+                writer.writeRepeatedString(3, this.denoms);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RemoveAssetConsensusProposal {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RemoveAssetConsensusProposal();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.title = reader.readString();
+                        break;
+                    case 2:
+                        message.description = reader.readString();
+                        break;
+                    case 3:
+                        pb_1.Message.addToRepeatedField(message, 3, reader.readString());
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): RemoveAssetConsensusProposal {
+            return RemoveAssetConsensusProposal.deserialize(bytes);
+        }
+    }
     export class Asset extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
