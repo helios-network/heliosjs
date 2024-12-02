@@ -782,6 +782,119 @@ export namespace helios.erc20.v1 {
             return RemoveAssetConsensusProposal.deserialize(bytes);
         }
     }
+    export class UpdateAssetConsensusProposal extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            title?: string;
+            description?: string;
+            updates?: WeightUpdate[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [3], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("title" in data && data.title != undefined) {
+                    this.title = data.title;
+                }
+                if ("description" in data && data.description != undefined) {
+                    this.description = data.description;
+                }
+                if ("updates" in data && data.updates != undefined) {
+                    this.updates = data.updates;
+                }
+            }
+        }
+        get title() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set title(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get description() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set description(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get updates() {
+            return pb_1.Message.getRepeatedWrapperField(this, WeightUpdate, 3) as WeightUpdate[];
+        }
+        set updates(value: WeightUpdate[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 3, value);
+        }
+        static fromObject(data: {
+            title?: string;
+            description?: string;
+            updates?: ReturnType<typeof WeightUpdate.prototype.toObject>[];
+        }): UpdateAssetConsensusProposal {
+            const message = new UpdateAssetConsensusProposal({});
+            if (data.title != null) {
+                message.title = data.title;
+            }
+            if (data.description != null) {
+                message.description = data.description;
+            }
+            if (data.updates != null) {
+                message.updates = data.updates.map(item => WeightUpdate.fromObject(item));
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                title?: string;
+                description?: string;
+                updates?: ReturnType<typeof WeightUpdate.prototype.toObject>[];
+            } = {};
+            if (this.title != null) {
+                data.title = this.title;
+            }
+            if (this.description != null) {
+                data.description = this.description;
+            }
+            if (this.updates != null) {
+                data.updates = this.updates.map((item: WeightUpdate) => item.toObject());
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.title.length)
+                writer.writeString(1, this.title);
+            if (this.description.length)
+                writer.writeString(2, this.description);
+            if (this.updates.length)
+                writer.writeRepeatedMessage(3, this.updates, (item: WeightUpdate) => item.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): UpdateAssetConsensusProposal {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new UpdateAssetConsensusProposal();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.title = reader.readString();
+                        break;
+                    case 2:
+                        message.description = reader.readString();
+                        break;
+                    case 3:
+                        reader.readMessage(message.updates, () => pb_1.Message.addToRepeatedWrapperField(message, 3, WeightUpdate.deserialize(reader), WeightUpdate));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): UpdateAssetConsensusProposal {
+            return UpdateAssetConsensusProposal.deserialize(bytes);
+        }
+    }
     export class Asset extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
@@ -962,6 +1075,119 @@ export namespace helios.erc20.v1 {
         }
         static deserializeBinary(bytes: Uint8Array): Asset {
             return Asset.deserialize(bytes);
+        }
+    }
+    export class WeightUpdate extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            denom?: string;
+            magnitude?: string;
+            direction?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("denom" in data && data.denom != undefined) {
+                    this.denom = data.denom;
+                }
+                if ("magnitude" in data && data.magnitude != undefined) {
+                    this.magnitude = data.magnitude;
+                }
+                if ("direction" in data && data.direction != undefined) {
+                    this.direction = data.direction;
+                }
+            }
+        }
+        get denom() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set denom(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get magnitude() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set magnitude(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get direction() {
+            return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
+        }
+        set direction(value: string) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        static fromObject(data: {
+            denom?: string;
+            magnitude?: string;
+            direction?: string;
+        }): WeightUpdate {
+            const message = new WeightUpdate({});
+            if (data.denom != null) {
+                message.denom = data.denom;
+            }
+            if (data.magnitude != null) {
+                message.magnitude = data.magnitude;
+            }
+            if (data.direction != null) {
+                message.direction = data.direction;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                denom?: string;
+                magnitude?: string;
+                direction?: string;
+            } = {};
+            if (this.denom != null) {
+                data.denom = this.denom;
+            }
+            if (this.magnitude != null) {
+                data.magnitude = this.magnitude;
+            }
+            if (this.direction != null) {
+                data.direction = this.direction;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.denom.length)
+                writer.writeString(1, this.denom);
+            if (this.magnitude.length)
+                writer.writeString(2, this.magnitude);
+            if (this.direction.length)
+                writer.writeString(3, this.direction);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): WeightUpdate {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new WeightUpdate();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.denom = reader.readString();
+                        break;
+                    case 2:
+                        message.magnitude = reader.readString();
+                        break;
+                    case 3:
+                        message.direction = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): WeightUpdate {
+            return WeightUpdate.deserialize(bytes);
         }
     }
 }
