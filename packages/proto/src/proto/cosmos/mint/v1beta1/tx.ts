@@ -3,11 +3,11 @@
  * compiler version: 5.28.3
  * source: cosmos/mint/v1beta1/tx.proto
  * git: https://github.com/thesayyn/protoc-gen-ts */
-import * as dependency_1 from "./../../msg/v1/msg";
-import * as dependency_2 from "./../../../amino/amino";
-import * as dependency_3 from "./mint";
-import * as dependency_4 from "./../../../gogoproto/gogo";
-import * as dependency_5 from "./../../../cosmos_proto/cosmos";
+import * as dependency_1 from "./../../../amino/amino";
+import * as dependency_2 from "./mint";
+import * as dependency_3 from "./../../msg/v1/msg";
+import * as dependency_4 from "./../../../cosmos_proto/cosmos";
+import * as dependency_5 from "./../../../gogoproto/gogo";
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace cosmos.mint.v1beta1 {
@@ -15,7 +15,7 @@ export namespace cosmos.mint.v1beta1 {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             authority?: string;
-            params?: dependency_3.cosmos.mint.v1beta1.Params;
+            params?: dependency_2.cosmos.mint.v1beta1.Params;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -35,9 +35,9 @@ export namespace cosmos.mint.v1beta1 {
             pb_1.Message.setField(this, 1, value);
         }
         get params() {
-            return pb_1.Message.getWrapperField(this, dependency_3.cosmos.mint.v1beta1.Params, 2) as dependency_3.cosmos.mint.v1beta1.Params;
+            return pb_1.Message.getWrapperField(this, dependency_2.cosmos.mint.v1beta1.Params, 2) as dependency_2.cosmos.mint.v1beta1.Params;
         }
-        set params(value: dependency_3.cosmos.mint.v1beta1.Params) {
+        set params(value: dependency_2.cosmos.mint.v1beta1.Params) {
             pb_1.Message.setWrapperField(this, 2, value);
         }
         get has_params() {
@@ -45,21 +45,21 @@ export namespace cosmos.mint.v1beta1 {
         }
         static fromObject(data: {
             authority?: string;
-            params?: ReturnType<typeof dependency_3.cosmos.mint.v1beta1.Params.prototype.toObject>;
+            params?: ReturnType<typeof dependency_2.cosmos.mint.v1beta1.Params.prototype.toObject>;
         }): MsgUpdateParams {
             const message = new MsgUpdateParams({});
             if (data.authority != null) {
                 message.authority = data.authority;
             }
             if (data.params != null) {
-                message.params = dependency_3.cosmos.mint.v1beta1.Params.fromObject(data.params);
+                message.params = dependency_2.cosmos.mint.v1beta1.Params.fromObject(data.params);
             }
             return message;
         }
         toObject() {
             const data: {
                 authority?: string;
-                params?: ReturnType<typeof dependency_3.cosmos.mint.v1beta1.Params.prototype.toObject>;
+                params?: ReturnType<typeof dependency_2.cosmos.mint.v1beta1.Params.prototype.toObject>;
             } = {};
             if (this.authority != null) {
                 data.authority = this.authority;
@@ -90,7 +90,7 @@ export namespace cosmos.mint.v1beta1 {
                         message.authority = reader.readString();
                         break;
                     case 2:
-                        reader.readMessage(message.params, () => message.params = dependency_3.cosmos.mint.v1beta1.Params.deserialize(reader));
+                        reader.readMessage(message.params, () => message.params = dependency_2.cosmos.mint.v1beta1.Params.deserialize(reader));
                         break;
                     default: reader.skipField();
                 }
@@ -144,6 +144,295 @@ export namespace cosmos.mint.v1beta1 {
             return MsgUpdateParamsResponse.deserialize(bytes);
         }
     }
+    export class UpdateInflationProposal extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            title?: string;
+            description?: string;
+            phase?: string;
+            new_rate?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("title" in data && data.title != undefined) {
+                    this.title = data.title;
+                }
+                if ("description" in data && data.description != undefined) {
+                    this.description = data.description;
+                }
+                if ("phase" in data && data.phase != undefined) {
+                    this.phase = data.phase;
+                }
+                if ("new_rate" in data && data.new_rate != undefined) {
+                    this.new_rate = data.new_rate;
+                }
+            }
+        }
+        get title() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set title(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get description() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set description(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get phase() {
+            return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
+        }
+        set phase(value: string) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        get new_rate() {
+            return pb_1.Message.getFieldWithDefault(this, 4, "") as string;
+        }
+        set new_rate(value: string) {
+            pb_1.Message.setField(this, 4, value);
+        }
+        static fromObject(data: {
+            title?: string;
+            description?: string;
+            phase?: string;
+            new_rate?: string;
+        }): UpdateInflationProposal {
+            const message = new UpdateInflationProposal({});
+            if (data.title != null) {
+                message.title = data.title;
+            }
+            if (data.description != null) {
+                message.description = data.description;
+            }
+            if (data.phase != null) {
+                message.phase = data.phase;
+            }
+            if (data.new_rate != null) {
+                message.new_rate = data.new_rate;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                title?: string;
+                description?: string;
+                phase?: string;
+                new_rate?: string;
+            } = {};
+            if (this.title != null) {
+                data.title = this.title;
+            }
+            if (this.description != null) {
+                data.description = this.description;
+            }
+            if (this.phase != null) {
+                data.phase = this.phase;
+            }
+            if (this.new_rate != null) {
+                data.new_rate = this.new_rate;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.title.length)
+                writer.writeString(1, this.title);
+            if (this.description.length)
+                writer.writeString(2, this.description);
+            if (this.phase.length)
+                writer.writeString(3, this.phase);
+            if (this.new_rate.length)
+                writer.writeString(4, this.new_rate);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): UpdateInflationProposal {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new UpdateInflationProposal();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.title = reader.readString();
+                        break;
+                    case 2:
+                        message.description = reader.readString();
+                        break;
+                    case 3:
+                        message.phase = reader.readString();
+                        break;
+                    case 4:
+                        message.new_rate = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): UpdateInflationProposal {
+            return UpdateInflationProposal.deserialize(bytes);
+        }
+    }
+    export class MsgUpdateInflationRate extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            authority?: string;
+            phase?: string;
+            new_rate?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("authority" in data && data.authority != undefined) {
+                    this.authority = data.authority;
+                }
+                if ("phase" in data && data.phase != undefined) {
+                    this.phase = data.phase;
+                }
+                if ("new_rate" in data && data.new_rate != undefined) {
+                    this.new_rate = data.new_rate;
+                }
+            }
+        }
+        get authority() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set authority(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get phase() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set phase(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get new_rate() {
+            return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
+        }
+        set new_rate(value: string) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        static fromObject(data: {
+            authority?: string;
+            phase?: string;
+            new_rate?: string;
+        }): MsgUpdateInflationRate {
+            const message = new MsgUpdateInflationRate({});
+            if (data.authority != null) {
+                message.authority = data.authority;
+            }
+            if (data.phase != null) {
+                message.phase = data.phase;
+            }
+            if (data.new_rate != null) {
+                message.new_rate = data.new_rate;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                authority?: string;
+                phase?: string;
+                new_rate?: string;
+            } = {};
+            if (this.authority != null) {
+                data.authority = this.authority;
+            }
+            if (this.phase != null) {
+                data.phase = this.phase;
+            }
+            if (this.new_rate != null) {
+                data.new_rate = this.new_rate;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.authority.length)
+                writer.writeString(1, this.authority);
+            if (this.phase.length)
+                writer.writeString(2, this.phase);
+            if (this.new_rate.length)
+                writer.writeString(3, this.new_rate);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgUpdateInflationRate {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgUpdateInflationRate();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.authority = reader.readString();
+                        break;
+                    case 2:
+                        message.phase = reader.readString();
+                        break;
+                    case 3:
+                        message.new_rate = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgUpdateInflationRate {
+            return MsgUpdateInflationRate.deserialize(bytes);
+        }
+    }
+    export class MsgUpdateInflationRateResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {}) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") { }
+        }
+        static fromObject(data: {}): MsgUpdateInflationRateResponse {
+            const message = new MsgUpdateInflationRateResponse({});
+            return message;
+        }
+        toObject() {
+            const data: {} = {};
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): MsgUpdateInflationRateResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new MsgUpdateInflationRateResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): MsgUpdateInflationRateResponse {
+            return MsgUpdateInflationRateResponse.deserialize(bytes);
+        }
+    }
     interface GrpcUnaryServiceInterface<P, R> {
         (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
         (message: P, metadata: grpc_1.Metadata, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
@@ -178,10 +467,20 @@ export namespace cosmos.mint.v1beta1 {
                 requestDeserialize: (bytes: Buffer) => MsgUpdateParams.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: MsgUpdateParamsResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => MsgUpdateParamsResponse.deserialize(new Uint8Array(bytes))
+            },
+            UpdateInflationRate: {
+                path: "/cosmos.mint.v1beta1.Msg/UpdateInflationRate",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: MsgUpdateInflationRate) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => MsgUpdateInflationRate.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: MsgUpdateInflationRateResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => MsgUpdateInflationRateResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
         abstract UpdateParams(call: grpc_1.ServerUnaryCall<MsgUpdateParams, MsgUpdateParamsResponse>, callback: grpc_1.sendUnaryData<MsgUpdateParamsResponse>): void;
+        abstract UpdateInflationRate(call: grpc_1.ServerUnaryCall<MsgUpdateInflationRate, MsgUpdateInflationRateResponse>, callback: grpc_1.sendUnaryData<MsgUpdateInflationRateResponse>): void;
     }
     export class MsgClient extends grpc_1.makeGenericClientConstructor(UnimplementedMsgService.definition, "Msg", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -189,6 +488,9 @@ export namespace cosmos.mint.v1beta1 {
         }
         UpdateParams: GrpcUnaryServiceInterface<MsgUpdateParams, MsgUpdateParamsResponse> = (message: MsgUpdateParams, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgUpdateParamsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgUpdateParamsResponse>, callback?: grpc_1.requestCallback<MsgUpdateParamsResponse>): grpc_1.ClientUnaryCall => {
             return super.UpdateParams(message, metadata, options, callback);
+        };
+        UpdateInflationRate: GrpcUnaryServiceInterface<MsgUpdateInflationRate, MsgUpdateInflationRateResponse> = (message: MsgUpdateInflationRate, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MsgUpdateInflationRateResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MsgUpdateInflationRateResponse>, callback?: grpc_1.requestCallback<MsgUpdateInflationRateResponse>): grpc_1.ClientUnaryCall => {
+            return super.UpdateInflationRate(message, metadata, options, callback);
         };
     }
 }
