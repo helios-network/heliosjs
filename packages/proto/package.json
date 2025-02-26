@@ -1,7 +1,7 @@
 {
   "name": "@helios-chain-labs/proto",
   "description": "Protobuf files for Helios.",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -30,14 +30,12 @@
     "coverage": "jest --coverage",
     "dev": "ts-node-dev -r tsconfig-paths/register src/index.ts",
     "start": "node dist/index.js",
-  "generate:proto": "protoc --plugin=\"protoc-gen-ts=/usr/local/bin/protoc-gen-ts\" --ts_out=./src/proto -I ./proto ./proto/**/*.proto"
-
+    "generate:proto": "protoc --plugin=\"protoc-gen-ts=/usr/local/bin/protoc-gen-ts\" --ts_out=./src/proto -I ./proto ./proto/**/*.proto"
   },
   "devDependencies": {
     "protoc-gen-ts": "^0.8.2"
   },
   "dependencies": {
-    "@grpc/grpc-js": "^1.12.2",
     "@types/google-protobuf": "^3.15.5",
     "@types/node": "^17.0.21",
     "google-protobuf": "^3.19.4",
