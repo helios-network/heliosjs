@@ -1,5 +1,6 @@
 export * from './messages/msgConvertCoin'
 export * from './messages/msgConvertERC20'
+export * from './messages/msgScheduleEVMCall'
 export * from './messages/msgSubmitProposal'
 export * from './messages/msgVote'
 export * from './messages/common'
